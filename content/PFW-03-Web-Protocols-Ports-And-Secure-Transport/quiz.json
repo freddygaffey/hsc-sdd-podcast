@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw03-q01",
+      "q": "State the default port numbers for HTTP, HTTPS, SSH and FTP.",
+      "options": [
+        "HTTP 8080, HTTPS 443, SSH 22, FTP 21",
+        "HTTP 80, HTTPS 443, SSH 22, FTP 21",
+        "HTTP 80, HTTPS 8443, SSH 23, FTP 20",
+        "HTTP 443, HTTPS 80, SSH 21, FTP 22"
+      ],
+      "answer": 1,
+      "explanation": "The chant locks these in: 'eighty plain, four-four-three safe; twenty-two secure shell, twenty-one file.' HTTP runs on 80, HTTPS on 443, SSH (and SFTP riding on it) on 22, and FTP on 21. The tempting trap is mixing HTTP/HTTPS (80 vs 443) or using 23/8080 — those are not the syllabus defaults the exam wants."
+    },
+    {
+      "id": "pfw03-q02",
+      "q": "Identify which protocol is the modern successor to SSL and is the one actually used to secure HTTPS today.",
+      "options": [
+        "SSH (Secure Shell)",
+        "SFTP (Secure File Transfer Protocol)",
+        "TLS (Transport Layer Security)",
+        "TCP (Transmission Control Protocol)"
+      ],
+      "answer": 2,
+      "explanation": "TLS — Transport Layer Security — is the current protocol; SSL (Secure Sockets Layer) is its older predecessor. People still say 'SSL certificate' out of habit, but the live protocol is TLS, and the exam expects you to know TLS is current and not write as if the two are identical. SSH is for remote login, not securing web traffic, so it is the wrong concept here."
+    },
+    {
+      "id": "pfw03-q03",
+      "q": "Outline what the difference between plain text and cipher text tells you about the security of a connection.",
+      "options": [
+        "Plain text is readable data; cipher text is that same data after encryption, scrambled so an interceptor cannot read it",
+        "Plain text is compressed data; cipher text is uncompressed data sent over the network",
+        "Plain text is data sent by the client; cipher text is data sent by the server",
+        "Plain text is HTML; cipher text is the binary version of the same page"
+      ],
+      "answer": 0,
+      "explanation": "Plain text is legible data, like the password 'myPassword123' sitting there readable, while cipher text is the same data after encryption — scrambled and useless to anyone who intercepts it. The whole job of TLS is to ensure everything between browser and server travels as cipher text. The other options confuse encryption with compression or with client/server direction, which is not what these terms mean."
+    },
+    {
+      "id": "pfw03-q04",
+      "q": "Distinguish between symmetric and asymmetric encryption.",
+      "options": [
+        "Symmetric encryption is one-way and cannot be reversed; asymmetric encryption is two-way and can be decrypted",
+        "Symmetric encryption uses the same single key to encrypt and decrypt; asymmetric encryption uses a pair — a public key to encrypt and a private key to decrypt",
+        "Symmetric encryption only works on text; asymmetric encryption only works on binary files",
+        "Symmetric encryption is used by certificates; asymmetric encryption is used by hash functions"
+      ],
+      "answer": 1,
+      "explanation": "The memory hook is 'Symmetric is the Same key; Asymmetric is A pair.' Symmetric uses one shared secret key for both directions and is fast, while asymmetric uses a public key to encrypt and a private key to decrypt, solving the key-sharing problem. Option A confuses this with the hashing-versus-encryption distinction; encryption of either kind is two-way."
+    },
+    {
+      "id": "pfw03-q05",
+      "q": "Explain why TLS uses asymmetric encryption at the start of a connection but then switches to symmetric encryption for the rest.",
+      "options": [
+        "Symmetric encryption is more secure than asymmetric, so it is saved for the sensitive bulk data",
+        "Asymmetric encryption cannot encrypt large files, so symmetric is required once the file size grows",
+        "Asymmetric encryption is computationally expensive and slow for bulk data, so it is used once to agree a shared session key, then fast symmetric encryption carries the actual traffic",
+        "Browsers only support asymmetric encryption during the handshake and symmetric encryption afterwards for compatibility reasons"
+      ],
+      "answer": 2,
+      "explanation": "Asymmetric encryption solves 'how do we agree a secret without having met' but is slow, so TLS uses it just once to agree a shared session key, then switches to fast symmetric encryption for the ongoing conversation — best of both. Saying 'asymmetric to exchange the key, symmetric for the bulk data' is the band-six discriminator most students miss. Option A is wrong: symmetric is chosen for speed, not because it is more secure."
+    },
+    {
+      "id": "pfw03-q06",
+      "q": "A server sends its certificate during a handshake. Explain the actual role of that certificate.",
+      "options": [
+        "It encrypts the data being sent so the connection is secure",
+        "It generates the symmetric session key used for the rest of the conversation",
+        "It compresses the traffic so the connection is faster as well as secure",
+        "It authenticates the server's identity and carries the server's public key; the keys, not the certificate, do the encrypting"
+      ],
+      "answer": 3,
+      "explanation": "A certificate's job is to authenticate — to prove the server is who it claims to be — and to carry the server's public key, signed by a Certificate Authority the browser trusts. Students who write 'the certificate encrypts the data' lose the mark: the keys do the encrypting, not the certificate. The certificate does not generate the session key by itself either — the browser and server negotiate that using the public key."
+    },
+    {
+      "id": "pfw03-q07",
+      "q": "Distinguish between authentication and authorisation.",
+      "options": [
+        "Authentication verifies who a user is, for example by checking a password; authorisation determines what an authenticated user is permitted to do, such as which resources their role grants",
+        "Authentication encrypts the connection; authorisation decrypts it once the user is trusted",
+        "Authentication assigns user permissions; authorisation verifies the user's password at login",
+        "Authentication applies only to administrators; authorisation applies only to regular users"
+      ],
+      "answer": 0,
+      "explanation": "The hook is 'authentication is who you are; authorisation is what you can do' — identity first, then permission. Logging in with the right password is authentication; being able to view your own orders but not the admin dashboard is authorisation. The tempting trap swaps the two definitions — saying authentication assigns permissions and authorisation checks the password — which is exactly the mistake the similar-sounding words invite."
+    },
+    {
+      "id": "pfw03-q08",
+      "q": "Explain why hashing is described as one-way and how this differs from encryption.",
+      "options": [
+        "Hashing scrambles data using a public key, while encryption scrambles it using a private key",
+        "Hashing produces a fixed-size fingerprint that cannot be reversed back to the original, whereas encryption is two-way — you encrypt so you can later decrypt",
+        "Hashing is slower than encryption but produces a smaller output, which is why it is used for passwords",
+        "Hashing and encryption are the same process; 'hash' is just the older word for 'encrypt'"
+      ],
+      "answer": 1,
+      "explanation": "The most important distinction in the security strand is 'Hash is one-way, Encrypt is two-way.' A hash function produces a fixed-size fingerprint you cannot un-hash, and it is deterministic, so it is used to store passwords safely and check data integrity; encryption is reversible by design so data can be decrypted later. Option D is the exact trap the episode warns separates bands — hashing is not encryption."
+    },
+    {
+      "id": "pfw03-q09",
+      "q": "Outline the two guarantees that a digital signature provides and how it is produced.",
+      "options": [
+        "Confidentiality and availability, produced by encrypting the message with a symmetric key",
+        "Speed and compression, produced by hashing the message and discarding the original",
+        "Authorisation and authentication, produced by the Certificate Authority issuing a password",
+        "Authenticity and non-repudiation, produced by signing with the sender's private key and verifying with their public key"
+      ],
+      "answer": 3,
+      "explanation": "A digital signature gives authenticity — proof of who created the message — and non-repudiation, meaning the signer cannot later deny signing it, produced by signing with the private key and verifying with the matching public key. Because the signature is tied to a hash of the content, any tampering makes it fail to verify. The confidentiality-and-availability option names the wrong pair; those are CIA-triad goals, not what a signature delivers."
+    },
+    {
+      "id": "pfw03-q10",
+      "q": "A small business setting up an online store wants to protect customers' payment details. Which set of measures, with correct terminology, best meets this requirement?",
+      "options": [
+        "Serve the checkout over HTTP on port 80, use a self-signed certificate, and store passwords in plain text for fast lookups",
+        "Serve the checkout over HTTPS on port 443 with a valid TLS certificate from a trusted Certificate Authority, and store passwords as salted hash values",
+        "Use FTP on port 21 to transfer payment data and rely on symmetric encryption alone to share keys with every customer",
+        "Use SSH on port 22 for the storefront and authorise all users as administrators so checkout is never blocked"
+      ],
+      "answer": 1,
+      "explanation": "The store must use HTTPS on port 443 with a valid TLS certificate so payment details travel as cipher text and cannot be intercepted, the certificate must come from a trusted Certificate Authority so customers can verify it is not an imposter site, and passwords must be stored as one-way salted hashes to survive a breach. Option A is the e-commerce failure from episode one — a checkout on port 80 exposes card numbers in plain text. Each correct measure counters a specific threat: encryption against interception, certificates against impersonation, hashing against credential theft."
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw1301-q01",
+      "q": "Identify, in order, the four stages of the back-end request lifecycle named by the R-H-D-R mnemonic.",
+      "options": [
+        "Route, Handle, Data, Respond",
+        "Receive, Hash, Decrypt, Render",
+        "Request, Header, Database, Reply",
+        "Read, Hold, Deliver, Return"
+      ],
+      "answer": 0,
+      "explanation": "R-H-D-R stands for Route, Handle, Data, Respond: the framework routes the URL to a handler, the handler runs the business logic, it fetches or stores data in the database, and it builds the response. This ordered list is the spine of a 'describe the steps a web server takes to process a dynamic request' question. The other options use real-sounding back-end words but are not the named stages."
+    },
+    {
+      "id": "pfw1301-q02",
+      "q": "Distinguish between web server software and a web framework as the episode defines them.",
+      "options": [
+        "Web server software runs the application's routing and business logic, while the web framework accepts network connections and serves static files",
+        "They are two names for the same layer; nginx and Flask are interchangeable",
+        "Web server software (e.g. nginx or Apache) accepts the network connection, parses HTTP and serves static files, while the web framework (e.g. Flask) runs the application's routing and business logic",
+        "Web server software stores the database, while the web framework renders the HTML templates"
+      ],
+      "answer": 2,
+      "explanation": "The mark-earning distinction is that the web server software handles the network connection, raw HTTP parsing and static content, while the web framework runs the routing and business logic for dynamic requests. Option A reverses the two roles, which is the named trap; the episode warns 'don't call Flask a web server or nginx a framework.' They are different layers, not the same one (eliminating B)."
+    },
+    {
+      "id": "pfw1301-q03",
+      "q": "In the R-H-D-R flow, what does the handler read the user's input out of during the 'Handle' stage?",
+      "options": [
+        "The session object",
+        "The template engine",
+        "The request object",
+        "The response object"
+      ],
+      "answer": 2,
+      "explanation": "The request object is the framework's object holding everything about the incoming request: the URL, the form data and the headers, and the handler reads the user's query out of it. The session object remembers a logged-in user across requests, and the response object is what you send back, so neither holds the incoming input."
+    },
+    {
+      "id": "pfw1301-q04",
+      "q": "Explain why production systems put a separate web server like nginx in front of the Flask framework rather than letting Flask handle everything.",
+      "options": [
+        "Flask cannot run Python code, so nginx executes the handlers on its behalf",
+        "The web server is highly optimised to accept many connections, serve static files and handle TLS termination, so it takes the load and forwards only dynamic requests to the framework where the application logic lives",
+        "nginx is required to store the database, which Flask cannot access on its own",
+        "The web server validates all user input so the framework never has to"
+      ],
+      "answer": 1,
+      "explanation": "The web server is optimised for accepting many connections, serving static files fast and TLS termination (decrypting HTTPS), while the framework is for dynamic logic, so the server takes the load and forwards only dynamic requests. This is separation of responsibilities applied to infrastructure. Option D is wrong because validation must still happen in the back-end handler; the web server does not remove that duty."
+    },
+    {
+      "id": "pfw1301-q05",
+      "q": "Outline the role of the session object that the framework provides to a handler.",
+      "options": [
+        "It holds the form data and headers of the current incoming request",
+        "It serves static files such as images and CSS directly to the browser",
+        "It performs TLS termination by decrypting incoming HTTPS traffic",
+        "It remembers a logged-in user across multiple requests"
+      ],
+      "answer": 3,
+      "explanation": "The session object remembers a logged-in user across requests, which is what tracks the authenticated user throughout the back-end flow. The most tempting confusion is the request object, which instead holds the form data and headers of the current request. Serving static files and TLS termination are jobs of the web server software, not framework objects."
+    },
+    {
+      "id": "pfw1301-q06",
+      "q": "Explain why a back-end handler must validate user input even when the front end already checks it with JavaScript.",
+      "options": [
+        "Client-side JavaScript runs too slowly to catch malicious input in time",
+        "Server-side validation is only needed for forms, not for search boxes",
+        "Client-side checks can be bypassed entirely because an attacker can send a request straight to the endpoint without loading the page or running its JavaScript, so the back end must re-validate",
+        "The browser deletes the validation code once the page is closed, so it must be repeated"
+      ],
+      "answer": 2,
+      "explanation": "Client-side validation runs in the user's browser and can be bypassed, since an attacker can POST straight to the /search endpoint without ever loading your page or running your JavaScript. Client-side validation is convenience; server-side validation is security. The 'too slow' option misframes the issue as speed, but the real problem is that the check can be skipped entirely, allowing unvalidated input to reach the server."
+    },
+    {
+      "id": "pfw1301-q07",
+      "q": "Compare the two attacks that can result from gluing untrusted request input directly into back-end operations.",
+      "options": [
+        "Concatenating input into a database query causes cross-site scripting, while inserting it into HTML causes SQL injection",
+        "Both concatenating input into a query and inserting it into HTML cause SQL injection only",
+        "Concatenating input into a database query causes SQL injection, while inserting it unescaped into the returned HTML causes cross-site scripting (XSS)",
+        "Both attacks are prevented automatically by the web server's TLS termination"
+      ],
+      "answer": 2,
+      "explanation": "Gluing raw input into a database query lets an attacker rewrite the query, which is SQL injection; dropping raw input into the HTML you send back lets the attacker's code run in other users' browsers, which is cross-site scripting (XSS). Option A reverses which attack maps to which sink, the classic confusion. TLS only encrypts the connection and does nothing to stop injection (eliminating D)."
+    },
+    {
+      "id": "pfw1301-q08",
+      "q": "The CRUD operations map across the stack. Which mapping correctly lines up Create, Read, Update, Delete with their SQL commands and HTTP methods?",
+      "options": [
+        "Create-Read-Update-Delete maps to SELECT-INSERT-DELETE-UPDATE and to GET-POST-DELETE-PUT",
+        "Create-Read-Update-Delete maps to INSERT-SELECT-UPDATE-DELETE and to POST-GET-PUT-DELETE",
+        "Create-Read-Update-Delete maps to POST-GET-PUT-DELETE and to INSERT-UPDATE-SELECT-DELETE",
+        "Create-Read-Update-Delete maps to UPDATE-SELECT-INSERT-DELETE and to PUT-GET-POST-DELETE"
+      ],
+      "answer": 1,
+      "explanation": "CRUD lines up as Create-Read-Update-Delete to the SQL commands INSERT-SELECT-UPDATE-DELETE and to the HTTP methods POST-GET-PUT-DELETE. The tempting error in option A swaps INSERT and SELECT (Create is INSERT, not SELECT) and mismatches the verbs. This mapping is a tidy way to remember how HTTP verbs, SQL and data operations correspond, and it forward-links to the databases episode."
+    },
+    {
+      "id": "pfw1301-q09",
+      "q": "A user submits a search term to a Flask /search route which queries a database and returns rendered results. Describe the request flow and identify the key security concern.",
+      "options": [
+        "The web server runs the SQL directly; the main risk is that nginx is not a framework",
+        "The session object routes the request and stores the results permanently; the only risk is slow page load",
+        "The template engine accepts the connection and validates the input, so there is no security concern to flag",
+        "The framework routes /search to the handler, which reads the term from the request object, queries the database, and renders HTML back (R-H-D-R); the key risk is that the search term is untrusted input enabling SQL injection or XSS unless validated and parameterised"
+      ],
+      "answer": 3,
+      "explanation": "The correct narration is Route, Handle, Data, Respond: the framework routes /search to the handler, which reads the term from the request object, queries the database, then renders the records into an HTML response. The key risk is that the search term is untrusted user input; concatenating it into SQL enables injection and inserting it unescaped into HTML enables XSS, so it must be validated and sanitised with parameterised queries. The template-engine option is wrong because no automatic layer validates the input for you."
+    },
+    {
+      "id": "pfw1301-q10",
+      "q": "The dot-point names shell scripts as part of the back-end developer's toolkit. Identify the two tasks the episode gives as examples of what shell scripts are used for.",
+      "options": [
+        "Making files and directories, and searching through text",
+        "Encrypting HTTPS traffic and load-balancing incoming connections",
+        "Rendering HTML templates and managing user sessions",
+        "Routing URLs to handlers and querying the database"
+      ],
+      "answer": 0,
+      "explanation": "The syllabus point is that shell scripts handle the surrounding tooling, specifically making files and directories and searching through text (for example mkdir to scaffold a project and grep to search a log file). Rendering templates, sessions, routing and database queries are application-code jobs done by the framework, not the shell-script tooling that sits alongside it."
+    }
+  ]
+}

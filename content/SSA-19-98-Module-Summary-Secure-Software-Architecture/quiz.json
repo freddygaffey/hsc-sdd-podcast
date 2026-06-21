@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1998-q01",
+      "q": "Identify what the six letters of the CIA-AAA exam hook stand for.",
+      "options": [
+        "Confidentiality, Integrity, Availability, Authentication, Authorisation, Accountability",
+        "Confidentiality, Identity, Access, Authentication, Auditing, Availability",
+        "Cryptography, Integrity, Access control, Authorisation, Accountability, Auditing",
+        "Confidentiality, Integrity, Authorisation, Authentication, Availability, Accountability"
+      ],
+      "answer": 0,
+      "explanation": "CIA-AAA is the marquee hook: Confidentiality, Integrity, Availability are the triad of what we protect, and Authentication, Authorisation, Accountability are the triple-A of how we protect it. Option D shuffles Availability and Authorisation between the two groups, which breaks the 'CIA is what we protect, AAA is how' split. Writing CIA-AAA in the margin first lets you offload almost every security property in the first minute."
+    },
+    {
+      "id": "ssa1998-q02",
+      "q": "Outline the difference between hashing and encryption captured by the marquee line in the script.",
+      "options": [
+        "Hashing is one-way and irreversible to verify a match, whereas encryption is two-way and reversible with a key to recover the data",
+        "Hashing is two-way and reversible with a key, whereas encryption is one-way and irreversible",
+        "Hashing is faster than encryption, so it is used for bulk traffic while encryption secures passwords",
+        "Hashing protects confidentiality while encryption protects integrity and produces a fixed-size fingerprint"
+      ],
+      "answer": 0,
+      "explanation": "The line is 'Hash is one-way, Encrypt is two-way.' Hashing is irreversible and delivers integrity and verification — you use it when you only need to check a match. Encryption is reversible with a key and delivers confidentiality — you use it when you need the data back. Option B simply inverts the directions and option D swaps the properties, which is exactly one of the eight marker traps."
+    },
+    {
+      "id": "ssa1998-q03",
+      "q": "Identify what the mnemonic V-S-E stands for in the script's framework for defensive input handling.",
+      "options": [
+        "Verify, Secure, Encrypt",
+        "Validate, Sanitise, handle Errors",
+        "Validate, Store, Escape",
+        "Verify, Sanitise, Encode"
+      ],
+      "answer": 1,
+      "explanation": "V-S-E is Validate, Sanitise, handle Errors — the three practices under the governing rule 'never trust input.' Validation checks input against rules and rejects what does not conform (a gate), while sanitisation transforms or escapes input so it is safe to use (it cleans). Distractors that read 'Encrypt' or 'Encode' confuse output-handling techniques with the three named input-handling practices."
+    },
+    {
+      "id": "ssa1998-q04",
+      "q": "Explain why the script insists passwords must be hashed and salted rather than encrypted.",
+      "options": [
+        "Encryption is slower than hashing, so salted hashing is used purely for performance reasons",
+        "Hashing hides the password length, whereas encryption reveals how long each password is",
+        "Hashing is one-way so stolen hashes cannot be reversed, and a salt makes identical passwords differ and defeats precomputed rainbow tables; encryption's reversible key is a liability you never need",
+        "Salting encrypts the password a second time, which is stronger than a single round of encryption"
+      ],
+      "answer": 2,
+      "explanation": "You only ever need to verify a password, never recover it, so a one-way hash is correct and a reversible encryption key would be a liability — steal the key, steal every password. The recipe is 'Hash it, Salt it, Slow it': the salt is a unique random per-user value that makes identical passwords differ so 'salt stops the rainbow,' and a slow hash like bcrypt beats brute force. Option D is wrong because a salt is not a second round of encryption — it is random data combined before hashing."
+    },
+    {
+      "id": "ssa1998-q05",
+      "q": "A logged-in user changes the ID in a URL and reads another user's record. Using the script's framework, identify the vulnerability and the principle it violates.",
+      "options": [
+        "Cross-site request forgery, violating the same-origin policy",
+        "Session fixation, violating the S-A-F-E session rules",
+        "SQL injection, violating the 'never trust input' rule",
+        "Broken access control, violating the principle that 'authenticated is not authorised'"
+      ],
+      "answer": 3,
+      "explanation": "The system authenticated the user but never authorised the specific action, so an authenticated user reaches data they should not — that is broken access control, and the principle is 'authenticated is not authorised.' The fix under A-A-R-T is to authorise the specific action on every request with role-based access plus an ownership check. Cross-site request forgery (A) rides a session to forge a request rather than directly changing an ID, so it does not fit this scenario."
+    },
+    {
+      "id": "ssa1998-q06",
+      "q": "Distinguish between SAST and DAST as the script frames them with 'Static is Source, Dynamic is Doing.'",
+      "options": [
+        "SAST attacks the running application from outside and finds runtime flaws; DAST reads the source without running it",
+        "SAST reads the source without running it, finding insecure patterns early by exact line; DAST attacks the running application from outside, finding real runtime flaws late and without a line number",
+        "SAST and DAST both run the application, but SAST is performed by a human and DAST by a tool",
+        "SAST is a broad scan that catalogues known weaknesses; DAST is a skilled human chaining exploits"
+      ],
+      "answer": 1,
+      "explanation": "Static application security testing reads the source without running it, so it finds insecure patterns early and by exact line but with false positives. Dynamic testing attacks the running app from outside, finding real exploitable runtime flaws but late and with no line number — 'Static is Source, Dynamic is Doing.' Option A simply swaps the two definitions, and option D describes vulnerability assessment versus penetration testing, a different pair from the five-method chant."
+    },
+    {
+      "id": "ssa1998-q07",
+      "q": "Distinguish between cross-site scripting and cross-site request forgery using the script's one-line test.",
+      "options": [
+        "XSS rides a session to act as you; CSRF injects a script to run code as you",
+        "Both inject malicious scripts, but XSS is reflected and CSRF is stored",
+        "XSS injects a Script to run code as you; CSRF injects no script but rides a Session to forge a request as you",
+        "XSS forges a request using the session cookie; CSRF echoes untrusted input into a page"
+      ],
+      "answer": 2,
+      "explanation": "The key distinction is 'cross-site scripting injects a Script — run code as you; cross-site request forgery rides a Session — act as you.' XSS is untrusted input echoed into a page without encoding, fixed with output encoding, a Content Security Policy, and HttpOnly cookies; CSRF injects no script but tricks a logged-in browser into sending a forged request, fixed with an anti-CSRF token and SameSite cookies. Option A states the correct facts but assigns each to the wrong attack."
+    },
+    {
+      "id": "ssa1998-q08",
+      "q": "Explain the script's distinction that 'privacy is not security.'",
+      "options": [
+        "Privacy and security are the same goal; the script uses two words for one idea of keeping attackers out",
+        "Security protects data from unauthorised access, while privacy governs whether you should collect data at all and how it is used, retained, and consented",
+        "Privacy protects data from unauthorised access, while security governs how long data is retained and whether consent was given",
+        "Privacy applies only to EU companies under GDPR, whereas security applies to all organisations"
+      ],
+      "answer": 1,
+      "explanation": "Security protects data from unauthorised access — keeping attackers out — while privacy governs whether you should collect it at all and how it is used, retained, and consented. You can have perfect security and still violate privacy by harvesting and selling data, which is why they are distinct. Option C reverses the two definitions, and option D wrongly limits privacy to GDPR when the Australian Privacy Principles also apply."
+    },
+    {
+      "id": "ssa1998-q09",
+      "q": "A startup says 'we're too small to be a target, so we'll add security later.' Using chapter fourteen, evaluate this reasoning.",
+      "options": [
+        "It is sound, because attackers focus on large enterprises and bolt-on security at the end is cheaper",
+        "It is sound, because risk equals Likelihood times Impact and a small firm has low impact",
+        "It is flawed: attacks are automated and indiscriminate so small firms are still hit, and 'shift left' shows fixing flaws at design is far cheaper than after a breach",
+        "It is flawed only on cost, but it is correct that small firms are rarely attacked"
+      ],
+      "answer": 2,
+      "explanation": "The 'too small to be targeted' line is an explicit trap: attacks are automated and indiscriminate, and small firms are least able to survive a breach. Deferring security also ignores 'shift left' — flaws are roughly sixty-three times cheaper to fix at design than in production, so 'prevention is cheaper than response.' Option D is tempting but still concedes the false claim that small firms are rarely attacked."
+    },
+    {
+      "id": "ssa1998-q10",
+      "q": "A company stores customer health data, exposes a public API, and has had no security audit in two years. Recommend the framework that best addresses the unaudited public API and the missing audit.",
+      "options": [
+        "Apply STRIDE to the data and PER to the audit, because both are chapter fourteen frameworks",
+        "Apply V-D-Q to the API and H-B-D to the audit, because collaboration and breach handling cover both gaps",
+        "Apply S-A-F-E to the API and PIP-PB to the audit, because sessions and enterprise benefits cover both gaps",
+        "Apply A-A-R-T to the public API and M-A-I to the missing audit, because the API needs authenticate-authorise-rate-limit-transport-secure and the unmeasured program needs Measure, Audit, Improve"
+      ],
+      "answer": 3,
+      "explanation": "A public API is a door opened on purpose, so every request is untrusted and must be secured with A-A-R-T — Authenticate the caller, Authorise the action on every request to prevent broken access control, Rate-limit to protect availability, and Transport-secure over TLS. An unmeasured security program needs the M-A-I loop: an independent audit against a standard like ISO 27001, outcome metrics such as mean time to respond, then continuous improvement. S-A-F-E (C) secures sessions but does not address the audit, and PIP-PB lists enterprise benefits rather than fixing an unmeasured program."
+    }
+  ]
+}

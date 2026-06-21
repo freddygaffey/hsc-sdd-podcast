@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2501-q01",
+      "q": "Define incremental implementation as used in this episode.",
+      "options": [
+        "Writing the entire solution in one large file and committing it once at the end with a clear message",
+        "Constructing the solution as a series of small, self-contained increments, each adding working, tested functionality to an already-running system",
+        "Designing every screen and database table in full before any code is written, then building straight from the design",
+        "Releasing a finished product to users and patching defects as they are reported after launch"
+      ],
+      "answer": 1,
+      "explanation": "Incremental implementation means building the solution in small, working, integrated pieces, where each increment adds tested functionality on top of a system that already runs. Option A describes the 'big-bang' build with one massive commit, which the episode names as the band-four trap. The technique is the keyboard-level version of Agile iterations from 24-02 — Agile Goes around."
+    },
+    {
+      "id": "see2501-q02",
+      "q": "What do the four letters of the REFF mnemonic stand for?",
+      "options": [
+        "Requirements, Estimation, Feasibility, Feedback",
+        "Refactor, Engineer, Format, Finalise",
+        "Risk reduction, Early feedback, Flexibility, Frequent value",
+        "Review, Environment, Functionality, Failover"
+      ],
+      "answer": 2,
+      "explanation": "REFF — said like the referee who keeps checking the play — captures the four benefits of incremental building: Risk reduction (defects found early when cheap to fix), Early feedback (stakeholders test working features sooner), Flexibility (refine requirements from what each increment teaches), and Frequent value (every increment delivers working software). Option A confuses REFF with the planning/feasibility stages from earlier chapters, not the benefits of building incrementally."
+    },
+    {
+      "id": "see2501-q03",
+      "q": "The episode uses the S-R-I hook for maintaining quality while building. What are the three pillars?",
+      "options": [
+        "Standards, Review, continuous Integration",
+        "Specification, Refactoring, Implementation",
+        "Security, Reliability, Integrity",
+        "Scope, Risk, Iteration"
+      ],
+      "answer": 0,
+      "explanation": "S-R-I — said 'ess-are-eye', like keeping an eye on the build — stands for Standards (consistent style and current documentation), Review (peer checking before integration), and continuous Integration (automated build and test on every commit). Option C mixes in the CIA security triad, which is from Secure Software Architecture, not the three quality pillars of construction."
+    },
+    {
+      "id": "see2501-q04",
+      "q": "Outline what continuous integration contributes to an incremental build.",
+      "options": [
+        "It merges all increments into one release at the very end so the system is tested as a whole",
+        "Every commit automatically triggers a build and the test suite, so a broken increment is detected within minutes and stays small and local",
+        "It manages four separate environments — development, testing, staging and production — so users are never affected",
+        "It enforces consistent naming conventions and function length across the whole codebase"
+      ],
+      "answer": 1,
+      "explanation": "Continuous integration means that each commit fires an automated pipeline that builds the code and runs the tests, so problems are caught within minutes and remain tiny and local instead of huge and tangled at the end. This is why incremental building is safe. Option A describes the opposite — big-bang integration — and option C describes environment management, which supports CI/CD but is a separate idea."
+    },
+    {
+      "id": "see2501-q05",
+      "q": "Explain how code review during construction connects to quality assurance from 24-06 and to security.",
+      "options": [
+        "Code review replaces testing entirely, because a peer reading the code finds every defect a test would",
+        "Code review is the compliance element of the three Cs, ensuring the Privacy Act and accessibility law are met before release",
+        "Code review is continual checking applied at the keyboard, and a reviewer asking 'is this input validated?' runs the V-S-E check, catching security flaws early (shift-left)",
+        "Code review is mainly a documentation exercise that records who wrote each line for the audit trail"
+      ],
+      "answer": 2,
+      "explanation": "Code review is the continual-checking part of quality assurance applied during the build, and it is where security is caught early — a reviewer asking 'is this input validated?' is running the Validate-Sanitise-Errors (V-S-E) check from Secure Software Architecture right where the code is written, catching the SQL-injection-shaped mistake in review rather than in production. Option A overstates it: review and testing are complementary, not substitutes."
+    },
+    {
+      "id": "see2501-q06",
+      "q": "Distinguish incremental building from big-bang integration in terms of risk.",
+      "options": [
+        "Incremental building delays all risk to launch day, while big-bang spreads risk evenly across the project",
+        "Both carry identical risk; the only difference is how long the project takes to finish",
+        "Incremental building eliminates risk completely, while big-bang merely reduces it",
+        "Incremental building surfaces defects early when they are cheap to fix, while big-bang concentrates all risk at one moment with no fallback — the same trap as a direct cut-over"
+      ],
+      "answer": 3,
+      "explanation": "Incremental building delivers the R in REFF — risk reduction — because each small, integrated piece is tested as it is built, so defects appear early and cheaply. Big-bang assembly concentrates every defect at one moment with no fallback, exactly like a direct cut-over from DiP-PP. Option C overstates the case: incremental building reduces and distributes risk, it does not eliminate it."
+    },
+    {
+      "id": "see2501-q07",
+      "q": "When planning increments, the episode gives four rules. Which rule explains why you cannot build checkout before the product catalogue exists?",
+      "options": [
+        "Prioritise by value — build the most important features first",
+        "Respect dependencies — supporting pieces must exist before the features that need them",
+        "Maintain integration — every increment must work with the existing code",
+        "Keep increments small — roughly one-to-four-week chunks"
+      ],
+      "answer": 1,
+      "explanation": "Respecting dependencies means the supporting pieces must be built before the features that rely on them; checkout depends on a product catalogue existing first, so the catalogue increment comes earlier. Option A, prioritise by value, is the most tempting distractor because catalogue work is also high-value, but the specific reason you cannot reverse the order is the dependency between the two, not their relative value."
+    },
+    {
+      "id": "see2501-q08",
+      "q": "A team is building an online quiz system where teachers make quizzes, students take them, and the system auto-grades. What belongs in increment one, and why?",
+      "options": [
+        "A polished analytics dashboard, because it demonstrates the most value to stakeholders early",
+        "Multiple question types and instant feedback, because variety makes the product feel complete",
+        "The core path — a teacher creates a basic quiz, a student takes it, the system records a score — because it is highest value and everything else depends on it",
+        "Data export and reporting, because teachers need to extract results before anything else works"
+      ],
+      "answer": 2,
+      "explanation": "Increment one is the spine — create, take, score — because of prioritise-by-value and respect-dependencies: auto-grading, question types, feedback and analytics all depend on the basic take-a-quiz loop existing first. Option A is the classic student error the episode names: two weeks on a beautiful dashboard with no quiz behind it. Building the spine first gives a real, demonstrable, testable system by the end of week two."
+    },
+    {
+      "id": "see2501-q09",
+      "q": "Healthcare.gov is used as a cautionary tale. Explain what went wrong in terms of this episode's concepts.",
+      "options": [
+        "It was built incrementally but the increments were too small to deliver value, so progress stalled",
+        "Components were built in isolation and integrated very late with no real continuous integration, so defects that would have surfaced in week two all surfaced on launch day at once",
+        "It used too many coding standards and code reviews, which slowed the team until it missed its deadline",
+        "It relied entirely on Agile sprints with no documentation, so no one could justify the design decisions"
+      ],
+      "answer": 1,
+      "explanation": "Healthcare.gov was a big-bang assembly: contractors built components in isolation and integrated them very late, with no real continuous integration and almost no load testing, so defects that continuous, incremental building would have surfaced early all landed on launch day under millions of users. This is the REFF benefits thrown away — risk concentrated, no early feedback, no flexibility. Option C inverts the lesson: too little controlled process was the problem, not too much."
+    },
+    {
+      "id": "see2501-q10",
+      "q": "One team builds a hospital medication system and another builds a small hobby app. How should their build processes differ?",
+      "options": [
+        "The hobby app should use Waterfall with heavy documentation, while the hospital system should use lightweight Agile to move fast",
+        "Both should use identical, maximal rigour because all software must meet the same standard regardless of purpose",
+        "Both should build incrementally, but the hospital system needs maximal rigour — strict standards, mandatory senior and domain-expert review, very high test coverage, security review of every increment — because a defect could harm a patient, while the hobby app can use a lighter Agile build",
+        "Only the hospital system should build incrementally; the hobby app should be built big-bang because it is too small to bother with increments"
+      ],
+      "answer": 2,
+      "explanation": "Both teams should build incrementally, but the rigour matches the risk profile: the safety-critical hospital system justifies maximal quality maintenance — strict coding standards, mandatory review by a senior developer and domain expert, very high test coverage, security review of every increment, and CI with a full regression suite — tied to a Waterfall-heavy or WAgile approach, while the low-stakes hobby app can use a lighter Agile build. Full marks come from matching the quality rigour and development approach to the consequences of failure, the justify-and-manage marker. Option B ignores that the level of process should be proportional to the cost of failure."
+    }
+  ]
+}

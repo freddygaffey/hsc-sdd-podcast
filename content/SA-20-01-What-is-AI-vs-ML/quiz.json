@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "sa2001-q01",
+      "q": "Identify the relationship between artificial intelligence (AI) and machine learning (ML) as defined in this episode.",
+      "options": [
+        "AI and ML are two separate fields that solve different problems",
+        "ML is the broad goal and AI is one technique used to achieve it",
+        "ML is a subset of AI — every ML system is AI, but not every AI system uses ML",
+        "AI is a subset of ML, because all intelligent systems must learn from data"
+      ],
+      "answer": 2,
+      "explanation": "The line to weld into memory is 'AI is the goal; ML is one way' — ML sits inside AI as a subset. Every machine learning system is an AI system, but not every AI system uses machine learning (a hand-written expert system is AI without ML). Option D reverses the containment, which is the most common error on this dot-point."
+    },
+    {
+      "id": "sa2001-q02",
+      "q": "What is the single dividing line the episode uses to tell artificial intelligence apart from machine learning?",
+      "options": [
+        "Whether the system runs on a robot or on a normal computer",
+        "Whether the behaviour came from rules a human wrote, or from patterns learned from data",
+        "Whether the system uses if-statements or loops",
+        "Whether the system is connected to big data or runs offline"
+      ],
+      "answer": 1,
+      "explanation": "Learning is the dividing line: if the behaviour came from data, it is machine learning; if it came from a human writing rules, it is at most rule-based AI. Option A repeats the weak 'AI is robots, ML is computers learning' answer the episode says earns nothing, because it names neither the containment relationship nor learning-from-data."
+    },
+    {
+      "id": "sa2001-q03",
+      "q": "Outline why a rule-based ticket classifier (Listing 1) that sorts messages using hand-written keyword rules counts as AI but NOT as machine learning.",
+      "options": [
+        "It counts as ML because it sorts data into categories automatically",
+        "It is neither AI nor ML, because it only uses if-statements",
+        "It is ML because it improves every time it processes a new ticket",
+        "It is a classic expert system (AI) but learns nothing — a human wrote every rule, so it never improves on its own"
+      ],
+      "answer": 3,
+      "explanation": "A rule-based classifier is a classic expert system: the rules are hand-written, fixed, and transparent, so it qualifies as AI, but it does the same thing forever until a human edits the rules. It is not ML because nothing learned anything — learning from data is the missing ingredient. The trap is the 'it improves every time' option: this system never improves on its own, unlike the learned classifier in Listing 2."
+    },
+    {
+      "id": "sa2001-q04",
+      "q": "A student claims: 'Our app uses AI because it has if-statements that respond to the user.' Evaluate this claim.",
+      "options": [
+        "Justified — any program that responds to user input with conditional logic is AI",
+        "Justified — if-statements are a form of machine learning because the program makes decisions",
+        "Not justified — if-statements are ordinary conditional logic; a system is only AI when it performs a task that genuinely requires intelligence, and it is not ML because nothing learned from data",
+        "Not justified — the app would only be AI if it were written in a specialised AI programming language"
+      ],
+      "answer": 2,
+      "explanation": "A long if-else chain is just conditional logic that almost every program has; it earns the AI label only when genuinely reasoning, planning, or perceiving (like an expert system). It is certainly not ML because a human wrote every branch and nothing learned from data. Option D invents a non-existent criterion — the language used is irrelevant; what matters is whether the system reasons or learns."
+    },
+    {
+      "id": "sa2001-q05",
+      "q": "Identify the three automation approaches the syllabus names alongside this dot-point, and what each one automates.",
+      "options": [
+        "DevOps (the build-test-deploy pipeline), RPA (an individual task at the user interface), and BPA (an end-to-end business process)",
+        "DevOps (databases), RPA (the deployment pipeline), and BPA (a single repetitive task)",
+        "CI/CD (testing only), RPA (whole business processes), and BPA (clicking buttons on screen)",
+        "DevOps (front-end design), RPA (machine learning models), and BPA (cloud hosting)"
+      ],
+      "answer": 0,
+      "explanation": "DevOps automates the software delivery pipeline (continuous integration and continuous deployment), RPA automates an individual task by mimicking a user at the interface, and BPA automates and redesigns an entire end-to-end process. Option B swaps RPA and BPA's scope — RPA is task-level, not pipeline-level, and BPA is process-level, not a single task."
+    },
+    {
+      "id": "sa2001-q06",
+      "q": "Outline the defining characteristic of robotic process automation (RPA) using the exam keyword from the episode.",
+      "options": [
+        "RPA redesigns an entire business process by integrating multiple back-end systems",
+        "RPA is a Robot doing a Task — rule-driven, task-level automation that mimics a human user at the interface",
+        "RPA automates the build-test-deploy pipeline so code is shipped automatically",
+        "RPA uses machine learning to make decisions the rules do not cover"
+      ],
+      "answer": 1,
+      "explanation": "The exam keyword is task: RPA is 'a Robot doing a Task' — a software bot that clicks buttons and reads fields off a screen, mimicking a human at the user interface, often built with low-code tools. Option A describes BPA (redesigning a process), and option D describes how ML enhances RPA — plain RPA is rule-based and cannot make uncovered decisions."
+    },
+    {
+      "id": "sa2001-q07",
+      "q": "Compare robotic process automation (RPA) and business process automation (BPA).",
+      "options": [
+        "RPA and BPA are synonyms — both redesign processes by integrating multiple systems",
+        "RPA is process-level and strategic, while BPA is a quick task-level bot working at the surface",
+        "RPA integrates deeply with back-end systems, while BPA only clicks buttons on the front end",
+        "Both reduce manual effort, but RPA automates a single task by mimicking a user at the interface and leaves the process unchanged, whereas BPA orchestrates and redesigns an entire end-to-end process with deep system integration and human approvals"
+      ],
+      "answer": 3,
+      "explanation": "A full-mark comparison states the similarity (both reduce manual effort) then contrasts on scope and depth: RPA is task-level and surface-level via the user interface and keeps the process as-is, while BPA is process-level, deeply integrated, and redesigns the workflow with approvals and an audit trail. The 'synonyms' option repeats the most common error, and the other two distractors swap the two definitions."
+    },
+    {
+      "id": "sa2001-q08",
+      "q": "A finance team manually copies figures from scanned invoices into the accounting system one at a time, and that single repetitive task is the only thing they want sped up. Recommend the most appropriate automation approach and the keyword that decides it.",
+      "options": [
+        "BPA, because copying invoice data touches the accounting system",
+        "RPA, because the keyword is task — they want one repetitive task automated by mimicking the user, without redesigning the process",
+        "DevOps, because it automates the build-test-deploy pipeline for the finance software",
+        "BPA, because the keyword is process — any work involving invoices is a full business process"
+      ],
+      "answer": 1,
+      "explanation": "The tell is scope: one task, mimic the user, keep the process as-is — that is RPA every time, decided by the keyword task. It only flips to BPA if they redesign the whole accounts-payable process across multiple systems with manager approvals. DevOps is irrelevant here because it automates software delivery, not business data entry."
+    },
+    {
+      "id": "sa2001-q09",
+      "q": "Explain how machine learning enhances a rule-based RPA invoice-processing workflow that breaks whenever the invoice layout changes.",
+      "options": [
+        "ML replaces the RPA bot entirely, so no rule-based steps remain in the workflow",
+        "ML makes the bot click buttons faster, so more invoices are processed per minute",
+        "ML adds intelligent decision-making — a classifier reads invoices of varying layouts and an anomaly detector flags unusual amounts — while RPA still moves the data, so the workflow handles unstructured input and exceptions that rules alone cannot",
+        "ML lets the bot read from fixed screen positions more accurately so the layout no longer matters"
+      ],
+      "answer": 2,
+      "explanation": "A strong answer follows limitation, capability, effect: plain RPA only handles structured input read from fixed positions, ML adds judgement (classifying documents of varying layout, extracting fields, detecting anomalies), and the effect is a higher proportion of cases handled without human intervention. Automation provides the hands; ML provides the eyes and judgement. Option B is the empty 'makes it better and faster' claim that names no mechanism and scores nothing."
+    },
+    {
+      "id": "sa2001-q10",
+      "q": "Distinguish DevOps from RPA and BPA in terms of what each approach is aimed at.",
+      "options": [
+        "DevOps automates business data entry, while RPA and BPA automate the software pipeline",
+        "DevOps is aimed inward at how the engineering team builds, tests, and deploys software, whereas RPA and BPA are aimed at automating business work — a task and an end-to-end process respectively",
+        "DevOps, RPA, and BPA all automate the same build-test-deploy pipeline using machine learning",
+        "DevOps automates an end-to-end business process with approvals, while BPA automates only a single task"
+      ],
+      "answer": 1,
+      "explanation": "DevOps is automation aimed inward — the continuous integration and continuous deployment pipeline that builds, tests, and deploys software for the engineering team. RPA and BPA instead automate business operations: RPA a single task by mimicking a user, and BPA an orchestrated end-to-end process. Option A reverses DevOps and the business approaches, and option D confuses DevOps with BPA's approval-bearing workflow."
+    }
+  ]
+}

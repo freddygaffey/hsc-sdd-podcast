@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "sa2203-q01",
+      "q": "Identify the four sources of bias in a machine learning dataset or model, as captured by the S-H-L-M hook.",
+      "options": [
+        "Statistical, Human, Logical, and Mathematical bias",
+        "Selection, Hardware, Latency, and Model bias",
+        "Sampling, Hardware, Labeling, and Monitoring bias",
+        "Sampling, Historical, Labeler, and Measurement bias"
+      ],
+      "answer": 3,
+      "explanation": "The four sources are Sampling, Historical, Labeler, and Measurement bias, drilled with the hook S-H-L-M ('SHaLuM' — you take a bad SaMpLe of the world). The third option is the tempting trap because it shares Sampling and Labeling, but 'Hardware' and 'Monitoring' are not the syllabus sources — the H is Historical and the M is Measurement."
+    },
+    {
+      "id": "sa2203-q02",
+      "q": "State the definition of bias in a machine learning system that earns the mark in an exam.",
+      "options": [
+        "A random error in the model's predictions caused by insufficient computing power",
+        "A systematic error that causes a model to produce unfair or skewed outcomes for particular groups of people",
+        "A deliberate decision by programmers to favour one group over another in the code",
+        "The gap between a model's training accuracy and its testing accuracy"
+      ],
+      "answer": 1,
+      "explanation": "Bias is a systematic error — a consistent lean in one direction, not random noise — that produces unfair or skewed outcomes for particular groups. Option A is the trap because it confuses bias with random noise; the script stresses bias is systematic, and option C wrongly blames malicious code rather than the data."
+    },
+    {
+      "id": "sa2203-q03",
+      "q": "Explain why it is incorrect to claim that a machine learning model is 'neutral' or 'objective'.",
+      "options": [
+        "Because the model faithfully learns the patterns in its human-generated training data, so it reflects and often amplifies the biases and inequities in that data",
+        "Because the mathematics is flawed and produces random errors that favour some groups",
+        "Because every model contains hidden code that the programmers wrote to discriminate",
+        "Because models are tested on too little data to make objective decisions"
+      ],
+      "answer": 0,
+      "explanation": "The maths is neutral, but the data is not: the algorithm faithfully learns the patterns in its training data, so if that data carries human and historical inequities the model mirrors and amplifies them. The 'hidden discriminatory code' option is the trap — bias usually enters through the data, not malicious code — which is exactly the weak 'the programmers were racist' answer the script marks down as band four."
+    },
+    {
+      "id": "sa2203-q04",
+      "q": "Outline the difference between sampling bias and historical bias.",
+      "options": [
+        "Sampling bias occurs when groups are missing or under-represented in the data; historical bias occurs when the data faithfully records a past that was itself unequal",
+        "Sampling bias means the data is too small; historical bias means the data is too old",
+        "Sampling bias comes from the labelers; historical bias comes from the measurement proxy",
+        "Sampling bias affects only facial recognition; historical bias affects only hiring models"
+      ],
+      "answer": 0,
+      "explanation": "The tell for sampling bias is 'who is missing or under-counted?', while the tell for historical bias is 'is the data a true record of an unjust past?' The 'too small / too old' option is the trap: historical bias is not about old data — the data can be accurate, but it records an unfair world, and the script warns that simply collecting more data makes it more bias, not less."
+    },
+    {
+      "id": "sa2203-q05",
+      "q": "Describe how labeler bias enters a supervised learning system.",
+      "options": [
+        "The model is trained on too few examples, so the labels become unreliable",
+        "Sensors measuring the labels are miscalibrated for certain groups of people",
+        "The population shifts after training, so the original labels no longer match reality",
+        "Human annotators' conscious or unconscious biases get baked into the labels that the model treats as ground truth"
+      ],
+      "answer": 3,
+      "explanation": "In supervised learning humans label the data, and their lens gets baked into the labels the model treats as gospel — for example annotators flagging some communities' normal speech as 'toxic' more often. The miscalibrated-sensor option is the trap because it describes measurement bias (a flawed proxy), and the 'population shifts' option describes population drift, the deployment-time cousin of sampling bias, not labeler bias."
+    },
+    {
+      "id": "sa2203-q06",
+      "q": "Distinguish measurement bias from the other sources by identifying its characteristic 'tell'.",
+      "options": [
+        "Is the data a true record of an unjust past?",
+        "Who is missing or under-counted in the data?",
+        "Is what we measured actually what we care about, and measured the same way for everyone?",
+        "Who decided the right answer, and what did they assume?"
+      ],
+      "answer": 2,
+      "explanation": "Measurement bias arises when a feature or outcome is measured in a flawed way or differs across groups — its tell is 'is what we measured actually what we care about, measured the same for everyone?', with proxies (e.g. arrests standing in for crime) the usual culprit. Option A is the historical-bias tell, option B is sampling, and option D is labeler — each tell pins a different source."
+    },
+    {
+      "id": "sa2203-q07",
+      "q": "Using S-H-L-M, identify which sources of bias the Amazon recruiting tool best illustrates.",
+      "options": [
+        "Labeler bias only, because human recruiters labelled the resumes incorrectly",
+        "Measurement bias only, because resume length was a flawed proxy for skill",
+        "Historical bias with a sampling element, because the model learned a male-dominated hiring history in which men were over-represented",
+        "Sampling bias only, because too few resumes were collected to train the model"
+      ],
+      "answer": 2,
+      "explanation": "The Amazon tool is textbook historical bias — it faithfully recorded a biased hiring history and penalised resumes containing 'women's' — with a sampling element because men were over-represented in the training set. Option A is the trap: the issue was not mislabelled resumes but the inequitable historical pattern the model learned, which Amazon could not fix, so it scrapped the tool."
+    },
+    {
+      "id": "sa2203-q08",
+      "q": "Explain the mitigation strategy captured by the D-R-F hook and the order in which the levers apply.",
+      "options": [
+        "Detect bias, Report it, then Fix the code — a debugging sequence applied after deployment",
+        "Diverse data at the source, Reweight under-represented groups in training, then measure Fairness metrics per group after training",
+        "Document, Review, and Finalise the dataset before any model is built",
+        "Deploy, Retrain, and Forget — an automated loop that removes bias without human input"
+      ],
+      "answer": 1,
+      "explanation": "D-R-F maps onto when you act: collect Diverse, representative data at the source (attacking sampling bias), Reweight under-represented groups during training when you cannot collect more, and measure Fairness metrics per group afterward. Option A is the trap because mitigation is not a code-debugging exercise — the bias lives in the data, and the crucial point is that high overall accuracy can hide deep unfairness, so you must measure per group."
+    },
+    {
+      "id": "sa2203-q09",
+      "q": "A bank's loan-approval model approves far fewer applications from one ethnic group, even though ethnicity is not an input. Recommend the most complete first step in diagnosing and addressing this, consistent with the episode's framework.",
+      "options": [
+        "Add ethnicity as an input so the model can be told to treat groups equally",
+        "Conclude the algorithm is broken and rewrite the model in different code",
+        "Diagnose it as likely historical bias (possibly with a measurement-bias proxy like postcode), then apply D-R-F and publish a model card disclosing per-group performance",
+        "Increase overall accuracy by collecting more of the same historical lending data"
+      ],
+      "answer": 2,
+      "explanation": "The worked example diagnoses this as historical bias — the model learned an inequitable lending history — possibly with measurement bias via a proxy like postcode, then applies D-R-F and publishes a model card for accountability. Option D is the trap: collecting more of the same biased history just adds more bias, and chasing overall accuracy hides the per-group gap the script warns against."
+    },
+    {
+      "id": "sa2203-q10",
+      "q": "Explain how model cards and data provenance support a developer's accountability for bias.",
+      "options": [
+        "They guarantee a model is unbiased by automatically removing skewed data before training",
+        "They encrypt the training data so that no group's information can be misused",
+        "They speed up training so the model can be retrained whenever bias appears",
+        "They make a model's training data, per-group performance, and known limitations visible and auditable, so its biases can be scrutinised and traced to a responsible party"
+      ],
+      "answer": 3,
+      "explanation": "Model cards disclose what data a model was trained on, how it performs across groups, and its known limitations, while data provenance documents the data's origin and every transformation so decisions can be audited — together they make bias visible and answerable. This is the accountability 'A' of C-I-A-A-A applied to AI; the 'guarantee unbiased' option is the trap because these are transparency practices, not a guarantee the model is bias-free, and you cannot fix bias you cannot see."
+    }
+  ]
+}

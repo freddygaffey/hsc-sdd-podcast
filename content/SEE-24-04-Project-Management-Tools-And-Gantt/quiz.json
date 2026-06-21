@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2404-q01",
+      "q": "Identify the three interdependent constraints of the project management triangle.",
+      "options": [
+        "Scope, Time, and Cost",
+        "Scope, Quality, and Risk",
+        "Time, Cost, and Resources",
+        "Requirements, Budget, and Deadline"
+      ],
+      "answer": 0,
+      "explanation": "The project management triangle is Scope (how much you build), Time (how long you have), and Cost (the budget and resources) — the hook is simply 'Scope, Time, Cost'. Quality is not a corner; it sits in the middle, squeezed by all three, which is why 'Quality' appears as a tempting wrong corner in option B."
+    },
+    {
+      "id": "see2404-q02",
+      "q": "According to the episode, which three things does a Gantt chart show, captured by the memory line 'bars over time, arrows for dependencies, the long chain is the critical path'?",
+      "options": [
+        "Budget allocations, staff assignments, and risk ratings",
+        "User stories, sprint velocity, and burndown rates",
+        "Task bars on a timeline, dependency arrows, and milestones as checkpoints",
+        "Source code commits, pull requests, and merge conflicts"
+      ],
+      "answer": 2,
+      "explanation": "A Gantt chart is a visual schedule: bars show each task and its duration laid against a timeline, arrows link dependent tasks, and milestones mark key checkpoints (often diamonds), with shaded bars showing progress. Option B describes Agile tracking artefacts, and option D describes version-control concepts — both are real but belong to different tools, not to what a Gantt chart itself displays."
+    },
+    {
+      "id": "see2404-q03",
+      "q": "Outline what a finish-to-start dependency means and why this is the default type to know.",
+      "options": [
+        "Two tasks must start at exactly the same time, so they share a deadline",
+        "Task B cannot start until task A finishes, meaning the tasks run in sequence",
+        "Task B must finish before task A finishes, reversing the schedule order",
+        "Two tasks must both finish at the same time before a milestone is reached"
+      ],
+      "answer": 1,
+      "explanation": "Finish-to-start is the default dependency: task B can't start until task A finishes — you can't start coding until the design is approved. The episode notes start-to-start and finish-to-finish exist too, but finish-to-start is the one to know. Option A describes start-to-start and option D describes finish-to-finish, which are the named-but-secondary types."
+    },
+    {
+      "id": "see2404-q04",
+      "q": "Explain why tasks on the critical path are described as having 'zero slack'.",
+      "options": [
+        "They are the most technically difficult tasks, so they cannot be rushed",
+        "They have no assigned resources, so there is no flexibility to add staff",
+        "They are scheduled last, so there is no time remaining to absorb a delay",
+        "They lie on the longest dependent chain, so any delay to them delays the whole project by the same amount"
+      ],
+      "answer": 3,
+      "explanation": "The critical path is the longest sequence of dependent tasks, which sets the minimum project duration, so its tasks have zero flexibility — delay one by a week and the entire project slips by a week. Difficulty (option A) is unrelated to slack; slack is purely about whether a task is on the longest chain, where a delay cannot be absorbed."
+    },
+    {
+      "id": "see2404-q05",
+      "q": "Distinguish between the consequence of a slip on a critical-path task and a slip within a non-critical task's slack.",
+      "options": [
+        "A critical-path slip can be absorbed, but a non-critical slip always delays the project",
+        "Both types of slip delay the project, but a critical-path slip costs more money to fix",
+        "A critical-path slip moves the finish date by the same amount, while a slip within a non-critical task's slack does not move the finish date at all",
+        "Neither slip affects the finish date as long as the total scope stays the same"
+      ],
+      "answer": 2,
+      "explanation": "This is the exact reasoning a Gantt stimulus wants: a same-sized slip has opposite consequences depending on the path. On the critical path there is zero slack, so the whole project slips by that amount; off it, within slack, the finish date does not move. Option A reverses the rule — it is the non-critical task that can absorb a delay, not the critical-path one."
+    },
+    {
+      "id": "see2404-q06",
+      "q": "In the worked example (A=2wk start; B=3wk after A; C=4wk after B; D=2wk after A; E=2wk after both C and D), what is the critical path and the project duration?",
+      "options": [
+        "A-D-E, 6 weeks",
+        "A-B-C-D-E, 13 weeks",
+        "A-C-E, 8 weeks",
+        "A-B-C-E, 11 weeks"
+      ],
+      "answer": 3,
+      "explanation": "There are two paths: A-B-C-E is 2+3+4+2 = 11 weeks, and A-D-E is 2+2+2 = 6 weeks. The critical path is the longest, A-B-C-E at 11 weeks, so the project takes 11 weeks. The 6-week A-D-E option is the shorter path (where D's slack lives), not the critical path that sets the duration."
+    },
+    {
+      "id": "see2404-q07",
+      "q": "Using the same worked project, if task D (the user manual) slips by two weeks, what happens to the finish date?",
+      "options": [
+        "The project finishes two weeks later, at 13 weeks, because every task affects the schedule",
+        "The project finish does not move; it stays at 11 weeks because D has slack and E is waiting on C anyway",
+        "The project finishes one week later, at 12 weeks, because half the slip is absorbed",
+        "The project cannot finish until D is rescheduled onto the critical path"
+      ],
+      "answer": 1,
+      "explanation": "D sits on the 6-week path, so it has 5 weeks of slack — E can't start until C finishes at week 9 regardless. A two-week slip on D is fully absorbed, so the finish stays at 11 weeks. Option A is the classic trap of treating every slip as a delay; you must first check whether the slipped task is on the critical path, and D is not."
+    },
+    {
+      "id": "see2404-q08",
+      "q": "A client adds a major new feature halfway through, but insists the deadline cannot move. Using the project management triangle, what must happen?",
+      "options": [
+        "Increasing scope while fixing time forces cost to rise or quality to drop, so the trade-off must be made explicit and negotiated",
+        "Nothing has to change, because adding scope does not affect a fixed timeline",
+        "The scope increase automatically reduces cost because the team becomes more efficient under pressure",
+        "Time must be extended, because scope is the only constraint that can never change"
+      ],
+      "answer": 0,
+      "explanation": "The triangle's law is that you can't change one constraint without affecting the others. Adding scope while fixing time means cost must rise (more developers) or quality must drop (less testing, documentation, polish) — and if neither is allowed to give, the deadline will slip in reality. The tempting 'nothing has to change' option ignores the triangle entirely; the correct management response is to make the trade-off explicit and negotiate, for example deferring the feature or dropping a lower-priority one."
+    },
+    {
+      "id": "see2404-q09",
+      "q": "Explain what 'tracking' means in the dot-point phrase 'scheduling and tracking', as described in the episode.",
+      "options": [
+        "Drawing the Gantt chart once at the start so the whole schedule is fixed in advance",
+        "Logging which developer is responsible for each task in the version-control system",
+        "The ongoing comparison of planned versus actual progress, where the gap is the schedule variance, prioritising critical-path tasks that fall behind",
+        "Recording the final completion date so it can be reported to the client after delivery"
+      ],
+      "answer": 2,
+      "explanation": "Tracking is continuous: you record completion per task, compare planned versus actual (the gap is the schedule variance), and raise alerts on tasks falling behind — prioritising critical-path ones because they directly threaten the finish date. Option A is the opposite of tracking; project management isn't drawing the schedule once, it's the ongoing comparison of plan to reality — the 'manage' verb of outcome SE-12-09."
+    },
+    {
+      "id": "see2404-q10",
+      "q": "A small team running an Agile project wants a lightweight Kanban-board tool with cards on columns. Using the J-T-M-P-V set, recommend the most appropriate tool and justify it.",
+      "options": [
+        "Microsoft Project, because its advanced Gantt and resource management suit any team",
+        "Primavera P6, because enterprise-scale tooling guarantees the project succeeds",
+        "Version control, because a Git repository replaces the need for any task board",
+        "Trello, because it is a lightweight Kanban-board tool of cards on columns, well suited to a small team"
+      ],
+      "answer": 3,
+      "explanation": "The exam move is to justify the tool against the project: Trello is the lightweight Kanban-board option (cards on columns) explicitly suited to a small team. Microsoft Project and Primavera P6 are heavyweight tools for large, complex projects, so they are over-engineered here. Version control coordinates code, not the Kanban task board, so it complements rather than replaces Trello."
+    }
+  ]
+}

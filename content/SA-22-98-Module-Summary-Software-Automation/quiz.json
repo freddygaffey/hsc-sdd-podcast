@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "sa2298-q01",
+      "q": "The episode anchors the whole module with one line. Identify the correct relationship between artificial intelligence (AI) and machine learning (ML).",
+      "options": [
+        "AI and ML are interchangeable terms for the same field",
+        "ML is the broad goal, and AI is one technique used to achieve it",
+        "AI is the goal of building systems that behave intelligently, and ML is one way to get there by learning patterns from data",
+        "AI only exists once a system has been trained with ML on a dataset"
+      ],
+      "answer": 2,
+      "explanation": "The module's anchor line is 'AI is the goal, ML is one way.' AI is the broad field of building systems that behave intelligently (reason, perceive, decide), and ML is a subset that learns patterns from data. Option B reverses the relationship, and option A confuses the two — the trap the script flags is that ML is a subset of AI, not a synonym, with the dividing line being whether the system learns."
+    },
+    {
+      "id": "sa2298-q02",
+      "q": "Name the four models of training a machine learning system captured by the S-U-S-R mnemonic.",
+      "options": [
+        "Supervised, Unsupervised, Semi-supervised, Reinforcement",
+        "Structured, Unstructured, Statistical, Regression",
+        "Supervised, Unlabelled, Sampling, Recursive",
+        "Sequential, Unsupervised, Stochastic, Reinforcement"
+      ],
+      "answer": 0,
+      "explanation": "S-U-S-R stands for Supervised, Unsupervised, Semi-supervised, and Reinforcement — each defined by the data it needs. Supervised uses labelled data, unsupervised has no labels, semi-supervised mixes a few labels with a large unlabelled pool, and reinforcement learns from a reward signal in an environment. The other options swap in plausible-sounding but incorrect terms that are not the four named training models."
+    },
+    {
+      "id": "sa2298-q03",
+      "q": "Distinguish between RPA and BPA as the episode frames them.",
+      "options": [
+        "RPA is a robot doing a task that mimics a human at the user interface, while BPA redesigns a whole process with deep system integration and an audit trail",
+        "RPA redesigns an end-to-end process, while BPA mimics a single human task at the interface",
+        "RPA and BPA both require deep API integration and differ only in cost",
+        "RPA automates the build-test-deploy pipeline, while BPA automates user-facing tasks"
+      ],
+      "answer": 0,
+      "explanation": "The mnemonic is 'RPA is a Robot doing a Task; BPA is redesigning a Process.' RPA is task-level, low-code, and sits on top of existing interfaces; BPA is process-level, integrated, and orchestrates an end-to-end workflow with approvals and an audit trail. The reversed option swaps the two, and the option about the build-test-deploy pipeline wrongly describes DevOps (CI/CD), not RPA."
+    },
+    {
+      "id": "sa2298-q04",
+      "q": "Explain why logistic regression is classified as classification rather than number-prediction.",
+      "options": [
+        "It fits a straight line, so its output is always a continuous number",
+        "Despite its name it predicts a category by using the sigmoid to output a probability with a threshold at 0.5",
+        "It uses K nearest neighbours to take a majority vote among similar points",
+        "It fits a curve rather than a line, which makes it a regression technique"
+      ],
+      "answer": 1,
+      "explanation": "The marquee distinction is 'Linear predicts a number; Logistic predicts a yes-or-no.' Logistic regression squashes any input to a probability between 0 and 1 via the sigmoid and applies a 0.5 threshold, producing a category — the output type decides. Option A describes linear regression, and option D describes polynomial regression (which fits a curve and is how you overfit), not logistic."
+    },
+    {
+      "id": "sa2298-q05",
+      "q": "Outline the key trade-off the episode identifies when comparing a decision tree with a neural network.",
+      "options": [
+        "A tree is faster to run, while a network always produces more accurate predictions",
+        "A tree learns from data, while a neural network uses only hand-written rules",
+        "A tree is interpretable but less powerful on complex tasks, while a network is powerful but a black box",
+        "A tree works offline, while a neural network requires a constant internet connection"
+      ],
+      "answer": 2,
+      "explanation": "The exam-critical comparison is explainability: 'a Tree is readable if-questions; a Net is weighted neurons.' A decision tree lets you trace root-to-leaf and explain exactly why, but is weaker on complex tasks; a neural network is powerful but opaque because the decision is spread across many weights. This transparency-versus-power trade-off ties to accountability, the last A of CIA-AAA, which is the marking point."
+    },
+    {
+      "id": "sa2298-q06",
+      "q": "The episode says RPA carries one central risk. Explain what it is and why it occurs.",
+      "options": [
+        "RPA is slow because it processes one record at a time through a workflow engine",
+        "RPA is insecure because it always hard-codes credentials into the bot",
+        "RPA cannot work with legacy systems because it requires deep integration",
+        "RPA is brittle — it breaks when the user interface changes, because it mimics a human at the screen rather than talking to a stable API"
+      ],
+      "answer": 3,
+      "explanation": "The line to remember is 'RPA is brittle — it breaks when the user interface changes.' Because RPA screen-scrapes and mimics a human at the UI rather than calling a stable API, any interface change can break it, making it an ongoing maintenance burden rather than a permanent fix. The credentials option describes a security risk to manage (use a secrets manager), and the legacy-system option is wrong because RPA is actually well-suited to legacy systems with no system change."
+    },
+    {
+      "id": "sa2298-q07",
+      "q": "Name the four sources of bias captured by the S-H-L-M mnemonic.",
+      "options": [
+        "Sampling, Historical, Labeler, Measurement",
+        "Statistical, Human, Logical, Machine",
+        "Sampling, Heuristic, Labelling, Metric",
+        "Selection, Historical, Learning, Model"
+      ],
+      "answer": 0,
+      "explanation": "S-H-L-M ('SHaLuM') stands for Sampling (groups under-represented), Historical (a faithful record of an unjust past), Labeler (human bias baked into labels), and Measurement (a flawed proxy distorts the data). The key point the script stresses is that for historical bias, more data does not fix it — collecting more of a biased history only deepens the bias. The other options substitute similar-sounding but incorrect terms."
+    },
+    {
+      "id": "sa2298-q08",
+      "q": "A bank trains a loan-approval model on twenty years of its own past lending decisions. Identify the most likely bias source and explain why simply collecting more data will not fix it.",
+      "options": [
+        "Sampling bias, which is solved by gathering a larger and more recent dataset",
+        "Labeler bias, because the bank's staff applied inconsistent labelling guidelines",
+        "Historical bias, because the data faithfully records past discriminatory decisions, so more of the same data only deepens the bias",
+        "Measurement bias, because the loan amounts were recorded in the wrong currency"
+      ],
+      "answer": 2,
+      "explanation": "This is historical bias: the training data is a faithful record of past lending, so if some groups were historically approved less often, the model learns and perpetuates that discrimination — even if the protected attribute is not an input, it finds correlated proxies. The algorithm isn't neutral; it mirrors and amplifies its data, so more of the same historical data only deepens the bias. The fix is D-R-F — Diverse data, Reweight with fairness constraints, and Fairness metrics measured per group."
+    },
+    {
+      "id": "sa2298-q09",
+      "q": "Compare the four impact dimensions of automation (S-P-E-E) with what an 'assess' answer must include.",
+      "options": [
+        "S-P-E-E lists only the benefits of automation, so a strong answer simply enumerates positives",
+        "S-P-E-E covers Safety and access, People and skills, Efficiency and Environment, and Economy and wealth, and an assess answer must give upside and downside with examples plus a judgement",
+        "S-P-E-E covers only employment, so the judgement is whether robots take jobs",
+        "S-P-E-E is a mnemonic for the four training models, used when assessing model accuracy"
+      ],
+      "answer": 1,
+      "explanation": "S-P-E-E stands for Safety and access, People and skills, Efficiency and Environment, and Economy and wealth. The verb 'assess' (or evaluate) means weighing both sides and reaching a judgement, not listing only bad things — so each dimension needs an upside, a downside, an example, then a judgement. The traps the script names are one-sided answers and 'robots take jobs' with no skills-shift nuance, and forgetting AI's own environmental cost from training large models."
+    },
+    {
+      "id": "sa2298-q10",
+      "q": "A hospital emergency department wants an AI tool to triage patients by urgency. Recommend the two responsible-AI safeguards the episode highlights for this scenario.",
+      "options": [
+        "Run the tool fully autonomously and audit only the overall accuracy at year's end",
+        "Replace clinicians to remove human error, and train the model only on calm, routine cases",
+        "Deploy the tool nationally first, then collect more historical data to remove any bias",
+        "Use a human-in-the-loop so a clinician confirms each urgent call, and run a bias audit measuring fairness metrics per group with a published model card"
+      ],
+      "answer": 3,
+      "explanation": "The model answer recommends human-in-the-loop (decision support where a clinician confirms every urgent-or-not call — this is accountability, the last A of CIA-AAA) and a bias audit measuring fairness metrics per group, training on representative high-stress data and publishing a model card. Auditing only overall accuracy fails because it can hide harm to a minority group, and training only on calm cases ignores the acute stress response (P-S-C-B) — a model trained only on calm data fails the stressed patient when they need it most. Augment clinical judgement, never replace it."
+    }
+  ]
+}

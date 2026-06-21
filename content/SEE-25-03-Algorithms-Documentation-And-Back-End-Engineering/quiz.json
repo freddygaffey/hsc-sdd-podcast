@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2503-q01",
+      "q": "What does the T-E-I-S hook stand for as the four contributions of back-end engineering?",
+      "options": [
+        "Technology, Error handling, Interfacing with the front end, Security engineering",
+        "Testing, Encryption, Integration, Storage",
+        "Throughput, Endpoints, Infrastructure, Scalability",
+        "Tools, Exceptions, Indexing, Servers"
+      ],
+      "answer": 0,
+      "explanation": "T-E-I-S — said 'tease', because the back end teases the front end into working — is Technology, Error handling, Interfacing with the front end, and Security engineering. These are the exact four contributions the dot-point names for explaining back-end engineering's role in a solution's success. The Testing-Encryption-Integration-Storage option mixes in real concepts but they are not the four named contributions, which is the tempting trap."
+    },
+    {
+      "id": "see2503-q02",
+      "q": "Identify the three ways the episode says you should document an algorithm.",
+      "options": [
+        "A flowchart, a data dictionary, and a test plan",
+        "The real code, a UML diagram, and a user manual",
+        "The real code in the actual language, the NESA pseudocode version, and a comment header",
+        "A docstring, a README file, and release notes"
+      ],
+      "answer": 2,
+      "explanation": "You document an algorithm three ways: the real executable code, the NESA pseudocode (BEGIN, END, IF-THEN-ELSE-ENDIF — the exact form the exam marks), and a comment header stating what the function does, its inputs, outputs, and assumptions. Option A lists genuine development artefacts but they are not the three ways to document an algorithm specifically, which is the trap."
+    },
+    {
+      "id": "see2503-q03",
+      "q": "What is meant by the principle of 'living documentation'?",
+      "options": [
+        "Documentation kept current as the code changes, rather than written once and abandoned",
+        "Documentation written by the whole team rather than a single author",
+        "Documentation stored in a wiki so it can be edited in a browser",
+        "Documentation that only exists in the developer's head and is never written down"
+      ],
+      "answer": 0,
+      "explanation": "Living documentation means documents are kept current as the code evolves — versioned, reviewed, and where possible generated from the code (a docstring becomes API docs automatically). The episode warns that stale documentation is worse than none because it actively misleads. The 'stored in a wiki' option describes where docs live, not the principle of keeping them current."
+    },
+    {
+      "id": "see2503-q04",
+      "q": "Explain why the episode says you must document every external library with its name, version, licence, and purpose.",
+      "options": [
+        "To make the codebase look more professional to clients and reviewers",
+        "Because libraries run faster when their version is recorded in the project",
+        "For legal compliance with licence obligations and for integrity and supply-chain security — you cannot patch a vulnerability in a dependency you never documented",
+        "Because the HSC requires a minimum number of cited libraries for full marks"
+      ],
+      "answer": 2,
+      "explanation": "Two reasons are given: legal compliance (licences impose obligations — a copyleft GPL library inside a closed-source product is a real legal problem) and integrity plus supply-chain security (a CVE in a dependency is your problem the moment you ship, and you can only patch what you documented). The xz backdoor is the cited example. Option A is a side benefit, not the examined reason."
+    },
+    {
+      "id": "see2503-q05",
+      "q": "A back end catches a database error and prints the full stack trace and database error to the user's screen. Explain what is wrong and what should happen instead.",
+      "options": [
+        "Nothing is wrong — showing the full error helps users report bugs accurately",
+        "It leaks internal information that is reconnaissance for an attacker; instead the back end should fail securely, logging detail to a private log and returning a generic message to the user",
+        "The error should be emailed to the user so they have a permanent record of it",
+        "The back end should retry the query automatically until it succeeds rather than showing any message"
+      ],
+      "answer": 1,
+      "explanation": "A leaked stack trace reveals the stack, queries, and structure — reconnaissance an attacker can use to plan something like SQL injection — and it is also poor usability. The fix is the fail-securely pattern: log the detail internally, return a clean generic message externally. This is the E in V-S-E (Validate, Sanitise, Errors). Option A is the exact trap weak back ends fall into."
+    },
+    {
+      "id": "see2503-q06",
+      "q": "Distinguish relational from non-relational databases as the episode presents them under the Technology contribution.",
+      "options": [
+        "Relational databases (e.g. MongoDB) use SQL, while non-relational (e.g. MySQL) store documents",
+        "Relational databases run only on Nginx, while non-relational run only on Django",
+        "Relational databases cannot enforce data integrity, while non-relational databases always can",
+        "Relational databases use tables and SQL with primary-to-foreign-key relationships (e.g. MySQL, PostgreSQL), while non-relational NoSQL databases (e.g. MongoDB, Redis) suit data without that structured relational schema"
+      ],
+      "answer": 3,
+      "explanation": "Relational databases — MySQL, PostgreSQL — use tables and SQL with the primary-key-to-foreign-key modelling from PFW 13-02, and suit structured, related data with integrity needs. Non-relational NoSQL stores like MongoDB and Redis are the alternative. The option that swaps the examples around (MongoDB called relational) is the classic trap; the selection factor is the nature of the data."
+    },
+    {
+      "id": "see2503-q07",
+      "q": "Explain why the episode argues that real security must live in the back end rather than the front end.",
+      "options": [
+        "Front-end code is slower, so security checks there would harm performance",
+        "Browsers cannot run any security-related JavaScript at all",
+        "Security regulations legally prohibit placing any checks in the front end",
+        "The front end can validate for convenience but can never be trusted, because anyone can bypass it and call the API directly, so authentication, validation, and parameterised queries must sit in the back end"
+      ],
+      "answer": 3,
+      "explanation": "A front end can validate for convenience but is bypassable — an attacker can call the API directly — so the back end is the real security boundary where authentication, authorisation, input validation, parameterised queries, and hashing must live. The episode says treating the back end as invisible plumbing is the trap that gets projects breached. The 'front-end code is slower' option confuses performance with the trust problem."
+    },
+    {
+      "id": "see2503-q08",
+      "q": "How does the Knight Capital (2012) disaster illustrate the importance of back-end engineering?",
+      "options": [
+        "Dead back-end code left on one server, reactivated by a reused flag, fired millions of erroneous trades with no documentation, error handling, or rollback to stop it, losing about $440 million in 45 minutes",
+        "A front-end design flaw confused traders into placing wrong orders",
+        "A database was hacked through SQL injection, exposing customer card numbers",
+        "The company's servers were overwhelmed by too much legitimate traffic during a sale"
+      ],
+      "answer": 0,
+      "explanation": "Knight Capital deployed new code but left old dead code on one of eight servers; a reused flag switched it back on, and with no documentation, error handling, or rollback the back end fired millions of erroneous trades, losing roughly $440 million in 45 minutes and effectively killing the firm. It is a pure back-end failure where the front end was irrelevant. The SQL injection option describes a different kind of breach, not what happened here."
+    },
+    {
+      "id": "see2503-q09",
+      "q": "A school is building a platform where front-end and back-end developers must work in parallel and ship without one team constantly breaking the other's work. Which back-end contribution most directly addresses this, and how?",
+      "options": [
+        "Technology — choosing a relational database guarantees the two teams never conflict",
+        "Error handling — failing securely means the front-end team never sees back-end errors",
+        "Interfacing — exposing a clean, well-documented API with clear endpoints, predictable responses, and versioning lets both teams work in parallel against an agreed contract",
+        "Security engineering — putting authentication in the back end removes the need for the teams to coordinate"
+      ],
+      "answer": 2,
+      "explanation": "Interfacing with the front end is the contract between the two halves: a clean, documented API with clear endpoints, predictable responses, and versioning lets the teams develop in parallel against an agreed contract, which is why the dot-point says back-end engineering eases development. A messy, undocumented interface is where projects bog down because every change breaks the other team. The other options name real contributions but do not address parallel collaboration."
+    },
+    {
+      "id": "see2503-q10",
+      "q": "A team has a polished front end but their project keeps failing in production. Using the episode's framework, which explanation best identifies the likely cause?",
+      "options": [
+        "The front end needs more responsive design and better screen-size support",
+        "Weak back-end engineering — poor technology choices, unhandled exceptions or leaked stack traces, and reliance on the bypassable front end for security — because the back end is where reliability, security, and scalability are actually engineered",
+        "The users are not trained well enough to operate the polished interface",
+        "The project simply needs more development artefacts and a longer test plan"
+      ],
+      "answer": 1,
+      "explanation": "A polished front end cannot compensate for weak back-end engineering: unsuitable or unscalable technology crashes under load, poor error handling lets faults cascade and leak information (as in Knight Capital), and relying on the bypassable front end for security leaves the system open to attacks like SQL injection. Because users only see the front end, teams under-invest in the back end, yet that is where reliability, security, and scalability are engineered. Option A treats a back-end problem as a front-end one — the exact misconception the episode targets."
+    }
+  ]
+}

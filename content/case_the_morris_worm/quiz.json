@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "case-the-morris-worm-q01",
+      "q": "Identify the year the Morris worm was released and the approximate size of the connected network it spread across.",
+      "options": [
+        "1988, a network of around 60,000 computers",
+        "1991, a network of around 600,000 computers",
+        "1983, a network of around 6,000 computers",
+        "1995, a network of around 6 million computers"
+      ],
+      "answer": 0,
+      "explanation": "The script states Robert Tappan Morris released the worm on the evening of 2 November 1988, onto a network of roughly 60,000 computers connecting universities, research labs, and a few military sites. The worm went on to hit about 10 percent of that network — roughly 6,000 machines — which is the figure students often confuse with the total network size."
+    },
+    {
+      "id": "case-the-morris-worm-q02",
+      "q": "Distinguish a worm from a virus, using the definition the episode gives.",
+      "options": [
+        "A worm only damages files, while a virus only steals data",
+        "A worm needs a person to run an infected file to spread, while a virus spreads automatically across a network",
+        "A worm spreads itself across a network on its own with no human help, while a virus needs a host file and a person to run it",
+        "A worm and a virus are the same thing; the terms are interchangeable"
+      ],
+      "answer": 2,
+      "explanation": "The episode defines a worm as a program that propagates by itself — it finds another computer, breaks in, copies itself over, and repeats automatically with no human in the loop. A virus, by contrast, needs a host file and a person to run it, carrying it along like a passenger. Option B reverses the two definitions, which is the classic trap."
+    },
+    {
+      "id": "case-the-morris-worm-q03",
+      "q": "Explain what a buffer overflow is, as described in the episode.",
+      "options": [
+        "A program runs out of disk space and crashes while saving incoming data",
+        "A program accepts more data than the fixed-size memory space reserved for it, so the excess spills out and overwrites adjacent memory, including the record of what to run next",
+        "A program sends too many network requests at once and floods the connection",
+        "A program encrypts data with a key that is too short to be secure"
+      ],
+      "answer": 1,
+      "explanation": "Using the 'box on a form' picture, the episode explains that a buffer is a fixed-size space in memory, and when a program carelessly accepts more data than the buffer was built to hold, the excess spills out and overwrites adjacent memory — including the program's record of what to run next. A crafted overflow lets the attacker's input become the code that runs. The other options describe unrelated failures (disk space, flooding, weak encryption)."
+    },
+    {
+      "id": "case-the-morris-worm-q04",
+      "q": "Identify the two main methods the Morris worm used to break into each new machine.",
+      "options": [
+        "Stealing encryption keys and intercepting network traffic",
+        "A buffer overflow in a network service and guessing weak passwords from a built-in list",
+        "Phishing emails and infected USB drives",
+        "Exploiting a web browser flaw and a corrupted operating system update"
+      ],
+      "answer": 1,
+      "explanation": "The episode describes two routes in: a buffer overflow in a small network service (one that reported information about logged-in users), and guessing weak passwords from a built-in list of a few hundred common ones, including the username itself as the password. The other options describe modern attack vectors (phishing, USB, browser flaws) that did not feature in this 1988 incident."
+    },
+    {
+      "id": "case-the-morris-worm-q05",
+      "q": "Explain the design decision that turned Morris's measuring tool into a catastrophe.",
+      "options": [
+        "The worm was programmed to delete files on every machine it reached",
+        "The worm sometimes reinfected an already-infected machine (about one time in seven) to defeat fake immunity, causing copies to pile up and exhaust memory and CPU",
+        "The worm sent its census results back to one central server, which crashed under the load",
+        "The worm encrypted the hard drive of every machine and demanded a ransom"
+      ],
+      "answer": 1,
+      "explanation": "To stop administrators from faking infection to immunise a machine, Morris made the worm reinfect even an already-infected machine roughly one time in seven. The result was that copies piled up on each machine, each consuming memory and processing power, until the machines seized up entirely. The worm damaged no files and stole nothing (ruling out the deletion and ransom options) — the multiplication itself was the catastrophe."
+    },
+    {
+      "id": "case-the-morris-worm-q06",
+      "q": "Which pillar of security did the Morris worm primarily attack?",
+      "options": [
+        "Confidentiality, by reading and leaking private data",
+        "Integrity, by altering and corrupting stored files",
+        "Availability, by flooding machines until they could no longer be used",
+        "Non-repudiation, by making it impossible to trace who sent a message"
+      ],
+      "answer": 2,
+      "explanation": "The episode stresses that the worm stole nothing and read nothing — it broke no secrets, so confidentiality was untouched. What it destroyed was availability: the simple ability to use the systems, as machines drowned under copies of the worm. The episode calls it the founding example of an availability attack, drawing a straight line to modern attacks that bury services in traffic."
+    },
+    {
+      "id": "case-the-morris-worm-q07",
+      "q": "Outline why weak passwords made the worm's job easy, and why this lesson still applies today.",
+      "options": [
+        "Passwords were stored in plain text, so the worm could read them all instantly",
+        "Authentication is only as strong as the secret behind it, and a password a machine can guess from a short list is barely a lock at all",
+        "The network had no passwords at all in 1988, so any account could be accessed freely",
+        "Passwords expired too quickly, forcing users to pick ones that were easy to remember"
+      ],
+      "answer": 1,
+      "explanation": "The worm carried a list of a few hundred common passwords and tried them, plus the username as the password, walking straight in through the front door whenever it guessed correctly. The episode's lesson is that authentication is only as strong as the secret behind it — and it notes this was true in 1988 and remains true in 2026. The other options misstate the facts (passwords were not absent, nor the core issue plain-text storage)."
+    },
+    {
+      "id": "case-the-morris-worm-q08",
+      "q": "Identify the lasting institution that was created in direct response to the chaos of the Morris worm.",
+      "options": [
+        "The World Wide Web Consortium (W3C), to set web standards",
+        "The first Computer Emergency Response Team (CERT), to coordinate incident response",
+        "The Internet Engineering Task Force (IETF), to design network protocols",
+        "The first commercial antivirus company, to sell protection software"
+      ],
+      "answer": 1,
+      "explanation": "The episode explains that the very first coordinated incident-response team — a CERT, or Computer Emergency Response Team — was stood up in direct response to the worm, as a central group to call, coordinate, and organise cleanup when an attack hits. Nearly every country and major organisation now has one, all descending from that first team. The W3C and IETF deal with standards and protocols, not incident response."
+    },
+    {
+      "id": "case-the-morris-worm-q09",
+      "q": "A modern company finds that an attacker overwhelmed its website with so much traffic that customers could not load the page, although no data was stolen or altered. Which Morris-worm lesson does this most directly echo?",
+      "options": [
+        "Memory safety — the attacker exploited a buffer overflow in the web server",
+        "Weak authentication — the attacker guessed an administrator's password",
+        "A confidentiality breach — private customer records were exposed to the public",
+        "An availability attack — the system was still intact but rendered unusable by being flooded"
+      ],
+      "answer": 3,
+      "explanation": "The defining feature here is that nothing was stolen or altered — the site was simply made unusable by being flooded, which is exactly the availability attack the Morris worm pioneered. The episode draws a straight line from the worm to modern attacks that knock services offline by burying them in traffic. Buffer overflow and weak passwords were how the worm got in, not what it ultimately did to the systems."
+    },
+    {
+      "id": "case-the-morris-worm-q10",
+      "q": "A developer writes a network service that copies incoming data straight into a fixed-size memory buffer without checking the length first. Using the worm's lesson, recommend the correct fix and justify it.",
+      "options": [
+        "Encrypt the incoming data before storing it, so an attacker cannot read it",
+        "Bound every copy so input that exceeds the buffer's capacity is rejected or truncated, because unchecked input is the memory-safety flaw the worm exploited",
+        "Require users to log in before sending data, because authentication prevents all overflows",
+        "Run the service on a faster machine, so it can process oversized input before it crashes"
+      ],
+      "answer": 1,
+      "explanation": "The worm rode in on a program that accepted input without checking it fit the space reserved for it — a memory-safety failure. The fix the episode and supplementary notes describe is to rigorously guard the boundaries of memory: never accept more input than the buffer can hold, rejecting or truncating anything that exceeds capacity. Encryption, authentication, and faster hardware do not stop an overflow, because the flaw is the missing bounds check on input, not secrecy, identity, or speed."
+    }
+  ]
+}

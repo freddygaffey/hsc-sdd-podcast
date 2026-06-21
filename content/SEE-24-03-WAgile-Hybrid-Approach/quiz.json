@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2403-q01",
+      "q": "Identify what the WAgile approach is.",
+      "options": [
+        "A hybrid software development approach that combines Waterfall and Agile",
+        "An Agile approach that adds extra documentation to each sprint",
+        "A modified Waterfall approach that delivers in two phases instead of one",
+        "A project management tool for scheduling sprints on a Gantt chart"
+      ],
+      "answer": 0,
+      "explanation": "WAgile is the third development approach: a hybrid that combines Waterfall and Agile. The episode's hook is 'WAgile equals Waterfall gates plus Agile sprints' — plan big, build small. It is not merely Agile-with-more-docs or a two-phase Waterfall; the defining feature is genuinely combining both approaches at different levels."
+    },
+    {
+      "id": "see2403-q02",
+      "q": "In WAgile, what is the role of the Waterfall stage-gates?",
+      "options": [
+        "They are the two-week iterations where developers write the actual code",
+        "They are formal review-and-approval checkpoints between major phases that provide governance, predictability, and documentation",
+        "They are user-story workshops where requirements are first gathered",
+        "They are retrospective meetings held at the end of each sprint"
+      ],
+      "answer": 1,
+      "explanation": "Stage-gates are formal checkpoints where progress is reviewed and approval is given to proceed to the next major phase — they supply the macro-level governance, predictability, and documentation that executives and regulators need. The two-week iterations (option A) are the Agile sprints that happen inside the stages, not the gates themselves."
+    },
+    {
+      "id": "see2403-q03",
+      "q": "The episode summarises WAgile with a short slogan. Which slogan captures it?",
+      "options": [
+        "Falls once",
+        "Goes around",
+        "Plan big, build small",
+        "Fail fast, fix faster"
+      ],
+      "answer": 2,
+      "explanation": "'Plan big, build small' captures WAgile: big linear stage-gates on the outside for governance, little Agile iterations on the inside for delivery. 'Falls once' is the hook for Waterfall and 'Goes around' is the hook for Agile — those describe the two pure approaches WAgile hybridises, not WAgile itself."
+    },
+    {
+      "id": "see2403-q04",
+      "q": "Explain the relationship between Waterfall and Agile within a WAgile project.",
+      "options": [
+        "Waterfall and Agile are run as two separate projects that are merged at the end",
+        "Agile governs the macro flow between phases while Waterfall drives the micro work inside each phase",
+        "Waterfall governs the macro flow between phases while Agile drives the micro work inside each phase",
+        "The team alternates between a pure Waterfall month and a pure Agile month"
+      ],
+      "answer": 2,
+      "explanation": "The two are combined at different levels: Waterfall stage-gates govern the macro flow between major phases, while Agile sprints drive the micro work inside each phase — governance on the outside, flexibility on the inside. Option B reverses this; it is Waterfall, not Agile, that provides the overarching structure."
+    },
+    {
+      "id": "see2403-q05",
+      "q": "According to the episode's framework, when should Waterfall-style behaviour be applied within a WAgile project?",
+      "options": [
+        "When requirements are likely to change and user feedback is essential",
+        "When the team needs flexibility to respond to blockers and experiment",
+        "Whenever a component is user-facing and its usability must be refined",
+        "When governance dominates — for example regulatory compliance, predictable budget milestones, or high scope-creep risk"
+      ],
+      "answer": 3,
+      "explanation": "The 'when' is decided by which need dominates that part of the work. Waterfall-style intervention is applied where governance dominates: regulatory compliance requiring formal documentation, budget approval needing predictable milestones, legacy integration, formal reporting, or high scope-creep risk. The other options describe the conditions for applying Agile behaviour, where adaptability dominates."
+    },
+    {
+      "id": "see2403-q06",
+      "q": "Distinguish between how a regulated records module and a user-facing portal are handled under WAgile.",
+      "options": [
+        "Both are handled Waterfall-heavy because they share the same stage-gates",
+        "The records module is handled Agile-heavy for speed, while the portal is handled Waterfall-heavy for documentation",
+        "The records module is handled Waterfall-heavy with upfront design and formal sign-off, while the portal is handled Agile-heavy with iterative prototyping and feedback, both under shared gates",
+        "Both are handled Agile-heavy because all modern development is done in sprints"
+      ],
+      "answer": 2,
+      "explanation": "This is the 'how' of WAgile: different components get different emphases under one shared gate structure. A regulated, legacy-integrated records module is Waterfall-heavy (detailed upfront design, comprehensive documentation, formal sign-off) because governance dominates, while a user-facing portal is Agile-heavy (rapid prototyping, iterative user testing) because adaptability dominates. Option B simply reverses which need drives each component."
+    },
+    {
+      "id": "see2403-q07",
+      "q": "Outline the main disadvantage, or trap, of the WAgile approach.",
+      "options": [
+        "WAgile is more complex to manage, and done badly it delivers the worst of both — bureaucracy plus unpredictability — with neither benefit",
+        "WAgile cannot produce any documentation because Agile sprints are too informal",
+        "WAgile removes all stakeholder governance, so regulators reject it",
+        "WAgile only works for small, simple projects and never scales to enterprise size"
+      ],
+      "answer": 0,
+      "explanation": "WAgile runs two systems of working at once, so it is more complex and coordination-heavy; if done badly you get the worst of both — Waterfall's bureaucracy plus Agile's unpredictability — with neither benefit, and delayed gates can stall sprint progress. It is not true that WAgile cannot scale: the episode notes it scales from a couple of lightweight gates to four-to-six formal enterprise gates."
+    },
+    {
+      "id": "see2403-q08",
+      "q": "How does WAgile demonstrate scalability across different sizes of development?",
+      "options": [
+        "Small projects use more gates than large projects to reduce risk",
+        "All WAgile projects must use exactly four stage-gates regardless of size",
+        "WAgile scales by removing the Agile sprints on larger projects",
+        "Small projects use a couple of lightweight gates with sprint reviews as mini-gates, while large enterprise projects use four-to-six formal gates with executive review and heavier documentation"
+      ],
+      "answer": 3,
+      "explanation": "This scalability is the 'scale and types of developments' part of the dot-point: small teams use a couple of lightweight gates with sprint reviews doubling as mini-gates, while large enterprise projects use four-to-six formal gates with executive review and heavier documentation. The number of gates is not fixed at four, and you never strip out the sprints — they are how the work actually gets done."
+    },
+    {
+      "id": "see2403-q09",
+      "q": "A markscheme flags a 'band-four' answer to 'explain how WAgile combines Waterfall and Agile.' Which response is that weak, trap answer?",
+      "options": [
+        "It structures the project with Waterfall gates for governance while doing the work in Agile sprints for feedback, applying each where its need dominates",
+        "It uses some Waterfall and some Agile to get the benefits of both",
+        "Waterfall governs the macro flow between phases while Agile drives the micro work inside each phase",
+        "Compliance-critical components run Waterfall-heavy and user-facing components run Agile-heavy under one gate structure"
+      ],
+      "answer": 1,
+      "explanation": "The band-four trap answer is true-ish but gives no mechanism, no 'when' and no 'how' — 'it combines the good parts of both' is exactly what the marker is watching for. A strong answer must explain the gate mechanism, the sprint mechanism, and name when and how each is applied; options A, C and D each supply that missing detail."
+    },
+    {
+      "id": "see2403-q10",
+      "q": "A large bank is building an online banking platform over eighteen months: strict financial regulation and a fixed budget, but also a customer-facing app whose usability must be refined through feedback. Recommend an approach and justify it.",
+      "options": [
+        "Pure Waterfall, because the regulator and executive board need formal milestones and comprehensive compliance documentation",
+        "Pure Agile, because the customer-facing app must be refined iteratively through continuous user feedback",
+        "WAgile, with formal stage-gates for regulatory and budget sign-off, the transaction-processing core handled Waterfall-heavy, and the customer-facing app run in Agile sprints",
+        "Either Waterfall or Agile, since both can deliver the platform with enough effort"
+      ],
+      "answer": 2,
+      "explanation": "WAgile is the justified choice: lay formal stage-gates across the eighteen months for regulatory and budget governance, handle the compliance-critical transaction-processing core Waterfall-heavy with full documentation, and run the customer-facing app in Agile sprints with continuous feedback. Pure Waterfall fails the app (single late delivery cannot give iteration), and pure Agile fails the core (its lighter governance cannot give the auditable compliance and predictable budget milestones); naming this when-and-how is the band-six answer."
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1999-q01",
+      "q": "The episode urges you to dump the marquee hook on paper in the first second of the exam. What does CIA-AAA stand for?",
+      "options": [
+        "Confidentiality, Integrity, Availability, Authentication, Authorisation, Accountability",
+        "Confidentiality, Integrity, Access, Authentication, Auditing, Availability",
+        "Cryptography, Integrity, Availability, Authentication, Authorisation, Auditing",
+        "Confidentiality, Identity, Availability, Authorisation, Authentication, Accountability"
+      ],
+      "answer": 0,
+      "explanation": "CIA-AAA is the spine of the module: Confidentiality, Integrity, Availability (the triad — what we protect) plus Authentication, Authorisation, Accountability (how we protect it). Option B swaps in 'Access' and 'Auditing', which sound right but are not the six syllabus properties. The review stresses that every vulnerability is one of these six being broken and every defence is one being upheld."
+    },
+    {
+      "id": "ssa1999-q02",
+      "q": "The script repeats that 'hashing is one-way, encryption is two-way'. Which CIA-AAA properties do they respectively provide?",
+      "options": [
+        "Hashing provides confidentiality; encryption provides integrity",
+        "Hashing provides availability; encryption provides confidentiality",
+        "Hashing provides integrity; encryption provides confidentiality",
+        "Hashing provides accountability; encryption provides authentication"
+      ],
+      "answer": 2,
+      "explanation": "Hashing is a one-way fixed-size fingerprint you can only check, so it delivers integrity; encryption is reversible with a key, so it delivers confidentiality. The most tempting trap (option A) reverses this — but you cannot get confidentiality from a hash because it cannot be reversed to reveal the original. The mnemonic for passwords is 'hash it, salt it, slow it', and 'salt stops the rainbow' defeats rainbow tables."
+    },
+    {
+      "id": "ssa1999-q03",
+      "q": "Outline the distinction between validation and sanitisation as defined in the V-S-E input-handling hook.",
+      "options": [
+        "Validation cleans input so it is safe to use; sanitisation rejects input that breaks the rules",
+        "Validation rejects input that breaks the rules; sanitisation cleans input so it is safe to use",
+        "Validation and sanitisation both reject bad input, but at different layers of the application",
+        "Validation encrypts input in transit; sanitisation hashes it before storage"
+      ],
+      "answer": 1,
+      "explanation": "V-S-E is Validate, Sanitise, handle Errors — and the review insists you keep the first two distinct: validation rejects input that breaks the rules, while sanitisation cleans input so it is safe to use. Option A is the classic reversed answer the marker exploits. The episode also reminds you that 'allow-list beats block-list' and that injection and XSS are the same disease of input becoming code."
+    },
+    {
+      "id": "ssa1999-q04",
+      "q": "Distinguish XSS from CSRF, one of the eight marker traps named in the review.",
+      "options": [
+        "XSS forges a request that rides a logged-in session; CSRF injects a script into the victim's browser",
+        "XSS and CSRF both forge requests, differing only in whether the user is authenticated",
+        "XSS injects a script that runs in the victim's browser; CSRF forges a request that rides the victim's logged-in session",
+        "XSS attacks the database server; CSRF attacks the transport layer"
+      ],
+      "answer": 2,
+      "explanation": "The script's crisp line is 'XSS injects a Script; CSRF rides a Session' — XSS injects a script that runs in a victim's browser, while CSRF forges a request that exploits the victim's already-logged-in session. Option A reverses the two, which is exactly the trap. Both appear in the B-X-I-R user-action vulnerability list (Broken authentication, Cross-site, Invalid redirect, Race conditions)."
+    },
+    {
+      "id": "ssa1999-q05",
+      "q": "Identify the five testing methods captured by the CR-SAST-DAST-VA-PEN chant, and the rule that distinguishes the static and dynamic ones.",
+      "options": [
+        "Code review, Static, Dynamic, Vulnerability assessment, Penetration testing — 'Static is Source, Dynamic is Doing'",
+        "Code review, Sandboxing, Debugging, Validation, Patching — 'Static is Stored, Dynamic is Downloaded'",
+        "Cryptanalysis, Static, Dynamic, Verification, Penetration testing — 'Static is Secure, Dynamic is Dangerous'",
+        "Code review, Static, Dynamic, Vulnerability assessment, Patch testing — 'Static runs the app, Dynamic reads the source'"
+      ],
+      "answer": 0,
+      "explanation": "CR-SAST-DAST-VA-PEN is Code review, Static analysis, Dynamic analysis, Vulnerability assessment and Penetration testing, with the memory hook 'Static is Source, Dynamic is Doing'. Option D names the methods but inverts the static/dynamic rule — SAST analyses source without running it, while DAST attacks the running application from outside. The episode pairs this chant with the H-B-D incident lifecycle: Harden, Breach-handle, Disaster-recover."
+    },
+    {
+      "id": "ssa1999-q06",
+      "q": "In the secure-API hook A-A-R-T, the review stresses that 'authenticated is not authorised'. What does this distinction mean?",
+      "options": [
+        "Authentication checks what a user may do; authorisation confirms who the user is",
+        "Authentication verifies who you are; authorisation determines what you may do, and you authenticate first then authorise",
+        "Authentication and authorisation are the same check performed by different services",
+        "Authentication relaxes the same-origin policy, while authorisation enforces it through CORS"
+      ],
+      "answer": 1,
+      "explanation": "Authentication verifies who you are; authorisation determines what you may do — and the order matters: authenticate first, then authorise, because 'logged in is not allowed'. Option A reverses the two, the trap the marker sets. The script ties this to broken access control: the insecure direct object reference where a logged-in user changes a URL ID to read another record is an authorisation failure, not an authentication one."
+    },
+    {
+      "id": "ssa1999-q07",
+      "q": "The review distinguishes privacy from security as one of its eight traps. Which statement captures the difference correctly?",
+      "options": [
+        "Privacy is whether you should collect the data at all; security is protecting the data once you hold it — you can be secure and still violate privacy",
+        "Privacy and security are identical; a system that protects its data automatically respects privacy",
+        "Privacy is protecting data in transit; security is protecting data at rest",
+        "Privacy is a legal obligation only, while security is a purely technical concern with no legal dimension"
+      ],
+      "answer": 0,
+      "explanation": "The script's rule is 'privacy is not security' — privacy asks whether you should collect the data at all, while security asks whether what you hold is protected, and you can be perfectly secure yet still violate privacy. Option B is the misconception this trap is designed to catch. The privacy-by-design hook PER (Proactive, Embed, Respect) and 'collect less, keep less' answer the privacy question, distinct from the security controls."
+    },
+    {
+      "id": "ssa1999-q08",
+      "q": "In the integrated health-portal stimulus, the search feature glues the user's text straight into the SQL string. What flaw is this, which properties does it break, and what is the fix?",
+      "options": [
+        "Cross-site scripting; breaks availability; fixed by output encoding and a Content Security Policy",
+        "Broken access control; breaks authorisation; fixed by ownership checks on every request",
+        "SQL injection; breaks integrity and confidentiality; fixed with parameterised queries that pass the value separately",
+        "Information disclosure; breaks accountability; fixed by audit logging of every query"
+      ],
+      "answer": 2,
+      "explanation": "Concatenating user input into the SQL string is SQL injection — input becoming code — which breaks both integrity and confidentiality, and the fix is parameterised queries that pass the value separately so it cannot become code (V-S-E, 16-01). Option A describes the separate reflected-XSS flaw (the search term echoed back unencoded). The band-six pattern modelled in the script is flaw, exact term, CIA-AAA property, named fix."
+    },
+    {
+      "id": "ssa1999-q09",
+      "q": "A health portal stores passwords as fast, unsalted MD5 hashes. Using the script's framework, recommend the appropriate fix and justify it.",
+      "options": [
+        "Encrypt the passwords with a symmetric key so they can be decrypted for comparison at login",
+        "Hash with a per-user salt and a slow algorithm such as bcrypt or Argon2, because hashing is one-way and salt stops the rainbow",
+        "Store the passwords in a sandboxed database so the code cannot climb out to reach them",
+        "Apply rate limiting and TLS so the password hashes never cross the network in clear text"
+      ],
+      "answer": 1,
+      "explanation": "The fix is 'hash it, salt it, slow it' — a per-user salt with a slow algorithm like bcrypt or Argon2 — because hashing is one-way and the salt stops the rainbow (defeats rainbow tables). Option A is the trap: passwords must be hashed, never encrypted, since you never need to reverse them. Option D addresses transport (a separate plain-HTTP flaw) but does nothing about the weak storage itself."
+    },
+    {
+      "id": "ssa1999-q10",
+      "q": "The episode bridges into Software Automation. According to the script, how does the accountability property of CIA-AAA evolve in that next module?",
+      "options": [
+        "It becomes obsolete, because automated systems log everything by default and need no human accountability",
+        "It is replaced by algorithmic bias and fairness as the central concern",
+        "It narrows to protecting training data, since confidentiality now covers the machine-learning dataset",
+        "It becomes 'who is responsible when the algorithm gets it wrong', one of the hardest questions in the next module"
+      ],
+      "answer": 3,
+      "explanation": "The bridge states that accountability — CIA-AAA's 'who did what' — becomes 'who is responsible when the algorithm gets it wrong' once automated systems make decisions. Option C confuses this with the separate data thread, where confidentiality and PER data minimisation come back to protect training data. The review stresses CIA-AAA, PER and Ed Picid all travel forward, with algorithmic bias added as a new issue rather than replacing accountability."
+    }
+  ]
+}

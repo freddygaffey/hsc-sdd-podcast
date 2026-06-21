@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "case-the-equifax-breach-q01",
+      "q": "Identify the piece of software whose vulnerability (CVE-2017-5638) opened the door to the Equifax breach.",
+      "options": [
+        "Apache Struts, a web application framework",
+        "An operating system kernel",
+        "A database management system",
+        "An email server"
+      ],
+      "answer": 0,
+      "explanation": "The episode names Apache Struts, a framework that takes data submitted in web forms and processes it on the server. The flaw was catalogued as CVE-2017-5638. Distractors like a database or operating system are plausible attack surfaces in general, but the script is specific: the vulnerable component was the Struts framework running underneath Equifax's dispute portal."
+    },
+    {
+      "id": "case-the-equifax-breach-q02",
+      "q": "Outline how the CVE-2017-5638 flaw allowed an attacker to take control of the server.",
+      "options": [
+        "It let attackers guess weak passwords using brute force",
+        "A specially crafted, malformed value in the Content-Type label of a request was interpreted by Struts as a command and executed on the server",
+        "It tricked employees into clicking a malicious email link",
+        "It exploited an out-of-date encryption algorithm to decrypt stored data"
+      ],
+      "answer": 1,
+      "explanation": "The script explains that a poisoned, malformed value placed in the Content-Type label of a web form submission was interpreted by vulnerable Struts as a command and run on the server, with no password needed. This is remote code execution caused by untrusted input becoming running code. Password guessing and phishing (the other options) describe different attack types not used to gain the initial foothold here."
+    },
+    {
+      "id": "case-the-equifax-breach-q03",
+      "q": "What does the term 'remote code execution' mean in the context of this breach?",
+      "options": [
+        "Running diagnostic code remotely to test a server's health",
+        "Encrypting data so it can only be read by an authorised remote user",
+        "Untrusted input from a stranger being turned directly into instructions that run on the target machine",
+        "Executing a software update across many machines at once"
+      ],
+      "answer": 2,
+      "explanation": "Remote code execution is described as the worst case where untrusted input — data from a stranger you should never blindly trust — turns directly into running code on your machine. A stranger could type a poisoned string into a web form, hit submit, and the server would execute their instructions as if they were at the keyboard. The other options describe legitimate or unrelated activities, not the attack."
+    },
+    {
+      "id": "case-the-equifax-breach-q04",
+      "q": "The patch for the Struts vulnerability was released on 7 March 2017, yet the breach still happened. Explain why this detail makes the failure a maintenance failure rather than one of ignorance.",
+      "options": [
+        "The patch was defective and reintroduced the flaw when applied",
+        "The vulnerability was a brilliant zero-day that no fix existed for at the time",
+        "The fix was published the same day as the disclosure and three days before the attackers got in, so the failure was not knowing about a fix but reliably applying it",
+        "Equifax was never told that a patch existed for the flaw"
+      ],
+      "answer": 2,
+      "explanation": "The script stresses this was not a zero-day: the patch was published the same day as the vulnerability, three days before the first intrusion, and Equifax was even emailed by Homeland Security. The failure was maintenance — tracking versions and applying known patches promptly — part of the maintenance phase of the software development life cycle. Option B is the tempting misconception, but the episode explicitly rules out a zero-day."
+    },
+    {
+      "id": "case-the-equifax-breach-q05",
+      "q": "According to the supplementary timeline, why did the breach persist despite Equifax running a vulnerability scan on 15 March?",
+      "options": [
+        "The scan was run on the wrong day, after the attackers had already left",
+        "The scan correctly found the server but no one had permission to patch it",
+        "The scan was disabled by the attackers to hide their presence",
+        "The scan came back clean because it missed the one vulnerable server entirely, so nobody patched it"
+      ],
+      "answer": 3,
+      "explanation": "The internal email said 'fix this' but the scan reported nothing to fix because it missed the vulnerable dispute portal server. The two never met on that machine, so it kept running the broken Struts version. This is why the supplementary pseudocode insists you must VERIFY a patch was actually applied — the scan must not lie. The attackers did not disable the scan; it simply failed to find the server."
+    },
+    {
+      "id": "case-the-equifax-breach-q06",
+      "q": "Explain why Equifax's monitoring failed to detect months of data being exfiltrated from its network.",
+      "options": [
+        "The company had no monitoring tools installed at all",
+        "The monitoring tool's digital certificate had expired for about 19 months, so it could only see encrypted noise and could not inspect the outbound traffic",
+        "The attackers used a network too fast for the monitoring to keep up",
+        "The monitoring data was stored but no one was rostered to read the logs"
+      ],
+      "answer": 1,
+      "explanation": "Equifax had monitoring, but inspecting encrypted traffic requires a digital certificate to decrypt, peek inside, and re-encrypt the data. That certificate had been expired for around 19 months, leaving the device effectively blindfolded and seeing only scrambled noise. The script says the alarm was switched off through neglect — not that monitoring was absent (option A), which is the most tempting misreading."
+    },
+    {
+      "id": "case-the-equifax-breach-q07",
+      "q": "Identify which element of information security was breached when the data of about 147 million people was exposed.",
+      "options": [
+        "Availability",
+        "Integrity",
+        "Confidentiality",
+        "Authentication"
+      ],
+      "answer": 2,
+      "explanation": "The episode names the wound directly: what Equifax lost was confidentiality — the property that sensitive information is seen only by those authorised to see it. It failed for 147 million people at once, making it one enormous confidentiality breach. Availability (data being accessible when needed) and integrity (data being unaltered) are real security properties but are not the one the script identifies as breached here."
+    },
+    {
+      "id": "case-the-equifax-breach-q08",
+      "q": "Distinguish between the role of patch management and the role of monitoring as the two security lessons of the Equifax breach.",
+      "options": [
+        "Patch management detects intrusions in progress, while monitoring prevents vulnerabilities from existing",
+        "Both are forms of prevention and neither helps once an attacker is inside",
+        "Patch management protects data in transit, while monitoring protects data at rest",
+        "Patch management is prevention — applying known fixes before attackers strike — while monitoring is detection, letting you see and respond to an attack while it is happening"
+      ],
+      "answer": 3,
+      "explanation": "The script frames patch management as the prevention that closes the door before attackers strike, and monitoring and accountability as the detection that answers 'who is doing what, right now' once prevention fails. Equifax failed at both: it left one server unpatched and let its monitoring certificate rot. The first option inverts the two roles, which is the classic trap when these layers are confused."
+    },
+    {
+      "id": "case-the-equifax-breach-q09",
+      "q": "A startup is building a public web form that processes customer data. Drawing on the Equifax lesson about untrusted input, recommend the most appropriate defensive principle.",
+      "options": [
+        "Trust input from logged-in users so the form runs faster",
+        "Encrypt the form data after it is processed so attackers cannot read it",
+        "Add more form fields so an attacker has less room to inject a payload",
+        "Validate and sanitise all external input and never let it steer the program's behaviour, treating it only as inert data rather than as a command"
+      ],
+      "answer": 3,
+      "explanation": "The cardinal sin the episode identifies is trusting input from outside, which let a header become a command. The defensive principle, echoed in the supplementary pseudocode, is to validate input, reject what is not well-formed, and treat untrusted input only as inert data — never as a command. Encrypting after processing protects stored data but does nothing to stop input from becoming code in the first place."
+    },
+    {
+      "id": "case-the-equifax-breach-q10",
+      "q": "An IT manager argues that renewing security certificates and applying patches is 'too expensive' and can wait. Using the Equifax case, justify the most accurate response.",
+      "options": [
+        "The Struts patch was free and available three days before the break-in, yet the breach cost over $700 million and the careers of the CEO, CIO and CSO — the real expense is always on the other side of the breach",
+        "They are right, because the free patch shows security work has no real value",
+        "Certificates and patches only matter for companies that sell products online",
+        "Delaying is acceptable because monitoring tools will catch any attack regardless"
+      ],
+      "answer": 0,
+      "explanation": "The episode's closing arithmetic is that the fix was free and published three days before the intrusion, while the breach drove a settlement past $700 million and removed the chief executive, chief information officer and chief security officer. Security looks like an expense right up until a breach, when the real cost lands. The 'just rely on monitoring' option fails precisely because Equifax's monitoring was blindfolded by an expired certificate, so detection cannot be relied on to excuse skipping maintenance."
+    }
+  ]
+}

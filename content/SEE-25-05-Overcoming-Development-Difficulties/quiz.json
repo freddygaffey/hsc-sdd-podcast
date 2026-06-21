@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2505-q01",
+      "q": "Identify the three strategies named in the syllabus dot-point for responding to difficulties when developing a software engineering solution.",
+      "options": [
+        "Debugging, testing, and refactoring the code",
+        "Looking for a solution online, collaboration with peers, and outsourcing",
+        "Reverting with version control, restoring a backup, and redeploying",
+        "Naming the blocker, time-boxing, and documenting the fix"
+      ],
+      "answer": 1,
+      "explanation": "The syllabus lists exactly three: looking for a solution online, collaboration with peers, and outsourcing. These map onto the S-P-O escalation ladder (Self/Search, Peers, Outsource/escalate). Option D describes good supporting practices from the episode but is not the three-item syllabus list the question asks for."
+    },
+    {
+      "id": "see2505-q02",
+      "q": "What do the three letters of the T-R-P blocker-classification hook stand for?",
+      "options": [
+        "Testing, Resourcing, Planning",
+        "Timeline, Requirements, Permissions",
+        "Technical, Resource, Process",
+        "Technical, Review, Production"
+      ],
+      "answer": 2,
+      "explanation": "T-R-P names the three blocker types: Technical (knowledge gaps, integration, performance, dependencies), Resource (missing access, tools, environment, budget) and Process (approval delays, unclear requirements, timeline conflicts). Naming the type is the first move because the type determines the fix. Option B lists specific examples of blockers rather than the three categories themselves."
+    },
+    {
+      "id": "see2505-q03",
+      "q": "Outline what the S rung of the S-P-O escalation ladder involves.",
+      "options": [
+        "Self and Search — try yourself first by reading official documentation, searching the exact error message, and checking authoritative sources",
+        "Senior — escalate straight to a senior developer for a fast decision",
+        "Sync — synchronise your code with the remote repository before continuing",
+        "Specialist — contract an external specialist to investigate the problem"
+      ],
+      "answer": 0,
+      "explanation": "S is Self and Search: the first rung, where you attempt the problem yourself by reading the official docs, searching the exact error message with technology and version, and checking authoritative sources. Escalating straight to a senior (option B) skips the rung — the ladder is climbed in order. Outsourcing to a specialist (option D) is the O rung, not the S rung."
+    },
+    {
+      "id": "see2505-q04",
+      "q": "Explain why copy-pasting unverified code found online is described in the episode as a genuine security risk.",
+      "options": [
+        "Pasted code is usually formatted incorrectly and breaks the build",
+        "Online code is copyrighted, so using it creates a legal rather than a security problem",
+        "Copied code runs slower than code you write yourself, harming performance",
+        "The snippet may contain a vulnerability, a backdoor, or a dependency with a known CVE, which becomes a supply-chain risk the moment it is added to the project"
+      ],
+      "answer": 3,
+      "explanation": "Unverified online code can carry a vulnerability, malicious code, or a dependency with a known CVE — the supply-chain risk linked to Secure Software Architecture chapter 19 and the xz-backdoor lesson. The rule is to treat online code as untrusted: read every line, check the source is authoritative and recent, and validate it before use. The formatting and performance options are practical annoyances, not the security/supply-chain risk the episode stresses."
+    },
+    {
+      "id": "see2505-q05",
+      "q": "The episode says collaboration with peers puts V-D-Q into action. What does V-D-Q stand for?",
+      "options": [
+        "Various Views, Delegate by expertise, higher Quality",
+        "Validate, Document, Quarantine",
+        "Verify, Debug, Quality-check",
+        "Version, Deploy, Quality-assure"
+      ],
+      "answer": 0,
+      "explanation": "V-D-Q — various Views, Delegate by expertise, higher Quality — is the collaboration benefit from Secure Software Architecture 19-01: a peer brings a different view, you delegate to whoever has the expertise, and the result is higher quality. This is why asking is a strength, not an admission of failure. The other options reuse the letters with plausible-sounding but incorrect words."
+    },
+    {
+      "id": "see2505-q06",
+      "q": "Distinguish between the kinds of blocker that should be escalated for resources and those fixed through communication, according to the T-R-P framework.",
+      "options": [
+        "Technical blockers are escalated for budget, while process blockers are researched alone",
+        "Resource blockers are fixed by pair programming, while process blockers are escalated to a vendor",
+        "Resource blockers (missing access, tools, budget) are escalated for access or budget, while process blockers (approval delays, unclear requirements) are fixed with communication",
+        "Both resource and process blockers are best solved by searching official documentation"
+      ],
+      "answer": 2,
+      "explanation": "The episode pairs each blocker type with a fix: a technical blocker you research or pair on, a resource blocker you escalate for access or budget, and a process blocker you fix with communication. Option C states the resource-then-process mapping correctly. Option A wrongly attaches budget escalation to technical blockers, which the episode ties to research and pairing instead."
+    },
+    {
+      "id": "see2505-q07",
+      "q": "Compare the strong and weak responses in the worked example of a developer hitting a database timeout under peak load two days before a deadline.",
+      "options": [
+        "The strong response walks S-P-O — time-boxed self-research, then quick peer escalation because it is on the critical path, then outsourcing if needed, documenting throughout; the weak response spends six hours alone pasting unverified code and tells no one",
+        "The strong response immediately outsources to the vendor; the weak response wastes time pairing with a peer first",
+        "Both responses are acceptable because the deadline pressure justifies trying random fixes quickly",
+        "The strong response skips searching and goes straight to a code review; the weak response over-documents and runs out of time"
+      ],
+      "answer": 0,
+      "explanation": "The strong (Band 6) response names the blocker, time-boxes self-research to about an hour, escalates quickly to peers because the timeout is on the critical path two days out, then outsources to a senior architect or vendor with a cost-benefit, documenting throughout. The weak (Band 3) response is lone-wolf debugging for six hours with unverified pasted code and no escalation. The option that outsources to the vendor before searching and peering inverts the ladder."
+    },
+    {
+      "id": "see2505-q08",
+      "q": "The episode lists duties that come with outsourcing. Which duty does it call out as essential to avoid simply relocating the problem?",
+      "options": [
+        "Signing a fixed-price contract to cap the cost",
+        "Choosing the cheapest available vendor",
+        "Keeping the outsourced work secret from the rest of the team",
+        "Ensuring knowledge transfer so the team learns rather than staying dependent"
+      ],
+      "answer": 3,
+      "explanation": "Outsourcing carries duties — verify credentials, do a cost-benefit against internal development time, plan the integration, and crucially ensure knowledge transfer. The episode states that outsourcing without knowledge transfer just relocates the problem, leaving the team dependent. Cost matters (options A and B), but knowledge transfer is the duty singled out as preventing the problem from merely moving."
+    },
+    {
+      "id": "see2505-q09",
+      "q": "You have been stuck on a bug for forty minutes, have searched properly, and found nothing that fits. Applying the S-P-O ladder, what is the correct next move and what is the wrong move?",
+      "options": [
+        "Correct: outsource to a vendor immediately. Wrong: ask a peer, which wastes their time",
+        "Correct: climb to P and ask a peer, since you made a reasonable, time-boxed effort on S. Wrong: stay on S grinding alone for hours (lone-wolf debugging), risking desperate unverified pasting",
+        "Correct: keep grinding alone for another three hours. Wrong: escalate, which shows weakness",
+        "Correct: revert your code with version control. Wrong: document the bug before solving it"
+      ],
+      "answer": 1,
+      "explanation": "Forty fruitless minutes after a proper search is a reasonable trigger to climb from S to P — pair on it or ask the person who knows the subsystem. The wrong move is staying on the S rung for hours, the lone-wolf trap, which wastes time and risks pasting unverified code in desperation. Jumping straight to outsourcing (option A) skips the peer rung that the situation calls for."
+    },
+    {
+      "id": "see2505-q10",
+      "q": "Justify, using the Knight Capital story, why a developer should decide their escalation triggers before a crisis rather than during one.",
+      "options": [
+        "Knight Capital escalated too early and wasted money on consultants they did not need",
+        "Knight Capital's deployment failed because they had not searched online for the bug beforehand",
+        "Under live-failure pressure Knight Capital had no escalation path and no kill switch, so nobody could stop a $440 million loss in 45 minutes — the middle of a crisis is the worst time to invent a trigger",
+        "Knight Capital recovered because their team improvised a new escalation chain during the incident"
+      ],
+      "answer": 2,
+      "explanation": "Knight Capital had no escalation path and no kill switch when a bad deployment began bleeding money — $440 million in 45 minutes — because nobody could pull the plug fast enough. The lesson is to decide escalation triggers (a time-box like 'thirty minutes, then I ask') before the crisis, since inventing one mid-failure is too slow. Option D contradicts the story, which is a failure of escalation, not a recovery."
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1802p2-q01",
+      "q": "The episode uses the master list B-X-I-R to organise web application vulnerabilities. What does each letter stand for?",
+      "options": [
+        "Broken authentication, Cross-site attacks, Invalid forwarding and redirecting, Race conditions",
+        "Brute force, XSS, Injection, Reconnaissance",
+        "Broken access, Cross-origin requests, Input validation, Rate limiting",
+        "Backdoors, Cross-site scripting, Insecure redirects, Replay attacks"
+      ],
+      "answer": 0,
+      "explanation": "B-X-I-R is the spine across both parts: Broken authentication and session management, Cross-site attacks, Invalid forwarding and redirecting, and Race conditions. Part one covered X and I; Part two finishes B and R, plus the two bundled back-door attacks (file and side-channel). Options listing brute force or injection mix in OWASP terms the script does not use for this acronym."
+    },
+    {
+      "id": "ssa1802p2-q02",
+      "q": "Identify the named security flaw described as 'time-of-check-to-time-of-use' (TOCTOU).",
+      "options": [
+        "A broken authentication failure where session IDs are exposed in the URL",
+        "A side-channel attack that leaks a secret through response timing",
+        "A race condition exploited by acting in the gap between a check and the dependent action while state changes",
+        "A path traversal attack where dot-dot-slash climbs out of the intended directory"
+      ],
+      "answer": 2,
+      "explanation": "TOCTOU is the classic security form of a race condition: there is a gap between when you check a condition and when you act on it, and if shared state changes in that gap, the action runs on stale information. The timing example (option B) is a side-channel, a different bundled attack; TOCTOU is specifically about the check-then-act window on shared state."
+    },
+    {
+      "id": "ssa1802p2-q03",
+      "q": "Distinguish session hijacking from session fixation.",
+      "options": [
+        "Hijacking guesses a password; fixation plants malware on the victim's device before login",
+        "Hijacking steals a victim's existing valid session ID and reuses it; fixation plants a known session ID before the victim logs in, then rides that same ID after they authenticate",
+        "Hijacking only works over HTTP; fixation only works over HTTPS",
+        "Hijacking is a file attack; fixation is a side-channel attack"
+      ],
+      "answer": 1,
+      "explanation": "Hijacking steals a session that already exists (via XSS, sniffing, or a predictable ID); fixation plants one in advance and then rides it once the victim logs in. The memorable line is 'hijacking steals a session that exists; fixation plants one in advance.' The shared fix is regenerating the session ID at login, which throws away any planted ID."
+    },
+    {
+      "id": "ssa1802p2-q04",
+      "q": "In the SAFE session model, which control most directly defeats session fixation?",
+      "options": [
+        "Setting the HttpOnly attribute so client-side JavaScript cannot read the cookie",
+        "Setting the Secure attribute so the cookie is only sent over HTTPS",
+        "Applying a fixed session lifetime so the session times out",
+        "Re-issuing on Escalation — regenerating the session ID at login"
+      ],
+      "answer": 3,
+      "explanation": "Re-issuing on Escalation (regenerating the ID at login) defeats session fixation directly, because the ID the attacker planted is thrown away the moment the user authenticates. HttpOnly and Secure protect against theft and sniffing (hijacking paths), and timeouts limit a stolen session's window, but only ID regeneration specifically neutralises a pre-planted, fixed ID."
+    },
+    {
+      "id": "ssa1802p2-q05",
+      "q": "The episode flags a common misconception that 'catches strong programmers off guard' when reasoning about race conditions. What is it?",
+      "options": [
+        "Believing that 'my code is single-threaded, so there's no concurrency'",
+        "Believing that database transactions are too slow to use in production",
+        "Believing that a balance check before withdrawal is always sufficient encryption",
+        "Believing that race conditions only affect the front-end JavaScript"
+      ],
+      "answer": 0,
+      "explanation": "The trap is assuming single-threaded code means no race condition. The script corrects this: a web server handles many requests at once across threads, processes, or machines all hitting the same database, so concurrency is the default on the server, not the exception. The check and the use must still be made atomic regardless of how a single request is written."
+    },
+    {
+      "id": "ssa1802p2-q06",
+      "q": "Explain why the double-spend example overdraws the account to minus one hundred dollars.",
+      "options": [
+        "The attacker injects a malicious script that rewrites the balance variable in the browser",
+        "Both withdrawal requests run the balance check before either runs the subtraction, so both see one hundred dollars, both pass, and both then deduct",
+        "The session ID was predictable, so the attacker reused it to make two withdrawals as the victim",
+        "The filename of the transaction log was crafted with dot-dot-slash to escape the accounts directory"
+      ],
+      "answer": 1,
+      "explanation": "The withdraw code does two steps — check the balance, then subtract — and they are not atomic. When two one-hundred-dollar withdrawals fire at the same instant, both run the check (time-of-check) before either runs the subtract (time-of-use), so both see one hundred dollars and pass, then both deduct, leaving minus one hundred. The other options describe XSS, hijacking, and path traversal, which are different vulnerabilities in B-X-I-R."
+    },
+    {
+      "id": "ssa1802p2-q07",
+      "q": "A student answers a 'how would you prevent a double-spend' question with: 'check the balance before allowing the withdrawal.' Why does the episode call this a weak answer?",
+      "options": [
+        "Because checking the balance leaks timing information that enables a side-channel attack",
+        "Because the answer should instead recommend storing the password hashed, salted and slowed",
+        "Because checking-before-withdrawing is exactly the check-then-act pattern a race condition exploits — the weakness is the gap, not the absence of a check",
+        "Because a balance check is unnecessary if the session ID is strong and random"
+      ],
+      "answer": 2,
+      "explanation": "The weak answer names the very pattern that fails: checking before withdrawing is precisely what TOCTOU exploits, because the weakness is the window between the check and the deduction, not a missing check. The strong answer identifies the gap as the problem and makes the check and deduction atomic — a transaction with row locking or a single atomic conditional update. 'Atomicity, not just a check' is the mark."
+    },
+    {
+      "id": "ssa1802p2-q08",
+      "q": "Describe a path traversal (file) attack and its core mitigation.",
+      "options": [
+        "An attacker measures how long a comparison takes; mitigate with a constant-time comparison",
+        "An attacker plants a known session ID before login; mitigate by regenerating the ID on login",
+        "An application builds a file path from unvalidated input and the attacker uses dot-dot-slash to climb out of the intended folder; mitigate by canonicalising the resolved path and verifying it stays inside the directory, plus allow-listing",
+        "An attacker replays leaked username-password pairs; mitigate with rate limiting and MFA"
+      ],
+      "answer": 2,
+      "explanation": "Path traversal abuses unvalidated filenames: dot-dot-slash sequences climb out of the intended directory to reach sensitive files. The fix treats paths as untrusted input — canonicalise the resolved path, verify it remains inside the intended directory, and allow-list permitted names or reduce to the base name. The other options describe a side-channel, session fixation, and credential stuffing respectively."
+    },
+    {
+      "id": "ssa1802p2-q09",
+      "q": "Explain how a timing attack recovers a secret token, and the fix the episode names.",
+      "options": [
+        "It floods the login endpoint with guesses until one succeeds; fix with rate-limited logins",
+        "A comparison that exits as soon as characters differ takes measurably longer the more leading characters are correct, letting an attacker recover the secret one character at a time; fix with a constant-time comparison that always takes the same time",
+        "It intercepts the session cookie on plain HTTP; fix with the Secure cookie attribute",
+        "It uploads a script disguised with a fake extension that the server executes; fix by validating the actual content type"
+      ],
+      "answer": 1,
+      "explanation": "A timing attack is the software-defensible side-channel: an early-exit comparison leaks how many leading characters matched through response time, so the attacker reconstructs the secret incrementally. The fix is the constant-time comparison from the password and execution episodes, which always takes the same time regardless of how much matches and so leaks nothing. The other options describe brute force, sniffing, and unsafe upload."
+    },
+    {
+      "id": "ssa1802p2-q10",
+      "q": "A digital wallet lets users transfer funds and download their transaction history files. Applying B-X-I-R, which mapping of feature to vulnerability and named fix is correct?",
+      "options": [
+        "Transfer → path traversal, fixed by allow-listing; file download → race condition, fixed by a transaction",
+        "Transfer → side-channel, fixed by a constant-time comparison; login → race condition, fixed by locking",
+        "Transfer → race condition (double-spend), fixed by an atomic conditional update or transaction with locking; file download → path traversal, fixed by canonicalising and verifying the path stays in the directory",
+        "Login → path traversal, fixed by canonicalising; file download → broken authentication, fixed by MFA"
+      ],
+      "answer": 2,
+      "explanation": "Each feature maps to its specific vulnerability: the transfer is a race condition (concurrent transfers double-spend), fixed by making the check and deduction atomic via a transaction with locking or an atomic conditional update; the file download is path traversal, fixed by canonicalising and verifying the path stays inside the allowed directory. Login and sessions add broken authentication (SAFE cookies, regenerate ID, MFA), and any token comparison should be constant-time. The other options swap the fixes onto the wrong features."
+    }
+  ]
+}

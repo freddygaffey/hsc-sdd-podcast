@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw1399-q01",
+      "q": "Identify the four stages of the back-end request lifecycle named in the review, and the mnemonic used to recall them.",
+      "options": [
+        "Route, Handle, Data, Respond — R-H-D-R",
+        "Receive, Hash, Decrypt, Return — R-H-D-R",
+        "Request, Header, Database, Reply — R-H-D-R",
+        "Resolve, Handshake, Deliver, Render — R-H-D-R"
+      ],
+      "answer": 0,
+      "explanation": "The back-end request lifecycle is R-H-D-R: Route the URL to a handler, Handle it with your logic, fetch or store Data, then Respond. The other options reuse the same four letters but substitute concepts from the request journey (resolve, handshake) or security (hash, decrypt), which belong to different layers of the stack, not the framework's handler flow."
+    },
+    {
+      "id": "pfw1399-q02",
+      "q": "State the SQL clause order recited in the review and the mnemonic used to remember it.",
+      "options": [
+        "FROM, SELECT, WHERE, ORDER BY, GROUP BY, HAVING — 'Friendly Snakes Will Often Get Hungry'",
+        "SELECT, WHERE, FROM, GROUP BY, ORDER BY, HAVING — 'Sweet Waffles For Great Outdoor Holidays'",
+        "SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY — 'So Few Workers Go Home On-time'",
+        "SELECT, FROM, GROUP BY, WHERE, HAVING, ORDER BY — 'Some Friends Go Walking Happily Onward'"
+      ],
+      "answer": 2,
+      "explanation": "The review gives the order SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY with the mnemonic 'So Few Workers Go Home On-time'. The key distinction it draws is that WHERE filters rows before grouping while HAVING filters groups afterwards on an aggregate — so WHERE must come before GROUP BY and HAVING after it, ruling out the orderings that swap them."
+    },
+    {
+      "id": "pfw1399-q03",
+      "q": "Explain how a parameterised query prevents SQL injection, according to the review.",
+      "options": [
+        "It separates the command from the data, passing the value separately so it is treated strictly as data and never executed as SQL",
+        "It encrypts the user's input before it reaches the database so attackers cannot read it",
+        "It validates the input against a whitelist of allowed characters before building the query string",
+        "It runs the query inside a sandboxed database account with reduced permissions"
+      ],
+      "answer": 0,
+      "explanation": "A parameterised query stops SQL injection by separating the command from the data — the value is passed separately and treated strictly as data, never executed as SQL. The trap the review names is building SQL by string concatenation. Encryption, character whitelisting, and reduced permissions are real security ideas but are not the mechanism by which a parameterised query works."
+    },
+    {
+      "id": "pfw1399-q04",
+      "q": "The review states the rule you must follow before optimising and lists four speed levers. Identify the rule and the mnemonic for the levers.",
+      "options": [
+        "Bundle before you optimise; the levers are R-H-D-R: Route, Handle, Data, Respond",
+        "Cache before you optimise; the levers are MISO: Manifest, Installable, Service worker, Offline",
+        "Measure before you optimise; the levers are C-C-C-L: Caching, Compression, CDN, Lazy loading",
+        "Compress before you optimise; the levers are WIPS-M: WAI, i18n, Privacy, Security, Machine-readable"
+      ],
+      "answer": 2,
+      "explanation": "The review's rule is 'measure before you optimise' — profile with developer tools, fix the real bottleneck and avoid premature optimisation. The four levers are C-C-C-L: Caching stores data closer for reuse, Compression shrinks bytes with gzip, a CDN serves static assets from a nearby edge, and Lazy loading defers non-critical resources. MISO and WIPS-M are real mnemonics from the module but belong to PWAs and standards, not performance."
+    },
+    {
+      "id": "pfw1399-q05",
+      "q": "Distinguish a progressive web app from a responsive website as the review frames it.",
+      "options": [
+        "A responsive website works offline, while a PWA only adapts its layout to screen size",
+        "A responsive website requires HTTPS, while a PWA can run over plain HTTP",
+        "A responsive website uses a service worker, while a PWA uses only CSS media queries",
+        "A responsive website adapts its layout to screen size (appearance), while a PWA is additionally installable via a manifest and works offline via a service worker (capability)"
+      ],
+      "answer": 3,
+      "explanation": "The review's recurring trap is that 'responsive is appearance, progressive is capability'. A responsive site adapts its layout to screen size; a PWA adds installability via a manifest and offline operation via a service worker, captured by MISO. The distractors invert the two concepts (claiming the responsive site works offline or uses a service worker), or wrongly say a PWA can run over plain HTTP when it actually must run over HTTPS."
+    },
+    {
+      "id": "pfw1399-q06",
+      "q": "Outline the difference between the web server software and the web framework as described in the review's request flow.",
+      "options": [
+        "The web framework accepts connections and handles TLS, while the web server contains your routes and handlers",
+        "The web server (e.g. nginx) accepts connections, serves static files and handles TLS, then forwards dynamic requests to the web framework (e.g. Flask) where your routes and handlers live",
+        "The web server and the web framework are two names for the same layer that processes every request identically",
+        "The web server stores the database while the web framework renders the front-end CSS"
+      ],
+      "answer": 1,
+      "explanation": "The review separates the layers clearly: the web server software like nginx accepts connections, serves static files and handles TLS, then forwards dynamic requests to the web framework like Flask, where your routes and handlers live. The most tempting error swaps the two roles — putting connections and TLS in the framework — but the server and framework are distinct layers, not the same thing."
+    },
+    {
+      "id": "pfw1399-q07",
+      "q": "Compare hashing and encryption, and the way passwords are stored, as consolidated in the review's list of traps.",
+      "options": [
+        "Hashing is two-way and encryption is one-way; passwords should be encrypted so they can be recovered",
+        "Hashing and encryption are both two-way; passwords should be stored in plain text behind a firewall",
+        "Hashing is one-way and encryption is one-way; passwords should be stored as reversible ciphertext",
+        "Hashing is one-way and encryption is two-way; passwords should be stored as one-way hashes, not encrypted"
+      ],
+      "answer": 3,
+      "explanation": "The review's trap line is 'hashing is one-way, encryption is two-way', and in the integrated answer it states passwords are stored as one-way hashes, not encrypted. The tempting reversal is that passwords should be encrypted so they can be recovered, but the whole point of a one-way hash is that the original cannot be retrieved, which is exactly why it is used for password storage."
+    },
+    {
+      "id": "pfw1399-q08",
+      "q": "A startup is building an online store and asks which protocols and security technologies carry a customer's request to the server. Following the review's integrated answer, which sequence and mnemonic is correct?",
+      "options": [
+        "TLS secures the connection, then DNS resolves the domain, then HTTP arrives over port 80 — 'Hambones Take Tasty Dogs'",
+        "DNS resolves the domain to an IP, TCP connects on port 443, TLS secures it with a CA-signed certificate, then the HTTPS request arrives — 'Dogs Take Tasty Hambones'",
+        "HTTP arrives first, then TCP connects on port 22, then DNS resolves the domain — 'Dogs Take Tasty Hambones'",
+        "DNS resolves the domain, then UDP connects on port 21, then SSL secures the connection over HTTP — 'Dogs Take Tasty Hambones'"
+      ],
+      "answer": 1,
+      "explanation": "The review's request journey is 'Dogs Take Tasty Hambones' — DNS resolves the domain to an IP, TCP connects on port 443, TLS secures it with a Certificate-Authority-signed certificate, and the HTTPS request arrives. Because e-commerce is defined by its security requirement, HTTPS over port 443 is non-negotiable; the distractors break the order, use the wrong port (80, 22, 21), or substitute UDP and the older SSL."
+    },
+    {
+      "id": "pfw1399-q09",
+      "q": "A student writing an integrated stimulus answer must validate input. Explain why the review insists on server-side validation and how it protects the database.",
+      "options": [
+        "Server-side validation is faster than client-side checks, so it improves page load performance",
+        "Server-side validation encrypts the customer's data in transit, replacing the need for TLS",
+        "Client-side checks can be bypassed, so the server must re-validate all input; combined with parameterised queries this prevents SQL injection",
+        "Server-side validation lets the browser cache form data so the database is queried less often"
+      ],
+      "answer": 2,
+      "explanation": "The review's spine rule is 'never trust the client': client-side checks can be bypassed, so the server must re-validate all input, and combined with parameterised queries — which separate command from data — this prevents SQL injection. The other options confuse validation with performance, encryption (TLS's job) or caching, none of which is the security reason the review gives."
+    },
+    {
+      "id": "pfw1399-q10",
+      "q": "The review builds a bridge to the next module by listing security IOUs. Name one concept seeded in Programming for the Web and where it is paid off, as the review states.",
+      "options": [
+        "POUR accessibility was seeded here and is taught in full in Secure Software Architecture",
+        "SQL injection was seeded here via the parameterised-query defence, and the full attack and mitigation are taught in Secure Software Architecture",
+        "The C-C-C-L performance levers were seeded here and are paid off in Secure Software Architecture",
+        "The W3C standards process was seeded here and is completed in Secure Software Architecture"
+      ],
+      "answer": 1,
+      "explanation": "The review's IOU list says SQL injection was previewed here with the parameterised-query defence, and Secure Software Architecture teaches the full attack and mitigation — the same pattern applies to hashing versus encryption, XSS, and the never-trust-the-client rule. POUR accessibility, C-C-C-L performance and the W3C process are PFW topics that are completed within this module, not deferred to the security module, so they are not part of the bridge."
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw07-q01",
+      "q": "Identify the two engines that a web browser uses to turn your code into a working page.",
+      "options": [
+        "A compiler engine and a network engine",
+        "A rendering engine and a JavaScript engine",
+        "A layout engine and a database engine",
+        "A security engine and a caching engine"
+      ],
+      "answer": 1,
+      "explanation": "A browser does not just display a page, it runs it using a rendering engine that turns HTML and CSS into pixels, and a JavaScript engine that executes scripts. For example, Chrome uses the Blink rendering engine with the V8 JavaScript engine. Because these engines are built independently across browsers, the same code can behave differently, which is the root of cross-browser compatibility issues."
+    },
+    {
+      "id": "pfw07-q02",
+      "q": "Which pairing of browser and engines is stated correctly in the episode?",
+      "options": [
+        "Chrome uses WebKit and JavaScriptCore",
+        "Firefox uses Blink and V8",
+        "Safari uses Gecko and SpiderMonkey",
+        "Firefox uses Gecko and SpiderMonkey"
+      ],
+      "answer": 3,
+      "explanation": "The episode names three engine pairings: Chrome uses Blink and V8, Firefox uses Gecko and SpiderMonkey, and Safari uses WebKit and JavaScriptCore. Option D is the correct Firefox pairing. The other options mix engines across the wrong browsers, which is the most common confusion when the names are memorised in isolation."
+    },
+    {
+      "id": "pfw07-q03",
+      "q": "Explain why the same HTML, CSS, and JavaScript can appear or behave differently in Chrome, Firefox, and Safari.",
+      "options": [
+        "Each browser downloads a different version of the page from the server",
+        "Each browser uses its own independently built rendering and JavaScript engines, which can interpret the same code differently and may support different features",
+        "The same-origin policy blocks some browsers from loading parts of the page",
+        "Older browsers cannot run JavaScript, so they fall back to plain HTML"
+      ],
+      "answer": 1,
+      "explanation": "Because each browser has its own independently built rendering and JavaScript engine, the same HTML, CSS, and JavaScript can be interpreted slightly differently, and a new feature may work in one browser but not yet in another. Naming the engines and the interpret-differently or different-feature-support point is the mark. The same-origin policy (option C) is a separate security boundary, not the cause of visual or behavioural differences."
+    },
+    {
+      "id": "pfw07-q04",
+      "q": "Name the four developer-tool panels captured by the E-N-S-P hook from the episode.",
+      "options": [
+        "Elements, Network, Sources, Profiler",
+        "Editor, Navigator, Storage, Preview",
+        "Elements, Network, Storage, Performance",
+        "Errors, Network, Security, Performance"
+      ],
+      "answer": 2,
+      "explanation": "E-N-S-P stands for Elements, Network, Storage, and Performance, with the Console sitting alongside for messages and errors. Elements inspects the live DOM and CSS, Network shows HTTP requests, Storage shows client-side data, and Performance profiles speed. Mixing in Sources, Profiler, or Security (the other options) breaks the hook and loses the panel-to-problem mapping that earns marks."
+    },
+    {
+      "id": "pfw07-q05",
+      "q": "Outline what the Elements panel is used to diagnose.",
+      "options": [
+        "Layout and styling problems, by inspecting the live DOM and the CSS rules applied to each element",
+        "Failed or slow HTTP requests and their status codes",
+        "Login and session problems, by inspecting cookies and local storage",
+        "A sluggish page, by profiling slow JavaScript functions"
+      ],
+      "answer": 0,
+      "explanation": "Elements inspects the live DOM, the Document Object Model, letting you view and temporarily edit the HTML and see exactly which CSS rules apply to any element and why. You use it to diagnose layout and styling problems such as why a box is the wrong size or which rule overrode a colour. Requests belong to Network (B), cookies to Storage (C), and slow functions to Performance (D)."
+    },
+    {
+      "id": "pfw07-q06",
+      "q": "A developer's fetch request returns a 500 status code in the Network panel. What does this tell them about where the problem is?",
+      "options": [
+        "The URL is wrong or the endpoint is missing, so the problem is in the request",
+        "The user is not authenticated or not authorised, so the problem is a permissions issue",
+        "The request reached the server but the server-side code failed while processing it, so the problem is in the back end",
+        "The browser blocked the request under the same-origin policy, so CORS must be configured"
+      ],
+      "answer": 2,
+      "explanation": "A 500 is a server error: the request reached the server but the back-end code failed while processing it, so the fault lies in the server, not the request or the client. This contrasts with a 404 (wrong or missing endpoint, the request side) and a 401 or 403 (authentication or authorisation). The triage rule is 4xx points at the request or its permissions, while 5xx points at the server's own code."
+    },
+    {
+      "id": "pfw07-q07",
+      "q": "Distinguish between feature detection and progressive enhancement as cross-browser strategies.",
+      "options": [
+        "Feature detection guesses the browser from its name, while progressive enhancement tests features at run time",
+        "Feature detection tests at run time whether a feature is supported before using it, while progressive enhancement builds a baseline that works everywhere and then layers on enhancements where supported",
+        "Both terms mean the same thing — testing the application in multiple browsers",
+        "Feature detection runs only on the server, while progressive enhancement runs only on the client"
+      ],
+      "answer": 1,
+      "explanation": "Feature detection checks at run time whether the browser actually supports a feature before using it, which is more reliable than guessing from the browser name. Progressive enhancement builds a baseline experience that works everywhere, then layers enhancements on top only where they are supported. Option A reverses the definitions and confuses feature detection with the brittle browser-detection approach the episode warns against."
+    },
+    {
+      "id": "pfw07-q08",
+      "q": "A user reports your web app is loading slowly. Describe how you would use developer tools to diagnose whether the bottleneck is the network or the processing.",
+      "options": [
+        "Open the Storage panel to clear cookies, then reload until the page is faster",
+        "Open the Network panel to examine the request waterfall for large resources, too many requests, or long timings, then open the Performance panel to profile slow JavaScript functions and long rendering times",
+        "Open the Elements panel to edit the CSS until the layout renders more quickly",
+        "Open the Console and read JavaScript error messages, since errors are the only cause of slowness"
+      ],
+      "answer": 1,
+      "explanation": "The strong answer matches symptom to panel: the Network panel and its request waterfall show whether the bottleneck is the network (uncompressed images, too many requests, long download or wait times), while the Performance panel profiles the page to show whether the bottleneck is processing (slow JavaScript and long rendering or paint times). You then read metrics such as largest contentful paint and act on the findings. Clearing cookies (A) or editing CSS (C) does not localise a speed problem."
+    },
+    {
+      "id": "pfw07-q09",
+      "q": "A teammate suggests hiding an API key inside the client-side JavaScript so users will not find it. Why is this insecure?",
+      "options": [
+        "Everything the browser receives — all client-side code, every value in local storage, and every request and response — is fully visible and editable to any user through the developer tools",
+        "Client-side JavaScript runs too slowly to keep a key secret in time",
+        "The same-origin policy will leak the key to other websites automatically",
+        "API keys can only be stored on the client if the site is a progressive web app"
+      ],
+      "answer": 0,
+      "explanation": "Because the developer tools are in everyone's browser, all client-side code, every value in local storage, and every request and response is fully visible and editable — an attacker uses the same dev tools you do. So you must never hide a secret, API key, or security check in client-side code because users will not look; they will, with one keypress. This is the validate-on-the-server rule seen from the other side: the client is an open book, so the trust boundary sits at the server."
+    },
+    {
+      "id": "pfw07-q10",
+      "q": "A user reports that one feature of your app fails to load. Using the Network panel, you see the failing request returned a 401. What does this tell you, and how does it differ from a 404?",
+      "options": [
+        "A 401 means the server's own code crashed, while a 404 means the user lacks permission",
+        "A 401 means the request was blocked by CORS, while a 404 means the server is offline",
+        "A 401 means an authentication problem (the user is not logged in or authorised), while a 404 means the resource or endpoint was not found, pointing at the request itself",
+        "Both 401 and 404 mean the same thing — the back-end code threw an error"
+      ],
+      "answer": 2,
+      "explanation": "A 401 (or 403) signals an authentication or authorisation problem, linking back to the access-control material, whereas a 404 means the resource or endpoint was not found, which points at a wrong URL in the request itself. Both are 4xx codes, so the fault is on the request or permissions side, not the server. A server-side crash would instead show a 500, which is the distinction option A gets backwards."
+    }
+  ]
+}

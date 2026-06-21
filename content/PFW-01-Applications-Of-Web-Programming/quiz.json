@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw01-q01",
+      "q": "Identify the three applications of web programming named in the HSC Software Engineering syllabus.",
+      "options": [
+        "Static websites, dynamic websites, and mobile apps",
+        "Interactive websites, e-commerce, and progressive web apps",
+        "Front-end applications, back-end applications, and databases",
+        "Responsive websites, web services, and cloud applications"
+      ],
+      "answer": 1,
+      "explanation": "The syllabus names exactly three: interactive websites and webpages, e-commerce, and progressive web apps (PWAs). A useful mnemonic is I-E-P — 'I Eat Pizza' — to recall them in an exam."
+    },
+    {
+      "id": "pfw01-q02",
+      "q": "What is the defining characteristic of an interactive website that earns marks in an exam response?",
+      "options": [
+        "It is accessible on mobile devices and resizes for different screen sizes",
+        "It handles financial transactions with encrypted connections",
+        "It provides dynamic content that updates in response to user actions without a full page reload",
+        "It can continue to function without an active internet connection"
+      ],
+      "answer": 2,
+      "explanation": "The defining characteristic of an interactive website is dynamic, client-side content — the page responds to user input immediately (e.g. live search, comments appearing) without fetching a whole new page from the server. Responsive design (option A) is a separate concept about layout."
+    },
+    {
+      "id": "pfw01-q03",
+      "q": "Why is security the *distinguishing* characteristic of e-commerce, rather than just a general requirement for all web applications?",
+      "options": [
+        "E-commerce sites are more popular and therefore attract more attackers",
+        "The asset being protected is money and personal identity, so a breach causes direct financial loss, legal liability, and permanent loss of trust",
+        "E-commerce sites store more data than other types of web applications",
+        "Security regulations only apply to websites that sell products"
+      ],
+      "answer": 1,
+      "explanation": "For an interactive blog, a security failure is embarrassing. For e-commerce, it is existential — leaking card numbers brings financial harm, legal penalties, and destroyed trust. The stakes are categorically higher because the asset is money and identity. This 'asset and consequences' framing is what earns Band 6 marks on a comparison question."
+    },
+    {
+      "id": "pfw01-q04",
+      "q": "Which two characteristics must be present for a web application to be classified as a progressive web app (PWA)?",
+      "options": [
+        "Responsive layout and fast load times",
+        "Server-side rendering and a mobile-friendly design",
+        "Installable to the home screen and capable of working offline",
+        "Push notifications and a native app store listing"
+      ],
+      "answer": 2,
+      "explanation": "A PWA is defined by being installable (via a web app manifest) and offline-capable (via a service worker). The MISO mnemonic captures the essentials: Manifest, Installable, Service worker, Offline. A site that merely looks good on mobile is responsive, not progressive."
+    },
+    {
+      "id": "pfw01-q05",
+      "q": "What is the role of a service worker in a progressive web app?",
+      "options": [
+        "It manages user authentication and session tokens",
+        "It runs in the background to intercept network requests and serve cached content when there is no connection",
+        "It compresses images to improve page load speed",
+        "It renders the page layout for different screen sizes"
+      ],
+      "answer": 1,
+      "explanation": "A service worker is a script the browser keeps running in the background. It intercepts network requests and can serve cached content when offline — this is the mechanism behind offline capability. You must be able to name the service worker as this mechanism, not just say 'it saves data'."
+    },
+    {
+      "id": "pfw01-q06",
+      "q": "A student says: 'A progressive web app is just a website that looks good on a phone.' What is wrong with this statement?",
+      "options": [
+        "PWAs cannot run on phones — they are desktop-only applications",
+        "A responsive layout (looking good on mobile) is about appearance; a PWA is defined by install and offline capability via a service worker, which is a distinct technical feature",
+        "The statement is correct — any mobile-optimised website qualifies as a PWA",
+        "PWAs require native code, so they cannot be built with standard web technologies"
+      ],
+      "answer": 1,
+      "explanation": "This is the most common exam trap. Responsive design controls layout across screen sizes. A PWA is about capability — specifically, installability and offline operation via a service worker. A site can be fully responsive without being a PWA, and vice versa. Confusing these two concepts costs marks."
+    },
+    {
+      "id": "pfw01-q07",
+      "q": "A research team needs a web tool for scientists collecting data in remote areas with no internet access, which syncs when connectivity returns. Which web application type is most appropriate?",
+      "options": [
+        "An interactive website, because it is easy to build and access from any browser",
+        "An e-commerce platform, because it handles data securely",
+        "A progressive web app, because its offline capability via a service worker meets the core requirement of functioning without a connection",
+        "A standard static website, because it does not depend on server-side processing"
+      ],
+      "answer": 2,
+      "explanation": "The driving requirement is offline functionality. A PWA's service worker lets it run and store data without a connection, then synchronise when coverage returns. An interactive website depends on a live network (eliminates A). E-commerce strengths are about payments, not relevant here (eliminates B). A static site cannot store or process dynamic field data (eliminates D)."
+    },
+    {
+      "id": "pfw01-q08",
+      "q": "Outline one trade-off of using a progressive web app compared to a native mobile app.",
+      "options": [
+        "PWAs cannot display images or video",
+        "PWAs require users to pay for access through an app store",
+        "PWAs provide a cross-platform, single-codebase experience but offline caching and data synchronisation are complex to implement, and platform support — particularly on iOS — is more limited than for native apps",
+        "PWAs are always slower than native apps because they run in a browser"
+      ],
+      "answer": 2,
+      "explanation": "The trade-off that earns marks names both sides: PWAs gain cross-platform reach from one codebase, but pay with implementation complexity (service worker caching logic) and limited support on some platforms (Apple's iOS has historically restricted PWA features compared to Android). 'PWAs are slower' (D) is an oversimplification and not the key syllabus trade-off."
+    },
+    {
+      "id": "pfw01-q09",
+      "q": "Why does increased interactivity in a website raise security concerns, particularly regarding cross-site scripting?",
+      "options": [
+        "Interactive sites use more bandwidth, making them easier to attack",
+        "More interactivity means more places where untrusted user input can be displayed back to other users, creating opportunities for malicious code injection",
+        "Interactive sites store more data in cookies, which can be stolen",
+        "Client-side JavaScript cannot be secured against any type of attack"
+      ],
+      "answer": 1,
+      "explanation": "Interactive sites run code from the server inside users' browsers and display user-submitted content. If user input is not properly validated, a malicious user can inject script that runs in other users' browsers — this is cross-site scripting (XSS). Interactivity and security pull against each other: the more dynamic a site, the more untrusted input entry points exist."
+    },
+    {
+      "id": "pfw01-q10",
+      "q": "What does the MISO mnemonic stand for in the context of progressive web apps?",
+      "options": [
+        "Mobile, Integrated, Scalable, Optimised",
+        "Manifest, Installable, Service worker, Offline",
+        "Multi-platform, Interactive, Secure, Open-source",
+        "Memory, Input, Storage, Output"
+      ],
+      "answer": 1,
+      "explanation": "MISO — Manifest, Installable, Service worker, Offline — captures the four essential features that distinguish a PWA from a standard website. In an exam question asking you to 'describe the features that distinguish a PWA', MISO gives you the complete list: it has a web app manifest, it is installable to the home screen, it uses a service worker, and it works offline."
+    }
+  ]
+}

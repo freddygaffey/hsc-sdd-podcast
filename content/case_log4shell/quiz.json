@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "case-log4shell-q01",
+      "q": "Identify the type of attack that Log4Shell enabled, which the script describes as 'the crown jewel of attacks'.",
+      "options": [
+        "Denial of service, where the server is flooded until it crashes",
+        "Remote code execution, where the attacker runs their own code on the victim's machine",
+        "Password theft, where credentials are read from a stolen database",
+        "Phishing, where users are tricked into revealing their login details"
+      ],
+      "answer": 1,
+      "explanation": "The script states the attacker could 'run your own programs on their machine' from a single line of text, and names this capability remote code execution (RCE) — 'about as bad as it gets'. Denial of service only crashes a system; it does not let an attacker run arbitrary code or take full control, which is what made Log4Shell catastrophic."
+    },
+    {
+      "id": "case-log4shell-q02",
+      "q": "What was the underlying software component at the centre of the Log4Shell vulnerability?",
+      "options": [
+        "A web browser used to view malicious pages",
+        "An operating system kernel that managed network traffic",
+        "A free, widely reused logging library for Java called Log4j",
+        "A database engine that stored user records"
+      ],
+      "answer": 2,
+      "explanation": "Log4Shell lived inside Log4j ('logging for Java'), a free, reliable logging library maintained largely by volunteers and buried inside an enormous fraction of the world's Java software. The script stresses it was a logging library — not a browser, kernel, or database — and that most teams running it had no idea it was even there."
+    },
+    {
+      "id": "case-log4shell-q03",
+      "q": "Outline how an attacker actually triggered the Log4Shell exploit against a target.",
+      "options": [
+        "They guessed an administrator password and logged in directly",
+        "They exploited a flaw in the server's firewall to open a hidden port",
+        "They got a malicious string of text logged — for example as a username or browser name — which the vulnerable library then read as an instruction",
+        "They emailed a virus attachment that an employee opened"
+      ],
+      "answer": 2,
+      "explanation": "The script explains the entire attack: the attacker simply gets their malicious string into any field that gets logged (a username, a browser name, a search box, a chat message), and the vulnerable Log4j 'doesn't just write it down — it reads it as an instruction'. No password guessing or break-in is needed because logs record whatever the outside world sends, and the library then acted on it."
+    },
+    {
+      "id": "case-log4shell-q04",
+      "q": "Explain why the 'convenience feature' added to Log4j years earlier turned out to be a loaded gun.",
+      "options": [
+        "It let a logged message tell Log4j to reach out across the internet, download something from an address in the message, and run it",
+        "It stored every log message permanently, eventually filling up the server's disk",
+        "It encrypted log files so strongly that administrators could no longer read them",
+        "It automatically deleted old logs, erasing evidence of attacks"
+      ],
+      "answer": 0,
+      "explanation": "The script describes a placeholder that could tell Log4j to 'go and fetch something from another computer over the network and load it in' — intended as a directory lookup, but in practice meaning the library would reach out to an address in the message, download code, and run it. The danger was execution of fetched code, not disk usage or encryption, which is why a harmless-looking convenience became remote code execution."
+    },
+    {
+      "id": "case-log4shell-q05",
+      "q": "Identify the severity rating Log4Shell received on the standard zero-to-ten vulnerability scale.",
+      "options": [
+        "Seven out of ten — high but not critical",
+        "Five out of ten — a moderate risk",
+        "Ten out of ten — the absolute maximum",
+        "Nine out of ten — severe but with mitigating factors"
+      ],
+      "answer": 2,
+      "explanation": "Log4Shell was rated a perfect ten out of ten (CVSS 10.0). The script explains the score 'maxed out on all of it' — trivial to exploit (just type a string), devastating in effect (total takeover), and applicable to a huge number of systems. A lower score would imply some mitigating factor, but Log4Shell had none."
+    },
+    {
+      "id": "case-log4shell-q06",
+      "q": "What are transitive dependencies, the concept the script uses to explain why defenders couldn't answer 'are we using Log4j?'",
+      "options": [
+        "Libraries that are downloaded fresh each time a program runs",
+        "The dependencies of your dependencies — inherited code you run but never knowingly chose",
+        "Components that only load when the system is under heavy load",
+        "Software licences that transfer ownership between companies"
+      ],
+      "answer": 1,
+      "explanation": "The script defines transitive dependencies as 'the dependencies of your dependencies, the code you're running that you never knowingly chose' — Log4j arrived buried five layers down inside other software. This is why most organisations had 'absolutely no idea' whether they were affected; the vulnerable library was inherited, not deliberately installed."
+    },
+    {
+      "id": "case-log4shell-q07",
+      "q": "Explain what the script identifies as the root cause of Log4Shell, described as 'the oldest lesson there is'.",
+      "options": [
+        "Weak passwords that attackers could guess too easily",
+        "A failure to encrypt data while it was being sent over the network",
+        "Treating untrusted input as a trusted instruction instead of inert data to be recorded",
+        "Running outdated hardware that could not handle modern security software"
+      ],
+      "answer": 2,
+      "explanation": "The script's one-sentence summary of the bug is that Log4j 'executed input it should only have stored' — it took text from a stranger and followed commands hidden inside it. The defence is input validation and proper handling of untrusted data: anything from outside is 'guilty until proven innocent'. Encryption and passwords are real controls but address different problems, not the trust-the-input root cause."
+    },
+    {
+      "id": "case-log4shell-q08",
+      "q": "Distinguish between the patching task and the hunting task that defenders faced during the Log4Shell emergency.",
+      "options": [
+        "Patching was impossible until a fix existed, while hunting meant attacking back at the criminals",
+        "Patching the library was relatively straightforward, but the hard part was hunting through their own software to find every hidden place Log4j was buried",
+        "Hunting was automated by tools, while patching had to be done by hand on every machine",
+        "Patching meant rewriting Log4j from scratch, while hunting meant searching for the original attackers"
+      ],
+      "answer": 1,
+      "explanation": "The script is explicit: 'The patching wasn't the hard part. Finding all the places that needed patching was the hard part.' Because Log4j was a buried transitive dependency, teams had to tear apart their own software to locate it — 'you can't fix what you don't know you have'. The other options invert this relationship or describe retaliation, which was not the defenders' task."
+    },
+    {
+      "id": "case-log4shell-q09",
+      "q": "Which phase of the software life cycle does the script say the frantic Log4Shell weekend illustrates, lived 'at maximum intensity'?",
+      "options": [
+        "The design phase, where requirements are gathered",
+        "The build phase, where new features are written",
+        "The maintenance phase, where running software is kept alive and safe",
+        "The testing phase, where code is checked before release"
+      ],
+      "answer": 2,
+      "explanation": "The script frames the response as 'the maintenance phase of the software life cycle, lived at maximum intensity' — not building anything new, but watching for newly discovered flaws and patching fast. Its closing point is that 'the build is the beginning; keeping it alive and safe is most of the work', which is exactly maintenance rather than design, build, or testing."
+    },
+    {
+      "id": "case-log4shell-q10",
+      "q": "A development team is building a feedback form where users submit comments that are written into the application's logs and an audit database. Applying the central lesson of Log4Shell, what should they do?",
+      "options": [
+        "Encrypt the log files so no attacker can read the recorded comments",
+        "Treat every submitted comment as untrusted data — validate and neutralise it so it can only ever be recorded as plain text, never interpreted as an instruction",
+        "Disable logging of user comments entirely so nothing untrusted is ever stored",
+        "Trust the comments because they pass through the company's own form rather than coming from an external system"
+      ],
+      "answer": 1,
+      "explanation": "The Log4Shell lesson is that input from strangers is 'never, ever to be trusted as a command' — the fix is input validation and proper handling of untrusted data so it stays inert content, exactly as the supplementary pseudocode shows (treat the value as literal text and escape any placeholder syntax). Encryption protects stored data but not against injection; disabling logging throws away a useful record; and trusting input because it came through your own form is precisely the mistake Log4Shell punished."
+    }
+  ]
+}

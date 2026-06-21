@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "sa2004-q01",
+      "q": "Name the three types of node in a decision tree, in order from top to bottom.",
+      "options": [
+        "Root, Node, Leaf",
+        "Branch, Node, Weight",
+        "Input, Hidden, Output",
+        "Root, Branch, Activation"
+      ],
+      "answer": 0,
+      "explanation": "A decision tree has a Root (the first test question and single starting point), internal Nodes (further test questions along the way), and Leaves (end points holding the final prediction). The hook is R-N-L, read top to bottom from the root down to the leaves. 'Input, Hidden, Output' describes the layers of a neural network, not the parts of a tree."
+    },
+    {
+      "id": "sa2004-q02",
+      "q": "Outline what a single neuron computes in a neural network.",
+      "options": [
+        "It asks a yes-or-no test question about one feature and follows the matching branch",
+        "It stores the training data so the network can recall the exact examples later",
+        "It takes a weighted sum of its inputs and then passes that sum through an activation function",
+        "It adjusts all the weights in the network so the outputs match the correct answers"
+      ],
+      "answer": 2,
+      "explanation": "A neuron does two things: it multiplies each input by a weight and adds them up (the weighted sum), then passes that sum through an activation function that decides its output. Asking a yes-or-no test question (option A) describes a decision tree node, not a neuron. Adjusting all the weights (option D) is the network-wide learning process, not what one neuron computes."
+    },
+    {
+      "id": "sa2004-q03",
+      "q": "State the framing hook the episode uses to capture the contrast between the two models.",
+      "options": [
+        "A Tree is weighted neurons; a Net is readable IF-questions",
+        "A Tree is readable IF-questions; a Net is weighted neurons",
+        "A Tree is a black box; a Net is a transparent flowchart",
+        "A Tree learns features; a Net traces a path to a leaf"
+      ],
+      "answer": 1,
+      "explanation": "The episode's spine for the comparison is 'a Tree is readable IF-questions; a Net is weighted neurons' — the tree is a readable flowchart of yes-or-no questions, while the net is a web of weighted connections. Option A reverses the two models. The point of the hook is that the tree is the readable one and the net is the opaque one, so any version that calls the net transparent or the tree a black box is wrong."
+    },
+    {
+      "id": "sa2004-q04",
+      "q": "Using the email-priority tree from the episode (Root: contains 'urgent'? — if no, medium; if yes, contains 'meeting'? — if yes, high; if no, from a known contact? — if yes, medium, if no, low), trace an email that contains 'urgent', does not contain 'meeting', and is from a known contact. What is the prediction?",
+      "options": [
+        "Low priority",
+        "High priority",
+        "Medium priority",
+        "Urgent priority"
+      ],
+      "answer": 2,
+      "explanation": "Start at the Root: contains 'urgent'? Yes, go right. Next Node: contains 'meeting'? No, go to the contact question. Next Node: from a known contact? Yes — Leaf: medium priority. The mark in a trace question is to state the path of answers (urgent yes, meeting no, known contact yes), not just the leaf. 'Low' would only be reached if it were not from a known contact."
+    },
+    {
+      "id": "sa2004-q05",
+      "q": "Describe how a decision tree used in machine learning differs from the nested if-statements a programmer writes in a Year 11 algorithm.",
+      "options": [
+        "A machine-learning tree cannot use selection or branching, only loops",
+        "A machine-learning tree's questions and their order are learned from training data rather than hand-written by the programmer",
+        "A machine-learning tree runs on a neural network instead of a CPU",
+        "A machine-learning tree always produces a numeric output rather than a category"
+      ],
+      "answer": 1,
+      "explanation": "A decision tree is essentially a structured chain of nested if-statements — the same selection and branching logic from Year 11 — but the key difference is that the questions and their order are learned from data during training, not hand-written by the programmer. It is therefore 'learned branching logic'. The tree still uses ordinary selection and branching (so option A is false); only the source of the rules changes."
+    },
+    {
+      "id": "sa2004-q06",
+      "q": "Describe the layered structure of a neural network and how it learns.",
+      "options": [
+        "It has a root, internal nodes and leaves, and it learns by pruning branches",
+        "It has a single layer of neurons that each store one training example, and it learns by memorising the data",
+        "It has an input layer and an output layer only, and it learns by reordering its test questions",
+        "It has an input layer, one or more hidden layers, and an output layer, and it learns by adjusting the weights on the connections"
+      ],
+      "answer": 3,
+      "explanation": "A neural network arranges neurons in layers: an input layer that receives the raw features, one or more hidden layers that do the real work, and an output layer that produces the prediction. Learning means adjusting the weights on the connections so the outputs get closer to the correct answers. Roots, nodes, leaves and pruning (option A) belong to a decision tree, not a neural network."
+    },
+    {
+      "id": "sa2004-q07",
+      "q": "Distinguish between a decision tree and a neural network in terms of explainability.",
+      "options": [
+        "Decision trees are a black box while neural networks are interpretable through a traceable path of questions",
+        "Both models are equally interpretable because both are built from if-then rules",
+        "Neither model can be explained, so explainability is not a useful basis for comparison",
+        "A decision tree is interpretable because you can trace the path from root to leaf, while a neural network is a black box whose decision is spread across many learned weights with no human-readable rule"
+      ],
+      "answer": 3,
+      "explanation": "A decision tree is interpretable or transparent: because it is a chain of readable questions, you can trace and explain exactly why it made any prediction. A neural network is a black box — its decision is distributed across thousands or millions of weights with no human-readable rule. Option A reverses which model is the black box; the tree is the readable one and the net is opaque."
+    },
+    {
+      "id": "sa2004-q08",
+      "q": "Explain why the explainability of a model matters beyond being technical trivia, according to the episode.",
+      "options": [
+        "Explainable models always achieve higher accuracy than black-box models",
+        "Explainability makes a model train faster and use less memory",
+        "Explainability supports accountability and lets a model be audited for bias and fairness, which matters in high-stakes or regulated decisions",
+        "Explainability is only required for image-recognition systems"
+      ],
+      "answer": 2,
+      "explanation": "Explainability ties to accountability — the last A of C-I-A-A-A — and to bias and fairness. If a black-box network denies someone a loan and nobody can explain why, you cannot hold it accountable, audit it for bias, or tell the person why they were rejected. This is why an interpretable model is often preferred for high-stakes or regulated decisions even when a black-box model scores slightly higher accuracy, so accuracy alone (option A) is not the point."
+    },
+    {
+      "id": "sa2004-q09",
+      "q": "A student writes that 'a neural network works just like the human brain.' Why does the episode warn against this answer?",
+      "options": [
+        "Because neural networks are actually more powerful than the human brain",
+        "Because a neural network is only loosely inspired by neurons; it is really just layers of weighted sums and activation functions — maths, not thought",
+        "Because neural networks are built from decision trees rather than neurons",
+        "Because the brain uses weighted sums but neural networks do not"
+      ],
+      "answer": 1,
+      "explanation": "The episode flags the 'brain myth' as a band-four answer markers dislike. A neural network is not a brain — it is loosely inspired by neurons but is really just layers of weighted sums and activation functions joined by learned weights, which is maths, not thought. The accurate description names the weighted-sum-plus-activation units and the learned connections, not a comparison to human thinking."
+    },
+    {
+      "id": "sa2004-q10",
+      "q": "A bank must choose between a decision tree and a neural network for approving loans, where regulators require every decision to be explainable. Recommend a model and justify your choice.",
+      "options": [
+        "The decision tree, because its traceable path of if-then questions lets the bank state exactly why each applicant was approved or declined and audit the model for bias",
+        "The neural network, because it is more accurate and accuracy is what regulators care about",
+        "The neural network, because its many layers make each decision easier to audit",
+        "Either model, because both produce human-readable rules that satisfy the regulator"
+      ],
+      "answer": 0,
+      "explanation": "The decision tree is the appropriate choice because the driving requirement is explainability: a tree produces a traceable path of if-then questions, so the bank can state precisely why any applicant was approved or declined, satisfy the regulator, and audit for bias. A neural network, although possibly more accurate, is a black box that cannot be explained in human-readable terms, so recommending it for its accuracy trades away the very requirement that must be met. The recommendation accepts a possible small loss of predictive power in exchange for transparency and accountability."
+    }
+  ]
+}

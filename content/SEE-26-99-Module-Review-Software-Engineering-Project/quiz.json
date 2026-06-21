@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2699-q01",
+      "q": "The script describes the whole year as one story across four modules. Which one-line summary correctly captures that arc?",
+      "options": [
+        "Make it work, make it fast, make it cheap, and document the project",
+        "Make it work, make it secure, make it smart, and run the project that ships it well",
+        "Plan it, code it, test it, and deploy it without rollback",
+        "Define, design, develop, and decommission the whole solution"
+      ],
+      "answer": 1,
+      "explanation": "The script's year-in-one-sentence is 'make it work' (Programming for the Web), 'make it secure' (Secure Software Architecture), 'make it smart' (Software Automation), and 'run the project that ships it well' (the Software Engineering Project). Option A swaps the security and automation themes for 'fast' and 'cheap', which are not the module themes. Recognising that every integrated exam question is a slice of this sentence is the point of the synthesis module."
+    },
+    {
+      "id": "see2699-q02",
+      "q": "What does the SEE evaluation mnemonic C-E-R stand for?",
+      "options": [
+        "Criteria, Evidence, Reflection",
+        "Collect, Evaluate, Report",
+        "Correctness, Errors, Results",
+        "Criteria, Evaluation, Review"
+      ],
+      "answer": 0,
+      "explanation": "C-E-R is Criteria (drawn from the requirements and the C-U-P-S quality criteria), Evidence (test results and synthesised feedback, comparing actual versus expected), and Reflection (on maintainability and lessons learned). The tempting Collect/Evaluate/Report option blurs C-E-R with the feedback mnemonic C-S-A (Collect, Synthesise, Act); the script keeps them distinct — C-S-A handles feedback, C-E-R is the overall evaluation judgement."
+    },
+    {
+      "id": "see2699-q03",
+      "q": "The script gives the security-dump hook from Secure Software Architecture. What does CIA-AAA expand to?",
+      "options": [
+        "Confidentiality, Integrity, Access, Authentication, Authorisation, Auditing",
+        "Control, Integrity, Availability, Authentication, Access, Accountability",
+        "Confidentiality, Integrity, Availability, Authentication, Authorisation, Accountability",
+        "Confidentiality, Identity, Availability, Authorisation, Auditing, Accountability"
+      ],
+      "answer": 2,
+      "explanation": "CIA-AAA is Confidentiality, Integrity, Availability, Authentication, Authorisation, Accountability — the script calls it 'the big one' from Secure Software Architecture and the security-dump hook. The distractors substitute near-synonyms like Access, Control, or Auditing for the precise syllabus terms; getting the exact words matters because the integrated exam rewards naming each of the six elements."
+    },
+    {
+      "id": "see2699-q04",
+      "q": "Explain how the script distinguishes quality assurance from testing.",
+      "options": [
+        "QA is automated checking while testing is always done manually by users",
+        "Testing prevents defects early, while QA detects them after deployment",
+        "QA only applies to the front end, while testing only applies to the back end",
+        "QA prevents defects across the whole process, while testing is an activity within QA that detects defects by executing test cases"
+      ],
+      "answer": 3,
+      "explanation": "The script's exact distinction is 'QA prevents, testing detects' — quality assurance is the overall process (the three Cs: Criteria, Continual checking, Compliance) that prevents defects, and testing is one activity inside QA that detects defects by comparing actual with expected output. The 'testing prevents, QA detects' option reverses the relationship, which is the most common trap the script flags; QA is the umbrella, testing sits underneath it."
+    },
+    {
+      "id": "see2699-q05",
+      "q": "Outline the difference between the phased, pilot, and parallel implementation methods within DiP-PP.",
+      "options": [
+        "Phased splits by user group, pilot splits by feature, and parallel runs the old system only",
+        "Phased splits by feature, pilot splits by user group, and parallel runs old and new systems at once",
+        "Phased and pilot are identical, while parallel means a direct big-bang cut-over",
+        "Phased runs old and new together, pilot splits by feature, and parallel splits by user group"
+      ],
+      "answer": 1,
+      "explanation": "The script states it plainly in the traps section: phased splits the rollout by feature, pilot splits by user group, and parallel runs both the old and new systems at once. The distractors mix up the split criteria — confusing phased, pilot, and parallel is a named cross-module trap. Direct cut-over (the 'Di' in DiP-PP) is the cheap-but-risky big-bang option the script warns against for high-risk systems like Knight Capital and Denver."
+    },
+    {
+      "id": "see2699-q06",
+      "q": "The script repeats the rule 'hash is one-way, encrypt is two-way.' In a scenario storing user passwords, why is hashing the correct technique?",
+      "options": [
+        "Hashing compresses the password so it takes less database space than encryption",
+        "Hashing encrypts the password twice, making it harder to crack than single encryption",
+        "Hashing is a one-way function, so even if the database is stolen the passwords cannot be reversed, whereas encryption is two-way and reversible",
+        "Hashing lets administrators recover the original password when a user forgets it"
+      ],
+      "answer": 2,
+      "explanation": "The script's password rule is that passwords should be salted and hashed, not encrypted, because hashing is one-way — a stolen database still cannot reveal the originals — while encryption is two-way and reversible. The 'administrators recover the password' option describes recoverability, which is exactly what you do NOT want for passwords; the inability to reverse a hash is the whole point. 'Hash is encryption' is one of the named cross-module traps."
+    },
+    {
+      "id": "see2699-q07",
+      "q": "In the integrated education-platform scenario, the AI early-warning flag is identified as a fairness risk. Which combination of safeguards does the script recommend for responsibly including the machine-learning feature?",
+      "options": [
+        "Maximise overall accuracy and trust the algorithm because it is neutral and data-driven",
+        "Let the model act automatically to remove human bias from the decision entirely",
+        "Encrypt the training data and restrict access so the model output cannot be challenged",
+        "Use diverse representative data, measure fairness metrics per group, and keep a human in the loop so a teacher reviews every flag"
+      ],
+      "answer": 3,
+      "explanation": "The script's responsible-AI judgement is representative data, per-group fairness metrics, and human oversight — a teacher reviews every flag and there is never an automated consequence, making the model decision support, not a decision maker. The 'trust the neutral algorithm' option walks into two traps the script names: 'the algorithm is neutral' (it mirrors its data, S-H-L-M) and the fact that high overall accuracy can hide deep unfairness to a group. Letting the model act automatically is the opposite of the required human-in-the-loop safeguard."
+    },
+    {
+      "id": "see2699-q08",
+      "q": "A council wants an online pothole-reporting system with an AI feature that auto-prioritises reports by severity from a photo. Following the script's model answer, which development approach and justification is most defensible?",
+      "options": [
+        "Pure Waterfall, because all public-sector systems must freeze requirements before any build begins",
+        "Direct cut-over, because it is the cheapest way to launch a public reporting system quickly",
+        "WAgile, because the council reporting and compliance need Waterfall-heavy governance while the resident-facing interface benefits from Agile iterative feedback",
+        "Pure Agile with no documentation, because resident feedback is the only thing that matters"
+      ],
+      "answer": 2,
+      "explanation": "The script's model answer recommends WAgile (defensibly) — Waterfall stage-gates for the governance and compliance side, Agile sprints for the resident-facing reporting interface that benefits from feedback — always explaining the 'when and how'. Pure Waterfall and 'Agile means no docs' are both named as false traps. The script also rejects direct cut-over for a public system, eliminating option B; WAgile's strength is matching each approach to where it fits."
+    },
+    {
+      "id": "see2699-q09",
+      "q": "The script ties the three SEE case studies together as 'the same lesson in three costumes.' What is the shared through-line of Denver airport, Healthcare.gov, and Knight Capital?",
+      "options": [
+        "All three failed because the development team used the wrong programming language",
+        "All three failed in the process — requirements, feasibility, methodology, testing, deployment — not in clever code",
+        "All three succeeded technically but were cancelled for political reasons",
+        "All three failed because they adopted Agile instead of Waterfall"
+      ],
+      "answer": 1,
+      "explanation": "The script's explicit through-line is that all three failures happened in the process — Denver in defining and planning (unbounded scope, infeasible plan, direct big-bang cut-over), Healthcare.gov across defining, planning and testing (frozen flawed requirements, no load test), and Knight Capital in version control and deployment (dead code, no rollback) — not in clever code. The lesson the course closes on is 'justify, manage, document', which is why blaming the language or the methodology label (options A and D) misses the point."
+    },
+    {
+      "id": "see2699-q10",
+      "q": "The script names a 'meta-trap that costs the most integrated marks.' In the hospital patient-management scenario with an AI no-show predictor, how should a student avoid it?",
+      "options": [
+        "Reach across all four modules — process, web, security and responsible AI — tied together by the project process, asking where the other three modules touch the brief",
+        "Answer thoroughly from a single module, such as covering only the security requirements in full detail",
+        "Focus on writing the most clever code possible to demonstrate technical skill",
+        "Choose direct cut-over to save time and dedicate the answer to the AI feature alone"
+      ],
+      "answer": 0,
+      "explanation": "The script identifies the meta-trap as 'answering a four-module scenario from only one module', and the fix is to reach across all four — the SEE process spine plus the web, security and responsible-AI dimensions — always asking 'where do the other three modules touch this?'. For the hospital brief that means WAgile plus pilot-then-parallel, CIA-AAA and V-S-E security, an ML no-show predictor with bias checks and a human in the loop, and C-E-R evaluation. Breadth across modules tied together by the project process is exactly the synthesis the integrated exam rewards."
+    }
+  ]
+}

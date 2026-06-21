@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw1304-q01",
+      "q": "Identify what the MISO mnemonic stands for in the context of progressive web apps.",
+      "options": [
+        "Manifest, Installable, Service worker, Offline",
+        "Mobile, Installable, Standalone, Optimised",
+        "Memory, Input, Storage, Output",
+        "Multi-platform, Interactive, Secure, Open-source"
+      ],
+      "answer": 0,
+      "explanation": "MISO — Manifest, Installable, Service worker, Offline — names the four components that turn an ordinary website into a PWA. The manifest is the how of installation and installable is the what; the service worker is the how of offline and offline is the result. Distractors like 'Mobile' and 'Standalone' borrow real PWA vocabulary but are not the four MISO components."
+    },
+    {
+      "id": "pfw1304-q02",
+      "q": "State the role of the web app manifest in a progressive web app.",
+      "options": [
+        "A background script that intercepts every network request the app makes",
+        "A JSON file describing the app's name, icons, theme colour, and display mode so the browser can offer to install it",
+        "An encrypted certificate that lets the app be served over HTTPS",
+        "A cache of the app shell files that lets the app load without a network connection"
+      ],
+      "answer": 1,
+      "explanation": "The manifest is a small JSON file that describes the app to the browser — its name, icons, theme colour, and crucially a 'standalone' display mode — which is what lets the browser install the app to the home screen. The script frames the manifest as the 'how' of installation. Option A describes the service worker, and option D describes what the service worker's cache does, not the manifest."
+    },
+    {
+      "id": "pfw1304-q03",
+      "q": "Explain how a service worker provides offline capability in a progressive web app.",
+      "options": [
+        "It stores user passwords locally so the app can authenticate without contacting the server",
+        "It compresses the app's files with gzip so they download fast enough to work on weak connections",
+        "It intercepts network requests and serves previously cached app-shell resources when the network is unavailable",
+        "It re-downloads the whole page from a nearby CDN edge server whenever the connection drops"
+      ],
+      "answer": 2,
+      "explanation": "A service worker is a background script that acts as a programmable proxy: it intercepts every network request and decides whether to fetch from the network or serve a cached copy. On first visit it caches the app shell (HTML, CSS, JavaScript, icons); when the network is gone it serves those cached files instead of failing. The mark-earning sentence from the script is that it 'enables offline functionality by intercepting network requests and serving previously cached resources when the network is unavailable.'"
+    },
+    {
+      "id": "pfw1304-q04",
+      "q": "Outline what the 'app shell' refers to when a service worker caches it on first load.",
+      "options": [
+        "The user's personal data and saved documents created inside the app",
+        "The web app manifest file together with the HTTPS certificate",
+        "The core HTML, CSS, JavaScript, and icons that make up the app's interface",
+        "The push-notification messages queued for delivery while offline"
+      ],
+      "answer": 2,
+      "explanation": "The script defines the app shell as the app's essential files — the HTML, CSS, JavaScript, and icons — which the service worker caches on first load so the app can still open offline. The app shell is the structure of the app, not the user's content; new data the user creates offline is queued and synced separately. Confusing the shell with user data (option A) misses what is actually cached for offline loading."
+    },
+    {
+      "id": "pfw1304-q05",
+      "q": "Distinguish between a responsive website and a progressive web app.",
+      "options": [
+        "A responsive website works offline, while a PWA only adjusts its layout to the screen size",
+        "A responsive website must be served over HTTPS, while a PWA can be served over plain HTTP",
+        "There is no meaningful difference; any mobile-friendly website is a progressive web app",
+        "A responsive website adapts its layout to screen size (appearance), while a PWA is additionally installable via a manifest and works offline via a service worker (capability)"
+      ],
+      "answer": 3,
+      "explanation": "This is the module's most persistent trap. Responsive design is about appearance — layout adapting across screen sizes — and an ordinary website can be responsive. A PWA is distinguished by capability: installable through a manifest and offline through a service worker. A site can be fully responsive without being a PWA, which is why the 'no meaningful difference' option is wrong, and the appearance-versus-capability contrast is the discriminating mark."
+    },
+    {
+      "id": "pfw1304-q06",
+      "q": "The episode links the service worker's offline trick back to the caching learned for performance. Explain that connection.",
+      "options": [
+        "They are unrelated; offline caching uses a CDN while performance caching uses a service worker",
+        "It is the same caching mechanism repurposed — caching for speed becomes caching for offline, serving the cache when there is no network at all instead of just to avoid re-downloading",
+        "Offline caching replaces performance caching, so a PWA no longer benefits from faster repeat visits",
+        "Performance caching stores user data while offline caching stores only images"
+      ],
+      "answer": 1,
+      "explanation": "The script stresses it is the 'same mechanism, repurposed.' Last episode caching stored assets so they did not have to be re-downloaded, making repeat visits faster; a service worker caches the app shell with the exact same idea but serves the cache when there is no network at all, turning a performance trick into offline capability. The progression is caching for speed, then caching for offline — not two separate or competing mechanisms."
+    },
+    {
+      "id": "pfw1304-q07",
+      "q": "Explain why a progressive web app must be served over HTTPS.",
+      "options": [
+        "Because a service worker can intercept and modify all network requests, browsers require HTTPS so the connection and service worker cannot be tampered with by an attacker",
+        "HTTPS is required so the web app manifest can declare a standalone display mode",
+        "HTTPS compresses the app shell so it can be cached more efficiently for offline use",
+        "HTTPS is only needed so the app can appear in the device's app store"
+      ],
+      "answer": 0,
+      "explanation": "A service worker can intercept and modify all of the app's network traffic, which is powerful and security-sensitive, so browsers insist the app is served over HTTPS to ensure the connection and the service worker cannot be tampered with. This ties back to secure transport — TLS on port 443, the 'Tasty' in Dogs Take Tasty Hambones. The requirement is about tamper protection, not display mode (A) or app-store listing (D)."
+    },
+    {
+      "id": "pfw1304-q08",
+      "q": "A team is building a PWA and the lead says accessibility 'can be skipped because the app shell is just plumbing.' Why is this wrong?",
+      "options": [
+        "Accessibility is automatically handled by the service worker, so the lead is correct to skip it",
+        "An installable, offline app is worthless to someone who cannot use it, so the WCAG principles (POUR) — keyboard operability, contrast, text alternatives, and announcing state changes — still apply to the app shell",
+        "Accessibility only applies to e-commerce sites, not to progressive web apps",
+        "The app shell cannot be made accessible because it loads from a cache rather than the network"
+      ],
+      "answer": 1,
+      "explanation": "The script names this as a trap: never neglect accessibility in the PWA shell. Because a PWA looks like a native app, it raises the design bar rather than excusing it, and WCAG's POUR principles still apply — keyboard operability, sufficient contrast, text alternatives, and announcing state changes like 'you are now offline' to screen readers. A PWA that isn't accessible has failed inclusivity, full stop, so the lead's reasoning is exactly backwards."
+    },
+    {
+      "id": "pfw1304-q09",
+      "q": "You are converting an existing interactive comment website into a PWA. Identify the three additions you would make.",
+      "options": [
+        "Add a CDN, enable gzip compression, and switch on lazy loading",
+        "Add a web app manifest, register a service worker, and cache the app shell on first load in that service worker",
+        "Add an HTTPS certificate, a responsive layout, and a mobile app store listing",
+        "Add push notifications, a database, and a login system"
+      ],
+      "answer": 1,
+      "explanation": "The script's worked example gives exactly three additions, straight from MISO: add a web app manifest so the browser can install it, register a service worker that intercepts network requests, and in that service worker cache the app shell on first load. Option A lists the C-C-C-L performance toolkit from the previous episode, which speeds the site up but does not make it a PWA. The three MISO additions are what create installability and offline capability."
+    },
+    {
+      "id": "pfw1304-q10",
+      "q": "A PWA works offline but fails silently when the connection drops, leaving users unsure if their changes saved. Applying the episode's design lens, what is the most appropriate fix?",
+      "options": [
+        "Remove offline support so the app always shows a clear network error",
+        "Disable the service worker whenever the network is weak to avoid confusion",
+        "Clearly signal the offline state — show a visible banner and announce 'you are now offline' to screen readers — and queue changes to sync when the connection returns",
+        "Force the user to reload the page until the connection is restored"
+      ],
+      "answer": 2,
+      "explanation": "Feedback matters extra in a PWA: because it works offline you must clearly tell the user when they are offline and that their changes will sync later — silent failure is terrible UX. The accessible fix combines C-FAN-H feedback with POUR by showing a visible banner and announcing the state change to screen readers, while queued offline data syncs on reconnection. Removing offline support or disabling the service worker throws away the PWA's core capability rather than fixing the feedback problem."
+    }
+  ]
+}

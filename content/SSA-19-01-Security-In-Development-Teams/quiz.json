@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1901-q01",
+      "q": "Identify the three benefits of collaboration in developing safe and secure software, as named in the syllabus dot-point.",
+      "options": [
+        "Considering various points of view, delegating tasks based on expertise, and quality of the solution",
+        "Faster delivery, lower cost, and reduced documentation",
+        "Code review, penetration testing, and threat modelling",
+        "Authentication, authorisation, and rate-limiting"
+      ],
+      "answer": 0,
+      "explanation": "The dot-point names exactly three benefits: considering various points of view, delegating tasks based on expertise, and quality of the solution. The mnemonic is V-D-Q — Views, Delegate by expertise, Quality. Option C lists practices that demonstrate these benefits rather than the benefits themselves, and option D is the AART API-design list from a different episode."
+    },
+    {
+      "id": "ssa1901-q02",
+      "q": "What does the V-D-Q mnemonic stand for in the context of collaboration?",
+      "options": [
+        "Validate, Delegate, Quantify",
+        "Verify, Document, Quality-assure",
+        "Various points of view, Delegate by expertise, Quality of the solution",
+        "Viewpoints, Defence-in-depth, Quality control"
+      ],
+      "answer": 2,
+      "explanation": "V-D-Q stands for Various points of view, Delegate by expertise, and Quality of the solution — the three named benefits of collaboration. Picture three developers around one screen: one sees the View the others missed, each Delegated the part they're best at, and the result is higher Quality. Writing V-D-Q in the margin gives you your three paragraphs for a 'describe the benefits' question."
+    },
+    {
+      "id": "ssa1901-q03",
+      "q": "Explain why a single developer cannot reliably catch their own security flaws, no matter how skilled they are.",
+      "options": [
+        "They lack access to automated scanning tools that find every vulnerability",
+        "They write code too quickly to review it carefully afterwards",
+        "Their self-review carries the same blind spots and assumptions as their writing, so the flaws they failed to imagine stay invisible to them",
+        "Security flaws can only be found by penetration testers, never by reading source code"
+      ],
+      "answer": 2,
+      "explanation": "A developer reviews their own code with the same mental model they wrote it with, so the flaw lives in the gap between what they imagined and what an attacker would actually do — and only a different point of view reliably reaches that gap. This is the V in V-D-Q. Option A is wrong because scanners share a fixed blind spot too; only a genuinely different human perspective covers the author's gap."
+    },
+    {
+      "id": "ssa1901-q04",
+      "q": "Describe how delegating tasks based on expertise improves software security.",
+      "options": [
+        "It lets the team finish security work faster by splitting it among more people",
+        "It removes the need for any single developer to understand security at all",
+        "It guarantees that no malicious insider can join the project",
+        "It assigns each security-critical component to the team member with the deepest relevant knowledge, so each part is done properly rather than superficially by an over-stretched generalist"
+      ],
+      "answer": 3,
+      "explanation": "Security spans many specialties — cryptography, secure API design, input handling, incident response — and no one person is expert in all of them. Delegation means the cryptography specialist handles key management while the front-end specialist handles XSS and the CSP, so each piece has depth instead of shallow generalist coverage. Option A confuses delegation with mere speed; the syllabus point is depth of expertise, not throughput."
+    },
+    {
+      "id": "ssa1901-q05",
+      "q": "From the five testing strategies in episode 18-01, which one is described as the 'star' of this episode and is most powerful as a collaborative activity?",
+      "options": [
+        "Code review",
+        "Static Application Security Testing (SAST)",
+        "Penetration testing",
+        "Dynamic Application Security Testing (DAST)"
+      ],
+      "answer": 0,
+      "explanation": "Code review — one human reading another's source line by line — is the strategy that becomes the star here, because it uniquely catches flawed logic and intent that no scanner can see. It is the V in V-D-Q made concrete: a human reviewer brings a genuinely different point of view, whereas SAST and DAST share the same fixed blind spot every time. Collaboration is what turns code review from a formality into a defence."
+    },
+    {
+      "id": "ssa1901-q06",
+      "q": "Distinguish between how collaboration appears in code review versus pair programming.",
+      "options": [
+        "Code review is automated by a tool, while pair programming is done by humans",
+        "Code review applies a second point of view after the code is written, while pair programming applies two points of view on every line in real time as it is written",
+        "Code review checks for bugs, while pair programming only checks code style",
+        "Code review needs two people, while pair programming needs only one"
+      ],
+      "answer": 1,
+      "explanation": "Both are 'various points of view' in action, but they differ in timing. Code review is one human reading another's finished source for flaws, while pair programming places two developers at one screen — one driving, one navigating for security anti-patterns — so two viewpoints examine each line as it is written. Option A is wrong because code review is a human activity, not automation; scanners merely complement it."
+    },
+    {
+      "id": "ssa1901-q07",
+      "q": "In the worked threat-modelling example, why does a team produce a better STRIDE threat list than one person brainstorming alone?",
+      "options": [
+        "A larger group can run the STRIDE tool more times in the same period",
+        "STRIDE only works when at least five people are present",
+        "Each member — architect, developer, tester, security specialist, domain expert — contributes the threats from their own area of expertise, producing a list none would reach alone",
+        "The team can vote to remove threats they consider unlikely"
+      ],
+      "answer": 2,
+      "explanation": "Collaborative threat modelling is V and D working together: one person brainstorming STRIDE produces a thin list shaped by their own experience, while a room of varied roles each contributes threats from their patch of expertise. This is delegation by expertise (the D) combined with various points of view (the V). Option A misreads STRIDE as a tool run for speed rather than a structured, multi-perspective brainstorm."
+    },
+    {
+      "id": "ssa1901-q08",
+      "q": "How does the 2024 xz backdoor case demonstrate collaboration as a security control in BOTH directions?",
+      "options": [
+        "A team built the backdoor, and a team removed it",
+        "Isolation let the backdoor in — one overworked, unsupported maintainer with no second point of view — and collaboration caught it, when another person reading the code noticed and investigated",
+        "Automated scanners inserted and then detected the backdoor",
+        "The backdoor was both written and discovered by the same maintainer"
+      ],
+      "answer": 1,
+      "explanation": "The attack succeeded as far as it did because the project had no collaboration: a single burned-out maintainer with no second viewpoint and no one to delegate review to. It was finally stopped by exactly what the dot-point describes — another engineer, with a different point of view, who noticed his SSH logins running half a second slow and traced it to the source. So xz proves both that isolation is dangerous and that a second person reading the code is the defence."
+    },
+    {
+      "id": "ssa1901-q09",
+      "q": "Explain why collaboration is NOT automatically more secure, despite its genuine benefits.",
+      "options": [
+        "Because more developers always write slower, more buggy code",
+        "Because collaboration tools introduce new vulnerabilities of their own",
+        "Because two reviewers will always disagree and approve nothing",
+        "Because the benefits depend on structured collaboration: unstructured collaboration suffers the bystander effect and depends on trust that a malicious insider can exploit, as xz showed"
+      ],
+      "answer": 3,
+      "explanation": "The 'more people equals more secure' fallacy is wrong in two ways. First, the bystander effect: if a review is everyone's responsibility, each reviewer assumes someone else is checking, so nobody does. Second, collaboration relies on trust, and the xz backdoor showed a malicious contributor can become a trusted maintainer and insert a backdoor as an insider. The benefits come from assigned reviewers, checklists and clear ownership — not from headcount."
+    },
+    {
+      "id": "ssa1901-q10",
+      "q": "A small startup has its single developer write and self-review ALL of its security-critical code. Recommend the most appropriate first step to improve security, and justify it.",
+      "options": [
+        "Hire ten more developers so any review is shared across the whole team",
+        "Introduce mandatory code review of all security-critical changes by an assigned second developer, because a solo developer's self-review carries the same blind spots as their writing",
+        "Replace the developer with automated SAST and DAST scanners that run on every commit",
+        "Forbid the developer from writing any security-critical features until the company is larger"
+      ],
+      "answer": 1,
+      "explanation": "The driving problem is that self-review carries the same blind spots as the writing, so the fix is a second point of view — the V in V-D-Q — via mandatory code review by an assigned reviewer. Option A fails because simply adding bodies triggers the bystander effect; the benefit comes from structured collaboration with clear ownership. Option C fails because scanners share a fixed blind spot and can never replace a human reviewer who catches logic and intent."
+    }
+  ]
+}

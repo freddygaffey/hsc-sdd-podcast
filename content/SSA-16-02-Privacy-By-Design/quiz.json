@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1602-q01",
+      "q": "Identify the three principles of the privacy-by-design approach named in the syllabus.",
+      "options": [
+        "Confidentiality, integrity, and availability",
+        "Validate, sanitise, and handle errors",
+        "Encryption, access control, and authentication",
+        "Proactive not reactive, embed privacy into design, and respect for user privacy"
+      ],
+      "answer": 3,
+      "explanation": "The syllabus names exactly three principles: proactive not reactive, embed privacy into design, and respect for user privacy. The mnemonic is PER — Proactive, Embed, Respect. Confidentiality/integrity/availability (option A) belong to the C-I-A-A-A security foundation, and validate/sanitise/handle errors (option B) is V-S-E from the defensive input episode — both are tempting because they were recapped, but neither is the privacy-by-design list."
+    },
+    {
+      "id": "ssa1602-q02",
+      "q": "Distinguish between privacy and security as the episode defines them.",
+      "options": [
+        "Privacy and security mean the same thing — both are about keeping data safe from attackers",
+        "Security protects data from unauthorised access, while privacy governs whether data should be collected at all and how it may be used",
+        "Privacy protects data from attackers, while security decides what data a company is allowed to collect",
+        "Security applies only to personal data, while privacy applies to all data in a system"
+      ],
+      "answer": 1,
+      "explanation": "Security is about protecting data from unauthorised access — keeping the wrong people out — while privacy is about the appropriate handling of personal data: what you collect, why, how you use it, how long you keep it, and whether the person consented. The killer point is that you can have perfect security and still violate privacy. Writing that privacy is just 'keeping data secure' (option A) is the band-four answer the marker is hunting for."
+    },
+    {
+      "id": "ssa1602-q03",
+      "q": "Outline what the principle 'embed privacy into design' specifically requires.",
+      "options": [
+        "That privacy features are added after launch once user complaints arrive",
+        "That every privacy setting is shared and visible by default to maximise transparency",
+        "That privacy is built into the system architecture and is the default setting, so a user who changes nothing is still protected",
+        "That all personal data is encrypted before it is stored in the database"
+      ],
+      "answer": 2,
+      "explanation": "Embed privacy into design means privacy is a core part of the system's architecture and its default settings — the phrase the marker rewards is 'privacy as the default', so the protective option is already switched on and the user needs to do nothing to be protected. This mirrors 'secure default, easy right path' from user-centred design. Encrypting stored data (option D) is a security control, not the embed principle, which is the most tempting trap because it sounds privacy-related."
+    },
+    {
+      "id": "ssa1602-q04",
+      "q": "Explain what the 'proactive not reactive' principle means and name the technique that supports it.",
+      "options": [
+        "It means responding quickly and transparently once a breach is detected, using an incident response plan",
+        "It means anticipating and preventing privacy risks by design before any data is collected, using a privacy impact assessment (PIA)",
+        "It means proactively encrypting data so attackers who get in cannot read it",
+        "It means collecting data proactively so the company has it ready when a feature needs it later"
+      ],
+      "answer": 1,
+      "explanation": "Proactive not reactive means anticipating privacy risks and preventing them before they happen, rather than scrambling after a breach or complaint — the supporting technique is a privacy impact assessment (PIA), a structured review of what could go wrong, run during design before a single record is collected. Option A describes the reactive 'clean up the harm' posture, which is exactly what this principle rejects. Option D describes hoarding data 'just in case', which the episode names as a privacy trap."
+    },
+    {
+      "id": "ssa1602-q05",
+      "q": "Describe data minimisation as the episode defines it.",
+      "options": [
+        "Compressing personal data so it occupies less storage space",
+        "Reducing the number of users who can access a database to the minimum required",
+        "Encrypting data so that the minimum amount is exposed if a breach occurs",
+        "Collecting, processing and keeping only the personal data genuinely necessary for the specific purpose — collect less, keep less"
+      ],
+      "answer": 3,
+      "explanation": "Data minimisation means collecting, processing and retaining only the personal data that is genuinely necessary for a specific stated purpose, and nothing more — captured as 'collect less, keep less' (collection and retention). Option B describes the principle of least privilege, an access-control idea, and option A confuses minimisation with file compression — both are tempting because they contain the word 'minimum', but neither is about what data you collect or how long you hold it."
+    },
+    {
+      "id": "ssa1602-q06",
+      "q": "Explain why data minimisation reduces risk, as the episode frames it for a band-six answer.",
+      "options": [
+        "Because collecting less data means the system runs faster and uses less storage",
+        "Because data that is never collected, or already deleted, cannot be breached, misused or stolen — it shrinks the attack surface and the impact of any breach",
+        "Because minimised data is automatically encrypted and therefore harder to steal",
+        "Because regulators only fine companies that collect large amounts of data"
+      ],
+      "answer": 1,
+      "explanation": "The band-six insight is that data you never hold cannot be breached, misused, subpoenaed or leaked — so every extra field collected and every extra month retained is more attack surface and more liability, meaning minimisation directly shrinks the blast radius of any future breach. This makes it a security control, not just politeness. Option A is true but trivial; it misses that minimisation is about risk and liability, not performance, which is the reasoning that actually earns the marks."
+    },
+    {
+      "id": "ssa1602-q07",
+      "q": "Distinguish between purpose limitation and a data retention policy.",
+      "options": [
+        "Purpose limitation says only use data for the purpose it was collected for; a retention policy is a defined schedule for how long each kind of data is kept before automatic deletion",
+        "Purpose limitation says don't keep data longer than needed; a retention policy says only use data for what it was collected for",
+        "Both terms mean the same thing — limiting how data is used after collection",
+        "Purpose limitation applies to security controls, while retention policies apply to consent forms"
+      ],
+      "answer": 0,
+      "explanation": "Purpose limitation means data collected for one purpose may only be used for that purpose — you can't quietly repurpose a login email into a marketing list, which is 'purpose creep'. A data retention policy is a defined schedule for how long each kind of data is kept and when it is automatically deleted, which is the 'keep less' half of minimisation made systematic. Option B reverses the two definitions, the classic mix-up the question is testing."
+    },
+    {
+      "id": "ssa1602-q08",
+      "q": "A messaging app encrypts all messages end-to-end but also continuously records every user's precise location, stores it forever, and sells it. Has it failed at security, privacy, or both?",
+      "options": [
+        "It has failed at security only, because storing location data forever is an unauthorised access risk",
+        "It has failed at both equally, because any misuse of data is automatically a breach of security",
+        "It has failed at privacy only — security holds because the data is encrypted and protected, but privacy fails through over-collection, purpose violation and indefinite retention",
+        "It has failed at neither, because end-to-end encryption satisfies both privacy and security requirements"
+      ],
+      "answer": 2,
+      "explanation": "Security holds: the data is encrypted and protected from unauthorised access, so confidentiality is intact and nothing is breached. Privacy fails badly: it collects far more than necessary (violating data minimisation), sells data for a purpose the user never agreed to (violating purpose limitation and respect for user privacy), and keeps it forever (violating retention limits). This proves security and privacy are distinct — option B's claim that misuse equals a breach is exactly the confusion the marker rewards you for avoiding."
+    },
+    {
+      "id": "ssa1602-q09",
+      "q": "A school portal that only delivers timetables and assignments collects students' full names, home addresses, phone numbers and dates of birth. Recommend how to apply privacy by design.",
+      "options": [
+        "Encrypt all four fields and restrict database access, since strong security fully satisfies privacy by design",
+        "Keep collecting all fields but add a consent checkbox at sign-up so users agree to the collection",
+        "Apply data minimisation by collecting only a name and school login, make protective settings the default, run a privacy impact assessment, and set a retention policy that deletes data when the student leaves",
+        "Collect the data now but delete the home addresses after one year to satisfy retention requirements"
+      ],
+      "answer": 2,
+      "explanation": "Applying data minimisation, the purpose only needs a name and a school-issued login, so address, phone and date of birth should not be collected at all — then embed privacy with protective defaults, run a PIA proactively before launch, and set a retention policy to delete data when the student leaves. Option A is the band-four trap: encrypting the fields is good security but still collects data the purpose doesn't justify, so privacy is still violated. Option B adds a checkbox but keeps over-collecting, which consent cannot fix."
+    },
+    {
+      "id": "ssa1602-q10",
+      "q": "Identify the flagship privacy laws named in the episode and what they establish about privacy by design.",
+      "options": [
+        "The European Union's GDPR and Australia's Privacy Act with its Australian Privacy Principles, which made privacy by design a legal obligation rather than just good manners",
+        "The W3C standards and ISO 27001, which certify a website as privacy-compliant",
+        "The CIA triad and the Privacy Shield, which define how encryption must be applied to personal data",
+        "Australia's Cybercrime Act and the EU's PCI-DSS, which set penalties for unauthorised access"
+      ],
+      "answer": 0,
+      "explanation": "The episode names the EU's GDPR (General Data Protection Regulation) as the flagship law, which made privacy by design a legal requirement and gave people rights to access and erase their data, with Australia's Privacy Act and Australian Privacy Principles as the local equivalent. Naming these and stating that privacy by design is now a legal obligation lifts an answer. Option C mixes in the CIA triad and encryption, which are security concepts, not the privacy-law layer the question asks for."
+    }
+  ]
+}

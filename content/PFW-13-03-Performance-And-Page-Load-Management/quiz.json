@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw1303-q01",
+      "q": "Identify the four core page-load techniques captured by the C-C-C-L mnemonic in this episode.",
+      "options": [
+        "Caching, Compression, CDN, Lazy-loading",
+        "Compile, Connect, Compress, Load-balance",
+        "Caching, Compiling, Clustering, Logging",
+        "Concurrency, Caching, CDN, Latency-tuning"
+      ],
+      "answer": 0,
+      "explanation": "C-C-C-L stands for Caching, Compression, CDN, and Lazy-loading — the core four levers for reducing page-load time. The other options mix in real-sounding but unrelated terms (compiling, clustering, load-balancing) that the script never names as the toolkit, which is the most common way students lose the recall mark."
+    },
+    {
+      "id": "pfw1303-q02",
+      "q": "State the single most important professional principle the episode says you must apply BEFORE using any optimisation technique.",
+      "options": [
+        "Cache every static asset as aggressively as possible",
+        "Measure before you optimise — profile the page to find the real bottleneck",
+        "Always enable gzip compression on every response",
+        "Reduce the number of requests by bundling all files first"
+      ],
+      "answer": 1,
+      "explanation": "The episode's named professional habit is 'measure before you optimise' — profile the page with developer tools and fix the true bottleneck rather than guessing. Caching aggressively (A) and bundling (D) are real techniques, but applying any of them before measuring is exactly the 'premature optimisation' trap the principle warns against."
+    },
+    {
+      "id": "pfw1303-q03",
+      "q": "The episode reuses ENSP from episode seven. Which developer-tools panels does a developer open to find a performance bottleneck?",
+      "options": [
+        "The Console panel to read error logs and the Sources panel to set breakpoints",
+        "The Elements panel to inspect the DOM and the Application panel to view storage",
+        "The Network panel to see large or slow requests and the Performance panel to profile where time goes",
+        "The Memory panel to find leaks and the Security panel to check certificates"
+      ],
+      "answer": 2,
+      "explanation": "The script ties measuring to ENSP from episode seven: the Network panel shows which requests are large or slow (usually huge images or a giant JavaScript bundle), and the Performance panel profiles where time actually goes. The Console and Elements panels are real dev-tools panels but are used for debugging and DOM inspection, not for profiling load-time bottlenecks."
+    },
+    {
+      "id": "pfw1303-q04",
+      "q": "Explain how caching reduces page-load time, using the mark-earning phrasing from the episode.",
+      "options": [
+        "It encrypts frequently used data so it can be transferred more securely and quickly",
+        "It permanently deletes old files so the browser has less to download",
+        "It stores frequently used data closer to where it is needed so it can be reused without re-fetching or re-computing it",
+        "It distributes requests across multiple servers to balance the load"
+      ],
+      "answer": 2,
+      "explanation": "The mark-earning sentence is that caching stores frequently used data closer to where it is needed so it can be reused without re-fetching or re-computing it — for example a cached query result in Redis, or assets kept in the browser via Cache-Control headers. The load-balancing option describes a different concept, and the encryption option confuses caching with security, which has nothing to do with reuse."
+    },
+    {
+      "id": "pfw1303-q05",
+      "q": "Explain the mechanism of compression as a load-time technique, naming the standard tools.",
+      "options": [
+        "It uses gzip or Brotli to shrink text-based responses before they travel, cutting transfer size by 60 to 80 percent",
+        "It defers off-screen files until the user scrolls, reducing the initial render time",
+        "It copies static assets to edge servers around the world so users are served locally",
+        "It combines several files into one bundle to reduce the number of requests"
+      ],
+      "answer": 0,
+      "explanation": "Compression shrinks files before they travel over the network: the server uses gzip (or its newer cousin Brotli) on text-based responses — HTML, CSS, JavaScript, JSON — and the browser decompresses them, often cutting transfer size by 60 to 80 percent. The deferring option describes lazy loading, the edge-server option describes a CDN, and the combining option describes bundling — all separate C-C-C-L levers, which is why distinguishing the mechanism matters."
+    },
+    {
+      "id": "pfw1303-q06",
+      "q": "Distinguish a content delivery network (CDN) from plain browser caching in terms of WHAT it changes about delivery.",
+      "options": [
+        "A CDN compresses files while browser caching only stores them uncompressed",
+        "A CDN is caching plus geography — it serves static assets from a nearby edge server to cut latency and origin load, whereas browser caching stores assets on the user's own device",
+        "A CDN works only for dynamic per-user pages while browser caching works only for static files",
+        "A CDN and browser caching are identical; CDN is just the marketing name for browser caching"
+      ],
+      "answer": 1,
+      "explanation": "The episode frames a CDN as 'caching plus geography' — a network of distributed edge servers that serve static assets from a location close to the user (London edge rather than a Sydney origin), reducing latency and offloading the origin. Browser caching instead stores copies on the user's own device. Option C inverts the rule: CDNs are for static, public assets, and private per-user pages must never be publicly cached."
+    },
+    {
+      "id": "pfw1303-q07",
+      "q": "A developer wants to cache a logged-in user's account page in a shared CDN to speed it up. Outline why this is a named trap.",
+      "options": [
+        "Shared CDN caches are slower than browser caches, so it would not improve speed",
+        "Account pages are too small to benefit from caching, so the effort is wasted",
+        "A shared cache could serve one user's personalised page to a different user — a serious data leak; private per-user content must never be publicly cached",
+        "CDNs can only cache images, so an HTML account page cannot be stored there at all"
+      ],
+      "answer": 2,
+      "explanation": "Caching personalised or sensitive content in a shared cache means another user could be served that cached page — a serious data leak, and one of the episode's two named caching failure modes. The rule is to cache static, public assets aggressively but never publicly cache private or per-user data (set 'private, no-store'); the issue is security, not speed or page size."
+    },
+    {
+      "id": "pfw1303-q08",
+      "q": "Describe what lazy loading does and which resources it targets.",
+      "options": [
+        "It pre-loads every resource at once so nothing has to wait, making the whole page appear together",
+        "It removes whitespace and comments from CSS and JavaScript to make files smaller",
+        "It stores a copy of the page result in fast memory like Redis for the next request",
+        "It defers non-critical or off-screen resources, such as below-the-fold images and non-essential scripts, until they are needed, prioritising the content the user sees first"
+      ],
+      "answer": 3,
+      "explanation": "Lazy loading improves the initial load time by deferring non-critical or off-screen resources — below-the-fold images, a comments widget, analytics — until they are actually needed, prioritising the content in the first view. The minification and server-side caching options describe other techniques, and the pre-load-everything option is the opposite of lazy loading and would slow the initial render."
+    },
+    {
+      "id": "pfw1303-q09",
+      "q": "How does the episode connect bundling and request reduction back to the framework decision from episode nine?",
+      "options": [
+        "Frameworks eliminate the need for bundling because they ship pre-compressed assets",
+        "Bundling only matters for images, so frameworks have no effect on load time",
+        "Frameworks make every file a separate request, which is faster than one bundle",
+        "A heavy framework means a big JavaScript bundle, so the build-versus-buy choice has a measurable performance cost — keep the bundle small"
+      ],
+      "answer": 3,
+      "explanation": "Every separate file is a separate request with its own overhead, so combining CSS or JavaScript into one bundle reduces requests and speeds things up. The interleave is that a heavy framework produces a big JavaScript bundle — the bundle-size load cost — so the build-versus-buy framework decision from episode nine carries a performance consequence you measure here. The 'separate request is faster' option is backwards: more separate requests add overhead, they do not save it."
+    },
+    {
+      "id": "pfw1303-q10",
+      "q": "An online store's product page loads slowly on mobile: it has several very large uncompressed images, no caching, and loads many separate JavaScript files. Recommend the strongest opening move and a matched set of techniques.",
+      "options": [
+        "Immediately rewrite the page in a lighter framework to shrink the bundle, then add caching",
+        "First profile the page with developer tools, then compress and size the images plus enable gzip, set Cache-Control with a CDN, and bundle plus lazy-load non-critical scripts and below-the-fold images",
+        "Add aggressive public caching to every page including the user's cart and account, then compress the images",
+        "Buy a faster origin server so the large images download more quickly to every user"
+      ],
+      "answer": 1,
+      "explanation": "The full-mark answer measures first — profile with developer tools to confirm the bottlenecks — then names techniques tied to the symptoms: compress and size images plus gzip text (the large images), Cache-Control and a CDN (no caching), and bundling plus lazy loading (many separate JS files). Option C breaks the caching caveat by publicly caching private cart and account data, and option A optimises before measuring, the premature-optimisation trap."
+    }
+  ]
+}

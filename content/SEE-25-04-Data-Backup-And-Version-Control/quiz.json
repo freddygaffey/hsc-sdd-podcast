@@ -1,0 +1,134 @@
+{
+  "questions": [
+    {
+      "id": "see2504-q01",
+      "q": "Identify the five core version-control concepts captured by the R-C-B-M-T mnemonic.",
+      "options": [
+        "Repository, Clone, Backup, Migrate, Tag",
+        "Repository, Commit, Branch, Merge, Tag",
+        "Rollback, Commit, Backup, Merge, Test",
+        "Release, Commit, Build, Migrate, Track"
+      ],
+      "answer": 1,
+      "explanation": "R-C-B-M-T — 'Really Clean Builds Manage Trust' — stands for Repository (the store of the whole project and its history), Commit (a saved snapshot with a descriptive message), Branch (a parallel line of work), Merge (combining a branch back), and Tag (a marker on a release version). Distractors swap in plausible-sounding but wrong words like Clone, Rollback, or Build, none of which are the five concepts the episode names.",
+      "categories": "recall"
+    },
+    {
+      "id": "see2504-q02",
+      "q": "State what the 3-2-1 backup rule requires.",
+      "options": [
+        "Three copies of the data, on two different media types, with one copy off-site",
+        "Three backups taken daily, two checked weekly, one checked monthly",
+        "Three media types, two off-site copies, and one full backup per week",
+        "Three encrypted copies, two on cloud storage, and one on a local disk"
+      ],
+      "answer": 0,
+      "explanation": "The 3-2-1 rule is the episode's single most important backup hook: three copies of the data, on two different media types, with one copy off-site. Three copies survive a single failure, two media types stop one technology from wiping everything, and the off-site copy survives fire, flood, or theft. The other options scramble the numbers onto the wrong things (schedules or encryption) rather than copies/media/location.",
+      "categories": "recall"
+    },
+    {
+      "id": "see2504-q03",
+      "q": "Outline the branching discipline the episode says a marker wants to see, beyond simply 'use Git'.",
+      "options": [
+        "Commit large batches once a week and merge everything to main at release time",
+        "Work directly on main so changes are visible immediately to the whole team",
+        "Commit small, branch per feature, never commit straight to main, and merge via reviewed pull requests",
+        "Create one long-lived branch per developer and rebase it onto main each morning"
+      ],
+      "answer": 2,
+      "explanation": "The episode's rule of thumb is commit small, branch per feature, and never commit straight to main, which is protected and accepts changes only through a reviewed pull request (the review gate tying back to QA 24-06). Committing directly to main is explicitly named as a trap. Large weekly batches and per-developer long-lived branches contradict the 'commit small, branch per feature' discipline.",
+      "categories": "describe"
+    },
+    {
+      "id": "see2504-q04",
+      "q": "Explain what a pull request contributes to a branching workflow.",
+      "options": [
+        "It automatically deploys the merged code to all production servers",
+        "It pulls the latest changes from main down into a feature branch before work begins",
+        "It acts as a review gate, where a branch's changes are checked before being merged into main",
+        "It tags the branch with a semantic version number ready for release"
+      ],
+      "answer": 2,
+      "explanation": "A pull request is a request to merge a branch, and the key exam point is that it functions as a review gate — changes are reviewed before merging, tying straight back to code review and continual checking from quality assurance (24-06). The most tempting trap (option B) describes pulling changes the wrong direction, while deployment (A) and tagging (D) are separate steps that happen after a merge, not the purpose of the pull request itself.",
+      "categories": "describe"
+    },
+    {
+      "id": "see2504-q05",
+      "q": "A project is at version 1.4.2 and the team fixes a login bug without breaking anything. Explain the correct next version number under semantic versioning.",
+      "options": [
+        "1.5.0, because any change after release increments the minor version",
+        "2.0.0, because shipping a fix to production is a new release",
+        "1.4.3, because a backward-compatible bug fix bumps only the patch number",
+        "1.4.2.1, because patch fixes add a fourth version segment"
+      ],
+      "answer": 2,
+      "explanation": "Under 'Major breaks, Minor adds, Patch fixes', a backward-compatible bug fix bumps only the patch number — the third digit — giving 1.4.3. You do not touch minor or major because no feature was added and no compatibility was broken. Bumping the minor (A) is the trap for treating any change as a feature, and SemVer uses three segments, not four (D).",
+      "categories": "scenario"
+    },
+    {
+      "id": "see2504-q06",
+      "q": "Distinguish a full backup from an incremental backup.",
+      "options": [
+        "A full backup copies only changed files; an incremental backup copies everything every time",
+        "A full backup is a complete copy that is slow to make but simple to restore; an incremental copies only what changed since the last backup, so it is fast to make but slower to restore",
+        "A full backup is stored off-site; an incremental backup is always stored on the same disk as the original",
+        "A full backup keeps the transaction log; an incremental backup discards all history"
+      ],
+      "answer": 1,
+      "explanation": "A full backup is a complete copy of everything — safe and simple to restore, but slow and storage-heavy. An incremental backup captures only what changed since the last backup of any kind, so it is fast and small to make but slower to restore because you must replay a chain. Option A reverses the two definitions, and storage location (C) or transaction logs (D) are not what distinguishes full from incremental.",
+      "categories": "compare"
+    },
+    {
+      "id": "see2504-q07",
+      "q": "Distinguish the protective role of version control from that of data backup.",
+      "options": [
+        "Version control and backup both protect the same files, so running either one is sufficient",
+        "Version control protects the database; backup protects only the source code",
+        "Version control protects against hardware failure; backup protects against developer mistakes",
+        "Version control protects code and its change history; backup protects data such as the database and user files that are not in the repository"
+      ],
+      "answer": 3,
+      "explanation": "The episode frames these as two complementary safety nets: version control protects your code and its complete recoverable history, while backup protects your data — the database, user files, and other things that are not in your repository. The most tempting trap (C) reverses the threats — it is backup that guards against hardware failure and version control that lets you recover from a developer's mistake, not the other way round. Option A wrongly treats them as interchangeable, and option B reverses which tool guards which asset.",
+      "categories": "compare"
+    },
+    {
+      "id": "see2504-q08",
+      "q": "A student writes: 'My backup strategy is to copy my files to a USB stick every week.' Explain why this is a weak (Band 3) answer.",
+      "options": [
+        "It uses a USB stick, which is too small to hold a real database",
+        "It is one copy on one medium, kept on-site, with no testing and no justification against named risks — it satisfies none of 3-2-1",
+        "It backs up too often, wasting storage that could be used for incrementals",
+        "It is fine as a strategy but should mention that USB sticks must be encrypted"
+      ],
+      "answer": 1,
+      "explanation": "The episode's worked example calls this Band 3 because it is one copy, on one medium, on-site, with no testing and no justification — zero of the three required by 3-2-1. The Band 6 shape names the 3-2-1 rule, gives concrete copies, and justifies each against a specific risk. The weakness is not the device size (A) or backup frequency (C); it is the failure to meet 3-2-1 and to justify against named risks.",
+      "categories": "scenario"
+    },
+    {
+      "id": "see2504-q09",
+      "q": "Explain why a rollback plan was the single most important safety net missing in the Knight Capital incident.",
+      "options": [
+        "A rollback plan would have automatically updated the one server the deployment missed",
+        "A rollback plan would have prevented the configuration flag from ever being reused",
+        "With a tagged last-good release and a tested rollback, they could have reverted in seconds instead of bleeding for 45 minutes",
+        "A rollback plan would have encrypted the dead code so it could not execute"
+      ],
+      "answer": 2,
+      "explanation": "Rollback means reverting to a previous known-good version, and with a tagged last-good release and a clean version-control history it is one command — redeploy the last good tag. Knight Capital had no rehearsed rollback, so they bled about $440 million in 45 minutes instead of recovering in seconds. The missed server (A) and reused flag (B) are separate failures fixed by deployment and code-review hygiene, not by rollback itself.",
+      "categories": "describe"
+    },
+    {
+      "id": "see2504-q10",
+      "q": "A school must design a backup strategy for its sensitive, must-be-available student-records system. Recommend the most appropriate approach and justify it.",
+      "options": [
+        "Follow 3-2-1 — the live database plus a daily incremental to a separate on-site server and a weekly encrypted full pushed off-site — retain the transaction log, and test restores monthly",
+        "Keep a single nightly full backup on the same server as the database, so restores are fast and simple",
+        "Copy the database to two USB sticks each week and store both in the school office for quick access",
+        "Rely on the version-control repository, since committing the code also preserves the student data"
+      ],
+      "answer": 0,
+      "explanation": "The strong answer applies 3-2-1: multiple media protect against hardware failure, the off-site copy protects against site disaster, the incremental-plus-full mix balances backup speed against restore speed, and tested restores prove the backups work — meeting availability (the A in CIA-AAA) with encryption protecting confidentiality. A single on-site copy (B) or two on-site USB sticks (C) keep everything in one location, and version control protects code, not the data in the database (D).",
+      "categories": "scenario"
+    }
+  ]
+}

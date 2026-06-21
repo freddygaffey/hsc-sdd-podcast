@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "case-wannacry-q01",
+      "q": "Identify the two distinct types of malware that were combined to make WannaCry so dangerous.",
+      "options": [
+        "A virus and a trojan",
+        "Ransomware and a worm",
+        "Spyware and a rootkit",
+        "Adware and a keylogger"
+      ],
+      "answer": 1,
+      "explanation": "The script states WannaCry was 'two nasty things bolted together': ransomware, which encrypts files and demands payment for the key, and a worm, which spreads by itself from machine to machine with no human help. A virus or trojan (option A) typically still needs a user to run an infected file, whereas the worm component is precisely what let WannaCry spread without anyone clicking anything."
+    },
+    {
+      "id": "case-wannacry-q02",
+      "q": "Outline how a worm such as WannaCry spreads differently from ordinary ransomware.",
+      "options": [
+        "Ordinary ransomware needs a human mistake and infects one machine, whereas a worm spreads by itself across the network, machine to machine, with no clicks",
+        "Both rely on a user opening a malicious email attachment to infect a machine",
+        "A worm only infects a single computer, while ordinary ransomware automatically spreads across the whole network",
+        "A worm spreads by tricking users into installing fake software, while ransomware spreads through infected USB drives"
+      ],
+      "answer": 0,
+      "explanation": "Ordinary ransomware spreads 'the boring way' — someone clicks a bad link or opens an infected attachment, infecting one machine. A worm needs no human help: once on one computer it scans the network, finds other vulnerable machines and infects them in a chain reaction. Option C reverses the two — it is the worm, not ordinary ransomware, that produces automatic network-wide spread."
+    },
+    {
+      "id": "case-wannacry-q03",
+      "q": "Name the exploit WannaCry used to spread and the Windows feature it attacked.",
+      "options": [
+        "EternalBlue, exploiting a flaw in the SMB file- and printer-sharing service",
+        "Heartbleed, exploiting a flaw in the OpenSSL encryption library",
+        "EternalBlue, exploiting a flaw in the Remote Desktop Protocol",
+        "Shadow Broker, exploiting a flaw in the Windows login service"
+      ],
+      "answer": 0,
+      "explanation": "The weapon was EternalBlue, which exploited a flaw in SMB — the system Windows computers use to share files and printers over a local network. By sending specially crafted messages to that file-sharing service, an attacker could run code remotely with no login and no permission. Heartbleed (option B) is a real but unrelated OpenSSL vulnerability, and the Shadow Brokers were the group that leaked the tool, not the exploit itself."
+    },
+    {
+      "id": "case-wannacry-q04",
+      "q": "Explain the origin of the EternalBlue exploit and how it became available to attackers.",
+      "options": [
+        "It was discovered by criminals who sold it to the highest bidder on the dark web",
+        "It was built by the US National Security Agency, which hoarded it rather than reporting it, until a group called the Shadow Brokers leaked it publicly",
+        "It was accidentally created by Microsoft developers and shipped inside a Windows update",
+        "It was developed openly by security researchers as a proof of concept and copied by criminals"
+      ],
+      "answer": 1,
+      "explanation": "EternalBlue was built by the US National Security Agency, which discovered the SMB flaw and kept it as a cyber-weapon instead of reporting it so it could be fixed. The Shadow Brokers stole a cache of NSA tools and dumped them on the public internet, after which someone bolted EternalBlue onto ransomware. This is why the script calls it 'the government's secret skeleton key' that was stolen and handed to the world."
+    },
+    {
+      "id": "case-wannacry-q05",
+      "q": "Explain why the script describes WannaCry as 'an infuriating tragedy' rather than just a tragedy.",
+      "options": [
+        "Because the attackers were never caught or brought to justice",
+        "Because the ransom was paid by most victims, funding further attacks",
+        "Because the NHS had no antivirus software installed on any of its machines",
+        "Because Microsoft had already released a free patch (MS17-010) a full month earlier, so every infected machine was one that had not applied an available fix"
+      ],
+      "answer": 3,
+      "explanation": "A month before the attack, in March 2017, Microsoft released patch MS17-010 that sealed exactly the hole EternalBlue used — it was free and had been available for weeks. Every computer WannaCry infected was one that had not installed it, which is what makes the tragedy infuriating rather than unavoidable. The failure was not a missing fix but unapplied patching, driven by ageing systems and organisations that put updates off."
+    },
+    {
+      "id": "case-wannacry-q06",
+      "q": "Which property of information security did WannaCry's ransomware primarily attack?",
+      "options": [
+        "Confidentiality, because the attackers read and published private patient data",
+        "Integrity, because the attackers altered the contents of patient records",
+        "Availability, because the data still existed but encryption denied access to it when it was needed",
+        "Authentication, because the attackers stole user logins to access systems"
+      ],
+      "answer": 2,
+      "explanation": "The script is explicit: 'Ransomware doesn't steal your data; it denies you access to it. The property it destroys is availability.' The files were still there, encrypted, but unreachable — leading to cancelled surgeries and diverted ambulances. It is tempting to choose confidentiality (option A), but ransomware locks data rather than reading or leaking it, which makes availability the property under attack."
+    },
+    {
+      "id": "case-wannacry-q07",
+      "q": "Describe the 'kill switch' that halted WannaCry's global spread.",
+      "options": [
+        "Microsoft pushed an emergency forced update that disabled the worm on every machine",
+        "The NSA released a tool that remotely uninstalled WannaCry across all infected networks",
+        "The malware tried to contact a nonsense web domain and stopped if it could connect; researcher Marcus Hutchins registered that domain for about ten dollars, so every new copy reached it and switched itself off",
+        "Security teams blocked the Bitcoin payment address, so the ransomware deleted itself"
+      ],
+      "answer": 2,
+      "explanation": "WannaCry's logic was: try to reach a particular hard-coded nonsense domain; if you cannot reach it, carry on infecting; if you can reach it, stop. Marcus Hutchins registered that unregistered domain for roughly ten dollars, so every new copy worldwide found the address now existed and obediently switched off. This matches Listing 3's pseudocode, where connecting to the domain triggers STOP rather than the encrypt-and-spread branch."
+    },
+    {
+      "id": "case-wannacry-q08",
+      "q": "The script names patch management as 'the most maddening lesson.' Explain why it is so important.",
+      "options": [
+        "Because the most devastating attacks very often exploit known vulnerabilities for which a fix already exists, so promptly applying patches closes the hole before an attacker can weaponise it",
+        "Because installing patches makes computers run faster and use less memory",
+        "Because patches replace the need for backups and antivirus software",
+        "Because only patched systems are legally allowed to connect to a hospital network"
+      ],
+      "answer": 0,
+      "explanation": "The episode's central lesson is that the hard part of security is usually not discovering exotic new flaws but the unglamorous discipline of keeping systems updated and applying patches promptly. The most devastating attacks frequently exploit known vulnerabilities the vendor has already fixed — exactly what happened with MS17-010. Patch management is not IT busywork; on that Friday it was the difference between a hospital that worked and one that did not."
+    },
+    {
+      "id": "case-wannacry-q09",
+      "q": "A hospital is hit by ransomware that encrypts its patient records and demands payment in Bitcoin. Drawing on the WannaCry lessons, recommend the most appropriate response and justify it.",
+      "options": [
+        "Pay the ransom immediately, because patient records are too valuable to risk losing",
+        "Negotiate with the attackers to reduce the ransom and buy time to find the decryption key",
+        "Disconnect the hospital from the internet permanently to prevent any future attack",
+        "Wipe the infected machines and restore the files from a recent, clean, offline backup, refusing to pay, because reliable backups make the attacker's leverage evaporate"
+      ],
+      "answer": 3,
+      "explanation": "The script states that if you have a recent, clean, offline backup, the attacker's leverage evaporates: you wipe the machine, restore from backup, and refuse to negotiate. This is the business continuity and disaster recovery lesson — ransomware is fundamentally an attack on organisations without good backups. Paying the ransom (option A) funds the criminals and offers no guarantee of recovery, whereas tested isolated backups are described as 'your answer to extortion.'"
+    },
+    {
+      "id": "case-wannacry-q10",
+      "q": "The script concludes that the real lesson of WannaCry is 'defence in depth.' Distinguish this from relying on a single security control.",
+      "options": [
+        "Defence in depth means buying the most expensive antivirus product available, rather than a cheap one",
+        "Defence in depth means using only one very strong control, such as a firewall, so there is a single point to maintain",
+        "Defence in depth accepts that prevention will sometimes fail and builds multiple layers — responsible disclosure, patching, and tested backups — so that when one fails the others can still detect, contain and recover",
+        "Defence in depth means encrypting all data so that even the organisation cannot read it without a key"
+      ],
+      "answer": 2,
+      "explanation": "The episode points out that WannaCry got through because three layers failed at once: the flaw was hoarded instead of disclosed, the released patch was not applied, and backups were absent or untested. Defence in depth recognises that prevention will sometimes fail, so multiple independent layers must let you detect, contain and recover when it does — 'the attacker only has to win once; you have to be ready every single day.' Relying on a single control (option B) leaves one point of failure that, once breached, ends the defence entirely."
+    }
+  ]
+}

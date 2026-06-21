@@ -1,0 +1,2371 @@
+{
+  "modules": [
+    {
+      "id": "CASE-0",
+      "prefix": "CASE",
+      "moduleNum": 0,
+      "episodes": [
+        {
+          "id": "case_colonial_pipeline",
+          "title": "Colonial Pipeline",
+          "unit": null,
+          "scriptPath": "content/case_colonial_pipeline/script.md",
+          "supplementaryPath": "content/case_colonial_pipeline/supplementary.md",
+          "quizPath": "content/case_colonial_pipeline/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/case_colonial_pipeline/af_heart.m4a",
+              "duration": 562.9
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/case_colonial_pipeline/am_onyx.m4a",
+              "duration": 493.2
+            },
+            {
+              "name": "am_santa",
+              "file": "content/case_colonial_pipeline/am_santa.m4a",
+              "duration": 540.2
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/case_colonial_pipeline/bf_isabella.m4a",
+              "duration": 534.8
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/case_colonial_pipeline/bm_daniel.m4a",
+              "duration": 481.4
+            },
+            {
+              "name": "bm_george",
+              "file": "content/case_colonial_pipeline/bm_george.m4a",
+              "duration": 572.1
+            }
+          ]
+        },
+        {
+          "id": "case_heartbleed",
+          "title": "Heartbleed",
+          "unit": null,
+          "scriptPath": "content/case_heartbleed/script.md",
+          "supplementaryPath": "content/case_heartbleed/supplementary.md",
+          "quizPath": "content/case_heartbleed/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/case_heartbleed/af_heart.m4a",
+              "duration": 531.5
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/case_heartbleed/am_onyx.m4a",
+              "duration": 465.4
+            },
+            {
+              "name": "am_santa",
+              "file": "content/case_heartbleed/am_santa.m4a",
+              "duration": 507.5
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/case_heartbleed/bf_isabella.m4a",
+              "duration": 506.9
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/case_heartbleed/bm_daniel.m4a",
+              "duration": 455.9
+            },
+            {
+              "name": "bm_george",
+              "file": "content/case_heartbleed/bm_george.m4a",
+              "duration": 543.0
+            }
+          ]
+        },
+        {
+          "id": "case_log4shell",
+          "title": "Log4shell",
+          "unit": null,
+          "scriptPath": "content/case_log4shell/script.md",
+          "supplementaryPath": "content/case_log4shell/supplementary.md",
+          "quizPath": "content/case_log4shell/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/case_log4shell/af_heart.m4a",
+              "duration": 795.6
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/case_log4shell/am_onyx.m4a",
+              "duration": 690.9
+            },
+            {
+              "name": "am_santa",
+              "file": "content/case_log4shell/am_santa.m4a",
+              "duration": 763.4
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/case_log4shell/bf_isabella.m4a",
+              "duration": 755.6
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/case_log4shell/bm_daniel.m4a",
+              "duration": 681.2
+            },
+            {
+              "name": "bm_george",
+              "file": "content/case_log4shell/bm_george.m4a",
+              "duration": 814.5
+            }
+          ]
+        },
+        {
+          "id": "case_stuxnet",
+          "title": "Stuxnet",
+          "unit": null,
+          "scriptPath": "content/case_stuxnet/script.md",
+          "supplementaryPath": "content/case_stuxnet/supplementary.md",
+          "quizPath": "content/case_stuxnet/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/case_stuxnet/af_heart.m4a",
+              "duration": 813.3
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/case_stuxnet/am_onyx.m4a",
+              "duration": 712.4
+            },
+            {
+              "name": "am_santa",
+              "file": "content/case_stuxnet/am_santa.m4a",
+              "duration": 780.4
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/case_stuxnet/bf_isabella.m4a",
+              "duration": 774.4
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/case_stuxnet/bm_daniel.m4a",
+              "duration": 693.1
+            },
+            {
+              "name": "bm_george",
+              "file": "content/case_stuxnet/bm_george.m4a",
+              "duration": 829.3
+            }
+          ]
+        },
+        {
+          "id": "case_the_dyn_dns_ddos_2016",
+          "title": "The Dyn DNS DDoS 2016",
+          "unit": null,
+          "scriptPath": "content/case_the_dyn_dns_ddos_2016/script.md",
+          "supplementaryPath": "content/case_the_dyn_dns_ddos_2016/supplementary.md",
+          "quizPath": "content/case_the_dyn_dns_ddos_2016/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/case_the_dyn_dns_ddos_2016/af_heart.m4a",
+              "duration": 531.8
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/case_the_dyn_dns_ddos_2016/am_onyx.m4a",
+              "duration": 460.4
+            },
+            {
+              "name": "am_santa",
+              "file": "content/case_the_dyn_dns_ddos_2016/am_santa.m4a",
+              "duration": 507.4
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/case_the_dyn_dns_ddos_2016/bf_isabella.m4a",
+              "duration": 507.6
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/case_the_dyn_dns_ddos_2016/bm_daniel.m4a",
+              "duration": 455.0
+            },
+            {
+              "name": "bm_george",
+              "file": "content/case_the_dyn_dns_ddos_2016/bm_george.m4a",
+              "duration": 542.0
+            }
+          ]
+        },
+        {
+          "id": "case_the_equifax_breach",
+          "title": "The Equifax Breach",
+          "unit": null,
+          "scriptPath": "content/case_the_equifax_breach/script.md",
+          "supplementaryPath": "content/case_the_equifax_breach/supplementary.md",
+          "quizPath": "content/case_the_equifax_breach/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/case_the_equifax_breach/af_heart.m4a",
+              "duration": 684.2
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/case_the_equifax_breach/am_onyx.m4a",
+              "duration": 602.0
+            },
+            {
+              "name": "am_santa",
+              "file": "content/case_the_equifax_breach/am_santa.m4a",
+              "duration": 655.9
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/case_the_equifax_breach/bf_isabella.m4a",
+              "duration": 658.5
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/case_the_equifax_breach/bm_daniel.m4a",
+              "duration": 590.2
+            },
+            {
+              "name": "bm_george",
+              "file": "content/case_the_equifax_breach/bm_george.m4a",
+              "duration": 699.0
+            }
+          ]
+        },
+        {
+          "id": "case_the_linkedin_password_leak",
+          "title": "The Linkedin Password Leak",
+          "unit": null,
+          "scriptPath": "content/case_the_linkedin_password_leak/script.md",
+          "supplementaryPath": "content/case_the_linkedin_password_leak/supplementary.md",
+          "quizPath": "content/case_the_linkedin_password_leak/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/case_the_linkedin_password_leak/af_heart.m4a",
+              "duration": 586.5
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/case_the_linkedin_password_leak/am_onyx.m4a",
+              "duration": 511.6
+            },
+            {
+              "name": "am_santa",
+              "file": "content/case_the_linkedin_password_leak/am_santa.m4a",
+              "duration": 559.0
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/case_the_linkedin_password_leak/bf_isabella.m4a",
+              "duration": 562.6
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/case_the_linkedin_password_leak/bm_daniel.m4a",
+              "duration": 503.1
+            },
+            {
+              "name": "bm_george",
+              "file": "content/case_the_linkedin_password_leak/bm_george.m4a",
+              "duration": 595.6
+            }
+          ]
+        },
+        {
+          "id": "case_the_medibank_breach",
+          "title": "The Medibank Breach",
+          "unit": null,
+          "scriptPath": "content/case_the_medibank_breach/script.md",
+          "supplementaryPath": "content/case_the_medibank_breach/supplementary.md",
+          "quizPath": "content/case_the_medibank_breach/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/case_the_medibank_breach/af_heart.m4a",
+              "duration": 695.0
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/case_the_medibank_breach/am_onyx.m4a",
+              "duration": 601.6
+            },
+            {
+              "name": "am_santa",
+              "file": "content/case_the_medibank_breach/am_santa.m4a",
+              "duration": 659.1
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/case_the_medibank_breach/bf_isabella.m4a",
+              "duration": 660.9
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/case_the_medibank_breach/bm_daniel.m4a",
+              "duration": 591.0
+            },
+            {
+              "name": "bm_george",
+              "file": "content/case_the_medibank_breach/bm_george.m4a",
+              "duration": 700.7
+            }
+          ]
+        },
+        {
+          "id": "case_the_morris_worm",
+          "title": "The Morris Worm",
+          "unit": null,
+          "scriptPath": "content/case_the_morris_worm/script.md",
+          "supplementaryPath": "content/case_the_morris_worm/supplementary.md",
+          "quizPath": "content/case_the_morris_worm/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/case_the_morris_worm/af_heart.m4a",
+              "duration": 843.4
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/case_the_morris_worm/am_onyx.m4a",
+              "duration": 732.3
+            },
+            {
+              "name": "am_santa",
+              "file": "content/case_the_morris_worm/am_santa.m4a",
+              "duration": 806.9
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/case_the_morris_worm/bf_isabella.m4a",
+              "duration": 803.3
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/case_the_morris_worm/bm_daniel.m4a",
+              "duration": 719.1
+            },
+            {
+              "name": "bm_george",
+              "file": "content/case_the_morris_worm/bm_george.m4a",
+              "duration": 857.6
+            }
+          ]
+        },
+        {
+          "id": "case_the_optus_breach",
+          "title": "The Optus Breach",
+          "unit": null,
+          "scriptPath": "content/case_the_optus_breach/script.md",
+          "supplementaryPath": "content/case_the_optus_breach/supplementary.md",
+          "quizPath": "content/case_the_optus_breach/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/case_the_optus_breach/af_heart.m4a",
+              "duration": 735.7
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/case_the_optus_breach/am_onyx.m4a",
+              "duration": 637.8
+            },
+            {
+              "name": "am_santa",
+              "file": "content/case_the_optus_breach/am_santa.m4a",
+              "duration": 699.5
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/case_the_optus_breach/bf_isabella.m4a",
+              "duration": 703.9
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/case_the_optus_breach/bm_daniel.m4a",
+              "duration": 631.2
+            },
+            {
+              "name": "bm_george",
+              "file": "content/case_the_optus_breach/bm_george.m4a",
+              "duration": 748.6
+            }
+          ]
+        },
+        {
+          "id": "case_the_target_breach",
+          "title": "The Target Breach",
+          "unit": null,
+          "scriptPath": "content/case_the_target_breach/script.md",
+          "supplementaryPath": "content/case_the_target_breach/supplementary.md",
+          "quizPath": "content/case_the_target_breach/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/case_the_target_breach/af_heart.m4a",
+              "duration": 568.8
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/case_the_target_breach/am_onyx.m4a",
+              "duration": 499.3
+            },
+            {
+              "name": "am_santa",
+              "file": "content/case_the_target_breach/am_santa.m4a",
+              "duration": 543.9
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/case_the_target_breach/bf_isabella.m4a",
+              "duration": 541.8
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/case_the_target_breach/bm_daniel.m4a",
+              "duration": 491.4
+            },
+            {
+              "name": "bm_george",
+              "file": "content/case_the_target_breach/bm_george.m4a",
+              "duration": 582.1
+            }
+          ]
+        },
+        {
+          "id": "case_the_xz_backdoor",
+          "title": "The XZ Backdoor",
+          "unit": null,
+          "scriptPath": "content/case_the_xz_backdoor/script.md",
+          "supplementaryPath": "content/case_the_xz_backdoor/supplementary.md",
+          "quizPath": "content/case_the_xz_backdoor/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/case_the_xz_backdoor/af_heart.m4a",
+              "duration": 643.0
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/case_the_xz_backdoor/am_onyx.m4a",
+              "duration": 563.3
+            },
+            {
+              "name": "am_santa",
+              "file": "content/case_the_xz_backdoor/am_santa.m4a",
+              "duration": 617.3
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/case_the_xz_backdoor/bf_isabella.m4a",
+              "duration": 611.7
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/case_the_xz_backdoor/bm_daniel.m4a",
+              "duration": 551.0
+            },
+            {
+              "name": "bm_george",
+              "file": "content/case_the_xz_backdoor/bm_george.m4a",
+              "duration": 653.2
+            }
+          ]
+        },
+        {
+          "id": "case_the_npm_supply_chain_attacks",
+          "title": "The npm Supply Chain Attacks",
+          "unit": null,
+          "scriptPath": "content/case_the_npm_supply_chain_attacks/script.md",
+          "supplementaryPath": "content/case_the_npm_supply_chain_attacks/supplementary.md",
+          "quizPath": "content/case_the_npm_supply_chain_attacks/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/case_the_npm_supply_chain_attacks/af_heart.m4a",
+              "duration": 1138.4
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/case_the_npm_supply_chain_attacks/am_onyx.m4a",
+              "duration": 991.3
+            },
+            {
+              "name": "am_santa",
+              "file": "content/case_the_npm_supply_chain_attacks/am_santa.m4a",
+              "duration": 1086.4
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/case_the_npm_supply_chain_attacks/bf_isabella.m4a",
+              "duration": 1085.0
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/case_the_npm_supply_chain_attacks/bm_daniel.m4a",
+              "duration": 966.2
+            },
+            {
+              "name": "bm_george",
+              "file": "content/case_the_npm_supply_chain_attacks/bm_george.m4a",
+              "duration": 1149.1
+            }
+          ]
+        },
+        {
+          "id": "case_wannacry",
+          "title": "Wannacry",
+          "unit": null,
+          "scriptPath": "content/case_wannacry/script.md",
+          "supplementaryPath": "content/case_wannacry/supplementary.md",
+          "quizPath": "content/case_wannacry/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/case_wannacry/af_heart.m4a",
+              "duration": 604.5
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/case_wannacry/am_onyx.m4a",
+              "duration": 530.1
+            },
+            {
+              "name": "am_santa",
+              "file": "content/case_wannacry/am_santa.m4a",
+              "duration": 577.6
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/case_wannacry/bf_isabella.m4a",
+              "duration": 577.7
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/case_wannacry/bm_daniel.m4a",
+              "duration": 514.8
+            },
+            {
+              "name": "bm_george",
+              "file": "content/case_wannacry/bm_george.m4a",
+              "duration": 611.9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PFW-01",
+      "prefix": "PFW",
+      "moduleNum": 1,
+      "episodes": [
+        {
+          "id": "PFW-01-Applications-Of-Web-Programming",
+          "title": "Applications Of Web Programming",
+          "unit": null,
+          "scriptPath": "content/PFW-01-Applications-Of-Web-Programming/script.md",
+          "supplementaryPath": "content/PFW-01-Applications-Of-Web-Programming/supplementary.md",
+          "quizPath": "content/PFW-01-Applications-Of-Web-Programming/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-01-Applications-Of-Web-Programming/af_heart.m4a",
+              "duration": 1400.9
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-01-Applications-Of-Web-Programming/am_onyx.m4a",
+              "duration": 1233.2
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-01-Applications-Of-Web-Programming/am_santa.m4a",
+              "duration": 1337.4
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-01-Applications-Of-Web-Programming/bf_isabella.m4a",
+              "duration": 1349.2
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-01-Applications-Of-Web-Programming/bm_daniel.m4a",
+              "duration": 1208.3
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-01-Applications-Of-Web-Programming/bm_george.m4a",
+              "duration": 1421.3
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PFW-02",
+      "prefix": "PFW",
+      "moduleNum": 2,
+      "episodes": [
+        {
+          "id": "PFW-02-How-Data-Moves-On-The-Internet",
+          "title": "How Data Moves On The Internet",
+          "unit": null,
+          "scriptPath": "content/PFW-02-How-Data-Moves-On-The-Internet/script.md",
+          "supplementaryPath": "content/PFW-02-How-Data-Moves-On-The-Internet/supplementary.md",
+          "quizPath": "content/PFW-02-How-Data-Moves-On-The-Internet/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-02-How-Data-Moves-On-The-Internet/af_heart.m4a",
+              "duration": 1140.7
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-02-How-Data-Moves-On-The-Internet/am_onyx.m4a",
+              "duration": 1004.2
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-02-How-Data-Moves-On-The-Internet/am_santa.m4a",
+              "duration": 1092.6
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-02-How-Data-Moves-On-The-Internet/bf_isabella.m4a",
+              "duration": 1091.4
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-02-How-Data-Moves-On-The-Internet/bm_daniel.m4a",
+              "duration": 981.0
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-02-How-Data-Moves-On-The-Internet/bm_george.m4a",
+              "duration": 1156.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PFW-03",
+      "prefix": "PFW",
+      "moduleNum": 3,
+      "episodes": [
+        {
+          "id": "PFW-03-Web-Protocols-Ports-And-Secure-Transport",
+          "title": "Web Protocols Ports And Secure Transport",
+          "unit": null,
+          "scriptPath": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/script.md",
+          "supplementaryPath": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/supplementary.md",
+          "quizPath": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/af_heart.m4a",
+              "duration": 1247.9
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/am_onyx.m4a",
+              "duration": 1099.5
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/am_santa.m4a",
+              "duration": 1189.5
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/bf_isabella.m4a",
+              "duration": 1197.3
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/bm_daniel.m4a",
+              "duration": 1077.8
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/bm_george.m4a",
+              "duration": 1264.7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PFW-04",
+      "prefix": "PFW",
+      "moduleNum": 4,
+      "episodes": [
+        {
+          "id": "PFW-04-Big-Data-And-Web-Architectures",
+          "title": "Big Data And Web Architectures",
+          "unit": null,
+          "scriptPath": "content/PFW-04-Big-Data-And-Web-Architectures/script.md",
+          "supplementaryPath": "content/PFW-04-Big-Data-And-Web-Architectures/supplementary.md",
+          "quizPath": "content/PFW-04-Big-Data-And-Web-Architectures/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-04-Big-Data-And-Web-Architectures/af_heart.m4a",
+              "duration": 1152.6
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-04-Big-Data-And-Web-Architectures/am_onyx.m4a",
+              "duration": 1019.5
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-04-Big-Data-And-Web-Architectures/am_santa.m4a",
+              "duration": 1100.5
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-04-Big-Data-And-Web-Architectures/bf_isabella.m4a",
+              "duration": 1110.6
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-04-Big-Data-And-Web-Architectures/bm_daniel.m4a",
+              "duration": 995.4
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-04-Big-Data-And-Web-Architectures/bm_george.m4a",
+              "duration": 1168.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PFW-05",
+      "prefix": "PFW",
+      "moduleNum": 5,
+      "episodes": [
+        {
+          "id": "PFW-05-The-W3C-And-Web-Standards",
+          "title": "The W3C And Web Standards",
+          "unit": null,
+          "scriptPath": "content/PFW-05-The-W3C-And-Web-Standards/script.md",
+          "supplementaryPath": "content/PFW-05-The-W3C-And-Web-Standards/supplementary.md",
+          "quizPath": "content/PFW-05-The-W3C-And-Web-Standards/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-05-The-W3C-And-Web-Standards/af_heart.m4a",
+              "duration": 1080.7
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-05-The-W3C-And-Web-Standards/am_onyx.m4a",
+              "duration": 949.7
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-05-The-W3C-And-Web-Standards/am_santa.m4a",
+              "duration": 1028.9
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-05-The-W3C-And-Web-Standards/bf_isabella.m4a",
+              "duration": 1037.7
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-05-The-W3C-And-Web-Standards/bm_daniel.m4a",
+              "duration": 933.4
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-05-The-W3C-And-Web-Standards/bm_george.m4a",
+              "duration": 1097.9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PFW-06",
+      "prefix": "PFW",
+      "moduleNum": 6,
+      "episodes": [
+        {
+          "id": "PFW-06-Modelling-A-Web-Development-System",
+          "title": "Modelling A Web Development System",
+          "unit": null,
+          "scriptPath": "content/PFW-06-Modelling-A-Web-Development-System/script.md",
+          "supplementaryPath": "content/PFW-06-Modelling-A-Web-Development-System/supplementary.md",
+          "quizPath": "content/PFW-06-Modelling-A-Web-Development-System/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-06-Modelling-A-Web-Development-System/af_heart.m4a",
+              "duration": 988.2
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-06-Modelling-A-Web-Development-System/am_onyx.m4a",
+              "duration": 874.7
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-06-Modelling-A-Web-Development-System/am_santa.m4a",
+              "duration": 944.3
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-06-Modelling-A-Web-Development-System/bf_isabella.m4a",
+              "duration": 950.8
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-06-Modelling-A-Web-Development-System/bm_daniel.m4a",
+              "duration": 849.6
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-06-Modelling-A-Web-Development-System/bm_george.m4a",
+              "duration": 999.5
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PFW-07",
+      "prefix": "PFW",
+      "moduleNum": 7,
+      "episodes": [
+        {
+          "id": "PFW-07-The-Browser-And-Developer-Tools",
+          "title": "The Browser And Developer Tools",
+          "unit": null,
+          "scriptPath": "content/PFW-07-The-Browser-And-Developer-Tools/script.md",
+          "supplementaryPath": "content/PFW-07-The-Browser-And-Developer-Tools/supplementary.md",
+          "quizPath": "content/PFW-07-The-Browser-And-Developer-Tools/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-07-The-Browser-And-Developer-Tools/af_heart.m4a",
+              "duration": 954.9
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-07-The-Browser-And-Developer-Tools/am_onyx.m4a",
+              "duration": 842.2
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-07-The-Browser-And-Developer-Tools/am_santa.m4a",
+              "duration": 914.8
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-07-The-Browser-And-Developer-Tools/bf_isabella.m4a",
+              "duration": 914.3
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-07-The-Browser-And-Developer-Tools/bm_daniel.m4a",
+              "duration": 818.7
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-07-The-Browser-And-Developer-Tools/bm_george.m4a",
+              "duration": 962.4
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PFW-08",
+      "prefix": "PFW",
+      "moduleNum": 8,
+      "episodes": [
+        {
+          "id": "PFW-08-CSS-UI-And-UX-Principles",
+          "title": "CSS UI And UX Principles",
+          "unit": null,
+          "scriptPath": "content/PFW-08-CSS-UI-And-UX-Principles/script.md",
+          "supplementaryPath": "content/PFW-08-CSS-UI-And-UX-Principles/supplementary.md",
+          "quizPath": "content/PFW-08-CSS-UI-And-UX-Principles/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-08-CSS-UI-And-UX-Principles/af_heart.m4a",
+              "duration": 1011.2
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-08-CSS-UI-And-UX-Principles/am_onyx.m4a",
+              "duration": 892.4
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-08-CSS-UI-And-UX-Principles/am_santa.m4a",
+              "duration": 963.7
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-08-CSS-UI-And-UX-Principles/bf_isabella.m4a",
+              "duration": 971.1
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-08-CSS-UI-And-UX-Principles/bm_daniel.m4a",
+              "duration": 868.0
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-08-CSS-UI-And-UX-Principles/bm_george.m4a",
+              "duration": 1021.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PFW-12",
+      "prefix": "PFW",
+      "moduleNum": 12,
+      "episodes": [
+        {
+          "id": "PFW-12-05-Front-End-Libraries-And-Frameworks",
+          "title": "Front End Libraries And Frameworks",
+          "unit": 5,
+          "scriptPath": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/script.md",
+          "supplementaryPath": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/supplementary.md",
+          "quizPath": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/af_heart.m4a",
+              "duration": 893.0
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/am_onyx.m4a",
+              "duration": 783.8
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/am_santa.m4a",
+              "duration": 851.7
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/bf_isabella.m4a",
+              "duration": 859.4
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/bm_daniel.m4a",
+              "duration": 762.8
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/bm_george.m4a",
+              "duration": 903.6
+            }
+          ]
+        },
+        {
+          "id": "PFW-12-06-Open-Source-And-Content-Management-Systems",
+          "title": "Open Source And Content Management Systems",
+          "unit": 6,
+          "scriptPath": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/script.md",
+          "supplementaryPath": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/supplementary.md",
+          "quizPath": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/af_heart.m4a",
+              "duration": 1031.5
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/am_onyx.m4a",
+              "duration": 904.5
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/am_santa.m4a",
+              "duration": 977.6
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/bf_isabella.m4a",
+              "duration": 990.4
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/bm_daniel.m4a",
+              "duration": 880.7
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/bm_george.m4a",
+              "duration": 1037.6
+            }
+          ]
+        },
+        {
+          "id": "PFW-12-99-Module-Review-Web-Foundations-And-Design",
+          "title": "Module Review Web Foundations And Design",
+          "unit": 99,
+          "scriptPath": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/script.md",
+          "supplementaryPath": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/supplementary.md",
+          "quizPath": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/af_heart.m4a",
+              "duration": 1080.1
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/am_onyx.m4a",
+              "duration": 966.0
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/am_santa.m4a",
+              "duration": 1039.0
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/bf_isabella.m4a",
+              "duration": 1034.3
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/bm_daniel.m4a",
+              "duration": 941.0
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/bm_george.m4a",
+              "duration": 1096.7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PFW-13",
+      "prefix": "PFW",
+      "moduleNum": 13,
+      "episodes": [
+        {
+          "id": "PFW-13-01-Server-Side-Python-And-The-Request-Flow",
+          "title": "Server Side Python And The Request Flow",
+          "unit": 1,
+          "scriptPath": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/script.md",
+          "supplementaryPath": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/supplementary.md",
+          "quizPath": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/af_heart.m4a",
+              "duration": 936.2
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/am_onyx.m4a",
+              "duration": 827.9
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/am_santa.m4a",
+              "duration": 890.0
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/bf_isabella.m4a",
+              "duration": 899.9
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/bm_daniel.m4a",
+              "duration": 802.5
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/bm_george.m4a",
+              "duration": 939.4
+            }
+          ]
+        },
+        {
+          "id": "PFW-13-02-Databases-SQL-And-ORM",
+          "title": "Databases SQL And ORM",
+          "unit": 2,
+          "scriptPath": "content/PFW-13-02-Databases-SQL-And-ORM/script.md",
+          "supplementaryPath": "content/PFW-13-02-Databases-SQL-And-ORM/supplementary.md",
+          "quizPath": "content/PFW-13-02-Databases-SQL-And-ORM/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-13-02-Databases-SQL-And-ORM/af_heart.m4a",
+              "duration": 1032.2
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-13-02-Databases-SQL-And-ORM/am_onyx.m4a",
+              "duration": 911.0
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-13-02-Databases-SQL-And-ORM/am_santa.m4a",
+              "duration": 983.2
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-13-02-Databases-SQL-And-ORM/bf_isabella.m4a",
+              "duration": 986.2
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-13-02-Databases-SQL-And-ORM/bm_daniel.m4a",
+              "duration": 884.2
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-13-02-Databases-SQL-And-ORM/bm_george.m4a",
+              "duration": 1038.0
+            }
+          ]
+        },
+        {
+          "id": "PFW-13-03-Performance-And-Page-Load-Management",
+          "title": "Performance And Page Load Management",
+          "unit": 3,
+          "scriptPath": "content/PFW-13-03-Performance-And-Page-Load-Management/script.md",
+          "supplementaryPath": "content/PFW-13-03-Performance-And-Page-Load-Management/supplementary.md",
+          "quizPath": "content/PFW-13-03-Performance-And-Page-Load-Management/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-13-03-Performance-And-Page-Load-Management/af_heart.m4a",
+              "duration": 919.4
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-13-03-Performance-And-Page-Load-Management/am_onyx.m4a",
+              "duration": 811.2
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-13-03-Performance-And-Page-Load-Management/am_santa.m4a",
+              "duration": 877.1
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-13-03-Performance-And-Page-Load-Management/bf_isabella.m4a",
+              "duration": 877.2
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-13-03-Performance-And-Page-Load-Management/bm_daniel.m4a",
+              "duration": 786.0
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-13-03-Performance-And-Page-Load-Management/bm_george.m4a",
+              "duration": 920.0
+            }
+          ]
+        },
+        {
+          "id": "PFW-13-04-Designing-And-Implementing-A-PWA",
+          "title": "Designing And Implementing A PWA",
+          "unit": 4,
+          "scriptPath": "content/PFW-13-04-Designing-And-Implementing-A-PWA/script.md",
+          "supplementaryPath": "content/PFW-13-04-Designing-And-Implementing-A-PWA/supplementary.md",
+          "quizPath": "content/PFW-13-04-Designing-And-Implementing-A-PWA/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-13-04-Designing-And-Implementing-A-PWA/af_heart.m4a",
+              "duration": 908.6
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-13-04-Designing-And-Implementing-A-PWA/am_onyx.m4a",
+              "duration": 803.5
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-13-04-Designing-And-Implementing-A-PWA/am_santa.m4a",
+              "duration": 867.8
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-13-04-Designing-And-Implementing-A-PWA/bf_isabella.m4a",
+              "duration": 869.7
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-13-04-Designing-And-Implementing-A-PWA/bm_daniel.m4a",
+              "duration": 784.9
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-13-04-Designing-And-Implementing-A-PWA/bm_george.m4a",
+              "duration": 923.2
+            }
+          ]
+        },
+        {
+          "id": "PFW-13-98-Module-Summary-Programming-For-The-Web",
+          "title": "Module Summary Programming For The Web",
+          "unit": 98,
+          "scriptPath": "content/PFW-13-98-Module-Summary-Programming-For-The-Web/script.md",
+          "supplementaryPath": "content/PFW-13-98-Module-Summary-Programming-For-The-Web/supplementary.md",
+          "quizPath": "content/PFW-13-98-Module-Summary-Programming-For-The-Web/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "PFW-13-99-Module-Review-Programming-For-The-Web",
+          "title": "Module Review Programming For The Web",
+          "unit": 99,
+          "scriptPath": "content/PFW-13-99-Module-Review-Programming-For-The-Web/script.md",
+          "supplementaryPath": "content/PFW-13-99-Module-Review-Programming-For-The-Web/supplementary.md",
+          "quizPath": "content/PFW-13-99-Module-Review-Programming-For-The-Web/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/PFW-13-99-Module-Review-Programming-For-The-Web/af_heart.m4a",
+              "duration": 726.3
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/PFW-13-99-Module-Review-Programming-For-The-Web/am_onyx.m4a",
+              "duration": 646.2
+            },
+            {
+              "name": "am_santa",
+              "file": "content/PFW-13-99-Module-Review-Programming-For-The-Web/am_santa.m4a",
+              "duration": 695.3
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/PFW-13-99-Module-Review-Programming-For-The-Web/bf_isabella.m4a",
+              "duration": 697.3
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/PFW-13-99-Module-Review-Programming-For-The-Web/bm_daniel.m4a",
+              "duration": 629.6
+            },
+            {
+              "name": "bm_george",
+              "file": "content/PFW-13-99-Module-Review-Programming-For-The-Web/bm_george.m4a",
+              "duration": 730.9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SA-20",
+      "prefix": "SA",
+      "moduleNum": 20,
+      "episodes": [
+        {
+          "id": "SA-20-01-What-is-AI-vs-ML",
+          "title": "What is AI vs ML",
+          "unit": 1,
+          "scriptPath": "content/SA-20-01-What-is-AI-vs-ML/script.md",
+          "supplementaryPath": "content/SA-20-01-What-is-AI-vs-ML/supplementary.md",
+          "quizPath": "content/SA-20-01-What-is-AI-vs-ML/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SA-20-01-What-is-AI-vs-ML/af_heart.m4a",
+              "duration": 1534.6
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SA-20-01-What-is-AI-vs-ML/am_onyx.m4a",
+              "duration": 1342.8
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SA-20-01-What-is-AI-vs-ML/am_santa.m4a",
+              "duration": 1461.5
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SA-20-01-What-is-AI-vs-ML/bf_isabella.m4a",
+              "duration": 1467.6
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SA-20-01-What-is-AI-vs-ML/bm_daniel.m4a",
+              "duration": 1313.2
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SA-20-01-What-is-AI-vs-ML/bm_george.m4a",
+              "duration": 1555.7
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "content/SA-20-01-What-is-AI-vs-ML/zz_eloquence.m4a",
+              "duration": 1347.7
+            }
+          ]
+        },
+        {
+          "id": "SA-20-02-ML-Training-Models",
+          "title": "ML Training Models",
+          "unit": 2,
+          "scriptPath": "content/SA-20-02-ML-Training-Models/script.md",
+          "supplementaryPath": "content/SA-20-02-ML-Training-Models/supplementary.md",
+          "quizPath": "content/SA-20-02-ML-Training-Models/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SA-20-02-ML-Training-Models/af_heart.m4a",
+              "duration": 1280.5
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SA-20-02-ML-Training-Models/am_onyx.m4a",
+              "duration": 1118.9
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SA-20-02-ML-Training-Models/am_santa.m4a",
+              "duration": 1219.3
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SA-20-02-ML-Training-Models/bf_isabella.m4a",
+              "duration": 1212.5
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SA-20-02-ML-Training-Models/bm_daniel.m4a",
+              "duration": 1083.7
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SA-20-02-ML-Training-Models/bm_george.m4a",
+              "duration": 1282.5
+            }
+          ]
+        },
+        {
+          "id": "SA-20-03-Common-ML-Applications",
+          "title": "Common ML Applications",
+          "unit": 3,
+          "scriptPath": "content/SA-20-03-Common-ML-Applications/script.md",
+          "supplementaryPath": "content/SA-20-03-Common-ML-Applications/supplementary.md",
+          "quizPath": "content/SA-20-03-Common-ML-Applications/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SA-20-03-Common-ML-Applications/af_heart.m4a",
+              "duration": 1126.8
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SA-20-03-Common-ML-Applications/am_onyx.m4a",
+              "duration": 987.1
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SA-20-03-Common-ML-Applications/am_santa.m4a",
+              "duration": 1080.8
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SA-20-03-Common-ML-Applications/bf_isabella.m4a",
+              "duration": 1067.1
+            }
+          ]
+        },
+        {
+          "id": "SA-20-04-Decision-Trees-And-Neural-Networks",
+          "title": "Decision Trees And Neural Networks",
+          "unit": 4,
+          "scriptPath": "content/SA-20-04-Decision-Trees-And-Neural-Networks/script.md",
+          "supplementaryPath": "content/SA-20-04-Decision-Trees-And-Neural-Networks/supplementary.md",
+          "quizPath": "content/SA-20-04-Decision-Trees-And-Neural-Networks/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SA-20-05-RPA-And-BPA-Practical-Considerations",
+          "title": "RPA And BPA Practical Considerations",
+          "unit": 5,
+          "scriptPath": "content/SA-20-05-RPA-And-BPA-Practical-Considerations/script.md",
+          "supplementaryPath": "content/SA-20-05-RPA-And-BPA-Practical-Considerations/supplementary.md",
+          "quizPath": "content/SA-20-05-RPA-And-BPA-Practical-Considerations/quiz.json",
+          "voices": []
+        }
+      ]
+    },
+    {
+      "id": "SA-21",
+      "prefix": "SA",
+      "moduleNum": 21,
+      "episodes": [
+        {
+          "id": "SA-21-01-Regression-And-Core-Algorithm-Types",
+          "title": "Regression And Core Algorithm Types",
+          "unit": 1,
+          "scriptPath": "content/SA-21-01-Regression-And-Core-Algorithm-Types/script.md",
+          "supplementaryPath": "content/SA-21-01-Regression-And-Core-Algorithm-Types/supplementary.md",
+          "quizPath": "content/SA-21-01-Regression-And-Core-Algorithm-Types/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SA-21-02-Neural-Networks-Concepts-And-Implementation",
+          "title": "Neural Networks Concepts And Implementation",
+          "unit": 2,
+          "scriptPath": "content/SA-21-02-Neural-Networks-Concepts-And-Implementation/script.md",
+          "supplementaryPath": "content/SA-21-02-Neural-Networks-Concepts-And-Implementation/supplementary.md",
+          "quizPath": "content/SA-21-02-Neural-Networks-Concepts-And-Implementation/quiz.json",
+          "voices": []
+        }
+      ]
+    },
+    {
+      "id": "SA-22",
+      "prefix": "SA",
+      "moduleNum": 22,
+      "episodes": [
+        {
+          "id": "SA-22-01-Assessing-The-Impact-Of-Automation",
+          "title": "Assessing The Impact Of Automation",
+          "unit": 1,
+          "scriptPath": "content/SA-22-01-Assessing-The-Impact-Of-Automation/script.md",
+          "supplementaryPath": "content/SA-22-01-Assessing-The-Impact-Of-Automation/supplementary.md",
+          "quizPath": "content/SA-22-01-Assessing-The-Impact-Of-Automation/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SA-22-02-Human-Behaviour-Patterns-And-ML-AI",
+          "title": "Human Behaviour Patterns And ML AI",
+          "unit": 2,
+          "scriptPath": "content/SA-22-02-Human-Behaviour-Patterns-And-ML-AI/script.md",
+          "supplementaryPath": "content/SA-22-02-Human-Behaviour-Patterns-And-ML-AI/supplementary.md",
+          "quizPath": "content/SA-22-02-Human-Behaviour-Patterns-And-ML-AI/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SA-22-03-Bias-In-Datasets-And-Models",
+          "title": "Bias In Datasets And Models",
+          "unit": 3,
+          "scriptPath": "content/SA-22-03-Bias-In-Datasets-And-Models/script.md",
+          "supplementaryPath": "content/SA-22-03-Bias-In-Datasets-And-Models/supplementary.md",
+          "quizPath": "content/SA-22-03-Bias-In-Datasets-And-Models/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SA-22-98-Module-Summary-Software-Automation",
+          "title": "Module Summary Software Automation",
+          "unit": 98,
+          "scriptPath": "content/SA-22-98-Module-Summary-Software-Automation/script.md",
+          "supplementaryPath": null,
+          "quizPath": "content/SA-22-98-Module-Summary-Software-Automation/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SA-22-99-Module-Review-Software-Automation",
+          "title": "Module Review Software Automation",
+          "unit": 99,
+          "scriptPath": "content/SA-22-99-Module-Review-Software-Automation/script.md",
+          "supplementaryPath": "content/SA-22-99-Module-Review-Software-Automation/supplementary.md",
+          "quizPath": "content/SA-22-99-Module-Review-Software-Automation/quiz.json",
+          "voices": []
+        }
+      ]
+    },
+    {
+      "id": "SEE-23",
+      "prefix": "SEE",
+      "moduleNum": 23,
+      "episodes": [
+        {
+          "id": "SEE-23-01-Requirements-And-Feasibility",
+          "title": "Requirements And Feasibility",
+          "unit": 1,
+          "scriptPath": "content/SEE-23-01-Requirements-And-Feasibility/script.md",
+          "supplementaryPath": "content/SEE-23-01-Requirements-And-Feasibility/supplementary.md",
+          "quizPath": "content/SEE-23-01-Requirements-And-Feasibility/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-23-02-Ideation-And-Modelling-Tools",
+          "title": "Ideation And Modelling Tools",
+          "unit": 2,
+          "scriptPath": "content/SEE-23-02-Ideation-And-Modelling-Tools/script.md",
+          "supplementaryPath": "content/SEE-23-02-Ideation-And-Modelling-Tools/supplementary.md",
+          "quizPath": "content/SEE-23-02-Ideation-And-Modelling-Tools/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-23-03-Implementation-Methods",
+          "title": "Implementation Methods",
+          "unit": 3,
+          "scriptPath": "content/SEE-23-03-Implementation-Methods/script.md",
+          "supplementaryPath": "content/SEE-23-03-Implementation-Methods/supplementary.md",
+          "quizPath": "content/SEE-23-03-Implementation-Methods/quiz.json",
+          "voices": []
+        }
+      ]
+    },
+    {
+      "id": "SEE-24",
+      "prefix": "SEE",
+      "moduleNum": 24,
+      "episodes": [
+        {
+          "id": "SEE-24-01-Waterfall-Approach",
+          "title": "Waterfall Approach",
+          "unit": 1,
+          "scriptPath": "content/SEE-24-01-Waterfall-Approach/script.md",
+          "supplementaryPath": "content/SEE-24-01-Waterfall-Approach/supplementary.md",
+          "quizPath": "content/SEE-24-01-Waterfall-Approach/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-24-02-Agile-Approach",
+          "title": "Agile Approach",
+          "unit": 2,
+          "scriptPath": "content/SEE-24-02-Agile-Approach/script.md",
+          "supplementaryPath": "content/SEE-24-02-Agile-Approach/supplementary.md",
+          "quizPath": "content/SEE-24-02-Agile-Approach/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-24-03-WAgile-Hybrid-Approach",
+          "title": "WAgile Hybrid Approach",
+          "unit": 3,
+          "scriptPath": "content/SEE-24-03-WAgile-Hybrid-Approach/script.md",
+          "supplementaryPath": "content/SEE-24-03-WAgile-Hybrid-Approach/supplementary.md",
+          "quizPath": "content/SEE-24-03-WAgile-Hybrid-Approach/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-24-04-Project-Management-Tools-And-Gantt",
+          "title": "Project Management Tools And Gantt",
+          "unit": 4,
+          "scriptPath": "content/SEE-24-04-Project-Management-Tools-And-Gantt/script.md",
+          "supplementaryPath": "content/SEE-24-04-Project-Management-Tools-And-Gantt/supplementary.md",
+          "quizPath": "content/SEE-24-04-Project-Management-Tools-And-Gantt/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-24-05-Social-Ethical-And-Communication-Issues",
+          "title": "Social Ethical And Communication Issues",
+          "unit": 5,
+          "scriptPath": "content/SEE-24-05-Social-Ethical-And-Communication-Issues/script.md",
+          "supplementaryPath": "content/SEE-24-05-Social-Ethical-And-Communication-Issues/supplementary.md",
+          "quizPath": "content/SEE-24-05-Social-Ethical-And-Communication-Issues/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-24-06-Quality-Assurance",
+          "title": "Quality Assurance",
+          "unit": 6,
+          "scriptPath": "content/SEE-24-06-Quality-Assurance/script.md",
+          "supplementaryPath": "content/SEE-24-06-Quality-Assurance/supplementary.md",
+          "quizPath": "content/SEE-24-06-Quality-Assurance/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-24-99-Module-Review-Defining-And-Planning",
+          "title": "Module Review Defining And Planning",
+          "unit": 99,
+          "scriptPath": "content/SEE-24-99-Module-Review-Defining-And-Planning/script.md",
+          "supplementaryPath": "content/SEE-24-99-Module-Review-Defining-And-Planning/supplementary.md",
+          "quizPath": "content/SEE-24-99-Module-Review-Defining-And-Planning/quiz.json",
+          "voices": []
+        }
+      ]
+    },
+    {
+      "id": "SEE-25",
+      "prefix": "SEE",
+      "moduleNum": 25,
+      "episodes": [
+        {
+          "id": "SEE-25-01-Building-The-Solution",
+          "title": "Building The Solution",
+          "unit": 1,
+          "scriptPath": "content/SEE-25-01-Building-The-Solution/script.md",
+          "supplementaryPath": "content/SEE-25-01-Building-The-Solution/supplementary.md",
+          "quizPath": "content/SEE-25-01-Building-The-Solution/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-25-02-Presenting-The-Solution",
+          "title": "Presenting The Solution",
+          "unit": 2,
+          "scriptPath": "content/SEE-25-02-Presenting-The-Solution/script.md",
+          "supplementaryPath": "content/SEE-25-02-Presenting-The-Solution/supplementary.md",
+          "quizPath": "content/SEE-25-02-Presenting-The-Solution/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering",
+          "title": "Algorithms Documentation And Back End Engineering",
+          "unit": 3,
+          "scriptPath": "content/SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering/script.md",
+          "supplementaryPath": "content/SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering/supplementary.md",
+          "quizPath": "content/SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-25-04-Data-Backup-And-Version-Control",
+          "title": "Data Backup And Version Control",
+          "unit": 4,
+          "scriptPath": "content/SEE-25-04-Data-Backup-And-Version-Control/script.md",
+          "supplementaryPath": "content/SEE-25-04-Data-Backup-And-Version-Control/supplementary.md",
+          "quizPath": "content/SEE-25-04-Data-Backup-And-Version-Control/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-25-05-Overcoming-Development-Difficulties",
+          "title": "Overcoming Development Difficulties",
+          "unit": 5,
+          "scriptPath": "content/SEE-25-05-Overcoming-Development-Difficulties/script.md",
+          "supplementaryPath": "content/SEE-25-05-Overcoming-Development-Difficulties/supplementary.md",
+          "quizPath": "content/SEE-25-05-Overcoming-Development-Difficulties/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-25-06-Prototype-And-UI-Design",
+          "title": "Prototype And UI Design",
+          "unit": 6,
+          "scriptPath": "content/SEE-25-06-Prototype-And-UI-Design/script.md",
+          "supplementaryPath": "content/SEE-25-06-Prototype-And-UI-Design/supplementary.md",
+          "quizPath": "content/SEE-25-06-Prototype-And-UI-Design/quiz.json",
+          "voices": []
+        }
+      ]
+    },
+    {
+      "id": "SEE-26",
+      "prefix": "SEE",
+      "moduleNum": 26,
+      "episodes": [
+        {
+          "id": "SEE-26-01-Testing-Methodologies-And-Optimisation",
+          "title": "Testing Methodologies And Optimisation",
+          "unit": 1,
+          "scriptPath": "content/SEE-26-01-Testing-Methodologies-And-Optimisation/script.md",
+          "supplementaryPath": "content/SEE-26-01-Testing-Methodologies-And-Optimisation/supplementary.md",
+          "quizPath": "content/SEE-26-01-Testing-Methodologies-And-Optimisation/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-26-02-Feedback-Analysis",
+          "title": "Feedback Analysis",
+          "unit": 2,
+          "scriptPath": "content/SEE-26-02-Feedback-Analysis/script.md",
+          "supplementaryPath": "content/SEE-26-02-Feedback-Analysis/supplementary.md",
+          "quizPath": "content/SEE-26-02-Feedback-Analysis/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-26-03-Evaluating-The-Software-Solution",
+          "title": "Evaluating The Software Solution",
+          "unit": 3,
+          "scriptPath": "content/SEE-26-03-Evaluating-The-Software-Solution/script.md",
+          "supplementaryPath": "content/SEE-26-03-Evaluating-The-Software-Solution/supplementary.md",
+          "quizPath": "content/SEE-26-03-Evaluating-The-Software-Solution/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SEE-26-99-Module-Review-Software-Engineering-Project",
+          "title": "Module Review Software Engineering Project",
+          "unit": 99,
+          "scriptPath": "content/SEE-26-99-Module-Review-Software-Engineering-Project/script.md",
+          "supplementaryPath": "content/SEE-26-99-Module-Review-Software-Engineering-Project/supplementary.md",
+          "quizPath": "content/SEE-26-99-Module-Review-Software-Engineering-Project/quiz.json",
+          "voices": []
+        }
+      ]
+    },
+    {
+      "id": "SSA-14",
+      "prefix": "SSA",
+      "moduleNum": 14,
+      "episodes": [
+        {
+          "id": "SSA-14-01-The-Business-Case-For-Security",
+          "title": "The Business Case For Security",
+          "unit": 1,
+          "scriptPath": "content/SSA-14-01-The-Business-Case-For-Security/script.md",
+          "supplementaryPath": "content/SSA-14-01-The-Business-Case-For-Security/supplementary.md",
+          "quizPath": "content/SSA-14-01-The-Business-Case-For-Security/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SSA-14-01-The-Business-Case-For-Security/af_heart.m4a",
+              "duration": 933.4
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SSA-14-01-The-Business-Case-For-Security/am_onyx.m4a",
+              "duration": 819.9
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SSA-14-01-The-Business-Case-For-Security/am_santa.m4a",
+              "duration": 893.9
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SSA-14-01-The-Business-Case-For-Security/bf_isabella.m4a",
+              "duration": 889.5
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SSA-14-01-The-Business-Case-For-Security/bm_daniel.m4a",
+              "duration": 800.7
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SSA-14-01-The-Business-Case-For-Security/bm_george.m4a",
+              "duration": 944.1
+            }
+          ]
+        },
+        {
+          "id": "SSA-14-02-Integrating-Security-Into-The-SDLC",
+          "title": "Integrating Security Into The SDLC",
+          "unit": 2,
+          "scriptPath": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/script.md",
+          "supplementaryPath": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/supplementary.md",
+          "quizPath": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/af_heart.m4a",
+              "duration": 963.9
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/am_onyx.m4a",
+              "duration": 843.3
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/am_santa.m4a",
+              "duration": 919.1
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/bf_isabella.m4a",
+              "duration": 923.2
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/bm_daniel.m4a",
+              "duration": 826.5
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/bm_george.m4a",
+              "duration": 980.5
+            }
+          ]
+        },
+        {
+          "id": "SSA-14-03-User-Centered-Security-Design",
+          "title": "User Centered Security Design",
+          "unit": 3,
+          "scriptPath": "content/SSA-14-03-User-Centered-Security-Design/script.md",
+          "supplementaryPath": "content/SSA-14-03-User-Centered-Security-Design/supplementary.md",
+          "quizPath": "content/SSA-14-03-User-Centered-Security-Design/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SSA-14-03-User-Centered-Security-Design/af_heart.m4a",
+              "duration": 933.1
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SSA-14-03-User-Centered-Security-Design/am_onyx.m4a",
+              "duration": 819.1
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SSA-14-03-User-Centered-Security-Design/am_santa.m4a",
+              "duration": 893.4
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SSA-14-03-User-Centered-Security-Design/bf_isabella.m4a",
+              "duration": 897.6
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SSA-14-03-User-Centered-Security-Design/bm_daniel.m4a",
+              "duration": 806.5
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SSA-14-03-User-Centered-Security-Design/bm_george.m4a",
+              "duration": 951.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SSA-15",
+      "prefix": "SSA",
+      "moduleNum": 15,
+      "episodes": [
+        {
+          "id": "SSA-15-01-CIA-Triad-And-AAA",
+          "title": "CIA Triad And AAA",
+          "unit": 1,
+          "scriptPath": "content/SSA-15-01-CIA-Triad-And-AAA/script.md",
+          "supplementaryPath": "content/SSA-15-01-CIA-Triad-And-AAA/supplementary.md",
+          "quizPath": "content/SSA-15-01-CIA-Triad-And-AAA/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SSA-15-01-CIA-Triad-And-AAA/af_heart.m4a",
+              "duration": 1494.8
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SSA-15-01-CIA-Triad-And-AAA/am_onyx.m4a",
+              "duration": 1309.9
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SSA-15-01-CIA-Triad-And-AAA/am_santa.m4a",
+              "duration": 1423.2
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SSA-15-01-CIA-Triad-And-AAA/bf_isabella.m4a",
+              "duration": 1435.6
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SSA-15-01-CIA-Triad-And-AAA/bm_daniel.m4a",
+              "duration": 1288.2
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SSA-15-01-CIA-Triad-And-AAA/bm_george.m4a",
+              "duration": 1520.5
+            }
+          ]
+        },
+        {
+          "id": "SSA-15-02-Cryptography-And-Data-Protection-Part-1",
+          "title": "Cryptography And Data Protection Part 1",
+          "unit": 2,
+          "scriptPath": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/script.md",
+          "supplementaryPath": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/supplementary.md",
+          "quizPath": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/af_heart.m4a",
+              "duration": 1231.0
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/am_onyx.m4a",
+              "duration": 1078.8
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/am_santa.m4a",
+              "duration": 1170.6
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/bf_isabella.m4a",
+              "duration": 1182.5
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/bm_daniel.m4a",
+              "duration": 1054.9
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/bm_george.m4a",
+              "duration": 1243.4
+            }
+          ]
+        },
+        {
+          "id": "SSA-15-02-Cryptography-And-Data-Protection-Part-2",
+          "title": "Cryptography And Data Protection Part 2",
+          "unit": 2,
+          "scriptPath": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/script.md",
+          "supplementaryPath": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/supplementary.md",
+          "quizPath": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/af_heart.m4a",
+              "duration": 1577.1
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/am_onyx.m4a",
+              "duration": 1385.2
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/am_santa.m4a",
+              "duration": 1501.2
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/bf_isabella.m4a",
+              "duration": 1516.0
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/bm_daniel.m4a",
+              "duration": 1352.7
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/bm_george.m4a",
+              "duration": 1590.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SSA-16",
+      "prefix": "SSA",
+      "moduleNum": 16,
+      "episodes": [
+        {
+          "id": "SSA-16-01-Input-Validation-And-Sanitisation",
+          "title": "Input Validation And Sanitisation",
+          "unit": 1,
+          "scriptPath": "content/SSA-16-01-Input-Validation-And-Sanitisation/script.md",
+          "supplementaryPath": "content/SSA-16-01-Input-Validation-And-Sanitisation/supplementary.md",
+          "quizPath": "content/SSA-16-01-Input-Validation-And-Sanitisation/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SSA-16-01-Input-Validation-And-Sanitisation/af_heart.m4a",
+              "duration": 1354.0
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SSA-16-01-Input-Validation-And-Sanitisation/am_onyx.m4a",
+              "duration": 1192.7
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SSA-16-01-Input-Validation-And-Sanitisation/am_santa.m4a",
+              "duration": 1291.0
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SSA-16-01-Input-Validation-And-Sanitisation/bf_isabella.m4a",
+              "duration": 1297.1
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SSA-16-01-Input-Validation-And-Sanitisation/bm_daniel.m4a",
+              "duration": 1159.4
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SSA-16-01-Input-Validation-And-Sanitisation/bm_george.m4a",
+              "duration": 1365.6
+            }
+          ]
+        },
+        {
+          "id": "SSA-16-02-Privacy-By-Design",
+          "title": "Privacy By Design",
+          "unit": 2,
+          "scriptPath": "content/SSA-16-02-Privacy-By-Design/script.md",
+          "supplementaryPath": "content/SSA-16-02-Privacy-By-Design/supplementary.md",
+          "quizPath": "content/SSA-16-02-Privacy-By-Design/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SSA-16-02-Privacy-By-Design/af_heart.m4a",
+              "duration": 1249.7
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SSA-16-02-Privacy-By-Design/am_onyx.m4a",
+              "duration": 1099.2
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SSA-16-02-Privacy-By-Design/am_santa.m4a",
+              "duration": 1189.2
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SSA-16-02-Privacy-By-Design/bf_isabella.m4a",
+              "duration": 1203.1
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SSA-16-02-Privacy-By-Design/bm_daniel.m4a",
+              "duration": 1076.0
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SSA-16-02-Privacy-By-Design/bm_george.m4a",
+              "duration": 1266.9
+            }
+          ]
+        },
+        {
+          "id": "SSA-16-99-Module-Review-Security-Foundations-And-Principles",
+          "title": "Module Review Security Foundations And Principles",
+          "unit": 99,
+          "scriptPath": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/script.md",
+          "supplementaryPath": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/supplementary.md",
+          "quizPath": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/af_heart.m4a",
+              "duration": 1095.2
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/am_onyx.m4a",
+              "duration": 975.6
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/am_santa.m4a",
+              "duration": 1046.9
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/bf_isabella.m4a",
+              "duration": 1054.9
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/bm_daniel.m4a",
+              "duration": 955.7
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/bm_george.m4a",
+              "duration": 1105.6
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SSA-17",
+      "prefix": "SSA",
+      "moduleNum": 17,
+      "episodes": [
+        {
+          "id": "SSA-17-01-Secure-API-Design",
+          "title": "Secure API Design",
+          "unit": 1,
+          "scriptPath": "content/SSA-17-01-Secure-API-Design/script.md",
+          "supplementaryPath": "content/SSA-17-01-Secure-API-Design/supplementary.md",
+          "quizPath": "content/SSA-17-01-Secure-API-Design/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SSA-17-01-Secure-API-Design/af_heart.m4a",
+              "duration": 1294.2
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SSA-17-01-Secure-API-Design/am_onyx.m4a",
+              "duration": 1133.8
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SSA-17-01-Secure-API-Design/am_santa.m4a",
+              "duration": 1230.7
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SSA-17-01-Secure-API-Design/bf_isabella.m4a",
+              "duration": 1238.8
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SSA-17-01-Secure-API-Design/bm_daniel.m4a",
+              "duration": 1108.7
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SSA-17-01-Secure-API-Design/bm_george.m4a",
+              "duration": 1309.9
+            }
+          ]
+        },
+        {
+          "id": "SSA-17-02-Secure-Execution-And-Resource-Management",
+          "title": "Secure Execution And Resource Management",
+          "unit": 2,
+          "scriptPath": "content/SSA-17-02-Secure-Execution-And-Resource-Management/script.md",
+          "supplementaryPath": "content/SSA-17-02-Secure-Execution-And-Resource-Management/supplementary.md",
+          "quizPath": "content/SSA-17-02-Secure-Execution-And-Resource-Management/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SSA-17-02-Secure-Execution-And-Resource-Management/af_heart.m4a",
+              "duration": 1252.2
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SSA-17-02-Secure-Execution-And-Resource-Management/am_onyx.m4a",
+              "duration": 1105.3
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SSA-17-02-Secure-Execution-And-Resource-Management/am_santa.m4a",
+              "duration": 1199.4
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SSA-17-02-Secure-Execution-And-Resource-Management/bf_isabella.m4a",
+              "duration": 1191.0
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SSA-17-02-Secure-Execution-And-Resource-Management/bm_daniel.m4a",
+              "duration": 1078.8
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SSA-17-02-Secure-Execution-And-Resource-Management/bm_george.m4a",
+              "duration": 1271.8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SSA-18",
+      "prefix": "SSA",
+      "moduleNum": 18,
+      "episodes": [
+        {
+          "id": "SSA-18-01-Security-Testing-Fundamentals",
+          "title": "Security Testing Fundamentals",
+          "unit": 1,
+          "scriptPath": "content/SSA-18-01-Security-Testing-Fundamentals/script.md",
+          "supplementaryPath": "content/SSA-18-01-Security-Testing-Fundamentals/supplementary.md",
+          "quizPath": "content/SSA-18-01-Security-Testing-Fundamentals/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SSA-18-01-Security-Testing-Fundamentals/af_heart.m4a",
+              "duration": 1375.4
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SSA-18-01-Security-Testing-Fundamentals/am_onyx.m4a",
+              "duration": 1208.2
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SSA-18-01-Security-Testing-Fundamentals/am_santa.m4a",
+              "duration": 1309.7
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SSA-18-01-Security-Testing-Fundamentals/bf_isabella.m4a",
+              "duration": 1323.5
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SSA-18-01-Security-Testing-Fundamentals/bm_daniel.m4a",
+              "duration": 1180.4
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SSA-18-01-Security-Testing-Fundamentals/bm_george.m4a",
+              "duration": 1397.8
+            }
+          ]
+        },
+        {
+          "id": "SSA-18-02-Web-Application-Vulnerabilities-Part-1",
+          "title": "Web Application Vulnerabilities Part 1",
+          "unit": 2,
+          "scriptPath": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/script.md",
+          "supplementaryPath": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/supplementary.md",
+          "quizPath": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/af_heart.m4a",
+              "duration": 1229.0
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/am_onyx.m4a",
+              "duration": 1076.5
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/am_santa.m4a",
+              "duration": 1175.3
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/bf_isabella.m4a",
+              "duration": 1169.8
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/bm_daniel.m4a",
+              "duration": 1051.5
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/bm_george.m4a",
+              "duration": 1245.1
+            }
+          ]
+        },
+        {
+          "id": "SSA-18-02-Web-Application-Vulnerabilities-Part-2",
+          "title": "Web Application Vulnerabilities Part 2",
+          "unit": 2,
+          "scriptPath": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/script.md",
+          "supplementaryPath": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/supplementary.md",
+          "quizPath": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/quiz.json",
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/af_heart.m4a",
+              "duration": 1165.1
+            },
+            {
+              "name": "am_onyx",
+              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/am_onyx.m4a",
+              "duration": 1023.2
+            },
+            {
+              "name": "am_santa",
+              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/am_santa.m4a",
+              "duration": 1114.0
+            },
+            {
+              "name": "bf_isabella",
+              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/bf_isabella.m4a",
+              "duration": 1115.4
+            },
+            {
+              "name": "bm_daniel",
+              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/bm_daniel.m4a",
+              "duration": 1003.7
+            },
+            {
+              "name": "bm_george",
+              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/bm_george.m4a",
+              "duration": 1184.9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "SSA-19",
+      "prefix": "SSA",
+      "moduleNum": 19,
+      "episodes": [
+        {
+          "id": "SSA-19-01-Security-In-Development-Teams",
+          "title": "Security In Development Teams",
+          "unit": 1,
+          "scriptPath": "content/SSA-19-01-Security-In-Development-Teams/script.md",
+          "supplementaryPath": "content/SSA-19-01-Security-In-Development-Teams/supplementary.md",
+          "quizPath": "content/SSA-19-01-Security-In-Development-Teams/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SSA-19-02-Enterprise-Security-Benefits",
+          "title": "Enterprise Security Benefits",
+          "unit": 2,
+          "scriptPath": "content/SSA-19-02-Enterprise-Security-Benefits/script.md",
+          "supplementaryPath": "content/SSA-19-02-Enterprise-Security-Benefits/supplementary.md",
+          "quizPath": "content/SSA-19-02-Enterprise-Security-Benefits/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SSA-19-03-Security-Ethics-And-Legal-Considerations",
+          "title": "Security Ethics And Legal Considerations",
+          "unit": 3,
+          "scriptPath": "content/SSA-19-03-Security-Ethics-And-Legal-Considerations/script.md",
+          "supplementaryPath": "content/SSA-19-03-Security-Ethics-And-Legal-Considerations/supplementary.md",
+          "quizPath": "content/SSA-19-03-Security-Ethics-And-Legal-Considerations/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SSA-19-04-Evaluating-Security-Programs",
+          "title": "Evaluating Security Programs",
+          "unit": 4,
+          "scriptPath": "content/SSA-19-04-Evaluating-Security-Programs/script.md",
+          "supplementaryPath": "content/SSA-19-04-Evaluating-Security-Programs/supplementary.md",
+          "quizPath": "content/SSA-19-04-Evaluating-Security-Programs/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SSA-19-98-Module-Summary-Secure-Software-Architecture",
+          "title": "Module Summary Secure Software Architecture",
+          "unit": 98,
+          "scriptPath": "content/SSA-19-98-Module-Summary-Secure-Software-Architecture/script.md",
+          "supplementaryPath": "content/SSA-19-98-Module-Summary-Secure-Software-Architecture/supplementary.md",
+          "quizPath": "content/SSA-19-98-Module-Summary-Secure-Software-Architecture/quiz.json",
+          "voices": []
+        },
+        {
+          "id": "SSA-19-99-Module-Review-Secure-Software-Architecture",
+          "title": "Module Review Secure Software Architecture",
+          "unit": 99,
+          "scriptPath": "content/SSA-19-99-Module-Review-Secure-Software-Architecture/script.md",
+          "supplementaryPath": "content/SSA-19-99-Module-Review-Secure-Software-Architecture/supplementary.md",
+          "quizPath": "content/SSA-19-99-Module-Review-Secure-Software-Architecture/quiz.json",
+          "voices": []
+        }
+      ]
+    }
+  ]
+}

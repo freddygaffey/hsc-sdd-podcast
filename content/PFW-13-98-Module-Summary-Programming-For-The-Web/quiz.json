@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw1398-q01",
+      "q": "The episode's exam dump uses 'Dogs Take Tasty Hambones' for the request journey. Identify the correct order of the four stages.",
+      "options": [
+        "DNS, TCP, TLS, HTTP",
+        "TCP, DNS, HTTP, TLS",
+        "DNS, TLS, TCP, HTTP",
+        "HTTP, DNS, TCP, TLS"
+      ],
+      "answer": 0,
+      "explanation": "'Dogs Take Tasty Hambones' encodes DNS, TCP, TLS, HTTP in order: DNS resolves the name to an IP address, TCP opens a reliable connection, TLS encrypts it, then HTTP carries the actual request and response. The tempting trap is putting TCP or HTTP first, but you cannot connect before you have an address, and you cannot send the request until the encrypted connection exists."
+    },
+    {
+      "id": "pfw1398-q02",
+      "q": "State what the MISO mnemonic stands for and what therefore distinguishes a progressive web app from a standard website.",
+      "options": [
+        "Mobile, Interactive, Secure, Optimised — a PWA is a mobile-optimised site",
+        "Manifest, Installable, Service worker, Offline — capabilities, not just appearance",
+        "Media queries, Icons, Standalone, Origin — responsive layout features",
+        "Manifest, Internationalisation, Storage, Offline — locale and storage features"
+      ],
+      "answer": 1,
+      "explanation": "MISO is Manifest, Installable, Service worker, Offline — the four essentials a PWA adds. The episode's repeated trap is confusing this with responsive design: responsive is about appearance at different screen sizes, while progressive is about capability — being installable to the home screen and working offline via a service worker."
+    },
+    {
+      "id": "pfw1398-q03",
+      "q": "Using the 'I Eat Pizza' (I-E-P) framework, explain why security is the distinguishing feature of e-commerce rather than just 'having a shopping cart'.",
+      "options": [
+        "E-commerce sites attract more traffic, so they need more servers",
+        "A shopping cart is the only feature unique to e-commerce among the three types",
+        "The protected asset is money and identity, so a breach causes direct financial loss, legal liability, and lost trust",
+        "Security regulations legally apply only to sites that process payments"
+      ],
+      "answer": 2,
+      "explanation": "In I-E-P (Interactive, E-commerce, PWA), the defining trait of e-commerce is secure financial transactions and protection of sensitive personal data — because the asset is money and identity. The script warns against saying it is 'just a shopping cart'; a breach for e-commerce is existential, bringing financial harm, legal penalties, and destroyed trust, which is a categorically higher stake than for an interactive blog."
+    },
+    {
+      "id": "pfw1398-q04",
+      "q": "Distinguish between hashing and encryption as defined in the episode's trap pass.",
+      "options": [
+        "Hashing is one-way (a fixed-size fingerprint for integrity and passwords); encryption is two-way (reversible with a key)",
+        "Hashing is two-way and reversible; encryption is one-way and irreversible",
+        "Hashing produces variable-size output; encryption always produces fixed-size output",
+        "Hashing uses a key pair; encryption uses a single shared key"
+      ],
+      "answer": 0,
+      "explanation": "The marquee line is 'Hash is one-way, Encrypt is two-way.' Hashing produces a one-way, fixed-size fingerprint used for integrity checking and password storage, and cannot be reversed; encryption transforms plain text to cipher text and is reversible with the correct key. The tempting wrong answer flips the directions — confusing which is reversible is a classic lost mark that carries into Secure Software Architecture."
+    },
+    {
+      "id": "pfw1398-q05",
+      "q": "Outline the 'Front, Back, Store' three-tier model and the trust consequence the episode says you must state for full marks.",
+      "options": [
+        "Front-end (trusted browser), back-end (untrusted server), store (database) — so validation happens client-side",
+        "Front-end (untrusted, runs on the user's device), back-end (trusted server), store (database queried only by the back end) — so validation and sensitive logic must be server-side",
+        "Front-end, back-end, and store are all equally trusted, so validation can happen at any tier",
+        "Front-end (server-side rendering), back-end (database access), store (browser cache) — so caching is the priority"
+      ],
+      "answer": 1,
+      "explanation": "Front, Back, Store maps to client-side front-end, server-side back-end, and the database. The required consequence is the trust boundary: the front end runs on the user's untrusted, tamperable device, while the back end is the trusted server, so validation, authentication, and sensitive logic must live server-side. Saying validation can be client-side is exactly the bypassable-validation trap the episode flags."
+    },
+    {
+      "id": "pfw1398-q06",
+      "q": "The clause-order mnemonic is 'So Few Workers Go Home On-time'. Explain the one-sentence difference between WHERE and HAVING.",
+      "options": [
+        "WHERE filters groups after aggregation; HAVING filters individual rows before grouping",
+        "WHERE and HAVING are interchangeable; the database accepts either on aggregates",
+        "WHERE filters individual rows before grouping (so it cannot reference an aggregate); HAVING filters groups after aggregation (so it can test a COUNT or SUM)",
+        "WHERE sorts the result set; HAVING limits the number of rows returned"
+      ],
+      "answer": 2,
+      "explanation": "'So Few Workers Go Home On-time' is SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY. WHERE filters rows before grouping happens, so it cannot see aggregates, whereas HAVING filters groups after aggregation and is where you test a COUNT or SUM. The episode warns that using WHERE on an aggregate when you needed HAVING is a classic lost mark, and getting the order wrong is a straight syntax error."
+    },
+    {
+      "id": "pfw1398-q07",
+      "q": "Describe the back-end request lifecycle captured by R-H-D-R.",
+      "options": [
+        "Render, Hash, Decrypt, Reply — the security stages of a request",
+        "Receive, Handle, Deliver, Return — the web server's file-serving stages",
+        "Request, Hold, Dispatch, Resolve — the DNS resolution stages",
+        "Route the URL to a handler, Handle the business logic, query Data, then Respond by rendering HTML or returning JSON"
+      ],
+      "answer": 3,
+      "explanation": "R-H-D-R is Route, Handle, Data, Respond: map the URL to a handler, run the business logic and read the request object, query or update the database, then render HTML through a template engine or return JSON. The distractors invent plausible-sounding stages, but the syllabus lifecycle lives in the web framework (Flask), distinct from the web server (nginx) that accepts connections and serves static files."
+    },
+    {
+      "id": "pfw1398-q08",
+      "q": "Compare the BUILD versus BUY decision for adopting a front-end framework, using the episode's reasoning.",
+      "options": [
+        "Always buy (adopt) a framework, because tested community code is superior to anything bespoke",
+        "Build when it is bespoke, unique, performance-critical, or needs control; buy when it is standard, the timeline is tight, or the team already knows it",
+        "Always build, because frameworks introduce bundle size and lock-in that are never justified",
+        "Build for simple pages and buy for complex ones, because complexity is the only deciding factor"
+      ],
+      "answer": 1,
+      "explanation": "BUILD versus BUY: build when the work is bespoke, unique, performance-critical, or you need control; buy (adopt) when it is standard, time is tight, or the team already knows the tool. Adoption gains speed, tested code, consistency, and community but costs bundle size, learning curve, and lock-in. The episode's trap is 'a framework is always better' — a heavy framework on a simple page is over-engineering."
+    },
+    {
+      "id": "pfw1398-q09",
+      "q": "A developer concatenates a user's search text directly into a SQL command string. Identify the vulnerability and the correct fix.",
+      "options": [
+        "Cross-site scripting; fix by encrypting the database with TLS",
+        "SQL injection; fix with a parameterised query (prepared statement) that passes the value separately so it is treated as data, not command",
+        "Cross-origin request forgery; fix by enabling the same-origin policy",
+        "SQL injection; fix by hashing the user input before adding it to the string"
+      ],
+      "answer": 1,
+      "explanation": "Concatenating user input into the command string is SQL injection — input like ' OR '1'='1 can return every row because the input becomes SQL. The fix is a parameterised query, also called a prepared statement: a placeholder with the value passed separately, so the database treats it strictly as data and never as command. Hashing the input or adding TLS does not stop injection, because the input still reaches the query as code."
+    },
+    {
+      "id": "pfw1398-q10",
+      "q": "A streaming-video startup expects sudden, unpredictable worldwide user spikes and reports slow page loads. Recommend an architecture and a performance approach, justified.",
+      "options": [
+        "A monolith with lazy-loading, because one deployable unit is simplest and lazy-loading fixes all latency",
+        "Serverless only, with no caching, because functions auto-scale and caching is unnecessary for video",
+        "A microservices backend secured with HTTPS, with no CDN, because encryption is the main performance lever",
+        "Microservices with a CDN and compression from C-C-C-L, so services scale and fail in isolation and assets are cached on edge servers near users — but measure first to find the real bottleneck"
+      ],
+      "answer": 3,
+      "explanation": "For unpredictable worldwide spikes, microservices let independent services scale and fail in isolation, so the video-delivery service can scale without scaling everything. From C-C-C-L (Cache, Compress, CDN, Lazy-load), a CDN caches static assets and video segments on edge servers geographically close to users, cutting latency, while compression shrinks text bytes — but the episode's rule one is measure before you optimise. A monolith cannot scale services independently, and skipping measurement risks premature optimisation."
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+# Local TTS virtualenv (recreate via README "Setup")
+.tts-venv/
+
+# Episode audio — source of truth is Cloudflare R2, not git (3+ GB, too big for GitHub).
+# Render locally with generate_all_voices.sh, then upload with tools/upload-audio.sh.
+*.m4a
+
+# Generated / auditioning audio — not source
+audio/
+*.wav
+
+# Build output (created by tools/deploy.sh)
+dist/
+
+# Python
+__pycache__/
+*.pyc
+
+# Machine-local tool state (not source)
+.wrangler/
+.claude/
+
+# Raw research/session transcripts — kept on disk, not published
+_research/
+_not_needed/
+
+.DS_Store

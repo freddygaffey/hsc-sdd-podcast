@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "case-the-target-breach-q01",
+      "q": "Identify how the attackers first gained a foothold that led into Target's network.",
+      "options": [
+        "They phished Target's HVAC contractor, Fazio Mechanical, and stole the vendor's login credentials",
+        "They brute-forced a Target administrator password directly",
+        "They exploited a software flaw in Target's point-of-sale registers from the internet",
+        "They bribed an employee inside Target's payment-processing team"
+      ],
+      "answer": 0,
+      "explanation": "The attackers did not attack Target's well-defended front gate at all. They sent a phishing email to Target's heating and air-conditioning contractor, Fazio Mechanical Services, and malware on the contractor's machines harvested the login credentials the vendor used to connect into Target. Brute-forcing Target directly is the opposite of what happened: the credentials were effectively handed over via the weaker third party."
+    },
+    {
+      "id": "case-the-target-breach-q02",
+      "q": "State the approximate scale of the data stolen in the Target breach.",
+      "options": [
+        "Around 4 million card numbers and 7 million people's personal details",
+        "Around 40 million credit and debit card numbers, plus personal details of as many as 70 million people",
+        "Around 400 million card numbers and 700 million people's personal details",
+        "Around 70 million card numbers and 40 million people's personal details"
+      ],
+      "answer": 1,
+      "explanation": "The attackers stole around 40 million credit and debit card numbers, plus the names, addresses, phone numbers and emails of as many as 70 million people on top of that, making it one of the largest retail data breaches in history at the time. Option D inverts the two figures: the 40 million applies to the card numbers and the 70 million to the broader set of personal details."
+    },
+    {
+      "id": "case-the-target-breach-q03",
+      "q": "Explain why a stolen air-conditioning vendor login was able to reach Target's payment systems.",
+      "options": [
+        "The vendor account had been deliberately granted administrator rights over the registers",
+        "Target's network was effectively flat, so once inside through any door the attackers could move sideways and reach far more than they should have",
+        "The point-of-sale registers shared the same password as the HVAC monitoring system",
+        "The card data was stored on the same physical server as the air-conditioning controls"
+      ],
+      "answer": 1,
+      "explanation": "In a well-designed network the boring vendor system for monitoring air conditioning and the payment-card systems should live in completely separate, walled-off zones with no path between them. Target's network was, in the relevant ways, flat, so the contractor's foothold became a launch pad and the attackers pivoted sideways toward the registers. The vendor account was not deliberately given register admin rights (option A); the problem was a lack of internal separation, not an explicit grant."
+    },
+    {
+      "id": "case-the-target-breach-q04",
+      "q": "Outline how the point-of-sale malware was able to capture card numbers despite encryption.",
+      "options": [
+        "It cracked the encryption keys used to protect the stored card database",
+        "It tricked customers into re-entering their card details on a fake screen",
+        "It was a memory scraper that grabbed each card number in the split second it sat unencrypted in the register's memory during processing",
+        "It intercepted the encrypted network traffic and decrypted it on the attacker's servers"
+      ],
+      "answer": 2,
+      "explanation": "When a card is swiped, the data must be briefly unencrypted inside the register's memory in order to be processed. The malware was a memory scraper that watched that memory and grabbed each card number in the split second it was readable, before it got passed on and secured. It never had to crack encryption keys; it simply exploited the unavoidable instant when the data was in the clear."
+    },
+    {
+      "id": "case-the-target-breach-q05",
+      "q": "Why does the script describe the Target breach as a 'genuine failure' rather than just bad luck, in relation to detection?",
+      "options": [
+        "Target had no security monitoring system installed at the time",
+        "The monitoring system worked and fired alerts, but the people who received them did not act on the warnings in time",
+        "The alerts were silently blocked by the attackers before staff could see them",
+        "The security team acted immediately but the malware was too advanced to remove"
+      ],
+      "answer": 1,
+      "explanation": "Target had recently installed a sophisticated, expensive monitoring system that detected the suspicious activity and fired alerts correctly. The failure was human and procedural: the people who received those warnings did nothing in time, for reasons including too many alerts and unclear responsibility for who should act. Option A is wrong because the detection technology did its job; it was the response that failed."
+    },
+    {
+      "id": "case-the-target-breach-q06",
+      "q": "The script frames the way in as a 'supply-chain attack of the access kind.' Explain what this means.",
+      "options": [
+        "The attackers tampered with physical goods being shipped to Target's stores",
+        "The attackers disrupted Target's supplier deliveries to create a distraction",
+        "The malware spread through software updates pushed by Target's own developers",
+        "Your security is only as strong as the security of everyone you give access to; every vendor with a login is part of your attack surface"
+      ],
+      "answer": 3,
+      "explanation": "A supply-chain attack of the access kind means the attacker targets a weaker third party that holds a key to your systems, rather than attacking you directly. The lesson is that your security is only as strong as the security of everyone you give access to, so every vendor, contractor and partner with a login is part of your attack surface. The software-update option describes a different style of supply-chain attack that is not what happened here."
+    },
+    {
+      "id": "case-the-target-breach-q07",
+      "q": "Distinguish between network segmentation and the principle of least privilege as the script applies them to Target.",
+      "options": [
+        "Segmentation carves the network into isolated zones to contain a breach, while least privilege limits each individual account to the minimum access its job needs",
+        "Segmentation limits each account's access, while least privilege divides the network into zones",
+        "They are two names for the same control: dividing the payment systems from the vendor systems",
+        "Segmentation applies only to vendors, while least privilege applies only to internal staff"
+      ],
+      "answer": 0,
+      "explanation": "Segmentation is structural: the network is carved into isolated zones with strict controls on traffic between them, so breaching one zone does not give the run of the whole place. Least privilege is about accounts: every user and system should have the minimum access it needs and nothing more, so a stolen HVAC login would only let an attacker fiddle with the thermostat. Option B swaps the two definitions; they are related but distinct controls, not the same thing (option C)."
+    },
+    {
+      "id": "case-the-target-breach-q08",
+      "q": "Explain why, in the script's analogy, segmentation is compared to the internal walls of a building.",
+      "options": [
+        "Because walls make the network run faster by reducing traffic",
+        "Because walls hide the payment systems so attackers cannot find them",
+        "Because walls encrypt the data passing between zones",
+        "Because internal walls stop a fire in one room from burning down the whole building, just as segmentation contains a breach to one zone"
+      ],
+      "answer": 3,
+      "explanation": "Segmentation is described as the internal walls that stop a fire in one room from burning down the whole building. It contains a breach so that compromising one zone does not give an attacker the run of the entire network, which is exactly what Target lacked when the fire spread from building management to the registers. Segmentation controls reachability between zones; it does not encrypt traffic or merely hide systems."
+    },
+    {
+      "id": "case-the-target-breach-q09",
+      "q": "The script says 'monitoring is useless without response, and that's a failure of accountability.' A small online retailer has just installed an automated intrusion-detection system. Recommend the action that best applies this lesson.",
+      "options": [
+        "Buy a second, more expensive monitoring tool to double-check the first",
+        "Assign clear ownership so a named person is responsible for watching alerts and is held by a chain to investigate and act on them",
+        "Turn off lower-priority alerts so the team only ever sees critical ones",
+        "Encrypt all stored card data so that alerts are no longer necessary"
+      ],
+      "answer": 1,
+      "explanation": "The Target lesson is that detection only matters if someone is responsible for watching the alerts, is trusted to act, and actually does. Applying this means clear ownership: a named person whose job it unambiguously is to respond, plus a chain that holds them to it, so an alarm is not just theatre. Buying more tooling (option A) repeats Target's mistake, since the most expensive tooling is worthless if its warnings land in an inbox nobody is accountable for."
+    },
+    {
+      "id": "case-the-target-breach-q10",
+      "q": "A hospital gives an external cleaning-equipment supplier a login that, by default, can reach the patient-records system as well as the cleaning-supply ordering system. Which single principle, if applied, would most directly shrink the blast radius if that login were stolen?",
+      "options": [
+        "Network segmentation, by re-architecting the whole hospital network into zones",
+        "Supply-chain vetting, by running a background check on the cleaning company",
+        "Least privilege, by confining the supplier account to only the cleaning-supply ordering system it needs",
+        "Incident response, by writing a faster plan for after a breach happens"
+      ],
+      "answer": 2,
+      "explanation": "Least privilege says every account should have the minimum access it needs and nothing more, so if a single account is compromised the blast radius is tiny. Confining the supplier's login to just the ordering system means stealing it buys an attacker no path to patient records, directly mirroring how Target's HVAC account should never have reached the registers. Segmentation also helps but is a broader structural change; the question asks for the single principle that most directly limits this one over-permissioned account."
+    }
+  ]
+}

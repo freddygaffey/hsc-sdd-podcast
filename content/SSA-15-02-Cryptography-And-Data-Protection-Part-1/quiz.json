@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1502p1-q01",
+      "q": "Identify the single-line distinction that the episode calls the 'spine' of the whole lesson.",
+      "options": [
+        "Hashing is one-way, encryption is two-way",
+        "Encryption protects confidentiality; hashing protects availability",
+        "A salt is secret; a hash is public",
+        "Symmetric keys are fast, asymmetric keys are slow"
+      ],
+      "answer": 0,
+      "explanation": "The episode repeats 'hashing is one-way, encryption is two-way' as the line you must get exactly right, finally paying off the IOU from Programming for the Web 11-03. The tempting distractor that hashing protects availability is wrong because hashing serves integrity, and the symmetric/asymmetric point belongs to Part 2."
+    },
+    {
+      "id": "ssa1502p1-q02",
+      "q": "Name the four properties of a good cryptographic hash listed in the episode.",
+      "options": [
+        "Reversible, random, variable-size, and unique",
+        "One-way, deterministic, fixed-size, and the avalanche effect",
+        "Encrypted, salted, slowed, and audited",
+        "Confidential, available, accountable, and authenticated"
+      ],
+      "answer": 1,
+      "explanation": "The episode holds up four properties: one-way (irreversible), deterministic (same input always gives the same hash), fixed-size (any input length yields the same length output), and the avalanche effect (a one-character change alters the hash completely). Option A inverts these — a hash is irreversible and fixed-size, never reversible or variable-size."
+    },
+    {
+      "id": "ssa1502p1-q03",
+      "q": "A developer needs to store data so the exact original can be read back later. Which operation should they use, and why?",
+      "options": [
+        "Hashing, because it produces a fixed-size fingerprint that saves storage space",
+        "Hashing, because it is irreversible and therefore the most secure choice",
+        "Encryption, because it is two-way and the original plaintext can be recovered with the correct key",
+        "Encryption, because it is deterministic and always produces the same output"
+      ],
+      "answer": 2,
+      "explanation": "Encryption is the only one of the two that reverses: with the right key, ciphertext decrypts back to the exact original plaintext, which is required when you must recover the data. Hashing (A and B) is one-way by design, so the original can never be reconstructed — irreversibility makes it useless when you genuinely need the data back."
+    },
+    {
+      "id": "ssa1502p1-q04",
+      "q": "Explain why passwords are hashed rather than encrypted to store them.",
+      "options": [
+        "Hashing is faster than encryption, so logins complete more quickly",
+        "Encryption is illegal for storing personal data under privacy regulations",
+        "You only ever need to verify a login, not recover the password, and because hashing is irreversible a breach cannot expose the passwords, whereas encryption's key is a liability that can turn the stored values back into plaintext",
+        "Hashed passwords take up less database space than encrypted ones"
+      ],
+      "answer": 2,
+      "explanation": "The full-mark answer names one-way versus two-way, the 'verify not recover' insight, and the key-as-a-liability point: at login you only check whether the entered password matches, so irreversibility means a breach reveals nothing recoverable. Encryption is the tempting wrong answer because it 'sounds secure', but its key can be stolen alongside the database and decrypt every password — speed (A) is never the reason."
+    },
+    {
+      "id": "ssa1502p1-q05",
+      "q": "Describe the role of a salt in secure password storage.",
+      "options": [
+        "A secret key that encrypts the password before it is stored in the database",
+        "An extra set of characters appended to a password to make it longer and harder to guess",
+        "A deliberately slow algorithm that limits how many guesses an attacker can make per second",
+        "A unique random value combined with each password before hashing, so identical passwords produce different hashes and precomputed rainbow tables are defeated"
+      ],
+      "answer": 3,
+      "explanation": "The exam-precise role of a salt is a unique random value added per user before hashing, so identical passwords no longer share a hash and the attacker's precomputed rainbow table — built without your salts — is useless. 'Extra characters to make it longer' is the weak answer the episode warns against (it names no mechanism or attack), and the 'deliberately slow algorithm' option describes key stretching, the second fix, not the salt."
+    },
+    {
+      "id": "ssa1502p1-q06",
+      "q": "Distinguish between a salt and key stretching as the two fixes that turn a naive hash into safe password storage.",
+      "options": [
+        "A salt defeats rainbow-table attacks by making identical passwords hash differently; key stretching defeats brute force by using a deliberately slow algorithm so guessing is too expensive",
+        "A salt makes hashing slower; key stretching makes each hash unique per user",
+        "A salt is kept secret on the server; key stretching is stored next to the hash",
+        "A salt encrypts the password; key stretching hashes the result of that encryption"
+      ],
+      "answer": 0,
+      "explanation": "These are the two distinct fixes: the salt is a unique random value that defeats precomputed rainbow tables, while key stretching (bcrypt, scrypt, Argon2, or PBKDF2 with a high iteration count) makes each hash deliberately slow to defeat billions of guesses per second. The 'salt makes hashing slower' distractor swaps their jobs, and claiming the salt is secret is backwards — the salt is stored alongside the hash and need not be hidden."
+    },
+    {
+      "id": "ssa1502p1-q07",
+      "q": "Why is an ordinary fast hash such as SHA-256 unsuitable for storing passwords, even when a salt is used?",
+      "options": [
+        "SHA-256 is reversible, so an attacker can decrypt the stored hashes directly",
+        "SHA-256 produces a variable-length output, which corrupts the stored records",
+        "Fast hashes are designed to fingerprint large files quickly, so an attacker with the salted hashes can still try billions of guesses per second",
+        "SHA-256 is deterministic, so two users with different passwords get the same hash"
+      ],
+      "answer": 2,
+      "explanation": "Fast hashes like SHA-256 are built to fingerprint huge files quickly, which is exactly wrong for passwords: even with a salt, an attacker can guess, salt, hash and compare at billions of attempts per second, so you must deliberately slow it with key stretching. Option A misstates hashing as reversible, and a fast hash is fixed-size and deterministic — different inputs give different hashes, not the same one (D)."
+    },
+    {
+      "id": "ssa1502p1-q08",
+      "q": "Outline the secure password-storage recipe and the order in which the operations are applied.",
+      "options": [
+        "Encrypt it, salt it, slow it — applying the salt, then encryption, then key stretching",
+        "Salt it, hash it, encrypt it — hashing first, then encrypting the digest for extra safety",
+        "Slow it, hash it, salt it — adding the salt last so the stored hash stays unique",
+        "Hash it, salt it, slow it — combining the password with the salt first, then hashing the result (password, salt, hash)"
+      ],
+      "answer": 3,
+      "explanation": "The memory hook is 'hash it, salt it, slow it', and the exam-tested operation order is password, salt, hash — you combine the password with the unique salt first, then run it through a deliberately slow algorithm. Options that start with 'encrypt' miss the whole point that passwords must never be recoverable, and the salt is added before hashing, not last."
+    },
+    {
+      "id": "ssa1502p1-q09",
+      "q": "A team is reviewing a system that stores passwords using a single fast hash with no salt. Recommend the two fixes that would make the storage secure.",
+      "options": [
+        "Add a unique random salt per user to defeat rainbow tables, and apply key stretching with a slow algorithm such as bcrypt or Argon2 to defeat brute force",
+        "Encrypt the hashes with a server key, and store the key in a separate database",
+        "Switch to a faster hash so logins are quicker, and hash each password twice",
+        "Store the passwords in plaintext but restrict database access to administrators"
+      ],
+      "answer": 0,
+      "explanation": "The two distinct weaknesses are 'no salt' (vulnerable to precomputed rainbow tables) and 'too fast' (billions of guesses per second), so the matching fixes are a unique per-user salt and key stretching with a slow algorithm like bcrypt or Argon2. Encrypting the hashes reintroduces the recoverable-key liability that hashing exists to avoid, and a faster hash makes brute forcing easier, not harder."
+    },
+    {
+      "id": "ssa1502p1-q10",
+      "q": "Explain how the 'never roll your own' rule reflects the 'secure default, easy right path' principle when storing credentials.",
+      "options": [
+        "Writing custom crypto is faster, so it keeps the secure option the easy one",
+        "Custom hashing is more secure because attackers cannot study unfamiliar code",
+        "Established, audited crypto libraries already perform salting and slow hashing correctly, making the secure approach the default and the easy path so there is no incentive to do it by hand and get it wrong",
+        "Libraries should be avoided because shared code is a single point of failure"
+      ],
+      "answer": 2,
+      "explanation": "The episode's golden rule is 'never roll your own' — your language's audited crypto library already salts and slow-hashes correctly, so the safe way is also the easy way, the essence of 'secure default, easy right path' and security-by-design. Option B is the dangerous 'security through obscurity' misconception; custom crypto almost always introduces flaws that audited libraries have already eliminated."
+    }
+  ]
+}

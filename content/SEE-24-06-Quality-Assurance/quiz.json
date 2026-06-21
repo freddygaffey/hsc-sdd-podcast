@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2406-q01",
+      "q": "Identify the three elements of quality assurance named in the syllabus dot-point.",
+      "options": [
+        "Criteria, Continual checking, Compliance",
+        "Correctness, Usability, Performance",
+        "Reviews, Inspections, Testing",
+        "Requirements, Design, Implementation"
+      ],
+      "answer": 0,
+      "explanation": "The three syllabus elements are the three Cs: Criteria (defining measurable quality standards), Continual checking (verifying requirements are met throughout the lifecycle), and Compliance (meeting legally mandated requirements). Correctness, Usability and Performance (option B) are part of C-U-P-S, which sits inside only the first C — Criteria — so they are a sub-hook, not the three top-level elements."
+    },
+    {
+      "id": "see2406-q02",
+      "q": "Distinguish quality assurance from testing.",
+      "options": [
+        "Quality assurance and testing both run test cases to find and remove bugs in the finished software",
+        "Quality assurance happens before coding and testing happens after, but otherwise they do the same job",
+        "Quality assurance is the overall, process-oriented framework that prevents defects, while testing is one specific activity within it that detects defects in the built software",
+        "Testing is the broad process that ensures quality, and quality assurance is one activity that runs test cases within it"
+      ],
+      "answer": 2,
+      "explanation": "QA is the process; testing is one activity inside it. QA is process-oriented — standards, reviews, criteria and continual checking across the whole project to prevent defects — whereas testing executes test cases against the built software to detect defects. Option A is the classic conflation error the marker hunts for (a band-three answer); option D reverses the relationship. The contrast to state is process-versus-activity and prevent-versus-detect, with QA as the larger container."
+    },
+    {
+      "id": "see2406-q03",
+      "q": "What does the C-U-P-S mnemonic stand for in the context of defining quality criteria?",
+      "options": [
+        "Compliance, Usability, Privacy, Security",
+        "Correctness, Usability, Performance, Security",
+        "Criteria, Usability, Performance, Standards",
+        "Consistency, Uptime, Portability, Scalability"
+      ],
+      "answer": 1,
+      "explanation": "C-U-P-S — Correctness, Usability, Performance, Security — is the sub-hook inside the first C (Criteria) and names the four core quality criteria. Correctness means the software does what it should accurately; Usability means it is intuitive and accessible; Performance means it operates efficiently within acceptable limits; Security means it protects data and access. Compliance (option A) is the separate third C, not part of C-U-P-S."
+    },
+    {
+      "id": "see2406-q04",
+      "q": "Explain why the word 'continual' is emphasised in the QA checking process.",
+      "options": [
+        "It means the same test suite must be re-run automatically every night until release",
+        "It means every team member must continually rewrite the requirements as the project evolves",
+        "It means testing should only begin once all other development work has been fully completed",
+        "It means quality is verified against the criteria throughout the development lifecycle by multiple people, so defects are caught early when they are cheap to fix, rather than in a single check at the end"
+      ],
+      "answer": 3,
+      "explanation": "Continual checking means verifying against the criteria at every stage — requirements, design, implementation and testing reviews — not a one-off check at the end. This is shift-left applied to quality: the earlier and more often you check, the cheaper the fixes. Option C describes treating QA as a final-stage gate, which is exactly Trap three named in the episode."
+    },
+    {
+      "id": "see2406-q05",
+      "q": "Why does a quality criterion such as 'the software should be usable' earn fewer marks than 'a teacher can complete grade entry in under five minutes'?",
+      "options": [
+        "The first is too technical, whereas markers prefer plain-language criteria",
+        "The second names a specific piece of legislation, which the first does not",
+        "The first is not measurable, whereas the second is a measurable, testable condition — and the marker rewards measurable criteria that double as acceptance criteria",
+        "The first refers to usability and the second refers to performance, which is a more important criterion"
+      ],
+      "answer": 2,
+      "explanation": "Quality criteria must be clear and measurable, established at the project start. 'Usable' is weak because it cannot be objectively checked, while 'complete grade entry in under five minutes' is a testable target — the same testable conditions as acceptance criteria from episode one. Option D is wrong because both statements concern usability; the distinction is measurability, not which C-U-P-S criterion is used."
+    },
+    {
+      "id": "see2406-q06",
+      "q": "Outline how the Privacy Act 1988 acts as a quality criterion for a software solution.",
+      "options": [
+        "It is a legally mandated requirement to protect personal information, obtain proper consent and let users access or delete their data, forcing privacy-by-design into the solution",
+        "It is an optional best-practice guideline that teams may trade off against the schedule if time is short",
+        "It only applies to e-commerce systems that process credit card payments",
+        "It requires that all software pass system and acceptance testing before release"
+      ],
+      "answer": 0,
+      "explanation": "Compliance is a non-negotiable quality criterion driven by law. The Privacy Act 1988 mandates protection of personal information, proper consent, and the ability to access or delete data — which is privacy-by-design, the P-E-R concept from Secure Software Architecture 16-02 as law. Option B is the exact trap the marker warns against: compliance is legally mandated, not optional, and cannot be traded against the schedule like a feature."
+    },
+    {
+      "id": "see2406-q07",
+      "q": "Compare the goal of quality assurance with the goal of testing in terms of defects.",
+      "options": [
+        "QA detects defects in the product, while testing prevents defects through good process",
+        "QA prevents defects through good process, while testing detects defects in the built product",
+        "Both QA and testing prevent defects, and neither detects them",
+        "Both QA and testing detect defects, and neither prevents them"
+      ],
+      "answer": 1,
+      "explanation": "The memory line from the episode is: QA prevents defects through good process; testing detects defects in the product. QA is the broad framework of standards, reviews and continual checking aimed at stopping defects from occurring, while testing is the activity that finds defects once code is built. Option A reverses the two, which is the most tempting error because the words are correct but assigned to the wrong concept."
+    },
+    {
+      "id": "see2406-q08",
+      "q": "A team building an online store must define a security quality criterion for the checkout feature. Which option is the strongest, band-six criterion?",
+      "options": [
+        "The checkout should be secure and protect customer data from hackers",
+        "Payment data is transmitted over TLS and never stored in plain text, card details are handled per payment-card compliance, and all transactions are logged, verified by security review",
+        "The checkout page responds within two seconds under two hundred concurrent users, verified by load testing",
+        "A customer can complete checkout in under three steps with clear error messages, verified by usability testing"
+      ],
+      "answer": 1,
+      "explanation": "A band-six criterion follows the structure criterion, measurable target, and check. Option B names a measurable security standard (TLS, no plaintext, PCI handling, logging) with a verification method (security review), matching the worked example. Option A is too vague to test ('be secure'), while options C and D are well-formed criteria but address Performance and Usability, not Security."
+    },
+    {
+      "id": "see2406-q09",
+      "q": "A school records system passes every functional test but fails WCAG colour-contrast requirements. Explain why it cannot be called high-quality.",
+      "options": [
+        "Because it has not yet been through unit and integration testing, only functional testing",
+        "Because passing functional tests proves correctness but not usability, and usability is more important than compliance",
+        "Because compliance is a mandatory, legally driven quality criterion, so a system that breaches accessibility law is not high-quality regardless of how well it functions",
+        "Because WCAG is a performance standard and the system is therefore too slow for users"
+      ],
+      "answer": 2,
+      "explanation": "This is Trap two from the episode: a system can pass every functional test and still fail QA because it breaches a legal requirement. Accessibility under the Disability Discrimination Act 1992 and WCAG is a non-negotiable, designed-in quality criterion (the POUR principles as law), so failing it means the system is not high-quality. Option D is wrong because WCAG governs accessibility, not performance — colour contrast has nothing to do with speed."
+    },
+    {
+      "id": "see2406-q10",
+      "q": "A team is quality-assuring a school records system. Using the episode's framework, which response best structures a full QA approach?",
+      "options": [
+        "Run a comprehensive suite of unit, integration, system and acceptance tests at the end of development to find and fix all defects before release",
+        "Appoint a dedicated QA tester to write and execute all test cases, since QA and testing are the same continual activity",
+        "Focus on meeting the Scope-Time-Cost triangle and the Gantt chart critical path so the project is delivered on schedule and within budget",
+        "Define measurable C-U-P-S criteria from the requirements, verify against them continually through reviews and aligned testing at every stage, and address mandatory compliance such as the Privacy Act and WCAG — with testing being one activity within the process"
+      ],
+      "answer": 3,
+      "explanation": "A full QA answer is structured around the three Cs: measurable criteria drawn from requirements (C-U-P-S), continual multi-stage checking through reviews and aligned testing so defects are caught early, and mandatory compliance such as the Privacy Act and WCAG. Option A treats QA as a one-off final test (Trap three), and option B conflates QA with testing (Trap one) — both lose marks. Option C is project management from an earlier episode, not quality assurance."
+    }
+  ]
+}

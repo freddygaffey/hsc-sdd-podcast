@@ -1,0 +1,134 @@
+{
+  "questions": [
+    {
+      "id": "ssa1701-q01",
+      "q": "What does the A-A-R-T mnemonic stand for as the four core measures to secure an API?",
+      "options": [
+        "Authenticate, Authorise, Rate-limit, Transport-secure",
+        "Authenticate, Audit, Restrict, Tokenise",
+        "Access-control, Authorise, Restrict, Trust",
+        "Authorise, Authenticate, Record, Throttle"
+      ],
+      "answer": 0,
+      "explanation": "A-A-R-T is the anchor for the six-mark 'describe measures to secure an API' question: Authenticate the caller, Authorise the action, Rate-limit the volume, and Transport-secure with HTTPS. Naming this framework shows the marker you have a structure. The tempting distractor swaps in 'Audit' and 'Tokenise', which are not the four named core measures.",
+      "type": "recall"
+    },
+    {
+      "id": "ssa1701-q02",
+      "q": "Identify the three authentication credentials named in the episode, in increasing order of sophistication.",
+      "options": [
+        "Session cookie, password hash, and biometric token",
+        "API key, JWT, and OAuth 2.0",
+        "Username, API key, and digital certificate",
+        "Bearer token, SAML, and OAuth 2.0"
+      ],
+      "answer": 1,
+      "explanation": "The script names exactly three credentials a request can carry to prove who is calling: an API key (a long secret identifying the application), a JWT (a signed token carrying identity and permissions for stateless authentication), and OAuth 2.0 (the delegated-authorisation protocol behind 'log in with Google'). Option A lists session and password mechanisms rather than the three API authentication credentials taught here.",
+      "type": "recall"
+    },
+    {
+      "id": "ssa1701-q03",
+      "q": "Distinguish between authentication and authorisation as enforced by an API.",
+      "options": [
+        "Authentication checks permissions for a resource; authorisation verifies the caller's identity",
+        "Authentication encrypts the request; authorisation decrypts the response",
+        "Authentication verifies who the caller is; authorisation verifies whether that caller may perform this specific action on this resource",
+        "Authentication is done once at login; authorisation only matters for admin accounts"
+      ],
+      "answer": 2,
+      "explanation": "The exam line is that authentication verifies identity (who you are) while authorisation verifies permission for the specific action and resource (what you may do), and an API must enforce both on every request. Option A reverses the two definitions, which is the exact confusion the episode warns against. Remember: authenticated is not authorised.",
+      "type": "compare"
+    },
+    {
+      "id": "ssa1701-q04",
+      "q": "An API endpoint authenticates the user but returns any order whose ID appears in the URL, letting a logged-in user change the number and read other people's orders. Identify the vulnerability.",
+      "options": [
+        "Cross-site scripting, because user input is reflected in the URL",
+        "Broken access control, also called an insecure direct object reference",
+        "A denial-of-service flaw, because too many requests can be made",
+        "A CORS misconfiguration, because the wrong origins are permitted"
+      ],
+      "answer": 1,
+      "explanation": "This is the classic API breach: the endpoint authenticates the user but never authorises them for that specific order, so any logged-in caller can change the ID and read records they do not own — broken access control, also known as an insecure direct object reference. The fix is a per-request authorisation check confirming ownership or a permitted role, applying least privilege. CORS (D) governs browser origins, not who may access a resource.",
+      "type": "scenario"
+    },
+    {
+      "id": "ssa1701-q05",
+      "q": "Explain the purpose of rate limiting on an API.",
+      "options": [
+        "It encrypts each request so credentials cannot be read in transit",
+        "It verifies that the caller has permission for the requested resource",
+        "It caps how many requests a client may make in a time window, protecting availability against denial-of-service and slowing brute-force and scraping attacks",
+        "It removes malicious script tags from user input before storage"
+      ],
+      "answer": 2,
+      "explanation": "The exam line is that rate limiting restricts the number of requests a client may make in a given period, protecting availability against denial-of-service flooding and slowing brute-force and scraping attacks. The mechanism is a token bucket or sliding window, and exceeding the limit returns HTTP 429, 'too many requests'. Option A describes transport security (HTTPS), and B describes authorisation — different measures in A-A-R-T.",
+      "type": "describe"
+    },
+    {
+      "id": "ssa1701-q06",
+      "q": "The 'T' in A-A-R-T is transport security. Why is serving an API over HTTPS rather than plain HTTP described as foundational to every other control?",
+      "options": [
+        "HTTPS automatically authorises callers, removing the need for ownership checks",
+        "HTTPS rate-limits requests, preventing denial-of-service attacks at the transport layer",
+        "Plain HTTP cannot carry JSON, so the API could not return data at all",
+        "Without TLS, API keys, tokens, passwords and data cross the network in clear text, so any credential you checked is exposed to anyone in between"
+      ],
+      "answer": 3,
+      "explanation": "HTTPS is TLS, providing confidentiality in transit assumed by everything else; without it, credentials and data travel as clear text readable by anyone in between, so an API over plain HTTP is 'broken before you've added a single other control'. The rate-limiting distractor confuses transport security with the 'R' in A-A-R-T, and HTTPS does not perform authorisation. This is the hybrid encryption from 15.02 applied to every request and response.",
+      "type": "describe"
+    },
+    {
+      "id": "ssa1701-q07",
+      "q": "A team configures CORS to allow only their front-end origin and tells the marker 'we use CORS to stop unauthorised users accessing the API.' What is wrong with relying on CORS this way?",
+      "options": [
+        "CORS only works over HTTP, so it cannot protect an HTTPS API",
+        "CORS is an access-control mechanism, but it should be applied at the database instead",
+        "CORS only tells the browser which web origins may read responses; it does nothing about scripts, command-line tools or attacker servers, so access control must still be authentication and authorisation",
+        "Nothing is wrong; a correctly allow-listed CORS policy is a complete access-control solution"
+      ],
+      "answer": 2,
+      "explanation": "CORS is a controlled relaxation of the same-origin policy that tells browsers which origins may read responses — it is not an access-control mechanism, and non-browser clients ignore it entirely. The episode flags this as a marker's trap: writing 'we use CORS to stop unauthorised users' is wrong because access control is authentication and authorisation (A-A). A correctly allow-listed CORS policy still does not authenticate or authorise callers (D).",
+      "type": "scenario"
+    },
+    {
+      "id": "ssa1701-q08",
+      "q": "In the S-A-F-E session model, what does setting the HttpOnly attribute on a session cookie protect against?",
+      "options": [
+        "It stops the cookie being sent on cross-site requests, defending against cross-site request forgery",
+        "It forces the cookie to expire after a fixed lifetime, limiting a stolen session",
+        "It ensures the cookie is only ever transmitted over HTTPS",
+        "It prevents client-side JavaScript from reading the cookie, so a cross-site scripting attack cannot steal the session"
+      ],
+      "answer": 3,
+      "explanation": "In S-A-F-E sessions, the 'A' is cookie Attributes: HttpOnly blocks client-side JavaScript from reading the cookie, so a cross-site scripting attack cannot steal the session ID. The other options describe the SameSite attribute (anti-CSRF), Fixed lifetime, and the Secure attribute — all real session protections, but each answers a different attribute. The S-A-F-E hook is Strong random IDs, Attributes, Fixed lifetime, re-issue on Escalation.",
+      "type": "describe"
+    },
+    {
+      "id": "ssa1701-q09",
+      "q": "What is the same-origin policy, and how does CORS relate to it?",
+      "options": [
+        "The same-origin policy lets a page call any domain; CORS restricts it to one domain",
+        "The same-origin policy is a server rule that encrypts cross-domain traffic; CORS decrypts it",
+        "The same-origin policy is a browser rule that by default blocks a page's scripts from reading responses from other origins; CORS is a controlled relaxation that lets a server permit specific other origins",
+        "The same-origin policy and CORS are the same authentication mechanism with different names"
+      ],
+      "answer": 2,
+      "explanation": "The same-origin policy is a browser security rule that by default only allows a page's scripts to read responses from its own origin, blocking other domains — this stops a malicious page quietly calling your bank's API with your logged-in session. CORS is a controlled relaxation: through response headers a server permits specified other origins. Option A reverses the relationship, and neither concept is about encryption (B) or authentication (D).",
+      "type": "compare"
+    },
+    {
+      "id": "ssa1701-q10",
+      "q": "Design the security for a public API that lets registered users read and update their own profile. Which response best applies the episode's framework for full marks?",
+      "options": [
+        "Require users to log in and configure CORS to allow only the front-end origin, since CORS controls who can access the API",
+        "Require a valid signed token; on every request verify the user is acting on their own profile using ownership and role checks with least privilege; rate-limit per user; serve only over HTTPS; validate and sanitise every field (V-S-E); and treat CORS as a same-origin relaxation, not access control",
+        "Encrypt the database, hash passwords, and rely on the firewall to block unauthorised requests to the profile endpoint",
+        "Authenticate once at login, store the user ID in a hidden form field, and trust it on later requests to identify the profile owner"
+      ],
+      "answer": 1,
+      "explanation": "A band-six answer structures the response with A-A-R-T plus input handling: authenticate with a signed token, authorise ownership on every request with least privilege (preventing broken access control), rate-limit per user, transport-secure over HTTPS, and validate and sanitise every field via V-S-E. Option A stops at 'logged in' and misuses CORS as access control — the exact weak answer the script contrasts against. Option D trusts a client-supplied user ID, which any caller could tamper with.",
+      "type": "scenario"
+    }
+  ]
+}

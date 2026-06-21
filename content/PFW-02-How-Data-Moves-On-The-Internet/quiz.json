@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw02-q01",
+      "q": "Identify what D-N-S stands for and the one-sentence role it performs.",
+      "options": [
+        "Domain Name System — it translates human-readable domain names into the I-P addresses computers use to locate each other",
+        "Data Network Service — it routes packets along the fastest available path",
+        "Dynamic Naming Server — it assigns a new I-P address to a device each time it connects",
+        "Domain Network Security — it encrypts a connection so data cannot be read in transit"
+      ],
+      "answer": 0,
+      "explanation": "D-N-S is the Domain Name System, and its role is to translate a human-readable domain name (like shop.example.com) into the I-P address of the server hosting the site. Encryption (option D) is the job of T-L-S, not D-N-S, and confusing the two costs marks. The mark-earning line names both halves: the name and the function."
+    },
+    {
+      "id": "pfw02-q02",
+      "q": "Describe the format of an I-P version four (I-P-v-four) address.",
+      "options": [
+        "Eight groups of hexadecimal digits separated by colons",
+        "A single number between zero and four billion",
+        "Four numbers, each between zero and two hundred and fifty-five, separated by full stops",
+        "Two numbers separated by a slash, representing a network and a host"
+      ],
+      "answer": 2,
+      "explanation": "An I-P-v-four address is four numbers, each from 0 to 255, separated by dots, for example 192.168.0.1. Each number is eight bits (one byte), giving 256 possible values (0-255), which is why it caps at 255. The hexadecimal-and-colons format (option A) describes I-P version six, the newer system that solves I-P-v-four's address exhaustion."
+    },
+    {
+      "id": "pfw02-q03",
+      "q": "Explain why data is broken into packets for transmission over the internet.",
+      "options": [
+        "So that a single large transfer can monopolise the connection and finish faster",
+        "So that data can be encrypted one chunk at a time before it leaves the device",
+        "So that data can be transmitted efficiently by sharing links, routed resiliently around failures, and recovered by resending only the lost packet",
+        "So that the receiving computer can guarantee every packet arrives in the exact order it was sent"
+      ],
+      "answer": 2,
+      "explanation": "A full-mark answer names three benefits: sharing (many users interleave over the same links so no transfer hogs the line), resilience (each packet carries its destination address and is routed independently around congestion or failures), and error recovery (only a lost or corrupted packet is resent, not the whole file). Saying it just makes things 'faster' is the weak answer. Packets explicitly do NOT arrive in order (option D), which is why they carry sequence numbers."
+    },
+    {
+      "id": "pfw02-q04",
+      "q": "What does the mnemonic 'Dogs Take Tasty Hambones' represent in this episode?",
+      "options": [
+        "The ordered sequence of protocols in a web request: D-N-S, T-C-P, T-L-S, H-T-T-P",
+        "The four reasons data is broken into packets: Distribution, Transfer, Timing, Handling",
+        "The four fields in an I-P-v-four packet header",
+        "The four layers of the D-N-S hierarchy: domain, top-level, then top, then host"
+      ],
+      "answer": 0,
+      "explanation": "Dogs Take Tasty Hambones encodes the ordered protocol sequence of a web request: Dogs = D-N-S (look up the address), Take = T-C-P (open a connection), Tasty = T-L-S (secure it), Hambones = H-T-T-P (request the page). The episode stresses that this ordered list is itself the mark scheme for 'trace a web request', because each named step in order earns a mark."
+    },
+    {
+      "id": "pfw02-q05",
+      "q": "Describe the role of D-N-S in retrieving a web page.",
+      "options": [
+        "It fetches the H-T-M-L of the page directly from the server and returns it to the browser",
+        "It resolves the domain name to the server's I-P address by querying a hierarchy of name servers, caching answers under a time-to-live, so the browser can then connect",
+        "It establishes an encrypted T-C-P connection to the server on port four-four-three",
+        "It assigns the browser a temporary I-P address so the server knows where to send the page"
+      ],
+      "answer": 1,
+      "explanation": "D-N-S resolves a human-readable domain name into the I-P address of the host, by querying a hierarchy of name servers (root, then dot-com, then authoritative) while checking caches first and respecting a time-to-live. The three marks are: it translates name to I-P, it queries a hierarchy with caching, and the result enables the connection. Crucially it does NOT fetch the page itself (option A) — that is H-T-T-P's job, and saying D-N-S 'loads the page' is a trap."
+    },
+    {
+      "id": "pfw02-q06",
+      "q": "Because packets can each take a different route to the destination, what consequence must an exam answer account for?",
+      "options": [
+        "Packets are automatically encrypted by the router that forwards them",
+        "Packets can only be sent over one fixed path chosen by D-N-S at the start",
+        "Packets may arrive out of order, so each carries a sequence number used to reassemble the data and detect any missing packet",
+        "Packets arrive in the order they were sent, so no reordering is ever needed"
+      ],
+      "answer": 2,
+      "explanation": "Because each packet is routed independently, some take slower paths and packets do not necessarily arrive in the order sent. Each packet therefore carries a sequence number so the receiver can reassemble the data correctly and notice a gap (a lost packet). Assuming packets arrive in sequence (the last option) is one of the two classic traps the episode warns about; the reassembly work belongs to T-C-P (the 'Take' in the chant)."
+    },
+    {
+      "id": "pfw02-q07",
+      "q": "Distinguish between a domain name, an I-P address, and D-N-S.",
+      "options": [
+        "The domain name and the I-P address are the same thing; D-N-S simply stores a backup copy",
+        "The domain name is the machine's numeric location, the I-P address is the human-friendly label, and D-N-S secures the link between them",
+        "The domain name is the human-friendly label, the I-P address is the machine's actual numeric location, and D-N-S is the translation service between them",
+        "The I-P address is the human-friendly label, the domain name is the encrypted version, and D-N-S decrypts it"
+      ],
+      "answer": 2,
+      "explanation": "The episode's key distinction is name, number, translator: the domain name is the human-friendly label, the I-P address is the machine's actual numeric location, and D-N-S is the translation service in the middle. The single most common way students lose marks here is confusing the I-P address with the D-N-S name or saying 'D-N-S is the address' — they are opposites in role, with the translator sitting between them."
+    },
+    {
+      "id": "pfw02-q08",
+      "q": "Why is a second visit to the same website often faster from a D-N-S point of view?",
+      "options": [
+        "The browser permanently stores the page so D-N-S is never consulted again",
+        "I-P-v-six addresses load faster than I-P-v-four addresses on repeat visits",
+        "D-N-S compresses the domain name into a shorter form after the first lookup",
+        "The name-to-I-P-address mapping has been cached under its time-to-live, so the full hierarchy walk is skipped until the T-T-L expires"
+      ],
+      "answer": 3,
+      "explanation": "Every step in resolution caches the answer for a period set by the time-to-live (T-T-L). On a repeat visit, the cached name-to-I-P mapping is reused and the whole root-then-dot-com-then-authoritative walk is skipped until the T-T-L expires, so the lookup is faster. Option A confuses page caching with D-N-S caching; the speed-up here is specifically about the cached address mapping, not the stored page content."
+    },
+    {
+      "id": "pfw02-q09",
+      "q": "A user enters a secure web address and the page loads. Outline the sequence of protocols involved, in order, from entering the address to the page displaying.",
+      "options": [
+        "H-T-T-P resolves the name, then T-L-S opens the connection, then T-C-P encrypts it, then D-N-S requests the page",
+        "D-N-S resolves the name to an I-P address, T-C-P establishes a connection, T-L-S secures it, then H-T-T-P requests the page, which returns as numbered packets reassembled in order",
+        "T-C-P resolves the name, D-N-S secures the connection, H-T-T-P numbers the packets, then T-L-S displays the page",
+        "The browser simply sends a request to the server and gets the page back in one step"
+      ],
+      "answer": 1,
+      "explanation": "The strong answer is a named sequence in order: D-N-S resolves the domain to an I-P address, T-C-P establishes a connection (port four-four-three for secure traffic), T-L-S secures the connection by encrypting it, then H-T-T-P sends the actual request, and the response returns as numbered packets reassembled in order. This is exactly Dogs Take Tasty Hambones. Option D is the one-mark weak answer that 'misses every protocol mark', and option A scrambles the order, which loses the marks."
+    },
+    {
+      "id": "pfw02-q10",
+      "q": "The 2016 Dyn attack flooded a major D-N-S provider and took down Twitter, Netflix and Reddit even though those sites were healthy. Which property of D-N-S does this best illustrate?",
+      "options": [
+        "D-N-S encrypts traffic, so when its keys are stolen all secure sites fail at once",
+        "D-N-S is critical infrastructure and a single point of failure — if names cannot be resolved, sites are unreachable even when the sites themselves are fine",
+        "D-N-S stores the actual web pages, so an attack on it deletes the content of every affected site",
+        "D-N-S assigns I-P addresses, so flooding it leaves devices with no address and unable to connect"
+      ],
+      "answer": 1,
+      "explanation": "The Dyn outage shows that D-N-S is a single point of failure that everything depends on: if the name cannot be resolved, you cannot reach the site even though the site itself is perfectly healthy. This is why the episode files D-N-S as critical infrastructure. Option C wrongly treats D-N-S as a content host — it only translates names to I-P addresses and never stores the page, which is H-T-T-P's domain."
+    }
+  ]
+}

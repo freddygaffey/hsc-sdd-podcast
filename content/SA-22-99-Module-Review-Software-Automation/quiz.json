@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "sa2299-q01",
+      "q": "Identify the three-movement arc that organises the Software Automation module across chapters 20, 21 and 22.",
+      "options": [
+        "Definitions, then implementation, then impact and ethics",
+        "Security, then automation, then evaluation",
+        "Forecasting, then assistants, then image recognition",
+        "Supervised, then unsupervised, then reinforcement"
+      ],
+      "answer": 0,
+      "explanation": "The review frames the module as three movements: chapter 20 is definitions and the landscape, chapter 21 is implementation (building regression and neural networks in OOP code), and chapter 22 is impact and ethics. The shorthand is 'we made software secure last module, smart in this one, and now ask whether smart is good.' Option C is the F-A-I applications list, not the module arc, which is the most tempting mix-up."
+    },
+    {
+      "id": "sa2299-q02",
+      "q": "State what each letter of the S-U-S-R mnemonic for training models represents.",
+      "options": [
+        "Sampling, Unlabelled, Stratified, Reweighting",
+        "Supervised, Unsupervised, Semi-supervised, Reinforcement",
+        "Structure, Unsupervised, Sampling, Regression",
+        "Supervised, Unstructured, Sampling, Reinforcement"
+      ],
+      "answer": 1,
+      "explanation": "S-U-S-R ('suss-er') names the four ways to train a model: Supervised (labelled data), Unsupervised (find hidden structure), Semi-supervised (a few labels plus a large unlabelled pool), and Reinforcement (learn by trial and error from a reward signal). The single question that separates supervised from unsupervised is 'do you have labels?' Option A confuses S-U-S-R with the bias and mitigation mnemonics S-H-L-M and D-R-F."
+    },
+    {
+      "id": "sa2299-q03",
+      "q": "Explain why the script insists that 'logistic regression predicts numbers' is a trap.",
+      "options": [
+        "Logistic regression cannot be implemented as a fit-and-predict class",
+        "Logistic regression is only used in neural networks, never on its own",
+        "Logistic regression predicts a curve, while polynomial regression predicts a number",
+        "Despite its name, logistic regression performs classification, predicting a yes-or-no using the sigmoid; it is linear regression that predicts a continuous number"
+      ],
+      "answer": 3,
+      "explanation": "The marquee line from L-L-K is 'linear predicts a number, logistic predicts a yes-or-no.' The name 'regression' misleads students, but logistic uses the sigmoid to output a probability for a category. The polynomial option is also a listed trap: polynomial is 'the curve' and the route to overfitting, not logistic."
+    },
+    {
+      "id": "sa2299-q04",
+      "q": "Outline what the P-L-A loop describes in neural network training.",
+      "options": [
+        "Perceptron, Layer, Activation — the structure of a network",
+        "Predict, Loss, Adjust — repeated over many epochs to reduce error",
+        "Process, Learn, Apply — the stages of business process automation",
+        "Predict, Label, Augment — the stages of supervised learning"
+      ],
+      "answer": 1,
+      "explanation": "P-L-A is the training loop: Predict with a forward pass, measure the Loss against the known label, then Adjust every weight to reduce the error (technically backpropagation plus gradient descent), repeated over many epochs. Option A names real network components but is not the training loop, which is the most tempting distractor for this question."
+    },
+    {
+      "id": "sa2299-q05",
+      "q": "Distinguish RPA from BPA as described in the review.",
+      "options": [
+        "RPA redesigns an entire workflow with deep integration, while BPA mimics a human at the user interface",
+        "RPA uses machine learning for judgement, while BPA uses only hand-written rules",
+        "RPA is task-level, a robot mimicking a human at the UI and brittle when the interface changes, while BPA is process-level, redesigning the whole workflow with deep integration and human approvals",
+        "RPA is part of the DevOps pipeline, while BPA is a training model for classification"
+      ],
+      "answer": 2,
+      "explanation": "RPA is 'a Robot doing a Task' — task-level automation at the user interface that is brittle and breaks when the interface changes. BPA is 'redesigning a Process' — process-level, with deep integration and human approvals. Option A reverses the two, which is the classic mix-up the review warns against."
+    },
+    {
+      "id": "sa2299-q06",
+      "q": "Distinguish historical bias from sampling bias using the script's discriminator.",
+      "options": [
+        "Sampling bias is about flawed proxies, while historical bias is about mislabelled data",
+        "Sampling bias is caused by the algorithm itself, while historical bias is caused by the labellers",
+        "Sampling bias only affects images, while historical bias only affects text",
+        "Sampling bias is about who is in the data (groups missing or under-represented), while historical bias is the data being a faithful record of an unjust past — and more data won't fix it"
+      ],
+      "answer": 3,
+      "explanation": "Both are sources in S-H-L-M (Sampling, Historical, Labeler, Measurement). Sampling bias is about who is in the data — groups missing or under-represented, like a face-recognition model trained mostly on one skin tone. Historical bias is the data faithfully recording an unequal past, like a male-dominated hiring history; crucially, collecting more data does not fix historical bias, which is the key point that earns marks."
+    },
+    {
+      "id": "sa2299-q07",
+      "q": "Compare decision trees and neural networks with reference to explainability.",
+      "options": [
+        "Both are black boxes, so neither can explain its decisions, but trees train faster",
+        "A decision tree follows readable if-then questions root to leaf so it is interpretable, while a neural network is a powerful black box — the trade-off is explainability versus power",
+        "A neural network is interpretable because each neuron is a clear rule, while a decision tree hides its logic in weights",
+        "Decision trees are more powerful on complex tasks, while neural networks are only used for simple yes-or-no decisions"
+      ],
+      "answer": 1,
+      "explanation": "A tree predicts by asking a sequence of test questions, following branches Root-Node-Leaf (R-N-L), so you can state exactly why it decided. A neural network is many weighted neurons in layers — powerful but opaque. The exam trade-off is explainability versus power, and because explainability supports accountability and bias detection, an interpretable tree is often preferred for high-stakes decisions. Option C reverses which model is the black box."
+    },
+    {
+      "id": "sa2299-q08",
+      "q": "A government employment agency wants to screen job applicants using ten years of its own past hiring data. Which bias is the textbook risk, and why?",
+      "options": [
+        "Measurement bias, because the agency used the wrong proxy to define a good candidate",
+        "Sampling bias only, because some applicant groups will always be missing from any dataset",
+        "Historical bias, because training on the agency's own past hiring teaches the model to learn and amplify any group it historically favoured — like the scrapped Amazon recruiting tool",
+        "No bias, because past data is the most objective and neutral source available"
+      ],
+      "answer": 2,
+      "explanation": "Training on ten years of the agency's own hiring history is a textbook recipe for historical bias: if the agency historically favoured certain groups, the model learns and amplifies that, exactly like the Amazon recruiting tool that penalised resumes mentioning 'women's' and was scrapped. Sampling and labeler bias may also be present, but the defining risk here is historical. Option D is the 'the algorithm is neutral' myth the review explicitly kills."
+    },
+    {
+      "id": "sa2299-q09",
+      "q": "A hospital wants an AI to help triage emergency-department patients. Using P-S-C-B, explain why a model trained only on calm, complete data is a key ethical risk and how to address it.",
+      "options": [
+        "The acute stress response means inputs become rushed and incomplete in a real emergency, so a model trained on calm data may fail when it is needed most; address it with realistic high-pressure training data, a clinician override, and a low-cognitive-load interface",
+        "It risks measurement bias, addressed by fitting a polynomial curve to the data",
+        "It risks overfitting, addressed by removing the train-test split so the model sees all data",
+        "Stress only affects patients, not the model, so no design change is needed beyond faster hardware"
+      ],
+      "answer": 0,
+      "explanation": "P-S-C-B covers Psychological responses, the acute Stress response, Cultural protocols, and Belief systems. An emergency is a high-stress environment, so a model trained on calm, complete data can fail when staff and patients are stressed and inputs are rushed — exactly when it is needed most. The fix is realistic high-pressure training data, a clinician override so the AI assists rather than replaces, and a clear low-cognitive-load interface. The measurement-bias and overfitting options confuse this human-factors risk with bias and an implementation pitfall."
+    },
+    {
+      "id": "sa2299-q10",
+      "q": "Explain the direct handoff from Software Automation into the Software Engineering Project module described in the bridge.",
+      "options": [
+        "Neural networks become the only required algorithm for every project solution",
+        "The project module replaces all ethics content with a focus purely on writing code",
+        "Supervised learning becomes the required development methodology, replacing waterfall and agile",
+        "DevOps becomes CI-CD (version control, automated testing, release management), and the ethics toolkit of S-P-E-E, P-S-C-B and S-H-L-M becomes the basis of the project's evaluation"
+      ],
+      "answer": 3,
+      "explanation": "The review names direct handoffs: DevOps (automating the build-test-deploy pipeline) becomes continuous integration and deployment — version control, automated testing, and release management. The consolidated ethics toolkit (S-P-E-E, P-S-C-B, S-H-L-M) feeds the project's social, ethical and legal dot-points and its evaluation report, the same SE-12-05 outcome. The most tempting wrong answer confuses a training model (supervised learning) with a development methodology like waterfall or agile."
+    }
+  ]
+}

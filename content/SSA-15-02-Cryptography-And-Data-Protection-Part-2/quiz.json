@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1502p2-q01",
+      "q": "Identify the algorithm named in the episode as the classic example of symmetric encryption.",
+      "options": [
+        "RSA, because it uses a public and private key pair",
+        "bcrypt, because it is a deliberately slow algorithm",
+        "AES — the Advanced Encryption Standard",
+        "SHA-256, because it produces a fixed-size fingerprint"
+      ],
+      "answer": 2,
+      "explanation": "Symmetric encryption uses one single shared key for both encryption and decryption, and the algorithm to name is AES, the Advanced Encryption Standard. RSA is the asymmetric example (a key pair), bcrypt is a slow hashing algorithm for passwords, and SHA-256 is a hash function, not encryption — none of these are the symmetric example. Remember the hook: symmetric is the Same key, fast, AES."
+    },
+    {
+      "id": "ssa1502p2-q02",
+      "q": "Distinguish symmetric from asymmetric encryption in terms of their keys and their core trade-off.",
+      "options": [
+        "Symmetric uses one shared key and is fast but has the key-distribution (sharing) problem; asymmetric uses a public/private key pair and solves sharing but is slow",
+        "Symmetric uses a public/private key pair and is slow; asymmetric uses one shared key and is fast",
+        "Both use a single shared key, but symmetric is faster because it skips authentication",
+        "Symmetric is irreversible while asymmetric is reversible with a key"
+      ],
+      "answer": 0,
+      "explanation": "Symmetric uses one Same key for both jobs — fast on bulk data but stuck with the sharing problem (how do both sides get the secret safely). Asymmetric uses A pair (public + private) — slow and limited to small data, but it solves the sharing problem because the encrypting key is allowed to be public. The reversible/irreversible split (option D) describes encryption versus hashing from Part 1, not the symmetric/asymmetric distinction."
+    },
+    {
+      "id": "ssa1502p2-q03",
+      "q": "Explain why HTTPS uses hybrid encryption rather than relying on asymmetric encryption alone.",
+      "options": [
+        "Asymmetric encryption is insecure, so symmetric encryption is layered on top to fix it",
+        "Symmetric encryption cannot encrypt traffic, so asymmetric handles the bulk data",
+        "Hybrid encryption avoids using keys altogether, removing the sharing problem",
+        "Asymmetric is slow and limited to small data, so it is used once to agree a fast symmetric session key, which then encrypts all the actual traffic"
+      ],
+      "answer": 3,
+      "explanation": "Hybrid encryption gets the best of both: slow asymmetric encryption is used just once at the handshake to securely agree on a fresh symmetric session key, then fast symmetric encryption does the bulk work on all the traffic. This combines asymmetric's solution to the sharing problem with symmetric's speed. Asymmetric is not insecure (option A) — it is simply too slow and limited for whole streams of data, which is why it is not used alone."
+    },
+    {
+      "id": "ssa1502p2-q04",
+      "q": "Outline the role of a digital certificate and a Certificate Authority (CA) in establishing a secure connection.",
+      "options": [
+        "The certificate encrypts the connection, and the CA decrypts it for the browser",
+        "The certificate stores the user's password, and the CA verifies it against the server",
+        "The certificate binds a public key to an identity (a domain) and is signed by a trusted CA, so the browser can authenticate that the public key really belongs to that server",
+        "The certificate generates the symmetric session key, and the CA rotates it periodically"
+      ],
+      "answer": 2,
+      "explanation": "A certificate binds a public key to an identity such as your-bank-dot-com and is signed by a trusted Certificate Authority that the browser already trusts; its job is authentication plus delivering the public key. The classic trap is option A — a certificate does NOT encrypt anything; it authenticates the server and carries the public key, which the keys then use to set up encryption. Write 'the certificate authenticates the server and carries its public key', never 'the certificate encrypts the connection'."
+    },
+    {
+      "id": "ssa1502p2-q05",
+      "q": "Outline the four steps of the TLS handshake in the correct order.",
+      "options": [
+        "Agree a symmetric session key; send the certificate; verify the certificate; bulk-encrypt with symmetric",
+        "Server sends its certificate; browser verifies it against trusted CAs; both use asymmetric to agree a symmetric session key; then bulk-encrypt all traffic with that symmetric key",
+        "Browser sends its public key; server encrypts data; CA verifies the key; symmetric encryption begins",
+        "Generate, store, rotate, destroy the session key before any data is sent"
+      ],
+      "answer": 1,
+      "explanation": "The handshake is: (1) the server sends its CA-signed certificate; (2) the browser verifies it against its trusted CA list, authenticating the server and obtaining its genuine public key; (3) the two use asymmetric encryption to securely agree a fresh symmetric session key (the hybrid move); (4) all traffic is then encrypted with that fast symmetric key. Authenticate with the certificate, swap a key with asymmetric, then bulk-encrypt with symmetric. Option D describes the key-management lifecycle, not the handshake."
+    },
+    {
+      "id": "ssa1502p2-q06",
+      "q": "Identify the key-management lifecycle captured by the mnemonic 'Good Spies Rotate Disguises', and explain why rotation matters.",
+      "options": [
+        "Generate, Store, Rotate, Destroy — rotation limits the time window a compromised key can be used and how much data a single key ever protects",
+        "Generate, Sign, Recover, Decrypt — rotation lets a lost key be recovered",
+        "Guard, Share, Reveal, Delete — rotation makes keys public on a schedule",
+        "Generate, Salt, Reuse, Distribute — rotation reuses old keys to save effort"
+      ],
+      "answer": 0,
+      "explanation": "The lifecycle is Generate (from a cryptographically secure random source), Store (with tight access control, separate from the data, never hard-coded), Rotate (replace on a schedule), and Destroy (securely retire old keys) — 'Good Spies Rotate Disguises'. Rotation matters because it limits the exposure window of a compromised key and limits how much data any single key ever protects. Keys are never made public (eliminating option C) or reused (eliminating option D)."
+    },
+    {
+      "id": "ssa1502p2-q07",
+      "q": "Explain how a digital signature provides non-repudiation.",
+      "options": [
+        "The sender encrypts the whole document with the recipient's public key, so only the recipient can read it",
+        "The sender salts and slowly hashes the document so it cannot be reversed",
+        "The sender hashes the document and encrypts that hash with their private key; since only the sender holds that private key, a valid signature proves the sender produced it and they cannot deny it",
+        "A trusted Certificate Authority co-signs every message, vouching for the sender's identity"
+      ],
+      "answer": 2,
+      "explanation": "To sign, the sender hashes the document then encrypts that small hash with their private key — the encrypted hash is the signature. Because only the sender holds that private key, a signature that the sender's public key verifies could only have been produced by them, so they cannot credibly deny the action — that is non-repudiation, tied to accountability from CIA-AAA. Option A describes encryption for confidentiality, which hides contents but does not prove who sent it; remember 'sign with private, verify with public'."
+    },
+    {
+      "id": "ssa1502p2-q08",
+      "q": "Distinguish between signing a document and encrypting it.",
+      "options": [
+        "Signing hides the contents for secrecy; encrypting proves the author and that it is unchanged",
+        "Signing and encrypting are the same operation performed with different key sizes",
+        "Encrypting hides the contents (confidentiality); signing proves the author and that it is unchanged (authenticity, integrity, non-repudiation) and does not hide anything",
+        "Encrypting uses the private key to lock; signing uses the public key to lock"
+      ],
+      "answer": 2,
+      "explanation": "Encrypting provides confidentiality — it hides the contents. Signing provides authenticity, integrity and non-repudiation — it proves who made the document and that it is unchanged, but a signed document is still fully readable, so it hides nothing. The key inversion is the trap in option D, reversed: you encrypt with public and decrypt with private, but you sign with private and verify with public. Sign for proof of who and unchanged; encrypt for secrecy."
+    },
+    {
+      "id": "ssa1502p2-q09",
+      "q": "Describe how sandboxing contributes to a security-by-design approach.",
+      "options": [
+        "It encrypts code so that attackers cannot read its instructions",
+        "It signs code with a private key to prove the developer's identity",
+        "It rotates the code's permissions on a schedule to limit exposure",
+        "It runs code in a restricted, isolated environment, so even if the code is malicious or compromised it cannot reach the wider system — containment by design"
+      ],
+      "answer": 3,
+      "explanation": "Sandboxing runs code in a restricted, isolated environment — a playpen the code cannot climb out of — so it cannot touch the file system, network, other processes or the OS beyond what is explicitly allowed. By assuming code might be malicious or buggy and containing it from the outset, it enforces least privilege and limits the blast radius of a compromise: containment by design. Sandboxing is the odd-one-out in this dot-point because it is NOT cryptography, so the encryption and signing options are wrong."
+    },
+    {
+      "id": "ssa1502p2-q10",
+      "q": "A messaging app must let two users exchange confidential messages over the internet, with each message provably from the claimed sender. Recommend how cryptography should achieve BOTH goals.",
+      "options": [
+        "Hash every message with a salt for confidentiality, and encrypt it with the recipient's private key for non-repudiation",
+        "Use hybrid encryption (asymmetric to agree a symmetric session key, then symmetric for the body) for confidentiality, and a digital signature (sign with the sender's private key) for non-repudiation",
+        "Use only symmetric AES for both, since it is fast and the same key proves identity",
+        "Use only a Certificate Authority to encrypt and sign every message centrally"
+      ],
+      "answer": 1,
+      "explanation": "Confidentiality comes from encryption — and because asymmetric is slow, the app uses hybrid encryption: the recipient's public key agrees a symmetric session key, then fast symmetric encryption protects the message body so only the holder of the matching private key can read it. Non-repudiation comes from a digital signature: the sender hashes the message and signs the hash with their own private key, which the recipient verifies with the sender's public key. Hashing (option A) is one-way and cannot deliver confidentiality, and a single symmetric key (option C) cannot prove which of two key-holders sent a message."
+    }
+  ]
+}

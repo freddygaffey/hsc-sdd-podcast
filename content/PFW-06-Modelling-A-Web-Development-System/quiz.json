@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw06-q01",
+      "q": "Name the three tiers of a web development system as taught in this episode.",
+      "options": [
+        "HTML, CSS, and JavaScript",
+        "Front (client-side), Back (server-side), and Store (database)",
+        "Monolith, microservices, and serverless",
+        "Request, response, and routing"
+      ],
+      "answer": 1,
+      "explanation": "The episode coins the memory hook Front, Back, Store: the Front is the client-side front end, the Back is the server-side back end, and the Store is the database. HTML, CSS, and JavaScript (option A) are only the three technologies of the Front tier, not the three tiers themselves. Monolith, microservices, and serverless were deployment patterns from the earlier big-data episode, not the anatomy of the system."
+    },
+    {
+      "id": "pfw06-q02",
+      "q": "Identify the three technologies that run in the Front (client-side) tier.",
+      "options": [
+        "HTML, CSS, and JavaScript",
+        "Python, Flask, and SQL",
+        "HTTP, APIs, and middleware",
+        "MongoDB, Redis, and PostgreSQL"
+      ],
+      "answer": 0,
+      "explanation": "The Front tier runs in the user's browser using HTML for structure and content, CSS for visual styling and layout, and JavaScript for interactive behaviour. Python and Flask belong to the Back tier, while the databases (MongoDB, Redis, PostgreSQL) belong to the Store. The Front handles presentation and interaction only."
+    },
+    {
+      "id": "pfw06-q03",
+      "q": "State the responsibility of the Store tier and which tier is allowed to talk to it directly.",
+      "options": [
+        "It styles the page, and only the Front talks to it",
+        "It persists data between requests and visits, and only the Back talks to it directly",
+        "It routes HTTP requests, and the Front and Back both talk to it",
+        "It runs business logic, and only the Store talks to itself"
+      ],
+      "answer": 1,
+      "explanation": "The Store is the database, where data is persisted so it survives between requests and between visits, and the Back is the only tier that queries it directly. The Front never touches the database — it always goes through the Back. The episode stresses this boundary is both an architecture fact and a security one."
+    },
+    {
+      "id": "pfw06-q04",
+      "q": "Distinguish between client-side and server-side processing, including the consequence that earns full marks.",
+      "options": [
+        "Client-side is the front and server-side is the back — that is the whole distinction",
+        "Client-side runs on the server and server-side runs in the browser, so the server is visible to users",
+        "Client-side runs in the user's browser handling the UI but is visible and tamperable, so it cannot be trusted; server-side runs on the developer-controlled server and is where trusted logic, validation, and authentication must live",
+        "Both run on the server, but client-side is faster because it skips the network"
+      ],
+      "answer": 2,
+      "explanation": "The mark-earning answer names where each runs, what each is responsible for, and the trust consequence. Because client-side code runs on the user's machine it can be seen and modified, so it cannot be trusted for anything authoritative; server-side runs on a machine the developer controls, so validation and authentication must happen there. Option A is the weak, one-mark answer the episode warns against — true but shallow, because it omits the trust discriminator."
+    },
+    {
+      "id": "pfw06-q05",
+      "q": "A developer adds password-strength checking in JavaScript in the browser. Explain why this alone is not sufficient.",
+      "options": [
+        "JavaScript is too slow to check passwords reliably, so the check often fails to run",
+        "Client-side code runs on the user's device and can be disabled, altered, or bypassed by posting a request straight to the server, so the same validation must also run server-side where the user cannot tamper with it",
+        "Browsers do not support password fields, so the check never executes",
+        "Password checks must run in CSS, not JavaScript, to be enforced"
+      ],
+      "answer": 1,
+      "explanation": "Client-side JavaScript runs on the user's own device and can be disabled or skipped entirely by sending a request directly to the server, so a malicious user can submit a weak value despite the check. The rule from the episode is: client-side validation is for user convenience; server-side validation is for security. The slow-execution and unsupported-field options miss the real point — the front end is visible and tamperable, so the back end must re-check everything."
+    },
+    {
+      "id": "pfw06-q06",
+      "q": "Explain the roles of middleware and an API as the connective tissue of a web development system.",
+      "options": [
+        "Middleware is the database engine and an API is the CSS styling layer",
+        "Middleware is the user's browser and an API is the server's operating system",
+        "Middleware and API are two names for the same thing — the HTTP request",
+        "Middleware sits in the request path handling cross-cutting concerns like authentication, logging, and rate-limiting, while an API is a defined contract by which components talk to each other"
+      ],
+      "answer": 3,
+      "explanation": "Middleware is software that sits between parts of the system and handles cross-cutting concerns — authentication, logging, rate-limiting — on the way through. An API (application programming interface) is a defined way for components to talk: the Front calls the Back's API, and the Back might call a third-party API like a payment service. The episode also notes this API boundary between Front and Back is a security boundary, a forward link to Secure Software Architecture."
+    },
+    {
+      "id": "pfw06-q07",
+      "q": "Compare SQL and NoSQL databases using the Spreadsheet-versus-Notebook hook from the episode.",
+      "options": [
+        "SQL is a Notebook of flexible documents; NoSQL is a Spreadsheet of fixed tables",
+        "SQL stores data only in the browser; NoSQL stores data only on the server",
+        "SQL is relational — a Spreadsheet of tables with rows, columns, and a fixed schema; NoSQL is a Notebook of flexible documents, like JSON objects, with no rigid fixed schema",
+        "SQL and NoSQL are identical except SQL is newer and therefore always better"
+      ],
+      "answer": 2,
+      "explanation": "SQL databases are relational — a Spreadsheet of tables with fixed rows, columns, and a schema and clear relationships (PostgreSQL, MySQL, SQLite). NoSQL stores data flexibly, commonly as documents like JSON objects with no rigid schema (MongoDB, Redis) — a Notebook of free-form entries. Option A reverses the hook, and the newer-is-better claim is the exact trap the episode rejects: NoSQL means 'not only SQL', a different tool, not a replacement."
+    },
+    {
+      "id": "pfw06-q08",
+      "q": "Outline one situation where a NoSQL database would be preferable to an SQL database, in a way that earns the mark.",
+      "options": [
+        "A banking system, because transactions between accounts must stay perfectly consistent",
+        "Any new project, because NoSQL is newer and faster than SQL in every case",
+        "An e-commerce orders table, because customers, orders, and products have clear relationships",
+        "A social-media activity feed, because the data is large-volume and flexible, with items that may have different fields, which NoSQL's flexible document model and horizontal scaling handle better than a rigid relational schema"
+      ],
+      "answer": 3,
+      "explanation": "The mark-earning answer names a property of the data, not a vibe: NoSQL is preferable for storing large volumes of flexible, semi-structured data that does not fit a fixed schema, such as a social-media activity feed where each post may carry different fields. The banking and e-commerce orders examples are the opposite — highly structured, related data that needs SQL's reliable ACID transactions. The 'newer and faster' option is the trap the episode explicitly warns against."
+    },
+    {
+      "id": "pfw06-q09",
+      "q": "A research team needs a web tool for scientists collecting structured financial-style records where customers, orders, and products have clear relationships and transactions must never become inconsistent. Recommend a database type and justify it.",
+      "options": [
+        "NoSQL, because its flexible document model is always easier to scale",
+        "SQL, because the data is highly structured with clear relationships and its ACID properties keep transactions reliable and consistent",
+        "NoSQL, because relationships between tables do not matter for any business system",
+        "Neither — store the records only in client-side JavaScript variables in the browser"
+      ],
+      "answer": 1,
+      "explanation": "The driving requirement is structured, related data with reliable, consistent transactions, which is exactly when the episode says to pick SQL — its relational tables model the customer-order-product relationships and its ACID properties prevent inconsistency. NoSQL suits flexible, high-volume, varied data, not tightly related records that cannot afford inconsistency (eliminating A and C). Storing data only in the browser (option D) violates the rule that only the trusted Back tier persists and handles authoritative data."
+    },
+    {
+      "id": "pfw06-q10",
+      "q": "An online bookstore must display a book and process an order. Describe how the three tiers work together and identify where validation and payment logic must run.",
+      "options": [
+        "The Front queries the database directly to fetch books and the JavaScript validates the payment, since the browser is fastest",
+        "The Store renders the page and processes payment, while the Front and Back only display results",
+        "The Front (HTML/CSS/JavaScript) renders the page and sends requests; the Back (Python) routes them, applies business logic, and is the only tier that queries the Store, which persists books, customers, and orders — and validation and payment logic must run server-side because the client cannot be trusted",
+        "All three tiers run inside the user's browser, so any tier can be trusted to handle payment"
+      ],
+      "answer": 2,
+      "explanation": "This is the integrated full-mark model: the Front renders and sends requests, the Back routes, applies business logic, and is the only tier that queries the Store, and the Store persistently holds the data. Critically, validation and payment logic must run server-side because client-side code is visible and tamperable and cannot be trusted. Option A breaks the core boundary — the Front never touches the database and must never be relied on for payment security."
+    }
+  ]
+}

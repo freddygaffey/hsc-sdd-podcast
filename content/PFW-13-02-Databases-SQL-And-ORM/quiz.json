@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw1302-q01",
+      "q": "Identify, in the correct order, the six main clauses of a SELECT statement as taught in this episode.",
+      "options": [
+        "SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY",
+        "SELECT, FROM, GROUP BY, WHERE, ORDER BY, HAVING",
+        "FROM, SELECT, WHERE, HAVING, GROUP BY, ORDER BY",
+        "SELECT, WHERE, FROM, GROUP BY, ORDER BY, HAVING"
+      ],
+      "answer": 0,
+      "explanation": "The clause order is SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY, captured by the mnemonic 'So Few Workers Go Home On-time'. This order is not optional — SQL enforces it, so writing GROUP BY before WHERE or ORDER BY in the middle is a syntax error that costs marks. Correct order is itself the mark on a recall question."
+    },
+    {
+      "id": "pfw1302-q02",
+      "q": "In the mnemonic 'So Few Workers Go Home On-time', what does 'Workers' stand for?",
+      "options": [
+        "WITH — the clause that defines a temporary table",
+        "WHERE — the clause that filters individual rows before grouping",
+        "WHILE — the clause that loops over matching records",
+        "WINDOW — the clause that defines an aggregate window"
+      ],
+      "answer": 1,
+      "explanation": "'Workers' maps to WHERE, which filters individual rows using conditions, AND, OR, LIKE for pattern matching, and BETWEEN for ranges. The full hook is So (SELECT), Few (FROM), Workers (WHERE), Go (GROUP BY), Home (HAVING), On-time (ORDER BY). The other options invent clauses the episode never names."
+    },
+    {
+      "id": "pfw1302-q03",
+      "q": "Outline how GROUP BY is correctly used in a SELECT statement, according to the episode.",
+      "options": [
+        "GROUP BY sorts the result set into ascending order, so an aggregate function is optional",
+        "GROUP BY filters out groups that do not meet a condition on an aggregate value",
+        "GROUP BY collapses rows into groups and is used with an aggregate function such as COUNT or SUM, with every non-aggregated SELECT field appearing in the GROUP BY",
+        "GROUP BY combines two tables on a shared key so their rows can be summarised together"
+      ],
+      "answer": 2,
+      "explanation": "GROUP BY collapses many rows into groups and is used with an aggregate function — COUNT, SUM, AVG, MAX, MIN — to summarise each group, and every non-aggregated field in the SELECT must appear in the GROUP BY. GROUP BY without an aggregate is pointless. The option describing filtering groups on an aggregate actually describes HAVING, and the option about combining two tables describes a JOIN — both are tempting because they are nearby clauses, but neither is what GROUP BY does."
+    },
+    {
+      "id": "pfw1302-q04",
+      "q": "Distinguish between WHERE and HAVING in an SQL query.",
+      "options": [
+        "WHERE filters groups after aggregation; HAVING filters individual rows before grouping",
+        "WHERE and HAVING are interchangeable, but HAVING is required when an ORDER BY clause is present",
+        "WHERE filters columns from the SELECT list; HAVING filters rows returned by a JOIN",
+        "WHERE filters individual rows before grouping and cannot reference an aggregate; HAVING filters groups after aggregation and can test an aggregate such as COUNT"
+      ],
+      "answer": 3,
+      "explanation": "WHERE filters individual rows before any grouping happens, so it cannot see an aggregate like COUNT because that does not exist yet; HAVING filters groups after aggregation, so it can test 'COUNT of posts greater than five'. The tempting wrong option reverses the two — saying WHERE filters groups after aggregation — which is the most common trap students fall into. Naming 'before grouping versus after, on an aggregate' is the discriminating mark."
+    },
+    {
+      "id": "pfw1302-q05",
+      "q": "A query must list ALL users and their post count, including users who have written zero posts. Which JOIN is required and why?",
+      "options": [
+        "An INNER JOIN, because it returns every row from both tables regardless of matches",
+        "A LEFT JOIN, because it keeps all rows from the left (users) table and supplies nulls where no posts match, so post-less users still appear",
+        "An INNER JOIN, because it keeps only rows that match in both tables, which is what 'all users' requires",
+        "A LEFT JOIN, because it drops users with no posts to keep the result set small"
+      ],
+      "answer": 1,
+      "explanation": "A LEFT JOIN returns all rows from the left table plus matches from the right where they exist, with nulls where they do not — so all users appear, including those with zero posts. An INNER JOIN returns only rows that match in both tables, which would silently drop the post-less users — the exact trap the exam tests. The hook is: INNER keeps only matches in both; LEFT keeps everything on the left."
+    },
+    {
+      "id": "pfw1302-q06",
+      "q": "In a relational database, what links a post in the posts table to its author in the users table?",
+      "options": [
+        "An author-id field in posts that is a primary key pointing at a foreign key in users",
+        "A shared aggregate column that both tables compute with COUNT",
+        "A duplicate copy of the username stored directly in the posts table",
+        "An author-id field in posts that is a foreign key pointing at the primary key id in users"
+      ],
+      "answer": 3,
+      "explanation": "A relational database splits data into related tables linked by keys: a post carries an author-id that is a foreign key pointing at the primary key id in the users table, and a JOIN recombines them. The tempting wrong option reverses the key roles — the foreign key lives in posts and references the primary key in users, not the other way around. This is the Year 11 entity-relationship modelling made real."
+    },
+    {
+      "id": "pfw1302-q07",
+      "q": "Explain why gluing user input directly into an SQL string allows an SQL injection attack to succeed.",
+      "options": [
+        "The input and the command are mixed into one string, so the database cannot tell where the instruction ends and the data begins, letting a quote in the input break out and be read as SQL",
+        "The database runs out of memory when the input string becomes too long, exposing other rows",
+        "String concatenation is slower, giving an attacker time to intercept the query before it runs",
+        "The web framework automatically trusts any input that contains an SQL keyword such as OR"
+      ],
+      "answer": 0,
+      "explanation": "The attack works because the input and the command are combined into one string, so the database cannot tell where your instruction ends and the user's data begins — a quote in the input closes your string early and the rest is read as SQL. For example, input like x' OR '1'='1 makes the WHERE clause always true and returns every row. The vulnerability is about mixing data and command, not memory or speed."
+    },
+    {
+      "id": "pfw1302-q08",
+      "q": "Explain how a parameterised query prevents SQL injection.",
+      "options": [
+        "It scans the user's input for dangerous keywords like DROP and OR and rejects any that are found",
+        "It encrypts the user's input so the database receives an unreadable value that cannot alter the query",
+        "It uses a placeholder for the value and passes the value separately, so the database treats it strictly as data and never as part of the command",
+        "It escapes every quote in the input by doubling it before the string is concatenated into the query"
+      ],
+      "answer": 2,
+      "explanation": "A parameterised query (prepared statement) writes the query with a placeholder, such as a question mark, where the value goes, and passes the actual value separately, so the database treats it strictly as data and never as executable SQL — a quote in the input is just a quote in a string. The mark-earning phrase is that it separates the SQL command from the user-supplied data. Keyword-blocking (A) and escaping quotes (D) are weaker, error-prone defences the episode does not endorse."
+    },
+    {
+      "id": "pfw1302-q09",
+      "q": "Compare an object-relational mapping (ORM) with writing raw SQL for a web application's data layer.",
+      "options": [
+        "An ORM gives maximum control and performance for complex queries, while raw SQL improves productivity but removes the need to understand SQL",
+        "An ORM improves productivity and portability by mapping objects to tables and generating SQL automatically, at the cost of some performance and control, while raw SQL gives maximum control and performance but is more verbose and error-prone",
+        "An ORM and raw SQL are functionally identical, so the choice is purely a matter of personal preference with no trade-offs",
+        "An ORM eliminates the need to know SQL entirely, while raw SQL is only used in databases that do not support objects"
+      ],
+      "answer": 1,
+      "explanation": "An ORM maps classes to tables and objects to rows and generates the SQL for you, improving productivity, readability and database portability, but adds an abstraction layer with performance overhead and can generate inefficient queries; raw SQL gives maximum control and performance at the cost of more verbose, error-prone code. The named trap in options A and D is the idea that an ORM removes the need to understand SQL — it does not, because only someone who knows the underlying SQL can fix a slow generated query."
+    },
+    {
+      "id": "pfw1302-q10",
+      "q": "A team builds a web app that needs routine create/read/update/delete operations on users plus one heavy, complex monthly sales report. Recommend the most appropriate data-layer approach and justify it.",
+      "options": [
+        "Use raw SQL for everything, because the ORM cannot perform joins or handle relationships",
+        "Use the ORM for everything, because once an ORM is chosen, mixing in raw SQL is never permitted",
+        "Use neither — build all queries by concatenating user input into strings for maximum flexibility",
+        "Use a hybrid: the ORM for the routine CRUD operations and raw SQL for the complex, performance-critical sales report"
+      ],
+      "answer": 3,
+      "explanation": "The episode's real-world judgement is that the best approach is usually hybrid: an ORM for routine CRUD where its productivity and auto-parameterisation shine, and raw SQL for complex or performance-critical reporting where its control and efficiency matter. The 'raw SQL for everything' option is wrong because ORMs handle joins and relationships well, and the 'concatenate user input' option is the named trap of string-concatenation that causes SQL injection. Recommending the hybrid and justifying it by matching each tool to its strength is the full-mark answer."
+    }
+  ]
+}

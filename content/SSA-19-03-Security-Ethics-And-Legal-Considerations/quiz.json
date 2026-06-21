@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1903-q01",
+      "q": "Name the six social, ethical and legal issues of secure software development captured by the 'Ed Picid' mnemonic.",
+      "options": [
+        "Employment, Data security, Privacy, Copyright, Intellectual property, Digital disruption",
+        "Ethics, Disclosure, Privacy, Cryptography, Integrity, Data minimisation",
+        "Encryption, Defence, Patching, Compliance, Identity, Disruption",
+        "Employment, Disclosure, Patents, Copyright, Insurance, Detection"
+      ],
+      "answer": 0,
+      "explanation": "The six issues are Employment, Data security, Privacy, Copyright, Intellectual property and Digital disruption — E-D-P-C-I-D, said as 'Ed Picid'. These are the exact six named in the SE-12-05 dot-point. The other options swap in related-but-wrong terms (e.g. disclosure, cryptography, patents) that are not the six syllabus issues."
+    },
+    {
+      "id": "ssa1903-q02",
+      "q": "The dot-point for this outcome uses the verb 'evaluate'. What does evaluating a social, ethical or legal issue require you to do?",
+      "options": [
+        "Describe the issue in detail and define the key terms accurately",
+        "List as many consequences of the issue as you can recall",
+        "Weigh more than one side of the issue and reach a justified judgement",
+        "Identify which law applies and quote its penalties"
+      ],
+      "answer": 2,
+      "explanation": "Evaluate is the strongest verb in the module — it means you weigh more than one side and reach a justified judgement across the social, ethical and legal lenses, not just describe. Describing the issue (option A) or listing consequences (option B) is what a weak band-three answer does; the script's worked example shows that 'gets in trouble' is not legal analysis. The judgement is what earns the marks."
+    },
+    {
+      "id": "ssa1903-q03",
+      "q": "Distinguish, as ethical and legal issues, between data security and privacy.",
+      "options": [
+        "Data security applies to companies while privacy applies only to individuals",
+        "Data security is the duty to protect data you already hold from unauthorised access, while privacy is whether you should collect and use that data at all",
+        "Data security is a legal requirement while privacy is only an ethical preference",
+        "Data security concerns confidentiality while privacy concerns integrity"
+      ],
+      "answer": 1,
+      "explanation": "Data security is the ethical duty and legal obligation to protect held data from breach — keeping attackers out; privacy is the distinct question of whether you should collect and use the data at all, and the right to control it. The script stresses you can have one without the other: a company can secure data flawlessly while still violating privacy by over-collecting and selling it. The protect-it versus should-you-hold-it distinction is the mark."
+    },
+    {
+      "id": "ssa1903-q04",
+      "q": "Which legal frameworks govern privacy in Australia and Europe according to the episode?",
+      "options": [
+        "The Privacy Act and Australian Privacy Principles in Australia, and the GDPR in Europe",
+        "The CIA triad in Australia, and breach-notification laws in Europe",
+        "The MIT licence in Australia, and the GPL in Europe",
+        "Mandatory data-breach notification laws in both Australia and Europe"
+      ],
+      "answer": 0,
+      "explanation": "Privacy is governed by the GDPR in Europe — which made privacy-by-design a legal requirement and grants rights to access and erase data — and by the Privacy Act and the Australian Privacy Principles (APPs) in Australia. The CIA triad (option B) is a security model, not a privacy law, and the MIT/GPL licences (option C) belong to the copyright issue. Naming the GDPR and the APPs is what turns the soft principle into hard law."
+    },
+    {
+      "id": "ssa1903-q05",
+      "q": "Explain why, when evaluating employment, secure software development is described as a 'shift in the kind of work' rather than simply more or fewer jobs.",
+      "options": [
+        "Because security jobs pay more than the roles they replace, so the total wage bill stays constant",
+        "Because it creates high-value security careers while automation displaces existing roles and demands constant reskilling",
+        "Because automation eliminates all security roles, leaving only developers",
+        "Because the number of security engineers exactly matches the number of roles lost"
+      ],
+      "answer": 1,
+      "explanation": "Secure development creates a whole profession — security engineers, penetration testers, privacy officers, security champions — while automated scanning, automated incident response and AI-driven detection change and can eliminate roles and force reskilling. Weighing both sides gives the judgement: the overall effect is a shift in the kind of work, not simply more or fewer jobs. Option C overstates the displacement side and ignores the new careers being created."
+    },
+    {
+      "id": "ssa1903-q06",
+      "q": "Distinguish between copyright and intellectual property.",
+      "options": [
+        "Copyright protects code while intellectual property protects only physical inventions",
+        "Copyright and intellectual property are two names for the same legal protection",
+        "Intellectual property is the broad category, and copyright is one specific type of it alongside patents, trademarks and trade secrets",
+        "Intellectual property applies to enterprises while copyright applies to individual developers"
+      ],
+      "answer": 2,
+      "explanation": "Intellectual property is the broad category protecting creations of the mind; copyright is one specific type within it, alongside patents, trademarks and trade secrets. The script flags option B as the trap the marker loves — students treating copyright and IP as the same thing. Stating that copyright is one type within the wider category of intellectual property is the mark."
+    },
+    {
+      "id": "ssa1903-q07",
+      "q": "In the software context, how is respecting copyright in someone else's code put into practice?",
+      "options": [
+        "By encrypting the code before reusing it so the original author cannot trace it",
+        "By honouring the licence — for example MIT (permissive, requires attribution) or GPL (copyleft, requires derivatives be open-sourced)",
+        "By patenting the code under your own enterprise's name before shipping it",
+        "By keeping the code as a trade secret so no licence is ever needed"
+      ],
+      "answer": 1,
+      "explanation": "Copyright automatically protects original code, and the licence is the permission slip: a permissive licence like MIT lets you use the code freely with attribution, while a copyleft licence like GPL requires derivatives also be open-sourced. Shipping GPL code in a closed product or copying code without permission exposes the enterprise to legal action and reputational harm. Patenting (option C) and trade secrets (option D) relate to the broader intellectual-property issue, not honouring an existing copyright."
+    },
+    {
+      "id": "ssa1903-q08",
+      "q": "Explain responsible disclosure and why it is the ethical course of action when a vulnerability is found in someone else's software.",
+      "options": [
+        "Announce the flaw publicly at once so users can defend themselves before the vendor reacts",
+        "Exploit the flaw quietly to gather proof, then sell that proof to the vendor",
+        "Report it privately to the vendor first, allow a reasonable agreed window to fix it, and only publish details after a patch is available",
+        "Say nothing, because reporting a flaw you found could be treated as unauthorised access"
+      ],
+      "answer": 2,
+      "explanation": "Responsible disclosure means reporting the vulnerability privately to the vendor first, agreeing a reasonable remediation window, and publishing only after a patch exists. It balances two competing harms: announcing publicly straight away (option A) arms every attacker before users are protected, while staying silent (option D) leaves the flaw exploitable and fails the users. It also respects the law, since exploiting or further accessing the system without authorisation can itself be illegal even with good intent."
+    },
+    {
+      "id": "ssa1903-q09",
+      "q": "A security researcher discovers a serious vulnerability in a hospital's patient-records system. Applying the episode's framework, what should they do?",
+      "options": [
+        "Access real patient records to prove the flaw is real, then email the proof to the hospital",
+        "Post the technical details publicly so patients are warned and the hospital is pressured to act fast",
+        "Do nothing, since touching a hospital system without authorisation is illegal regardless of intent",
+        "Report the flaw privately and promptly to the hospital and vendor, never exploit it, agree a remediation timeline, and escalate to a regulator or CERT only if it is ignored"
+      ],
+      "answer": 3,
+      "explanation": "The records are sensitive health data, so there is both an ethical duty of care and a legal obligation under the Privacy Act and APPs. The researcher must not exploit the flaw — accessing real records (option A) could be illegal unauthorised access even with good intent — and must not publish first (option B), which would arm attackers. The responsible course is private, prompt disclosure with an agreed timeline, escalating to a regulator or CERT only if the vendor ignores it; doing nothing (option C) abandons the patients still at risk."
+    },
+    {
+      "id": "ssa1903-q10",
+      "q": "Evaluate the implications of a major customer-data breach. Which response best demonstrates the band-six 'evaluate' technique?",
+      "options": [
+        "A breach is bad because hackers steal people's information and the company gets in trouble and has to pay money",
+        "A breach breaches data-protection law (the Privacy Act and APPs) triggering mandatory notification and penalties, violates the ethical duty of care exposing people to identity theft, and socially erodes trust — so it is a compound failure of legal, ethical and social responsibility, not just a financial setback",
+        "A breach mainly damages the company's share price and reputation with shareholders",
+        "A breach is unavoidable for any large company, so the focus should be on insurance rather than prevention"
+      ],
+      "answer": 1,
+      "explanation": "Evaluate means weighing the legal, ethical and social lenses and reaching a justified judgement, exactly as option B does — naming the law (Privacy Act and APPs), the breach-notification duty and penalties, the ethical duty of care, and the social erosion of trust (a form of digital disruption), then judging it a compound failure. Option A is the script's weak band-three answer: it describes a consequence with no specific issue, no law, no other side and no judgement. Using Equifax as evidence and reaching a weighed judgement is what full marks reward."
+    }
+  ]
+}

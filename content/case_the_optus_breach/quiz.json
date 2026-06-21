@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "case-the-optus-breach-q01",
+      "q": "Identify the type of software component at the centre of the Optus breach, which the episode compares to a fast-food drive-through service window.",
+      "options": [
+        "An API (application programming interface) endpoint that returned customer details",
+        "A relational database server holding customer records",
+        "A firewall protecting the internal network",
+        "An encryption module used to protect stored passwords"
+      ],
+      "answer": 0,
+      "explanation": "The breach centred on an API endpoint — a service window where the app pulls up, asks for a customer's details, and the window hands them back. The database held the data, but it was the unprotected API window in front of it that handed records to anyone who asked. No firewall or encryption flaw was involved."
+    },
+    {
+      "id": "case-the-optus-breach-q02",
+      "q": "Outline the difference between authentication and authorisation as the episode defines them.",
+      "options": [
+        "Authentication asks 'who are you?' and proves identity, while authorisation asks 'are you allowed?' and checks permissions for a specific resource",
+        "Authentication encrypts the data in transit, while authorisation encrypts the data at rest",
+        "Authentication is performed by the client, while authorisation is performed by the database",
+        "Authentication checks the password strength, while authorisation logs the request for auditing"
+      ],
+      "answer": 0,
+      "explanation": "The episode is precise: authentication asks 'who are you?' (proving identity with a login or token), while authorisation asks 'are you allowed to have this particular thing?' (checking permissions). Both are meant to run on every request to the window. The most tempting wrong answer reframes them as encryption, but encryption is a separate protection entirely and was never the issue here."
+    },
+    {
+      "id": "case-the-optus-breach-q03",
+      "q": "Name the security term the episode uses for the situation where the check that is supposed to stand at the door — verifying who comes and goes — is simply not present.",
+      "options": [
+        "A zero-day exploit",
+        "A SQL injection",
+        "A broken access control",
+        "A denial-of-service attack"
+      ],
+      "answer": 2,
+      "explanation": "Security people have a blunt name for the missing check: a broken access control — the control that should stand at the door checking who comes and goes was not there at all. A zero-day (option A) is an unknown software flaw, which the episode stresses was NOT involved; the attack used no clever exploit, just an open door."
+    },
+    {
+      "id": "case-the-optus-breach-q04",
+      "q": "Explain why the Optus customer identifiers being sequential turned a leak of one record into a leak of millions.",
+      "options": [
+        "Sequential numbers compressed better, so more records fit in each request",
+        "Sequential numbering meant the records were stored unencrypted",
+        "Sequential identifiers automatically granted administrator privileges",
+        "Because the numbers went up by one in a predictable line, the attacker could simply count rather than guess — incrementing the number to reach the next customer's record"
+      ],
+      "answer": 3,
+      "explanation": "Because the identifiers were sequential — one, two, three, four — the attacker did not have to guess; they could just count, changing the number to retrieve each successive record. This is what scaled one exposed record up to roughly 9.8 million. The tempting wrong answer ties it to encryption, but sequential numbering has nothing to do with how data is stored — it only made the records trivially predictable to walk through."
+    },
+    {
+      "id": "case-the-optus-breach-q05",
+      "q": "Explain what an Insecure Direct Object Reference (IDOR) is, in the way the episode defines it.",
+      "options": [
+        "A flaw where the system encrypts an object with a weak, outdated cipher",
+        "A flaw where a system lets you point straight at a record using its raw identifier without checking whether you are allowed to access that record",
+        "A flaw where two users are accidentally assigned the same identifier",
+        "A flaw where the database returns objects in the wrong order"
+      ],
+      "answer": 1,
+      "explanation": "'Direct object reference' means the system lets you point straight at a record using its raw identifier (its number); 'insecure' means it never checks whether you are allowed to point at that one. So you change the number and get a different person's record. It is not an encryption weakness (option A) — the data flowed out in plain readable form precisely because the access check was absent."
+    },
+    {
+      "id": "case-the-optus-breach-q06",
+      "q": "Describe why the leaked identity documents (passport, licence and Medicare numbers) made this breach far more damaging than a leaked password list, according to the episode.",
+      "options": [
+        "Identity documents are encrypted, so decrypting them caused extra harm",
+        "Identity documents are worth more money when sold individually",
+        "Unlike a password, these documents cannot simply be changed or reissued on a whim, and they are exactly what someone needs to impersonate you and commit identity fraud for years",
+        "Identity documents take up more storage, so more bandwidth was consumed"
+      ],
+      "answer": 2,
+      "explanation": "When a password leaks you change it and move on, but you cannot change your date of birth or simply re-roll a passport number — reissuing one is slow and expensive. These are the exact details needed to impersonate someone, pass a bank's security questions, and commit identity fraud that follows them for years. That permanence and usefulness for fraud, not encryption or storage size, is what makes the data so dangerous."
+    },
+    {
+      "id": "case-the-optus-breach-q07",
+      "q": "Distinguish between the failure that occurred at the Optus window and a separate IDOR failure that can occur even when a system DOES authenticate the user.",
+      "options": [
+        "The Optus window failed authorisation only, while IDOR is purely an authentication failure",
+        "The Optus window never asked who was knocking (an authentication failure), whereas an IDOR failure can occur even after a user is logged in as customer A — the system still hands over customer B's record because nobody checks the requested record actually belongs to the requester",
+        "Both failures are identical; the two terms describe exactly the same flaw",
+        "The Optus window failed because of weak encryption, while IDOR is caused by a missing firewall"
+      ],
+      "answer": 1,
+      "explanation": "The Optus window failed the first check completely — it never even asked who was knocking, an authentication failure. But the episode warns that even a system that does authenticate can still fall to an IDOR: it knows you are customer A, yet hands you customer B's record because nobody verified the requested record belongs to you. They are related but distinct, so calling them identical (option C) misses the second, subtler failure mode."
+    },
+    {
+      "id": "case-the-optus-breach-q08",
+      "q": "Explain the single overarching lesson the episode draws about secure API design.",
+      "options": [
+        "Every API endpoint is a door to your data, so authentication and authorisation must be applied to every single endpoint by default, assuming each one will be found and probed by someone hostile",
+        "Only the main login page and front-end app need strong protection, since attackers always target the most visible entry point",
+        "The best defence is to encrypt all data at rest with the strongest available cipher",
+        "Rate limiting alone is sufficient to prevent records from being extracted in bulk"
+      ],
+      "answer": 0,
+      "explanation": "The one rule the whole disaster comes down to is that the lock must be on every single door — not most of them, not the ones that feel important. Secure API design means assuming every endpoint will be found and probed, and putting authentication and authorisation on each by default. Securing only the front entrance is exactly the mistake the episode warns against: attackers come through the side window you forgot, not the door you guarded."
+    },
+    {
+      "id": "case-the-optus-breach-q09",
+      "q": "A developer builds a banking API. One endpoint at /accounts/{id} returns full account details, requires a valid login token, but does not verify that {id} belongs to the logged-in user. Identify the vulnerability and the fix that the episode's framework recommends.",
+      "options": [
+        "There is no vulnerability, because requiring a login token is sufficient protection",
+        "It is a broken authentication flaw; the fix is to add a second password to the login page",
+        "It is a denial-of-service risk; the fix is to add rate limiting to slow attackers down",
+        "It is an Insecure Direct Object Reference; the fix is to check, on every request, that the requested account belongs to the authenticated requester (or that they are an administrator) before returning the data"
+      ],
+      "answer": 3,
+      "explanation": "Authentication is present (the login token), so the gap is authorisation: the endpoint never checks that {id} belongs to the requester — a textbook IDOR. The episode's rule is that whenever a system lets you reach a record by its raw identifier, something must verify the record belongs to that requester. A login token alone is not enough, because a logged-in customer A can still increment the id to read customer B's account."
+    },
+    {
+      "id": "case-the-optus-breach-q10",
+      "q": "Justify why the episode insists the Optus breach was not a sophisticated attack, and what broader duty this places on developers who hold sensitive personal data.",
+      "options": [
+        "It was sophisticated because the attacker cracked the encryption, proving developers need stronger ciphers",
+        "It was unsophisticated because the attacker used malware, so the lesson is to install better antivirus software",
+        "It was unsophisticated — no encryption was broken, no password cracked, no employee tricked; the hard part had already been left undone by the builders — so developers hold a duty of care to protect the identities sitting in their databases by securing every endpoint",
+        "It was sophisticated because the attacker used a zero-day exploit, so the lesson is to patch software faster"
+      ],
+      "answer": 2,
+      "explanation": "The episode is emphatic that nothing the attacker did was sophisticated: no encryption broken, no password cracked, no employee tricked, no malware planted — they found a window that asked nothing and answered everything, and they counted. Because the data was people's irreplaceable identities, building such a system carries a duty of care, and Australia responded by sharpening privacy law and scaling up penalties. Options claiming encryption-cracking, malware, or a zero-day directly contradict the episode's central point that the attack was strong only because the defences were absent."
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "case-stuxnet-q01",
+      "q": "Identify what made Stuxnet historically significant compared to earlier cyberattacks.",
+      "options": [
+        "It was the first piece of code widely regarded as a weapon, built to physically destroy machinery in the real world",
+        "It stole more financial data than any attack before it",
+        "It was the first virus to spread across the internet without user interaction",
+        "It was the first malware to encrypt files and demand a ransom payment"
+      ],
+      "answer": 0,
+      "explanation": "Stuxnet is described as the first piece of software historians and researchers call a true weapon — built by a nation-state to cross into an isolated facility and physically destroy centrifuges, not to steal money or secrets. Earlier attacks could only 'attack a computer'; Stuxnet reached out of the digital world and snapped physical metal, which is what makes it a turning point. The financial-theft option is tempting but describes ordinary criminal malware, not Stuxnet's purpose."
+    },
+    {
+      "id": "case-stuxnet-q02",
+      "q": "What is an 'air gap', as used to protect the Natanz facility?",
+      "options": [
+        "A firewall that filters all incoming and outgoing network traffic",
+        "A literal physical separation with no wired or wireless connection between the sensitive systems and any outside network",
+        "An encryption layer that scrambles data before it leaves the facility",
+        "A backup power supply that keeps critical systems running during outages"
+      ],
+      "answer": 1,
+      "explanation": "An air gap is a literal gap of air between the critical systems and any outside network — no cable, no wireless, no connection of any kind to the internet. Its logic is simple: if there is no wire, the attacker cannot reach you. A firewall still implies a network connection, which is exactly what an air gap removes, so it is the most tempting but wrong choice."
+    },
+    {
+      "id": "case-stuxnet-q03",
+      "q": "Explain how Stuxnet crossed the air gap into the Natanz facility.",
+      "options": [
+        "It exploited a hidden wireless transmitter that the engineers were unaware of",
+        "It intercepted satellite communications going into the underground halls",
+        "It infected the ordinary computers of contractors and suppliers, then waited on a USB drive to be carried across the gap and plugged into a machine inside",
+        "It travelled through the facility's power lines as an encoded electrical signal"
+      ],
+      "answer": 2,
+      "explanation": "The air gap was defeated not by a wire but by a human being on foot. Stuxnet spread on internet-connected computers of contractors and suppliers, then waited on their USB drives until someone carried an infected drive into the secure facility and plugged it in. A USB stick is described as 'a bridge with legs' that doesn't care about the air gap — the gap was real, but the people crossing it daily were the bridge. A wireless transmitter would contradict the whole point of an air gap."
+    },
+    {
+      "id": "case-stuxnet-q04",
+      "q": "What is a zero-day exploit, and why was Stuxnet's use of four of them so notable?",
+      "options": [
+        "A flaw the software maker already knows about but has chosen not to fix; four signalled a careless attacker",
+        "An attack that completes within a single day; using four meant the operation lasted four days",
+        "A flaw the software maker does not yet know about, so no patch exists; spending four on one operation signalled a well-funded nation-state",
+        "A virus that activates exactly zero days after infection; four copies were needed for redundancy"
+      ],
+      "answer": 2,
+      "explanation": "A zero-day is a flaw the software makers don't know about — there has been 'zero days' to fix it, so no defence exists. They are rare and extremely valuable, and a serious attacker hoards even one. Burning four unpatched flaws on a single operation is the signature of a government with deep pockets and a specific target — 'nobody spends four zero-days on a hobby project.' The 'known but unfixed' option flips the definition and is the key trap."
+    },
+    {
+      "id": "case-stuxnet-q05",
+      "q": "What is a programmable logic controller (PLC), and what role did it play in the attack?",
+      "options": [
+        "A control-room monitor that displays sensor readings to human operators",
+        "A small, rugged specialised computer that bridges code and physical equipment, telling motors how fast to spin; Stuxnet reprogrammed it to sabotage the centrifuges",
+        "A network router that connects the air-gapped facility to external suppliers",
+        "An antivirus appliance that scans USB drives before they are plugged in"
+      ],
+      "answer": 1,
+      "explanation": "A PLC is the small, rugged, specialised computer that sits between the control room and the physical equipment — it tells a motor to spin at a certain speed, opens valves, and reads sensors. It is 'the bridge between code and the physical world.' Stuxnet hunted for one exact PLC configuration and rewrote its code; the control-room monitor is what Stuxnet fed fake readings to, not the PLC itself, which makes that the most tempting wrong answer."
+    },
+    {
+      "id": "case-stuxnet-q06",
+      "q": "Explain why Stuxnet stayed dormant on the vast majority of computers it infected.",
+      "options": [
+        "It was poorly written and only ran correctly on a small number of machines",
+        "It needed a constant internet connection, which most infected machines lacked",
+        "It deleted itself automatically after a fixed number of days on each host",
+        "It was surgically targeted: it checked its surroundings and only armed when it found one exact configuration of PLC driving motors in the centrifuge frequency range"
+      ],
+      "answer": 3,
+      "explanation": "Stuxnet spread to a great many ordinary Windows computers worldwide but did nothing on almost all of them. It was hunting for one specific thing — a particular make of industrial controller wired to drive motors spinning within the exact frequency range that matches uranium centrifuges. If it didn't find that precise fingerprint it stayed asleep; only the Natanz setup armed the weapon. The dormancy was deliberate selectivity, not a coding flaw, which rules out the 'poorly written' option."
+    },
+    {
+      "id": "case-stuxnet-q07",
+      "q": "Outline the two things Stuxnet did simultaneously that made it a 'masterpiece of malice'.",
+      "options": [
+        "It deleted operator files while it copied uranium-enrichment data back to its creators",
+        "It disabled the facility's antivirus while spreading itself to neighbouring buildings",
+        "It reprogrammed the PLC to spin centrifuges destructively while feeding the control room a recording of normal, healthy readings",
+        "It cut the power to the centrifuges while triggering false fire alarms in the control room"
+      ],
+      "answer": 2,
+      "explanation": "Stuxnet rewrote the PLC's code to secretly spin the centrifuges far beyond their limits and then drop them — subtle, intermittent sabotage spread over weeks. At the same time it replayed a pre-recorded picture of normal, healthy operation to the operators' screens. The combination is the key: had it only sabotaged the machines, the screaming centrifuges would have triggered alarms and an emergency stop; the fake readings are what kept the operators from reacting."
+    },
+    {
+      "id": "case-stuxnet-q08",
+      "q": "Distinguish between an attack on confidentiality and the integrity attack that Stuxnet carried out.",
+      "options": [
+        "Confidentiality is about system uptime, whereas integrity is about how fast data is transmitted",
+        "Confidentiality protects hardware, whereas integrity protects only the operators' login passwords",
+        "There is no real difference; both terms describe the same kind of data theft",
+        "A confidentiality attack reads or steals data; an integrity attack makes the data lie, so the system confidently reports that all is fine while it is being destroyed"
+      ],
+      "answer": 3,
+      "explanation": "Security usually focuses first on confidentiality — keeping data secret and unread. Stuxnet instead attacked integrity: the trustworthiness of data and the guarantee that what the system tells you is actually true. The script argues this is in some ways more dangerous than theft, because a robbed system knows something is missing, but a system with broken integrity 'confidently tells you everything is fine while it burns.' The two are distinct concepts, not the same thing."
+    },
+    {
+      "id": "case-stuxnet-q09",
+      "q": "A city's water-treatment plant runs its pumps through PLCs and is protected by an air gap. Drawing on the Stuxnet lessons, identify the most important defensive priority.",
+      "options": [
+        "Add more encryption so that pump data cannot be read by outsiders in transit",
+        "Treat the air gap as a complete defence and focus security budget elsewhere",
+        "Verify the integrity of sensor readings before acting on them, and control who and what crosses the gap, since the gate is people and USB drives",
+        "Connect the PLCs to the internet so the vendor can push security patches automatically"
+      ],
+      "answer": 2,
+      "explanation": "Stuxnet teaches that the air gap is not magic — it was crossed on foot by a person carrying a USB stick, so controlling who and what crosses the gap matters most. It also teaches that you must ask not just 'can someone steal this data' but 'can someone make this data lie to me,' which means verifying that readings are genuine before trusting them. Adding encryption defends confidentiality, which was never the issue here, so it is the tempting but wrong priority."
+    },
+    {
+      "id": "case-stuxnet-q10",
+      "q": "The attackers infected contractors and suppliers around Natanz rather than assaulting the facility directly. Explain what broader security lesson this illustrates.",
+      "options": [
+        "That antivirus software is useless against any sufficiently large piece of malware",
+        "That a supply chain is a weak point: rather than attacking the fortress, you compromise the trusted people and computers around it and let a trusted person carry the weapon in",
+        "That nuclear facilities should never employ outside contractors under any circumstances",
+        "That physical security is irrelevant once a system has a strong firewall in place"
+      ],
+      "answer": 1,
+      "explanation": "The script calls this 'a supply-chain lesson in disguise': the attackers didn't go at the fortress directly — they infected the contractors, suppliers and ordinary computers around the target and let a trusted person carry the weapon across. The point is that 'the strongest wall in the world has a gate, and the gate is people.' Banning contractors entirely is impractical and misses the real lesson about securing and verifying the trusted parties who must access the system."
+    }
+  ]
+}

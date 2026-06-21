@@ -1,0 +1,1002 @@
+(() => {
+  const PROGRESS_KEY = "podcast-progress";
+  const THEME_KEY = "podcast-theme";
+  const SPEED_KEY = "podcast-speed";
+
+  const SPEED_OPTIONS = [];
+  for (let s = 0.25; s <= 16; s += 0.25) SPEED_OPTIONS.push(Math.round(s * 100) / 100);
+
+  let manifest = null;
+  let currentEpisode = null;
+  let currentVoiceIndex = 0;
+  let lastSavedAt = 0;
+  let isSeeking = false;
+  let showRemaining = false;
+  let sleepIdx = 0;
+  let sleepTimeout = null;
+  let swipeStartX = 0;
+  let swipeStartY = 0;
+  let queue = [];
+  let advanceTimer = null;
+
+  // --- DOM refs ---
+  // Pitch-preserving speed engine (see speed-engine.js): a Web Audio time-stretch
+  // player that stays audible all the way to 16x. Falls back to the raw <audio>
+  // element (silent above 4x) if the browser lacks AudioWorklet.
+  const audioEl = document.getElementById("audio");
+  const audio = window.createSpeedAudio ? window.createSpeedAudio(audioEl) : audioEl;
+  const viewLibrary = document.getElementById("view-library");
+  const viewEpisode = document.getElementById("view-episode");
+  const views = { library: viewLibrary, episode: viewEpisode };
+  const btnBack = document.getElementById("btn-back");
+  const btnTheme = document.getElementById("btn-theme");
+  const btnSleep = document.getElementById("btn-sleep");
+  const btnStats = document.getElementById("btn-stats");
+  const btnQueue = document.getElementById("btn-queue");
+  const queueBadge = document.getElementById("queue-badge");
+  const playerTimeEl = document.querySelector(".player-time");
+  const playerBar = document.getElementById("player-bar");
+  const btnPlay = document.getElementById("btn-play");
+  const btnRewind = document.getElementById("btn-rewind");
+  const btnForward = document.getElementById("btn-forward");
+  const progressBarEl = document.getElementById("progress-bar");
+  const timeCurrent = document.getElementById("time-current");
+  const timeTotal = document.getElementById("time-total");
+  const themeColorMeta = document.getElementById("theme-color-meta");
+  const voiceSelect = document.getElementById("voice-select");
+  const speedSlider = document.getElementById("speed-slider");
+  const speedInput = document.getElementById("speed-input");
+  const btnSpeedDown = document.getElementById("btn-speed-down");
+  const btnSpeedUp = document.getElementById("btn-speed-up");
+  const episodeTitleEl = document.getElementById("episode-title");
+  const episodeContentEl = document.getElementById("episode-content");
+  const tabBtns = document.querySelectorAll(".tab-btn");
+  const advanceToast = document.getElementById("advance-toast");
+  const advanceTitleEl = document.getElementById("advance-title");
+  const advanceCountdownEl = document.getElementById("advance-countdown");
+  const btnAdvanceCancel = document.getElementById("btn-advance-cancel");
+  const statsOverlay = document.getElementById("stats-overlay");
+  const statsContent = document.getElementById("stats-content");
+  const btnStatsClose = document.getElementById("btn-stats-close");
+  const quizArea = document.getElementById("quiz-area");
+
+  function setHidden(el, hidden) {
+    if (hidden) el.setAttribute("hidden", "");
+    else el.removeAttribute("hidden");
+  }
+
+  // --- Speed control ---
+  const DEFAULT_SPEED_IDX = 3; // 1.0x
+
+  function getCurrentSpeedIdx() { return parseInt(speedSlider.value, 10); }
+  function getCurrentSpeed() { return SPEED_OPTIONS[getCurrentSpeedIdx()]; }
+
+  function setSpeed(index) {
+    const i = Math.max(0, Math.min(SPEED_OPTIONS.length - 1, index));
+    speedSlider.value = i;
+    const s = SPEED_OPTIONS[i];
+    speedInput.value = s + "x";
+    audio.playbackRate = s;
+    localStorage.setItem(SPEED_KEY, i);
+    if (audio.duration) {
+      timeTotal.textContent = fmtTime(audio.duration / s);
+      updateTimeDisplay();
+    }
+  }
+
+  function applySpeedInput() {
+    const raw = speedInput.value.replace(/x$/i, "").trim();
+    const val = parseFloat(raw);
+    if (isNaN(val)) { speedInput.value = getCurrentSpeed() + "x"; return; }
+    const clamped = Math.max(0.25, Math.min(16, val));
+    const idx = SPEED_OPTIONS.reduce((best, s, i) =>
+      Math.abs(s - clamped) < Math.abs(SPEED_OPTIONS[best] - clamped) ? i : best, 0);
+    setSpeed(idx);
+  }
+
+  function initSpeed() {
+    const stored = parseInt(localStorage.getItem(SPEED_KEY), 10);
+    setSpeed(isNaN(stored) ? DEFAULT_SPEED_IDX : stored);
+  }
+
+  speedSlider.addEventListener("input", () => setSpeed(getCurrentSpeedIdx()));
+  btnSpeedDown.addEventListener("click", () => setSpeed(getCurrentSpeedIdx() - 1));
+  btnSpeedUp.addEventListener("click", () => setSpeed(getCurrentSpeedIdx() + 1));
+  speedInput.addEventListener("focus", () => speedInput.select());
+  speedInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") { applySpeedInput(); speedInput.blur(); }
+    if (e.key === "Escape") { speedInput.value = getCurrentSpeed() + "x"; speedInput.blur(); }
+    if (e.key === "ArrowUp") { e.preventDefault(); setSpeed(getCurrentSpeedIdx() + 1); }
+    if (e.key === "ArrowDown") { e.preventDefault(); setSpeed(getCurrentSpeedIdx() - 1); }
+  });
+  speedInput.addEventListener("blur", applySpeedInput);
+  initSpeed();
+
+  // --- Theme ---
+  const HLJS_THEMES = {
+    dark:  "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css",
+    light: "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css",
+  };
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+    setHidden(btnTheme.querySelector(".icon-sun"), theme === "light");
+    setHidden(btnTheme.querySelector(".icon-moon"), theme !== "light");
+    themeColorMeta.content = theme === "light" ? "#ffffff" : "#121212";
+    document.getElementById("hljs-theme").href = HLJS_THEMES[theme] || HLJS_THEMES.dark;
+    episodeContentEl.querySelectorAll("pre code").forEach((el) => {
+      el.removeAttribute("data-highlighted");
+      if (window.hljs) hljs.highlightElement(el);
+    });
+  }
+
+  function initTheme() {
+    const stored = localStorage.getItem(THEME_KEY);
+    const theme = stored || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+    applyTheme(theme);
+  }
+
+  btnTheme.addEventListener("click", () => {
+    const next = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+    localStorage.setItem(THEME_KEY, next);
+    applyTheme(next);
+  });
+  initTheme();
+
+  // --- Progress storage ---
+  function loadProgress() {
+    try { return JSON.parse(localStorage.getItem(PROGRESS_KEY)) || {}; }
+    catch { return {}; }
+  }
+  function getEpisodeProgress(id) {
+    return loadProgress()[id] || { progressPct: 0, lastVoice: null, completed: false };
+  }
+  function saveEpisodeProgress(id, patch) {
+    const all = loadProgress();
+    all[id] = { ...all[id], ...patch };
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(all));
+  }
+
+  // --- Utils ---
+  function fmtTime(secs) {
+    if (!secs || isNaN(secs)) return "0:00";
+    const m = Math.floor(secs / 60);
+    const s = Math.floor(secs % 60).toString().padStart(2, "0");
+    return `${m}:${s}`;
+  }
+
+  function fmtDuration(secs) {
+    if (!secs || isNaN(secs) || secs <= 0) return "";
+    if (secs < 60) return "<1m";
+    const h = Math.floor(secs / 3600);
+    const m = Math.round((secs % 3600) / 60);
+    return h ? h + "h " + m + "m" : m + "m";
+  }
+
+  function cleanVoiceName(name) {
+    const parts = name.split("_").slice(1);
+    return parts.map((w) => w[0].toUpperCase() + w.slice(1)).join(" ") || name;
+  }
+
+  function updateProgressFill(pct) {
+    progressBarEl.style.setProperty("--pct", pct * 100 + "%");
+  }
+
+  // --- Sleep timer ---
+  const SLEEP_MINUTES = [null, 15, 30, 45, 60];
+
+  function updateSleepBtn() {
+    const mins = SLEEP_MINUTES[sleepIdx];
+    if (mins) {
+      btnSleep.textContent = mins + "m";
+      btnSleep.classList.add("sleep-active");
+    } else {
+      btnSleep.innerHTML = `<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>`;
+      btnSleep.classList.remove("sleep-active");
+    }
+  }
+
+  btnSleep.addEventListener("click", () => {
+    clearTimeout(sleepTimeout);
+    sleepIdx = (sleepIdx + 1) % SLEEP_MINUTES.length;
+    const mins = SLEEP_MINUTES[sleepIdx];
+    if (mins) {
+      sleepTimeout = setTimeout(() => {
+        audio.pause();
+        sleepIdx = 0;
+        updateSleepBtn();
+      }, mins * 60 * 1000);
+    }
+    updateSleepBtn();
+  });
+
+  // --- Time display (speed-adjusted) ---
+  function updateTimeDisplay() {
+    if (!audio.duration) return;
+    const rate = audio.playbackRate || 1;
+    if (showRemaining) {
+      timeCurrent.textContent = "-" + fmtTime((audio.duration - audio.currentTime) / rate);
+    } else {
+      timeCurrent.textContent = fmtTime(audio.currentTime / rate);
+    }
+    timeTotal.textContent = fmtTime(audio.duration / rate);
+  }
+
+  playerTimeEl.addEventListener("click", () => {
+    showRemaining = !showRemaining;
+    updateTimeDisplay();
+  });
+
+  // --- Keyboard shortcuts ---
+  document.addEventListener("keydown", (e) => {
+    const tag = document.activeElement.tagName;
+    if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+    if (!currentEpisode) return;
+    if (e.key === " ") { e.preventDefault(); audio.paused ? audio.play() : audio.pause(); }
+    if (e.key === "ArrowLeft") { e.preventDefault(); audio.currentTime = Math.max(0, audio.currentTime - 30); }
+    if (e.key === "ArrowRight") { e.preventDefault(); audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 30); }
+  });
+
+  // --- Swipe right to go back ---
+  viewEpisode.addEventListener("touchstart", (e) => {
+    swipeStartX = e.touches[0].clientX;
+    swipeStartY = e.touches[0].clientY;
+  }, { passive: true });
+  viewEpisode.addEventListener("touchend", (e) => {
+    const dx = e.changedTouches[0].clientX - swipeStartX;
+    const dy = Math.abs(e.changedTouches[0].clientY - swipeStartY);
+    if (dx > 60 && dy < 60 && swipeStartX < 60) navigateToLibrary();
+  }, { passive: true });
+
+  // --- Queue ---
+  function updateQueueBadge() {
+    if (queue.length > 0) {
+      queueBadge.textContent = queue.length;
+      setHidden(btnQueue, false);
+    } else {
+      setHidden(btnQueue, true);
+    }
+  }
+
+  btnQueue.addEventListener("click", () => {
+    queue = [];
+    updateQueueBadge();
+    if (!viewLibrary.hidden) renderLibrary();
+  });
+
+  // --- Auto-advance ---
+  function dismissAdvanceToast() {
+    clearInterval(advanceTimer);
+    advanceTimer = null;
+    setHidden(advanceToast, true);
+  }
+
+  function showAdvanceToast(nextEp) {
+    advanceTitleEl.textContent = nextEp.title;
+    let countdown = 3;
+    advanceCountdownEl.textContent = countdown;
+    setHidden(advanceToast, false);
+    advanceTimer = setInterval(() => {
+      countdown--;
+      advanceCountdownEl.textContent = countdown;
+      if (countdown <= 0) {
+        dismissAdvanceToast();
+        loadEpisode(nextEp, { autoplay: true });
+        navigateToEpisode(nextEp.id);
+      }
+    }, 1000);
+  }
+
+  btnAdvanceCancel.addEventListener("click", dismissAdvanceToast);
+
+  function getNextEpisode(ep) {
+    const flat = [];
+    const groups = new Map();
+    manifest.modules.forEach((mod) => {
+      if (!groups.has(mod.prefix)) groups.set(mod.prefix, []);
+      mod.episodes.forEach((e) => groups.get(mod.prefix).push({ ...e, _moduleNum: mod.moduleNum }));
+    });
+    groups.forEach((episodes) => {
+      episodes.sort((a, b) => (a._moduleNum - b._moduleNum) || ((a.unit || 0) - (b.unit || 0)));
+      episodes.forEach((e) => flat.push(e));
+    });
+    const idx = flat.findIndex((e) => e.id === ep.id);
+    return idx >= 0 && idx < flat.length - 1 ? flat[idx + 1] : null;
+  }
+
+  // --- Audio events ---
+  audio.addEventListener("play", () => setPlayState(true));
+  audio.addEventListener("pause", () => { setPlayState(false); persistProgress(); });
+  audio.addEventListener("ended", () => {
+    if (currentEpisode) saveEpisodeProgress(currentEpisode.id, { progressPct: 1, completed: true });
+    setPlayState(false);
+    if (queue.length > 0) {
+      const nextId = queue.shift();
+      updateQueueBadge();
+      if (!viewLibrary.hidden) renderLibrary();
+      const nextEp = findEpisode(nextId);
+      if (nextEp) { loadEpisode(nextEp, { autoplay: true }); navigateToEpisode(nextEp.id); }
+      return;
+    }
+    const nextEp = getNextEpisode(currentEpisode);
+    if (nextEp) showAdvanceToast(nextEp);
+  });
+  audio.addEventListener("loadedmetadata", () => {
+    timeTotal.textContent = fmtTime(audio.duration / (getCurrentSpeed() || 1));
+  });
+  audio.addEventListener("timeupdate", () => {
+    if (!audio.duration || isSeeking) return;
+    const pct = audio.currentTime / audio.duration;
+    progressBarEl.value = pct;
+    updateProgressFill(pct);
+    updateTimeDisplay();
+    const now = Date.now();
+    if (now - lastSavedAt > 5000) { lastSavedAt = now; persistProgress(); }
+  });
+
+  function setPlayState(playing) {
+    setHidden(btnPlay.querySelector(".icon-play"), playing);
+    setHidden(btnPlay.querySelector(".icon-pause"), !playing);
+  }
+
+  // --- Controls ---
+  btnPlay.addEventListener("click", () => {
+    if (!currentEpisode) return;
+    audio.paused ? audio.play() : audio.pause();
+  });
+  btnRewind.addEventListener("click", () => {
+    audio.currentTime = Math.max(0, audio.currentTime - 30);
+  });
+  btnForward.addEventListener("click", () => {
+    audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 30);
+  });
+
+  progressBarEl.addEventListener("mousedown", () => { isSeeking = true; });
+  progressBarEl.addEventListener("touchstart", () => { isSeeking = true; }, { passive: true });
+  progressBarEl.addEventListener("input", () => {
+    const pct = parseFloat(progressBarEl.value);
+    updateProgressFill(pct);
+    if (audio.duration) { audio.currentTime = pct * audio.duration; updateTimeDisplay(); }
+  });
+  progressBarEl.addEventListener("change", () => {
+    if (audio.duration) audio.currentTime = parseFloat(progressBarEl.value) * audio.duration;
+    isSeeking = false;
+  });
+  progressBarEl.addEventListener("mouseup", () => { isSeeking = false; });
+  progressBarEl.addEventListener("touchend", () => { isSeeking = false; });
+
+  voiceSelect.addEventListener("change", () => {
+    switchVoice(parseInt(voiceSelect.value, 10));
+  });
+
+  // --- Episode loading ---
+  function findEpisode(id) {
+    for (const mod of manifest.modules) {
+      const ep = mod.episodes.find((e) => e.id === id);
+      if (ep) return ep;
+    }
+    return null;
+  }
+
+  function loadEpisode(ep, { autoplay }) {
+    currentEpisode = ep;
+    const progress = getEpisodeProgress(ep.id);
+    currentVoiceIndex = ep.voices.findIndex((v) => v.name === progress.lastVoice);
+    if (currentVoiceIndex < 0) currentVoiceIndex = 0;
+
+    playerBar.hidden = false;
+    setHidden(btnSleep, false);
+    updateSleepBtn();
+
+    voiceSelect.innerHTML = "";
+    ep.voices.forEach((v, i) => {
+      const opt = document.createElement("option");
+      opt.value = i;
+      opt.textContent = cleanVoiceName(v.name);
+      if (i === currentVoiceIndex) opt.selected = true;
+      voiceSelect.appendChild(opt);
+    });
+
+    setAudioSource(ep.voices[currentVoiceIndex], progress.progressPct || 0, autoplay);
+  }
+
+  function setAudioSource(voice, resumePct, autoplay) {
+    audio.src = voice.file;
+    audio.load();
+    audio.addEventListener("loadedmetadata", () => {
+      if (resumePct && audio.duration) audio.currentTime = resumePct * audio.duration;
+      audio.playbackRate = getCurrentSpeed();
+      timeTotal.textContent = fmtTime(audio.duration / getCurrentSpeed());
+      if (autoplay) audio.play();
+    }, { once: true });
+  }
+
+  function switchVoice(index) {
+    if (!currentEpisode || index === currentVoiceIndex) return;
+    const pct = audio.duration ? audio.currentTime / audio.duration : 0;
+    const wasPlaying = !audio.paused;
+    currentVoiceIndex = index;
+    const voice = currentEpisode.voices[index];
+    audio.src = voice.file;
+    audio.load();
+    audio.addEventListener("loadedmetadata", () => {
+      if (audio.duration) audio.currentTime = pct * audio.duration;
+      audio.playbackRate = getCurrentSpeed();
+      timeTotal.textContent = fmtTime(audio.duration / getCurrentSpeed());
+      if (wasPlaying) audio.play();
+    }, { once: true });
+    saveEpisodeProgress(currentEpisode.id, { lastVoice: voice.name });
+  }
+
+  function persistProgress() {
+    if (!currentEpisode || !audio.duration) return;
+    const pct = audio.currentTime / audio.duration;
+    saveEpisodeProgress(currentEpisode.id, {
+      progressPct: pct,
+      lastVoice: currentEpisode.voices[currentVoiceIndex].name,
+      lastPlayed: new Date().toISOString(),
+      completed: pct > 0.95,
+    });
+  }
+
+  // --- Stats ---
+  const GROUP_NAMES = {
+    PFW: "Programming for the Web",
+    SSA: "Software Security Applications",
+    SA:  "Software Automation",
+    SEE: "Software Engineering Project",
+    CASE: "Case Studies",
+  };
+
+  function computeStats() {
+    const progress = loadProgress();
+    let totalListenedSecs = 0;
+    let completedCount = 0;
+    const days = new Set();
+    const allEps = [];
+    manifest.modules.forEach((mod) => mod.episodes.forEach((ep) => allEps.push(ep)));
+
+    for (const ep of allEps) {
+      const p = progress[ep.id];
+      if (!p) continue;
+      const dur = ep.voices[0]?.duration || 0;
+      totalListenedSecs += dur * (p.progressPct || 0);
+      if (p.completed) completedCount++;
+      if (p.lastPlayed) days.add(p.lastPlayed.substring(0, 10));
+    }
+
+    const sortedDays = [...days].sort().reverse();
+    let streak = 0;
+    if (sortedDays.length > 0) {
+      const today = new Date().toISOString().substring(0, 10);
+      const yesterday = new Date(Date.now() - 86400000).toISOString().substring(0, 10);
+      if (sortedDays[0] === today || sortedDays[0] === yesterday) {
+        streak = 1;
+        for (let i = 1; i < sortedDays.length; i++) {
+          const diff = (new Date(sortedDays[i - 1]) - new Date(sortedDays[i])) / 86400000;
+          if (diff <= 1) streak++;
+          else break;
+        }
+      }
+    }
+
+    const groups = new Map();
+    manifest.modules.forEach((mod) => {
+      if (!groups.has(mod.prefix)) groups.set(mod.prefix, { total: 0, done: 0 });
+      mod.episodes.forEach((ep) => {
+        groups.get(mod.prefix).total++;
+        if (progress[ep.id]?.completed) groups.get(mod.prefix).done++;
+      });
+    });
+
+    return { totalListenedSecs, completedCount, totalCount: allEps.length, streak, groups };
+  }
+
+  function renderStats() {
+    const stats = computeStats();
+    const speed = getCurrentSpeed();
+
+    function fmtStat(secs) {
+      if (!secs || secs < 60) return "<1m";
+      const h = Math.floor(secs / 3600);
+      const m = Math.round((secs % 3600) / 60);
+      return h > 0 ? `${h}h ${m}m` : `${m}m`;
+    }
+
+    const listenedStr = fmtStat(stats.totalListenedSecs);
+    const savedSecs = stats.totalListenedSecs * (1 - 1 / speed);
+    const savedStr = speed > 1 ? fmtStat(savedSecs) : "0m";
+
+    let groupsHTML = "";
+    stats.groups.forEach((g, prefix) => {
+      const pct = g.total ? Math.round((g.done / g.total) * 100) : 0;
+      groupsHTML += `
+        <div class="stats-module">
+          <div class="stats-module-header">
+            <span>${GROUP_NAMES[prefix] || prefix}</span>
+            <span class="stats-module-count">${g.done}/${g.total}</span>
+          </div>
+          <div class="stats-module-track"><div class="stats-module-fill" style="width:${pct}%"></div></div>
+        </div>`;
+    });
+
+    statsContent.innerHTML = `
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-value">${listenedStr}</div><div class="stat-label">Content heard</div></div>
+        <div class="stat-card"><div class="stat-value">${savedStr}</div><div class="stat-label">Saved at ${speed}×</div></div>
+        <div class="stat-card"><div class="stat-value">${stats.completedCount}/${stats.totalCount}</div><div class="stat-label">Completed</div></div>
+        <div class="stat-card"><div class="stat-value">${stats.streak}</div><div class="stat-label">Day streak</div></div>
+      </div>
+      <h3 class="stats-section-title">By module</h3>
+      ${groupsHTML}`;
+  }
+
+  btnStats.addEventListener("click", () => {
+    if (!manifest) return;
+    renderStats();
+    setHidden(statsOverlay, false);
+  });
+  btnStatsClose.addEventListener("click", () => setHidden(statsOverlay, true));
+  statsOverlay.addEventListener("click", (e) => {
+    if (e.target === statsOverlay) setHidden(statsOverlay, true);
+  });
+
+  // --- Library ---
+  function getLastPlayedEpisode() {
+    const progress = loadProgress();
+    let latestEp = null, latestTime = 0;
+    for (const [id, p] of Object.entries(progress)) {
+      if (p.lastPlayed && !p.completed) {
+        const t = new Date(p.lastPlayed).getTime();
+        if (t > latestTime) { latestTime = t; latestEp = findEpisode(id); }
+      }
+    }
+    return latestEp;
+  }
+
+  function renderLibrary() {
+    viewLibrary.innerHTML = "";
+
+    const lastEp = getLastPlayedEpisode();
+    if (lastEp) {
+      const prog = getEpisodeProgress(lastEp.id);
+      const pct = Math.round((prog.progressPct || 0) * 100);
+      const banner = document.createElement("div");
+      banner.className = "continue-banner";
+      banner.innerHTML = `
+        <div class="continue-info">
+          <div class="continue-label">Continue listening</div>
+          <div class="continue-title">${lastEp.title}</div>
+          <div class="continue-track"><div class="continue-fill" style="width:${pct}%"></div></div>
+        </div>
+        <button class="continue-play" aria-label="Resume">&#9654;</button>`;
+      banner.querySelector(".continue-play").addEventListener("click", (e) => {
+        e.stopPropagation();
+        loadEpisode(lastEp, { autoplay: true });
+        navigateToEpisode(lastEp.id);
+      });
+      banner.addEventListener("click", () => navigateToEpisode(lastEp.id));
+      viewLibrary.appendChild(banner);
+    }
+
+    const groups = new Map();
+    manifest.modules.forEach((mod) => {
+      if (!groups.has(mod.prefix)) groups.set(mod.prefix, { prefix: mod.prefix, episodes: [] });
+      mod.episodes.forEach((ep) => groups.get(mod.prefix).episodes.push({ ...ep, _moduleNum: mod.moduleNum }));
+    });
+
+    groups.forEach((group) => {
+      group.episodes.sort((a, b) => (a._moduleNum - b._moduleNum) || ((a.unit || 0) - (b.unit || 0)));
+
+      const groupEl = document.createElement("div");
+      groupEl.className = "module";
+
+      const completed = group.episodes.filter((e) => getEpisodeProgress(e.id).completed).length;
+      const head = document.createElement("button");
+      head.className = "module-head";
+      head.innerHTML = `
+        <span class="module-name">${GROUP_NAMES[group.prefix] || group.prefix}</span>
+        <span class="module-meta">${completed}/${group.episodes.length} listened</span>
+        <span class="module-chev">&#8250;</span>`;
+      head.addEventListener("click", () => groupEl.classList.toggle("open"));
+      groupEl.appendChild(head);
+
+      const progTrack = document.createElement("div");
+      progTrack.className = "module-progress-track";
+      progTrack.innerHTML = `<div class="module-progress-fill" style="width:${(completed / group.episodes.length) * 100}%"></div>`;
+      groupEl.appendChild(progTrack);
+
+      const episodesEl = document.createElement("div");
+      episodesEl.className = "module-episodes";
+      group.episodes.forEach((ep, i) => episodesEl.appendChild(renderEpisodeRow(ep, i + 1)));
+      groupEl.appendChild(episodesEl);
+
+      viewLibrary.appendChild(groupEl);
+    });
+  }
+
+  function renderEpisodeRow(ep, index) {
+    const row = document.createElement("div");
+    const progress = getEpisodeProgress(ep.id);
+    const done = progress.completed;
+    row.className = "episode-row" + (done ? " ep-row-done" : "");
+    const pct = Math.round((progress.progressPct || 0) * 100);
+    const rawDur = ep.voices[0]?.duration;
+    const durStr = rawDur ? fmtDuration(rawDur / getCurrentSpeed()) : "";
+    const inQueue = queue.includes(ep.id);
+
+    row.innerHTML = `
+      <span class="ep-index${done ? " ep-done" : ""}">${done ? "&#10003;" : index}</span>
+      <div class="ep-main">
+        <div class="ep-title-row">
+          <span class="ep-title">${ep.title}</span>
+          ${durStr ? `<span class="ep-duration">${durStr}</span>` : ""}
+        </div>
+        <div class="ep-progress-track"><div class="ep-progress-fill" style="width:${pct}%"></div></div>
+      </div>
+      <button class="ep-queue-btn${inQueue ? " in-queue" : ""}" aria-label="${inQueue ? "Remove from queue" : "Add to queue"}">${inQueue ? "&#10003;" : "+"}</button>
+      <button class="ep-play" aria-label="Play ${ep.title}"></button>`;
+
+    row.querySelector(".ep-queue-btn").addEventListener("click", (e) => {
+      e.stopPropagation();
+      const idx = queue.indexOf(ep.id);
+      if (idx >= 0) queue.splice(idx, 1);
+      else queue.push(ep.id);
+      updateQueueBadge();
+      renderLibrary();
+    });
+    row.querySelector(".ep-play").addEventListener("click", (e) => {
+      e.stopPropagation();
+      loadEpisode(ep, { autoplay: true });
+      navigateToEpisode(ep.id);
+    });
+    row.addEventListener("click", () => navigateToEpisode(ep.id));
+    return row;
+  }
+
+  // --- Routing ---
+  function navigateToEpisode(id) { window.location.hash = `#/episode/${id}`; }
+  function navigateToLibrary() { window.location.hash = "#/"; }
+
+  function handleRoute() {
+    const hash = window.location.hash;
+    const match = hash.match(/^#\/episode\/(.+)$/);
+    if (match) {
+      const ep = findEpisode(decodeURIComponent(match[1]));
+      if (ep) { showView("episode", ep); return; }
+    }
+    showView("library");
+  }
+
+  function showView(route, episode) {
+    Object.entries(views).forEach(([name, el]) => { el.hidden = name !== route; });
+    window.scrollTo({ top: 0, behavior: "instant" });
+
+    if (route === "library") {
+      setHidden(btnBack, true);
+      renderLibrary();
+    } else if (route === "episode") {
+      setHidden(btnBack, false);
+      episodeTitleEl.textContent = episode.title;
+      tabBtns.forEach((b) => b.classList.toggle("active", b.dataset.tab === "supplementary"));
+      setHidden(episodeContentEl, false);
+      setHidden(quizArea, true);
+      quizState = null;
+      renderMarkdownTab(episode, "supplementary");
+      if (!currentEpisode || currentEpisode.id !== episode.id) {
+        loadEpisode(episode, { autoplay: false });
+      }
+    }
+  }
+
+  // --- Markdown ---
+  function copyToClipboard(text) {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text).catch(() => {});
+    } else {
+      const ta = Object.assign(document.createElement("textarea"), { value: text });
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+  }
+
+  function enhanceCodeBlocks() {
+    episodeContentEl.querySelectorAll("pre").forEach((pre) => {
+      const code = pre.querySelector("code");
+      if (!code) return;
+      if (window.hljs) hljs.highlightElement(code);
+      if (pre.querySelector(".copy-btn")) return;
+      const btn = document.createElement("button");
+      btn.className = "copy-btn";
+      btn.textContent = "Copy";
+      btn.addEventListener("click", () => {
+        copyToClipboard(code.textContent);
+        btn.textContent = "Copied!";
+        btn.classList.add("copied");
+        setTimeout(() => { btn.textContent = "Copy"; btn.classList.remove("copied"); }, 2000);
+      });
+      pre.appendChild(btn);
+    });
+  }
+
+  async function renderMarkdownTab(ep, tab) {
+    const path = tab === "script" ? ep.scriptPath : ep.supplementaryPath;
+    if (!path) { episodeContentEl.innerHTML = "<p><em>Not available.</em></p>"; return; }
+    episodeContentEl.innerHTML = "<p><em>Loading…</em></p>";
+    try {
+      const res = await fetch(path);
+      const text = await res.text();
+      const stripped = text.replace(/^---\n[\s\S]*?\n---\n?/, "");
+      episodeContentEl.innerHTML = marked.parse(stripped);
+      enhanceCodeBlocks();
+      window.scrollTo({ top: 0, behavior: "instant" });
+    } catch {
+      episodeContentEl.innerHTML = "<p><em>Failed to load.</em></p>";
+    }
+  }
+
+  // === QUIZ ===
+  const QUIZ_SR_KEY = "podcast-quiz-sr";
+  let quizState = null;
+
+  function loadSR() {
+    try { return JSON.parse(localStorage.getItem(QUIZ_SR_KEY)) || {}; } catch { return {}; }
+  }
+  function saveSR(all) { localStorage.setItem(QUIZ_SR_KEY, JSON.stringify(all)); }
+  function srKey(ep, q) { return `${ep.id}::${q.id}`; }
+
+  function getCard(ep, q) {
+    return loadSR()[srKey(ep, q)] || { interval: 1, ef: 2.5, reps: 0, due: 0, correct: 0, total: 0 };
+  }
+
+  function updateCard(ep, q, correct) {
+    const all = loadSR();
+    const k = srKey(ep, q);
+    const c = all[k] || { interval: 1, ef: 2.5, reps: 0, due: 0, correct: 0, total: 0 };
+    c.total++;
+    if (correct) c.correct++;
+    const quality = correct ? 4 : 1;
+    if (quality < 3) {
+      c.reps = 0;
+      c.interval = 1;
+    } else {
+      if (c.reps === 0) c.interval = 1;
+      else if (c.reps === 1) c.interval = 6;
+      else c.interval = Math.round(c.interval * c.ef);
+      c.reps++;
+    }
+    c.ef = Math.max(1.3, c.ef + 0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02));
+    c.due = Date.now() + c.interval * 86400000;
+    all[k] = c;
+    saveSR(all);
+  }
+
+  function isDue(ep, q) {
+    const card = getCard(ep, q);
+    return card.reps === 0 || card.due <= Date.now();
+  }
+
+  async function renderQuizTab(ep) {
+    quizArea.innerHTML = "";
+    if (!ep.quizPath) {
+      quizArea.innerHTML = `<div class="quiz-empty"><p>No quiz yet for this episode.</p></div>`;
+      return;
+    }
+    quizArea.innerHTML = `<div class="quiz-empty"><p>Loading…</p></div>`;
+    try {
+      const data = await fetch(ep.quizPath).then((r) => r.json());
+      quizState = { ep, allQuestions: data.questions, questions: [], current: 0, score: 0, answered: false, mode: null, missed: [] };
+      renderQuizPicker();
+    } catch {
+      quizArea.innerHTML = `<div class="quiz-empty"><p>Failed to load quiz.</p></div>`;
+    }
+  }
+
+  function renderQuizPicker() {
+    const { ep, allQuestions } = quizState;
+    const sr = loadSR();
+    const dueCount = allQuestions.filter((q) => isDue(ep, q)).length;
+    const totalAttempts = allQuestions.reduce((n, q) => n + (sr[srKey(ep, q)]?.total || 0), 0);
+    const totalCorrect = allQuestions.reduce((n, q) => n + (sr[srKey(ep, q)]?.correct || 0), 0);
+    const pct = totalAttempts ? Math.round((totalCorrect / totalAttempts) * 100) : null;
+
+    quizArea.innerHTML = `
+      <div class="quiz-picker">
+        <div class="quiz-picker-stats">
+          <span class="qps-count">${allQuestions.length} questions</span>
+          ${pct !== null ? `<span class="qps-score">${pct}% accuracy</span>` : ""}
+          ${dueCount > 0 ? `<span class="qps-due">${dueCount} due for review</span>` : ""}
+        </div>
+        <div class="quiz-modes">
+          <button class="quiz-mode-btn" id="btn-quiz-practice">
+            <div class="qmb-icon">📝</div>
+            <div class="qmb-title">Practice</div>
+            <div class="qmb-desc">All ${allQuestions.length} questions, shuffled</div>
+          </button>
+          <button class="quiz-mode-btn${dueCount === 0 ? " qmb-disabled" : ""}" id="btn-quiz-review"${dueCount === 0 ? " disabled" : ""}>
+            <div class="qmb-icon">🔁</div>
+            <div class="qmb-title">Spaced Review</div>
+            <div class="qmb-desc">${dueCount > 0 ? `${dueCount} card${dueCount !== 1 ? "s" : ""} due now` : "Nothing due — check back later"}</div>
+          </button>
+        </div>
+      </div>`;
+
+    document.getElementById("btn-quiz-practice").addEventListener("click", () => startQuiz("practice"));
+    const reviewBtn = document.getElementById("btn-quiz-review");
+    if (reviewBtn && !reviewBtn.disabled) reviewBtn.addEventListener("click", () => startQuiz("review"));
+  }
+
+  function shuffle(arr) {
+    const a = [...arr];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
+  function startQuiz(mode) {
+    const { ep, allQuestions } = quizState;
+    const pool = mode === "review"
+      ? shuffle(allQuestions.filter((q) => isDue(ep, q)))
+      : shuffle([...allQuestions]);
+    quizState.questions = pool;
+    quizState.current = 0;
+    quizState.score = 0;
+    quizState.answered = false;
+    quizState.mode = mode;
+    quizState.missed = [];
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const { questions, current } = quizState;
+    const q = questions[current];
+    const total = questions.length;
+
+    quizArea.innerHTML = `
+      <div class="quiz-session">
+        <div class="quiz-header">
+          <button class="quiz-exit-btn" id="btn-quiz-exit">✕ Exit</button>
+          <span class="quiz-progress-text">${current + 1} / ${total}</span>
+        </div>
+        <div class="quiz-progress-track">
+          <div class="quiz-progress-fill" style="width:${Math.round((current / total) * 100)}%"></div>
+        </div>
+        <div class="quiz-question-wrap">
+          <p class="quiz-q-text">${q.q}</p>
+          <div class="quiz-options">
+            ${q.options.map((opt, i) => `<button class="quiz-option" data-index="${i}">${opt}</button>`).join("")}
+          </div>
+          <div class="quiz-feedback" id="quiz-feedback" hidden>
+            <div class="quiz-feedback-inner" id="quiz-feedback-inner"></div>
+            <button class="quiz-next-btn" id="btn-quiz-next">
+              ${current + 1 < total ? "Next question →" : "See results"}
+            </button>
+          </div>
+        </div>
+      </div>`;
+
+    document.getElementById("btn-quiz-exit").addEventListener("click", () => {
+      quizState.mode = null;
+      renderQuizPicker();
+    });
+    document.querySelectorAll(".quiz-option").forEach((btn) => {
+      btn.addEventListener("click", () => handleAnswer(parseInt(btn.dataset.index, 10)));
+    });
+    document.getElementById("btn-quiz-next").addEventListener("click", advanceQuiz);
+  }
+
+  function handleAnswer(chosen) {
+    if (quizState.answered) return;
+    quizState.answered = true;
+
+    const { ep, questions, current } = quizState;
+    const q = questions[current];
+    const correct = chosen === q.answer;
+
+    if (correct) quizState.score++;
+    else quizState.missed.push(q);
+
+    updateCard(ep, q, correct);
+
+    document.querySelectorAll(".quiz-option").forEach((btn, i) => {
+      btn.disabled = true;
+      if (i === q.answer) btn.classList.add("opt-correct");
+      else if (i === chosen) btn.classList.add("opt-wrong");
+      else btn.classList.add("opt-dim");
+    });
+
+    const inner = document.getElementById("quiz-feedback-inner");
+    inner.innerHTML = `
+      <div class="feedback-verdict ${correct ? "verdict-correct" : "verdict-wrong"}">
+        ${correct ? "✓ Correct" : "✗ Incorrect"}
+      </div>
+      ${q.explanation ? `<p class="feedback-explanation">${q.explanation}</p>` : ""}`;
+    setHidden(document.getElementById("quiz-feedback"), false);
+  }
+
+  function advanceQuiz() {
+    if (quizState.current + 1 >= quizState.questions.length) {
+      renderQuizSummary();
+    } else {
+      quizState.current++;
+      quizState.answered = false;
+      renderQuestion();
+    }
+  }
+
+  function renderQuizSummary() {
+    const { score, questions, missed } = quizState;
+    const total = questions.length;
+    const pct = Math.round((score / total) * 100);
+    const emoji = pct >= 80 ? "🏆" : pct >= 60 ? "👍" : "📚";
+
+    quizArea.innerHTML = `
+      <div class="quiz-summary">
+        <div class="quiz-summary-score">
+          <div class="summary-emoji">${emoji}</div>
+          <div class="summary-fraction">${score}/${total}</div>
+          <div class="summary-pct">${pct}% correct</div>
+        </div>
+        <div class="quiz-summary-actions">
+          <button class="quiz-action-btn" id="btn-quiz-again">Practice again</button>
+          ${missed.length > 0
+            ? `<button class="quiz-action-btn quiz-action-secondary" id="btn-quiz-missed">Retry ${missed.length} missed</button>`
+            : ""}
+          <button class="quiz-action-btn quiz-action-ghost" id="btn-quiz-back">← Back to quiz menu</button>
+        </div>
+      </div>`;
+
+    document.getElementById("btn-quiz-again").addEventListener("click", () => startQuiz("practice"));
+    document.getElementById("btn-quiz-missed")?.addEventListener("click", () => {
+      quizState.questions = shuffle(quizState.missed);
+      quizState.current = 0;
+      quizState.score = 0;
+      quizState.answered = false;
+      quizState.missed = [];
+      renderQuestion();
+    });
+    document.getElementById("btn-quiz-back").addEventListener("click", () => {
+      quizState.mode = null;
+      renderQuizPicker();
+    });
+  }
+
+  // === END QUIZ ===
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      tabBtns.forEach((b) => b.classList.toggle("active", b === btn));
+      const match = window.location.hash.match(/^#\/episode\/(.+)$/);
+      if (match) {
+        const ep = findEpisode(decodeURIComponent(match[1]));
+        if (!ep) return;
+        if (btn.dataset.tab === "quiz") {
+          setHidden(episodeContentEl, true);
+          setHidden(quizArea, false);
+          renderQuizTab(ep);
+        } else {
+          setHidden(episodeContentEl, false);
+          setHidden(quizArea, true);
+          renderMarkdownTab(ep, btn.dataset.tab);
+        }
+      }
+    });
+  });
+
+  window.addEventListener("hashchange", handleRoute);
+  btnBack.addEventListener("click", navigateToLibrary);
+
+  // --- Service worker ---
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/service-worker.js").catch(() => {});
+  }
+
+  // --- Init ---
+  fetch("manifest.json")
+    .then((r) => r.json())
+    .then((data) => { manifest = data; handleRoute(); });
+})();

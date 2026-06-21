@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "sa2201-q01",
+      "q": "Identify the five dimensions across which the impact of automation should be assessed, as named in the syllabus dot-point.",
+      "options": [
+        "Safety of workers, people with disability, the nature and skills required for employment, production efficiency/waste/environment, and the economy and distribution of wealth",
+        "Cost, speed, reliability, security, and scalability",
+        "Hardware, software, networks, data, and people",
+        "Privacy, accuracy, accountability, transparency, and consent"
+      ],
+      "answer": 0,
+      "explanation": "The syllabus names exactly these five: safety of workers; people with disability; the nature and skills required for employment; production efficiency, waste, and the environment; and the economy and the distribution of wealth. The hook is S-P-E-E ('spee') — Safety and access, People and skills, Efficiency and Environment, Economy and wealth. The other options are real concepts from elsewhere in the course (e.g. ethics principles, system components) but are not the five impact dimensions."
+    },
+    {
+      "id": "sa2201-q02",
+      "q": "What does the mnemonic S-P-E-E stand for when organising the five impact dimensions of automation?",
+      "options": [
+        "Speed, Productivity, Efficiency, Economy",
+        "Safety and access, People and skills, Efficiency and Environment, Economy and wealth",
+        "Security, Privacy, Ethics, Equity",
+        "Society, Planet, Employment, Earnings"
+      ],
+      "answer": 1,
+      "explanation": "S-P-E-E groups the five syllabus points into four memorable buckets: Safety and access (worker safety plus people with disability), People and skills (employment), Efficiency and Environment (production, waste, the planet), and Economy and wealth (who gets the money). Writing S-P-E-E in the margin gives you all five points organised. The other options mix in plausible-sounding terms but are not the episode's mnemonic."
+    },
+    {
+      "id": "sa2201-q03",
+      "q": "The HSC verb in this dot-point is 'assess'. What does a full 'assess' response require that a 'list' response does not?",
+      "options": [
+        "A diagram showing how the automated system works internally",
+        "A definition of every technical term used in the answer",
+        "Weighing the upsides against the downsides and reaching a judgement",
+        "Naming only the negative consequences of the automation"
+      ],
+      "answer": 2,
+      "explanation": "Assess (and evaluate) means weigh the upsides against the downsides and reach a judgement — it is structured, two-sided analysis, not 'list bad things about robots'. Naming only the negatives (option D) is exactly the one-sided trap that caps your mark. The skill is a balanced, two-sided treatment across the relevant dimensions that lands a justified conclusion."
+    },
+    {
+      "id": "sa2201-q04",
+      "q": "Outline the two-sided impact of automation on worker safety.",
+      "options": [
+        "It only improves safety by removing humans from all dangerous tasks",
+        "It has no effect on safety because robots simply replace workers one-for-one",
+        "It worsens safety because automated systems fail more often than humans",
+        "It removes humans from old hazards (lifting, toxic handling, deep mining) but introduces new hazards such as being struck by machinery and dangerous over-reliance"
+      ],
+      "answer": 3,
+      "explanation": "Worker safety is genuinely two-sided: the upside is removing humans from dangerous work (heavy lifting, toxic chemicals, deep-mine and high-heat tasks), reducing injuries; the downside, which markers reward, is new hazards — workers struck by machinery, monitoring strain, and over-reliance where a human loses the skill to take over when automation fails. Option A is the one-sided trap that only gives the upside. Naming both the removed and the introduced hazards is what 'assess' rewards."
+    },
+    {
+      "id": "sa2201-q05",
+      "q": "Explain how automation affects people with disability, considering both benefits and barriers.",
+      "options": [
+        "Automation always excludes people with disability because machines cannot adapt to individual needs",
+        "Automation has no particular impact on people with disability beyond its impact on everyone else",
+        "Automation only benefits people with disability and removes all existing accessibility barriers",
+        "Automation can be enabling (voice assistants, captioning, screen readers, automated transport) but can also create new barriers when systems are not designed inclusively, such as inaccessible kiosks or AI that fails atypical speech"
+      ],
+      "answer": 3,
+      "explanation": "The impact is two-sided and depends on design: automation and AI can be hugely enabling through voice assistants, automated captioning, screen readers, and automated transport, opening access to people previously excluded. But it can also exclude — a self-checkout or touchscreen kiosk with no accessible alternative shuts people out, and AI trained on data under-representing disabled people fails them (e.g. speech recognition that misunderstands atypical speech). This is the accessibility-by-design principle applied to automation: enabling when designed inclusively, excluding when not."
+    },
+    {
+      "id": "sa2201-q06",
+      "q": "Distinguish the weak 'robots take jobs' answer from the mark-earning answer about automation's impact on employment.",
+      "options": [
+        "The strong answer claims automation creates more jobs than it destroys, so there is no real downside",
+        "The strong answer focuses only on the new technical roles automation creates",
+        "The strong answer reframes job loss as a transformation of work — displacement of routine roles, creation of new technical and oversight roles, and a pressing need for reskilling",
+        "The weak and strong answers are equivalent because both mention employment"
+      ],
+      "answer": 2,
+      "explanation": "The lazy answer is 'automation takes jobs'; the mark-earning answer is that automation shifts the nature of work and the skills it demands — it displaces routine, rule-based roles, creates new roles building and maintaining the systems, changes existing roles, and creates a skills gap requiring reskilling. Option A overcorrects into a one-sided positive answer with no downside, which is just as weak. Framing employment as a transformation (not a subtraction) of work is the difference between a four and a six."
+    },
+    {
+      "id": "sa2201-q07",
+      "q": "Explain one environmental benefit and one environmental cost of automation, including the cost specific to AI.",
+      "options": [
+        "Benefit: cheaper goods; Cost: workers lose their jobs in manufacturing",
+        "Benefit: faster production; Cost: automated systems are less reliable than human workers",
+        "Benefit: reduced production waste and optimised energy/logistics; Cost: hardware manufacturing footprint, e-waste, and the large energy and water cost of training big machine learning models",
+        "Benefit: automation has no environmental cost; Cost: none worth assessing"
+      ],
+      "answer": 2,
+      "explanation": "The benefit is reduced production waste and better resource efficiency — automated systems use exactly the material needed, optimise energy and logistics, and cut defects to lower emissions. The cost is the technology's own footprint: manufacturing hardware consumes resources and creates e-waste, and crucially, training and running large ML models consumes enormous electricity and water for cooling, giving AI a significant carbon footprint. The 'cheaper goods / lost jobs' option confuses an economic point with an environmental one; naming the AI energy cost is the sharp, current point that marks you out."
+    },
+    {
+      "id": "sa2201-q08",
+      "q": "Regarding the economy and the distribution of wealth, what is the key downside the dot-point specifically names?",
+      "options": [
+        "Automation shrinks the overall economy because robots are expensive to run",
+        "Automation makes all goods more expensive over time",
+        "Gains tend to concentrate with those who own the technology and capital, while displaced workers bear the cost, widening inequality",
+        "Automation distributes wealth evenly because everyone benefits from cheaper goods"
+      ],
+      "answer": 2,
+      "explanation": "Automation can grow the economy by lowering costs and raising productivity, but the distribution downside the dot-point names is that gains flow to those who own the technology and capital — companies and shareholders — while displaced workers pay, concentrating wealth and market power in a few large tech firms. The strong line is that automation can increase total economic output while worsening the distribution of wealth, so the impact depends on policy responses like reskilling, taxation, and social support. The 'shrinks the economy' option is wrong because automation grows, not shrinks, total output — the issue is who benefits, not the size of the economy."
+    },
+    {
+      "id": "sa2201-q09",
+      "q": "How does the COMPAS case study illustrate the impact of automation on the individual and on society?",
+      "options": [
+        "It shows automation always improves the speed and fairness of court decisions",
+        "It shows that when an automated system makes high-stakes decisions about individuals, efficiency gains must be weighed against the harm done to the people the system gets wrong",
+        "It shows that automation has no place in the justice system under any circumstances",
+        "It proves that automated systems are statistically more accurate than human judges"
+      ],
+      "answer": 1,
+      "explanation": "COMPAS scored how likely a defendant was to reoffend, feeding bail and sentencing decisions, and an investigation argued it was systematically harsher on Black defendants. Whatever the statistical debate, it crystallises that automation is not neutral — it redistributes benefits and harms, so the court system's efficiency gains have to be weighed against the cost to individuals the system gets wrong. Assessing means asking who benefits and who pays; option A misses the harm entirely, and option C overstates the lesson into a blanket ban."
+    },
+    {
+      "id": "sa2201-q10",
+      "q": "A warehouse plans to fully automate its operations. Which response best assesses this decision across the impact dimensions?",
+      "options": [
+        "Recommend automating immediately because it raises throughput and reduces injuries, with no significant downsides",
+        "Reject automation because robots will take warehouse jobs and harm the environment",
+        "Note that automation brings safety, efficiency and productivity gains but also new collision risks, displaced manual workers needing reskilling, and an energy and e-waste footprint, so it should be paired with reskilling support and responsible hardware lifecycle management",
+        "Recommend a partial trial first because automation technology is still too unreliable to deploy"
+      ],
+      "answer": 2,
+      "explanation": "A full-mark scenario answer assesses at least three dimensions two-sidedly and lands a judgement: safety (removes hazardous lifting but adds collision and human-robot interaction risks), employment (more throughput and maintenance roles but displaced manual workers needing reskilling), and efficiency/environment (higher productivity and less waste but robot energy use, resource-intensive manufacturing, and e-waste). The judgement weighs these and recommends reskilling support and responsible lifecycle management. Options A and B are the one-sided traps (only upsides, or only 'robots take jobs'); option D shifts to an unsupported reliability claim the episode does not make."
+    }
+  ]
+}

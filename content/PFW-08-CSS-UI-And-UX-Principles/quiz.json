@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw08-q01",
+      "q": "Identify the three layers of 'separation of concerns' in web development and the technology that handles each.",
+      "options": [
+        "Structure (HTML), Style (CSS), Behaviour (JavaScript)",
+        "Front-end (HTML), Back-end (CSS), Store (JavaScript)",
+        "Content (CSS), Layout (HTML), Logic (JavaScript)",
+        "Markup (HTML), Scripting (CSS), Styling (JavaScript)"
+      ],
+      "answer": 0,
+      "explanation": "Separation of concerns keeps three layers distinct: Structure, Style, Behaviour. HTML provides the structure and content, CSS provides the presentation and styling, and JavaScript provides the interactive behaviour. The mark comes from naming all three layers and matching each technology — option B confuses this with the Front/Back/Store system model from an earlier episode."
+    },
+    {
+      "id": "pfw08-q02",
+      "q": "Explain how CSS improves the maintainability of a web application.",
+      "options": [
+        "It applies attractive colours and fonts so the site looks more professional to users",
+        "It compresses the HTML so pages load faster and use less bandwidth",
+        "By separating presentation from content, styling for the whole site is defined once in an external stylesheet, so a change is made in one place and updates every page automatically",
+        "It allows JavaScript to be embedded directly inside HTML elements, reducing the number of files"
+      ],
+      "answer": 2,
+      "explanation": "Maintainability comes from separation of concerns: the visual style lives in one external stylesheet (a single source of truth), so changing a brand colour or font is a one-place edit that updates every page automatically. Option A ('makes it look nice') is the weak answer the script warns against — that describes appearance, not maintainability."
+    },
+    {
+      "id": "pfw08-q03",
+      "q": "Why are inline styles described as the trap that 'kills maintainability'?",
+      "options": [
+        "Inline styles cannot use colours or fonts, only spacing and borders",
+        "Inline styles scatter presentation through the content, so a single design change means editing the style on hundreds of individual elements by hand",
+        "Inline styles are slower to render because the browser must download them separately",
+        "Inline styles only work on the first page of a website and must be repeated per page"
+      ],
+      "answer": 1,
+      "explanation": "Inline styles put style attributes directly on each HTML element, scattering presentation through the content and breaking separation of concerns. A single change then means editing hundreds of places rather than one external stylesheet — the opposite of maintainability. Option C is a distractor about performance; the named trap is about scattered edits, not download speed."
+    },
+    {
+      "id": "pfw08-q04",
+      "q": "What are design tokens, and how do they improve maintainability and consistency?",
+      "options": [
+        "Security keys stored in CSS that authenticate the user before styles are applied",
+        "Pre-built component libraries that ship with ready-made buttons and cards",
+        "Compressed image formats that reduce the file size of icons and logos",
+        "Named variables (CSS custom properties) for colours, spacing and fonts, defined once at the top and reused everywhere, so rebranding becomes a one-line change"
+      ],
+      "answer": 3,
+      "explanation": "Design tokens are named variables — CSS custom properties — for colours, spacing and fonts, defined once and reused everywhere (see Listing 1). Use a primary-colour token in fifty places and a rebrand is a one-line change, making tokens consistency and maintainability made concrete. Option A confuses 'token' with an authentication token, a different meaning of the word."
+    },
+    {
+      "id": "pfw08-q05",
+      "q": "Distinguish between UI and UX.",
+      "options": [
+        "UI is the back-end server logic; UX is the front-end the user sees",
+        "UI refers to the visual elements a user interacts with — layout, colours, buttons; UX refers to the overall experience of using the product — how easy, efficient and satisfying it is",
+        "UI is testing on mobile devices; UX is testing on desktop devices",
+        "UI and UX are interchangeable terms for the same front-end design process"
+      ],
+      "answer": 1,
+      "explanation": "UI (user interface) is what the thing looks like — the buttons, colours, layout, typography. UX (user experience) is what it feels like to use — easy, efficient, frustration-free. UI is the surface; UX is the journey, and a product can have a beautiful UI but a terrible UX. Option D is the misconception the script explicitly rejects."
+    },
+    {
+      "id": "pfw08-q06",
+      "q": "Outline what the C-FAN-H mnemonic stands for as the core UI/UX principles.",
+      "options": [
+        "Colour, Font, Audio, Navigation, Hierarchy",
+        "Clarity, Flexibility, Accessibility, Navigation, Heuristics",
+        "Consistency, Feedback, Accessibility, Navigation, Hierarchy",
+        "Contrast, Focus, Animation, Notification, Headings"
+      ],
+      "answer": 2,
+      "explanation": "C-FAN-H is the stable set of five UI/UX principles: Consistency, Feedback, Accessibility, Navigation, and visual Hierarchy. The hook is a fan — a C-FAN — cooling you down, plus H for Hierarchy. Option A lists the dot-point's design *elements* (font, colour, audio) rather than the design *principles*, which is the most tempting mix-up."
+    },
+    {
+      "id": "pfw08-q07",
+      "q": "A user clicks 'Submit' on a form but nothing visibly happens — no spinner, no confirmation, no error. Which UI/UX principle has been violated?",
+      "options": [
+        "Hierarchy — the eye is not guided to the most important element",
+        "Feedback — the interface fails to respond to the user's action, leaving them wondering whether anything happened",
+        "Navigation — the user cannot tell where they are in the app",
+        "Consistency — the same action means different things in different places"
+      ],
+      "answer": 1,
+      "explanation": "Feedback means the interface responds to every user action — a loading spinner, a green success confirmation, or a clear error message — so the user is never left wondering. Silence after an action is the classic Feedback failure. Navigation (option C) is about finding your way and knowing your location, which is a different problem from an unacknowledged action."
+    },
+    {
+      "id": "pfw08-q08",
+      "q": "Compare responsive design and a progressive web app (PWA) — why is a responsive site NOT automatically a PWA?",
+      "options": [
+        "Responsive design works only on phones, while a PWA works only on desktops",
+        "Responsive design requires a media query, while a PWA requires no CSS at all",
+        "Responsive design adapts the layout to screen size (appearance via media queries), whereas a PWA is defined by installability and offline capability via a service worker (MISO)",
+        "They are the same thing — a responsive site and a PWA both adapt to the device"
+      ],
+      "answer": 2,
+      "explanation": "Responsive design is about layout adapting to screen size — appearance, achieved with media queries (mobile-first). A PWA is about installability and offline capability via a service worker, captured by MISO (Manifest, Installable, Service worker, Offline). Responsive is one property a good site has; it does not make the site a PWA — option D is the exact confusion the exam loves to test."
+    },
+    {
+      "id": "pfw08-q09",
+      "q": "A form shows validation errors only by turning the input border red. Explain why this is an accessibility failure and how to fix it.",
+      "options": [
+        "It fails because red is too bright; switching to orange borders solves the problem",
+        "It fails because colour is the only way the information is conveyed, so colour-blind users get nothing; the fix is to add a text message and an icon as well",
+        "It fails because the border is too thin to meet the 44px minimum touch-target size",
+        "It fails because red borders are not keyboard-operable; the fix is to add a focus outline"
+      ],
+      "answer": 1,
+      "explanation": "Information must never depend on colour alone — a colour-blind user gets nothing from a red border by itself. The fix, tied to the Perceivable principle of WCAG/POUR, is to pair colour with a text message and an icon (see Listing 3). Option C confuses this with the separate touch-target technique, and option D confuses it with keyboard operability — both real techniques, but not the issue here."
+    },
+    {
+      "id": "pfw08-q10",
+      "q": "A student portal has an attractive interface, but users find it confusing and some cannot use it at all. What is the strongest way to frame and address this in an exam answer?",
+      "options": [
+        "The UI is broken, so redesign the colours and fonts until the portal looks more modern",
+        "The portal needs to become a PWA so it works offline, which will resolve the usability complaints",
+        "The appealing UI hides UX and accessibility failures, so apply C-FAN-H principles by name and ground accessibility in WCAG — strengthen hierarchy, consistency, feedback and navigation, and meet contrast, keyboard operability, never colour alone, and text alternatives, designed in as inclusivity",
+        "Add more features to the portal so users have more options and the experience feels richer"
+      ],
+      "answer": 2,
+      "explanation": "The full-mark answer separates the appealing UI from the failing UX and accessibility, then applies the C-FAN-H principles by name and grounds accessibility in WCAG (4.5:1 contrast, keyboard operability, never colour alone, text alternatives) as inclusivity designed in from the start. Option A only touches appearance (the UI), missing that the real failures are UX and accessibility; option B misapplies the responsive-versus-PWA distinction to a problem that is not about offline use."
+    }
+  ]
+}

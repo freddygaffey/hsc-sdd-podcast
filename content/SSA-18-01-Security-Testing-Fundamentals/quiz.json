@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1801-q01",
+      "q": "Name the five security testing strategies in the order presented by the episode, from cheap-and-broad to expensive-and-deep.",
+      "options": [
+        "Code review, vulnerability assessment, SAST, DAST, penetration testing",
+        "Code review, SAST, DAST, vulnerability assessment, penetration testing",
+        "SAST, DAST, code review, penetration testing, vulnerability assessment",
+        "Penetration testing, code review, SAST, DAST, vulnerability assessment"
+      ],
+      "answer": 1,
+      "explanation": "The chant is the spine of the episode: code review, SAST, DAST, vulnerability assessment, penetration testing — CR, SAST, DAST, VA, PEN — ordered cheap-and-broad to expensive-and-deep. The other orderings shuffle the sequence; the episode is explicit that code review and SAST come early in development, DAST and vulnerability assessment run on the running system, and penetration testing is the deep, periodic human attack last."
+    },
+    {
+      "id": "ssa1801-q02",
+      "q": "Outline what code review uniquely catches that no automated scanner will flag.",
+      "options": [
+        "Out-of-date libraries and missing security patches across the deployed system",
+        "Real, chained exploits demonstrated against the running application",
+        "Flawed business logic and intent — an authorisation check that is subtly wrong, or a discount that can go negative, where the code is syntactically fine but simply wrong",
+        "Insecure coding patterns such as string-concatenated SQL, pinpointed to the exact line"
+      ],
+      "answer": 2,
+      "explanation": "Code review is a human reading source line by line, so it uniquely catches flawed logic and intent — a business-logic flaw no scanner flags because the code is syntactically fine, it is just wrong. Option D describes SAST (insecure patterns by line), option A describes a vulnerability assessment (known unpatched issues), and option B describes penetration testing (demonstrated chained exploits)."
+    },
+    {
+      "id": "ssa1801-q03",
+      "q": "Distinguish between static application security testing (SAST) and dynamic application security testing (DAST).",
+      "options": [
+        "SAST analyses the source code without running it and finds flaws early by exact line; DAST tests the running application from the outside and finds genuinely exploitable runtime and configuration flaws but cannot pinpoint the code",
+        "SAST tests the running application by firing malicious inputs at live endpoints; DAST reads the source code before the application is built",
+        "SAST is performed by an ethical hacker chaining exploits; DAST is an automated scan of published vulnerability databases",
+        "SAST and DAST both require a running application, differing only in whether they report false positives"
+      ],
+      "answer": 0,
+      "explanation": "The exam hook is Static = Source (the code, not running); Dynamic = Doing (the app, running). SAST scans source for dangerous patterns early and by location but yields false positives and misses runtime issues; DAST attacks the live app like a real attacker, finding exploitable runtime and config flaws but late and without a line number. Option B reverses the two definitions, which is the most common trap."
+    },
+    {
+      "id": "ssa1801-q04",
+      "q": "A team scans incomplete source code before the application can run and receives a report flagging string-concatenated SQL and a hard-coded credential, each with an exact file and line number. Which testing method produced this report?",
+      "options": [
+        "Dynamic application security testing (DAST)",
+        "Penetration testing",
+        "Vulnerability assessment",
+        "Static application security testing (SAST)"
+      ],
+      "answer": 3,
+      "explanation": "Only SAST runs early on non-running, even incomplete code, scans the source for dangerous patterns like string-built SQL and hard-coded secrets, and reports the exact file and line. DAST and penetration testing both require a running application, and a vulnerability assessment checks the deployed system and its dependencies against databases of known vulnerabilities rather than pinpointing source lines."
+    },
+    {
+      "id": "ssa1801-q05",
+      "q": "Distinguish between a vulnerability assessment and a penetration test.",
+      "options": [
+        "A vulnerability assessment reads source code by line, while a penetration test analyses running configuration",
+        "A vulnerability assessment is a broad scan that lists known weaknesses such as unpatched components, while a penetration test is a deeper simulated attack that actively exploits and chains weaknesses to prove real-world impact",
+        "A vulnerability assessment is a human reading code for intent, while a penetration test is an automated database scan",
+        "They are the same activity, differing only in cost"
+      ],
+      "answer": 1,
+      "explanation": "The difference is breadth versus depth: a vulnerability assessment catalogues what might be wrong across the system (known, unpatched, misconfigured), while a pen test proves what can actually be exploited and how far it reaches by chaining flaws. A pen tester may even use the assessment's list as a starting point. Option A wrongly attributes source-line reading (SAST) to the assessment, and option C confuses the assessment with code review."
+    },
+    {
+      "id": "ssa1801-q06",
+      "q": "In 2017 Equifax was breached because a single known vulnerability in Apache Struts was left unpatched, exposing data on 147 million people. Which testing method is designed to catch exactly this kind of weakness?",
+      "options": [
+        "Penetration testing, because a tester would have chained the flaw to reach the database",
+        "Code review, because a human would have read the source and spotted the flaw",
+        "Vulnerability assessment, because it scans the deployed system and dependencies against databases of published vulnerabilities and would have flagged the exact missing patch",
+        "Dynamic application security testing, because it attacks the running application from outside"
+      ],
+      "answer": 2,
+      "explanation": "A vulnerability assessment uniquely catches the known-and-unpatched: it checks software and its dependencies against databases of published vulnerabilities and produces a prioritised list, so it would have flagged the missing Struts patch — the whole point of the method and the tragedy of the breach. The xz backdoor (not Equifax) is the code-review story, so option B mismatches the case; a pen test or DAST might also have surfaced it, but the assessment is the method purpose-built for it."
+    },
+    {
+      "id": "ssa1801-q07",
+      "q": "Explain why penetration testing is used alongside the other four methods rather than on its own.",
+      "options": [
+        "It is the cheapest and fastest method, so it should be run continuously instead of the others",
+        "It is the only method capable of finding any vulnerabilities at all",
+        "It replaces code review and SAST entirely because it tests the same source-level flaws",
+        "It proves real, chained, demonstrated exploits but is the most expensive and skill-intensive and only a snapshot in time, so it complements the cheaper methods that each catch different flaws the others miss"
+      ],
+      "answer": 3,
+      "explanation": "Penetration testing provides evidence of real-world impact that scanners cannot, but it is expensive, skill-intensive and a point-in-time snapshot, so it sits within a layered strategy where each method catches what the others miss. Option A inverts its cost (it is the most expensive, not cheapest), and option C is wrong because pen testing confirms exploitability at runtime rather than replacing the early source-level methods."
+    },
+    {
+      "id": "ssa1801-q08",
+      "q": "Distinguish between business continuity and disaster recovery as described in the episode.",
+      "options": [
+        "Business continuity restores IT systems and data from backups, while disaster recovery keeps the whole business running",
+        "Business continuity is keeping the whole organisation's critical functions operating throughout a disruption, while disaster recovery is the narrower subset focused on restoring the IT systems and data after it",
+        "They are identical plans with different names depending on the industry",
+        "Business continuity hardens the system before an attack, while disaster recovery handles the breach during the attack"
+      ],
+      "answer": 1,
+      "explanation": "Continuity is the broad goal — keeping critical functions running through a disruption, including manual fallback processes and communication — while disaster recovery is the technical-restore subset that gets the IT systems and data back via backups and failover. Option A reverses the two, the classic mix-up the marker is testing. Hardening and breach handling (option D) are separate ideas in the Harden / Breach-handle / Disaster-recover lifecycle."
+    },
+    {
+      "id": "ssa1801-q09",
+      "q": "Outline what hardening means and give two examples of hardening measures from the episode.",
+      "options": [
+        "Reducing the attack surface before an incident — for example removing unused services and accounts, and applying least privilege",
+        "Restoring systems from off-site backups after a disruption — for example failing over to a secondary site",
+        "Detecting and containing an attack while it is in progress — for example isolating affected servers",
+        "Listing known weaknesses across the system — for example checking for unpatched libraries"
+      ],
+      "answer": 0,
+      "explanation": "Hardening means shrinking the attack surface before anything happens: remove unused services and accounts, close unnecessary ports, apply least privilege, patch everything, change default passwords, and disable verbose error messages. Option B describes disaster recovery, option C describes breach handling (incident response), and option D describes a vulnerability assessment — all distinct stages of surviving a breach rather than hardening."
+    },
+    {
+      "id": "ssa1801-q10",
+      "q": "A company is launching an online banking service. Recommend how it should test the application's security and prepare to survive a breach, and justify the approach.",
+      "options": [
+        "Run a single penetration test at launch, since one skilled tester proves the application is secure",
+        "Rely on hardening alone — patch everything and apply least privilege — because a smaller attack surface removes the need for testing",
+        "Apply a layered strategy of all five methods (code review, SAST, DAST, vulnerability assessment, penetration testing) because each catches what the others miss, then harden the system, prepare an incident response plan in advance, and implement disaster recovery with tested off-site backups within a broader business continuity plan",
+        "Use DAST repeatedly in production as the sole method, since attacking the running app is the only way to find real exploitable flaws"
+      ],
+      "answer": 2,
+      "explanation": "The full-mark answer names all five complementary testing methods used together because each finds different flaws, then covers hardening, breach handling planned in advance, and disaster recovery with tested off-site backups and recovery objectives inside business continuity. Option A fails because 'we tested it' is not 'it's secure' — a pen test is only a snapshot — and options B and D each pick a single layer, ignoring that the methods are complementary and that surviving a breach requires the harden / breach-handle / disaster-recover lifecycle."
+    }
+  ]
+}

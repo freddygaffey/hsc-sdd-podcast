@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1904-q01",
+      "q": "Name the three stages of the continuous loop used to evaluate a security program.",
+      "options": [
+        "Harden, Breach-handle, Disaster-recover",
+        "Code Review, Static, Dynamic",
+        "Measure, Audit, Improve",
+        "Detect, Respond, Recover"
+      ],
+      "answer": 2,
+      "explanation": "Evaluating a security program is a continuous loop of Measure, Audit, Improve — the mnemonic M-A-I, said like the word 'my'. Option A is H-B-D, the incident lifecycle from 18-01 (Harden, Breach-handle, Disaster-recover), and option B is part of the CR-SAST-DAST-VA-PEN testing toolbox — both are related but are not the evaluation loop itself."
+    },
+    {
+      "id": "ssa1904-q02",
+      "q": "Which of the following is an example of an actionable, outcome-based security metric rather than a vanity metric?",
+      "options": [
+        "Mean time to detect (MTTD) a breach",
+        "Number of attacks blocked this month",
+        "Number of security scans run",
+        "Number of antivirus updates installed"
+      ],
+      "answer": 0,
+      "explanation": "Mean time to detect measures an outcome — how long attackers operate undetected — and drives a specific decision (improve monitoring and logging when it rises). The other three count activity that 'looks busy but says nothing'; blocked-attack counts are mostly automated noise the firewall handles by design, so they tell you nothing about whether the organisation is genuinely safer."
+    },
+    {
+      "id": "ssa1904-q03",
+      "q": "Explain why a security program must be evaluated as a continuous loop rather than as a one-off assessment.",
+      "options": [
+        "Because auditors charge less for repeat visits than for first-time audits",
+        "Because the threat landscape constantly changes — new vulnerabilities, evolving attackers and changing software mean a program assessed once becomes outdated",
+        "Because a single audit cannot legally certify ISO 27001 compliance",
+        "Because metrics can only be calculated by comparing at least two separate audits"
+      ],
+      "answer": 1,
+      "explanation": "Security is never finished: new vulnerabilities appear daily, attackers evolve, and your own software changes with every release, so a program excellent two years ago is mediocre today if it hasn't moved. The value is in the cycle — you measure continuously, audit periodically and improve constantly — which is why a one-off audit that's filed and forgotten is worthless. Naming 'continuous improvement' explicitly is worth the mark."
+    },
+    {
+      "id": "ssa1904-q04",
+      "q": "What are the two defining features of an audit in the context of evaluating a security program?",
+      "options": [
+        "It is automated and runs on a daily schedule",
+        "It is fast and inexpensive to perform",
+        "It produces software patches and rewrites insecure code",
+        "It is independent and assessed against a recognised standard"
+      ],
+      "answer": 3,
+      "explanation": "An audit is an independent, systematic check of the security program against a defined standard. Independence matters because you can't objectively grade your own homework — the team shares the blind spots that produced the weaknesses (the V-D-Q argument from 19-01 scaled up). The standard matters because an audit needs criteria to judge against, such as ISO 27001, the NIST Cybersecurity Framework, or PCI-DSS."
+    },
+    {
+      "id": "ssa1904-q05",
+      "q": "Distinguish between a useful security metric and a vanity metric.",
+      "options": [
+        "A useful metric is collected automatically, while a vanity metric is collected manually",
+        "A useful metric is reported to managers, while a vanity metric is reported to the security team",
+        "A useful metric is expensive to gather, while a vanity metric is cheap to gather",
+        "A useful metric measures an outcome that reflects whether the organisation is genuinely safer, while a vanity metric measures activity that looks impressive but indicates nothing about real security"
+      ],
+      "answer": 3,
+      "explanation": "The marker's favourite distinction is outcome versus activity: a useful metric (e.g. average vulnerability remediation time) tells you whether you are safer, while a vanity metric (e.g. 'five million attacks blocked') just shows the team is busy. The rule is 'measure outcomes, not activity'. Where the metric is collected or reported (the other options) is irrelevant to whether it is a vanity metric."
+    },
+    {
+      "id": "ssa1904-q06",
+      "q": "Why is 'average time to fix a known vulnerability' a stronger metric than 'number of vulnerabilities scanned'?",
+      "options": [
+        "Because the number scanned measures activity, while remediation time measures an outcome — how long a known flaw stays exploitable",
+        "Because scanning is harder to measure accurately than remediation",
+        "Because scanning tools are more expensive than patching tools",
+        "Because remediation time is required for ISO 27001 but the number scanned is not"
+      ],
+      "answer": 0,
+      "explanation": "You can scan a million things and fix none of them, so the number scanned tells you nothing about whether you are actually safer — it is activity. Remediation time measures an outcome that matters: a short time means attackers have a small exploitation window, while a long one means a known flaw sits open, which is exactly the Equifax failure. Outcome over activity is the rule."
+    },
+    {
+      "id": "ssa1904-q07",
+      "q": "Outline how the security testing toolbox from 18-01 (such as vulnerability assessments and penetration tests) relates to the audit stage of evaluation.",
+      "options": [
+        "They replace the audit entirely, so an organisation that runs pen tests does not need an audit",
+        "They are evidence sources for the audit — instruments whose results feed the metrics and document compliance and gaps",
+        "They are only used during the improve stage, never during the audit",
+        "They are vanity metrics because they simply count how many tests were run"
+      ],
+      "answer": 1,
+      "explanation": "The five testing methods are the instruments; evaluation is reading the instruments to judge the program. A pen test report says what an attacker could actually achieve, and a vulnerability assessment reports known weaknesses and how many are unpatched — both feed your metrics and serve as evidence for the audit. This is the apply-versus-evaluate distinction made concrete: 18-01 applies the strategies, 19-04 evaluates them."
+    },
+    {
+      "id": "ssa1904-q08",
+      "q": "An organisation has invested heavily in security testing and incident-response planning but has no way of knowing whether its security is improving over time. What should it implement?",
+      "options": [
+        "A larger firewall that blocks more attacks per month",
+        "A one-off external penetration test, filed for compliance records",
+        "A continuous Measure-Audit-Improve loop using outcome-based metrics tracked over time",
+        "A weekly report counting how many scans and antivirus updates were performed"
+      ],
+      "answer": 2,
+      "explanation": "The gap is evaluation, so the answer is the continuous M-A-I loop: measure outcome-based metrics like MTTD, MTTR, remediation time and patch coverage tracked over time; audit independently against a standard using the existing test results as evidence; and improve by closing gaps and feeding lessons back in. A one-off pen test (B) is the worthless 'filed and forgotten' audit, and counting scans (D) is exactly the vanity-metric trap."
+    },
+    {
+      "id": "ssa1904-q09",
+      "q": "An organisation wants three metrics to track the effectiveness of its security program. Which set is the strongest, outcome-based choice?",
+      "options": [
+        "Number of attacks blocked, number of scans run, and number of antivirus updates installed",
+        "Total emails received, total firewall logs generated, and total staff trained",
+        "Mean time to detect, average vulnerability remediation time, and patch coverage percentage",
+        "Number of security tools purchased, hours spent on security, and size of the security team"
+      ],
+      "answer": 2,
+      "explanation": "A strong answer gives three actionable, outcome-based metrics: MTTD limits how long attackers operate undetected, remediation time keeps the exposure window small (the Equifax lesson), and patch coverage closes the gaps attackers exploit — each moves the right way only when the organisation is genuinely more secure. Option A is the classic band-three answer: all three count activity and only show the team is 'working hard', which is not effectiveness."
+    },
+    {
+      "id": "ssa1904-q10",
+      "q": "Identify a recognised standard against which a security program can be independently audited.",
+      "options": [
+        "The GDPR password-length specification",
+        "ISO 27001, the international information-security management standard",
+        "The H-B-D incident lifecycle",
+        "The CIA-AAA mnemonic"
+      ],
+      "answer": 1,
+      "explanation": "An audit needs criteria to judge against, and ISO 27001 is the named international information-security management standard, alongside the NIST Cybersecurity Framework and compliance regimes like PCI-DSS for card payments. H-B-D (option C) is the incident lifecycle and CIA-AAA (option D) is a security-principles mnemonic — useful concepts, but not audit standards a program is formally measured against."
+    }
+  ]
+}

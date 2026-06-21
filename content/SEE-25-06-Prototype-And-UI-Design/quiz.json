@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2506-q01",
+      "q": "Identify the best definition of a prototype as described in this episode.",
+      "options": [
+        "An early, incomplete model of a solution built to explore and validate an idea before committing to full development",
+        "A complete, production-ready version of a feature released to a small group of users for testing",
+        "A formal written specification that lists every requirement before any design work begins",
+        "A polished marketing demonstration used to attract investment in a software product"
+      ],
+      "answer": 0,
+      "explanation": "The script defines a prototype as 'an early, incomplete model of a solution built to explore and validate an idea before committing to full development', and stresses that the key word is doing this cheaply. The tempting distractor is the 'complete, production-ready version released to a small group' — that describes a beta or production release, the opposite of a throwaway prototype, since the whole point is to learn cheaply BEFORE the expensive build."
+    },
+    {
+      "id": "see2506-q02",
+      "q": "What does the S-W-M-P (\"swamp\") mnemonic stand for, in order from roughest to most polished?",
+      "options": [
+        "Sketch, Webpage, Model, Product",
+        "Storyboard, Wireframe, Mockup, Page",
+        "Sketch, Wireframe, Mockup, Prototype",
+        "Specification, Wireframe, Mockup, Prototype"
+      ],
+      "answer": 2,
+      "explanation": "S-W-M-P is the fidelity ladder: Sketch, Wireframe, Mockup, Prototype — said 'swamp' because you climb out of the swamp of vague ideas into a real design. The trap is mixing up the rungs; remember a Mockup is high-fidelity but static, while the Prototype is the interactive, clickable rung that simulates real flows."
+    },
+    {
+      "id": "see2506-q03",
+      "q": "Why does the episode describe prototyping as \"shift-left applied to the user experience\"?",
+      "options": [
+        "Because prototypes are read from left to right, like a storyboard of the user's journey",
+        "Because it moves design work to the left side of the development team's workflow board",
+        "Because it shifts responsibility for usability from developers onto the users being tested",
+        "Because it catches problems early, when they are cheap to fix, rather than after an expensive build"
+      ],
+      "answer": 3,
+      "explanation": "Shift-left means catching problems early when they are cheap to fix — the same logic as modelling before coding (23-02) and code review before integration (25-01). A prototype lets you discover that a layout confuses users on a five-dollar sketch rather than on a five-week build. The other options misread 'left' as a literal direction rather than as moving quality checks earlier in the process."
+    },
+    {
+      "id": "see2506-q04",
+      "q": "Distinguish a wireframe from a mockup in terms of what each one tests.",
+      "options": [
+        "A wireframe is interactive and tests user flow, while a mockup is static and tests load speed",
+        "A wireframe is a high-fidelity coloured design that tests branding, while a mockup tests raw structure",
+        "A wireframe is a low-fidelity layout (boxes, lines, no styling) that tests structure and flow, while a mockup is a high-fidelity static design that tests the visual look and brand",
+        "A wireframe and a mockup are the same thing, only built at different stages of the project"
+      ],
+      "answer": 2,
+      "explanation": "A wireframe is low-fidelity — boxes, lines, and placeholder text with deliberately no colours or styling — so it tests structure and user flow. A mockup is high-fidelity but static, showing real colours, fonts and branding, so it tests the visual design. In short: a wireframe tests structure, a mockup tests look. Neither is interactive — that is the Prototype rung — which rules out the option calling a wireframe interactive."
+    },
+    {
+      "id": "see2506-q05",
+      "q": "According to the episode, what is the most common student error (the \"trap\") when building a prototype?",
+      "options": [
+        "Polishing a throwaway prototype like production — making it pixel-perfect when its job was only to test the layout",
+        "Skipping the sketch stage and starting directly at the wireframe",
+        "Showing the prototype to too many users before it is finished",
+        "Using placeholder text instead of real content in the wireframe"
+      ],
+      "answer": 0,
+      "explanation": "The trap is polishing a prototype like production: spending days making a throwaway mockup pixel-perfect when its job was just to test the layout. A prototype is meant to be cheap and disposable, so over-polishing wastes the exact time prototyping was supposed to save. Using placeholder text (option D) is actually correct wireframe practice, not an error."
+    },
+    {
+      "id": "see2506-q06",
+      "q": "Which recognised framework does the episode use for usability, and which heuristic reduces clutter so attention falls on what matters?",
+      "options": [
+        "WCAG's POUR principles, where 'Robust' removes visual clutter",
+        "Nielsen's usability heuristics, where 'aesthetic, minimalist design' removes clutter",
+        "The fidelity ladder S-W-M-P, where 'Mockup' minimises styling",
+        "The 3-2-1 backup rule, where redundancy reduces interface clutter"
+      ],
+      "answer": 1,
+      "explanation": "Usability is framed around Nielsen's ten usability heuristics, and 'aesthetic, minimalist design' is the one that removes clutter to reduce cognitive load — the same minimalism as the slide-design rule from presenting (25-02). POUR (option A) is the accessibility framework, not the usability one, so confusing the two is the tempting error."
+    },
+    {
+      "id": "see2506-q07",
+      "q": "What do the four POUR accessibility principles stand for?",
+      "options": [
+        "Portable, Open, Usable, Reliable",
+        "Perceivable, Operable, Understandable, Robust",
+        "Perceivable, Operable, Usable, Responsive",
+        "Predictable, Operable, Understandable, Resilient"
+      ],
+      "answer": 1,
+      "explanation": "POUR — Perceivable, Operable, Understandable, Robust — organises the W-C-A-G (Web Content Accessibility Guidelines). Perceivable means alt text, contrast and captions; Operable means keyboard access and focus indicators; Understandable means clear language and helpful errors; Robust means semantic markup that works with assistive technology. The near-miss distractors swap in plausible words like 'Usable' or 'Responsive', but the syllabus terms are exactly Perceivable, Operable, Understandable, Robust."
+    },
+    {
+      "id": "see2506-q08",
+      "q": "Under POUR, full keyboard access and visible focus indicators are examples of which principle?",
+      "options": [
+        "Perceivable",
+        "Understandable",
+        "Robust",
+        "Operable"
+      ],
+      "answer": 3,
+      "explanation": "Operable means users can operate the interface — this covers full keyboard access, visible focus indicators, and giving users enough time. Perceivable (option A) is about perceiving content, like alt text and colour contrast; the easy mix-up is putting keyboard access under Robust, but Robust specifically refers to semantic markup that works with screen readers and other assistive technology."
+    },
+    {
+      "id": "see2506-q09",
+      "q": "A team has one afternoon to test whether users can find the 'submit assignment' button in a new layout. Which rung of the fidelity ladder should they build?",
+      "options": [
+        "A polished, full-colour branded mockup, so the button looks appealing enough to find",
+        "A fully coded interactive prototype, so they can measure exact click times",
+        "A low-fidelity wireframe with boxes and labels, showing where everything sits and the flow to submit",
+        "A rough sketch only, because finding a button needs no layout detail at all"
+      ],
+      "answer": 2,
+      "explanation": "You build a wireframe — low fidelity, boxes and labels — because it tests exactly what matters: can users find and reach the submit button, fast and throwaway. Visual styling is irrelevant to 'can they find the button', so spending the afternoon on a polished mockup (option A) is polishing a prototype like production, the trap. Match the fidelity to the question you are asking."
+    },
+    {
+      "id": "see2506-q10",
+      "q": "A team is prototyping a new student-portal feature and wants to ensure it is accessible. According to the episode, when should accessibility be built in, and why does this matter?",
+      "options": [
+        "After the interactive prototype tests well, because accessibility only applies to finished, shipped products",
+        "From the wireframe stage against POUR, because retrofitting is far harder and failing WCAG can breach the Disability Discrimination Act",
+        "Only in the mockup, because accessibility is purely a visual concern about colours and fonts",
+        "It is optional for school projects, since legal accessibility duties apply only to commercial e-commerce sites"
+      ],
+      "answer": 1,
+      "explanation": "Accessibility should be designed in from the wireframe stage against POUR, not bolted on later — the episode's trap is ignoring accessibility in mockups, because retrofitting is far harder than designing it in. It is non-negotiable: both an ethical duty and a legal requirement, and failing W-C-A-G can breach the Disability Discrimination Act (a callback to compliance in 24-06). That legal duty is general, which is why the 'optional for school projects' option is wrong."
+    }
+  ]
+}

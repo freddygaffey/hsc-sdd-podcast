@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2602-q01",
+      "q": "What do the three steps of the C-S-A feedback analysis process stand for?",
+      "options": [
+        "Collect, Synthesise, Act",
+        "Categorise, Sample, Action",
+        "Communicate, Survey, Analyse",
+        "Confirm, Sort, Apply"
+      ],
+      "answer": 0,
+      "explanation": "C-S-A is Collect (gather feedback from diverse sources), Synthesise (find the patterns across it) and Act (decide and follow through). This is the central hook of the episode and the structure a band-six answer to 'explain how a developer analyses and responds to feedback' should follow. The other options reuse plausible-sounding stage names but are not the syllabus process taught here."
+    },
+    {
+      "id": "see2602-q02",
+      "q": "Identify three valid sources a developer can use to collect user feedback, as named in the episode.",
+      "options": [
+        "Compiler warnings, code reviews and unit tests",
+        "Surveys and questionnaires, user interviews and usage analytics",
+        "Git commits, pull requests and release notes",
+        "Marketing campaigns, advertising and press releases"
+      ],
+      "answer": 1,
+      "explanation": "The episode lists surveys/questionnaires (structured quantitative feedback), interviews (deep qualitative insight) and usage analytics (what users actually do), along with support tickets, beta-testing groups and automated error logs. Option A names testing and code-quality activities, which are QA mechanisms, not user-feedback sources. Naming three distinct sources is the recall mark for this dot-point."
+    },
+    {
+      "id": "see2602-q03",
+      "q": "What is the core reframing of feedback analysis that the episode insists earns marks?",
+      "options": [
+        "Feedback analysis is collecting as many user opinions as possible",
+        "Feedback analysis is responding politely to every user who complains",
+        "Feedback analysis is making decisions, not collecting opinions",
+        "Feedback analysis is choosing whichever feature the senior stakeholder wants"
+      ],
+      "answer": 2,
+      "explanation": "The episode's core idea is that feedback analysis is about transforming noisy, contradictory feedback into a defensible set of actions — making decisions, not just gathering opinions. Option A is the trap: simply collecting opinions without synthesising and acting is exactly what the marker does not reward. The professional turns feedback into data, then into decisions."
+    },
+    {
+      "id": "see2602-q04",
+      "q": "Explain what 'triangulation' means in the Collect stage of feedback analysis.",
+      "options": [
+        "Surveying users from at least three different countries",
+        "Splitting users into three groups for A/B testing",
+        "Asking each user the same question three times to check consistency",
+        "Confirming a finding across multiple sources before you trust it"
+      ],
+      "answer": 3,
+      "explanation": "Triangulation means confirming a finding across multiple sources — if surveys, analytics and support tickets all point at the same problem, it is real, but if only one angry interview mentions it you should be careful. It exists because 'one source lies'. The A/B-testing option describes a separate automated mechanism, not triangulation, and is the most tempting distractor because both involve multiple groups."
+    },
+    {
+      "id": "see2602-q05",
+      "q": "On the impact-versus-effort matrix, how should a high-impact, low-effort change be classified and treated?",
+      "options": [
+        "A 'major project' — plan it for a later cycle",
+        "A 'questionable' change — probably skip it",
+        "A 'quick win' — do it now",
+        "A 'fill-in' — do it only if there is spare time"
+      ],
+      "answer": 2,
+      "explanation": "High impact with low effort is a 'quick win' — it helps users a lot for little cost, so you do it now. High-impact/high-effort is a 'major project' to plan; low-impact/low-effort is a 'fill-in'; and low-impact/high-effort is 'questionable' and usually skipped. Mislabelling a quick win as a major project (option A) confuses the two high-impact quadrants."
+    },
+    {
+      "id": "see2602-q06",
+      "q": "Distinguish between thematic analysis and frequency analysis as Synthesise techniques.",
+      "options": [
+        "Thematic analysis groups similar feedback into themes such as usability or reliability, while frequency analysis counts what gets mentioned most",
+        "Thematic analysis counts mentions, while frequency analysis classifies feedback as positive or negative",
+        "Thematic analysis plots impact against effort, while frequency analysis triangulates across sources",
+        "Thematic analysis ranks feedback by who is most senior, while frequency analysis ranks it by date received"
+      ],
+      "answer": 0,
+      "explanation": "Thematic analysis groups similar feedback into themes (usability, performance, reliability); frequency analysis identifies what is mentioned most often. Classifying feedback as positive, negative or neutral (the second half of option B) is sentiment analysis, a third distinct technique. Both thematic and frequency analysis feed into the impact-versus-effort prioritisation that follows."
+    },
+    {
+      "id": "see2602-q07",
+      "q": "Why is 'no action' described as a legitimate outcome in the Act stage rather than a failure to respond?",
+      "options": [
+        "Because developers should never act on user feedback that comes from a minority",
+        "Because no-action items are automatically added to the long-term roadmap instead",
+        "Because logging feedback without acting on it always satisfies the user who raised it",
+        "Because deciding not to act, when the feedback doesn't fit the project's goals or represents a tiny minority, is a justified decision as long as you record why"
+      ],
+      "answer": 3,
+      "explanation": "'No action' is one of the four Act categories (alongside immediate fixes, short-term improvements and long-term roadmap) and is legitimate for feedback that doesn't fit the project's goals or a tiny minority — provided you document the reasoning. The most tempting distractor describes the opposite trap: logging feedback with no follow-through and no explanation, which is worse than not asking because it teaches users their voice is ignored."
+    },
+    {
+      "id": "see2602-q08",
+      "q": "You receive one furious email demanding a niche feature only that person wants, and quiet analytics showing 60% of users abandon the signup form. Which should you prioritise, and on what principle?",
+      "options": [
+        "The niche feature, because an angry customer who emails directly deserves the fastest response",
+        "The signup-form abandonment, because you act on the weight of evidence, not the loudest voice",
+        "Neither yet, because you must wait until every user has been surveyed before acting",
+        "The niche feature, because a single explicit request is more reliable than anonymous analytics"
+      ],
+      "answer": 1,
+      "explanation": "You fix the signup-form abandonment every time: 60% abandoning is a high-impact problem affecting most users, confirmed by hard analytics, while the email is a single voice wanting a low-impact niche feature. The principle is acting on the weight of evidence, not the loudest voice — the classic trap. You don't ignore the emailer (you log and explain), but the signup fix comes first."
+    },
+    {
+      "id": "see2602-q09",
+      "q": "A team gets conflicting feedback: parents want more notifications, teachers find them distracting, and admins need all communications logged for compliance. How should the team resolve this?",
+      "options": [
+        "Side with the parents, since they are the most numerous stakeholder group",
+        "Remove notifications entirely so no stakeholder group is annoyed",
+        "Implement every request immediately to keep all three groups satisfied",
+        "Apply C-S-A: synthesise on impact-versus-effort, treat compliance logging as a regulatory must-do, schedule a do-not-disturb quick win, plan parent customisation later, and communicate decisions back"
+      ],
+      "answer": 3,
+      "explanation": "Rather than picking a side, the team applies collect-synthesise-act: a do-not-disturb-during-class-hours notification schedule is a high-impact, low-effort quick win that resolves teacher distraction while preserving parent notifications. Compliance logging is a regulatory requirement (the compliance C from QA), not a preference, so it must be done regardless; parent customisation is higher-effort and planned for later. Throughout, the team negotiates around the Scope-Time-Cost triangle and closes the loop by communicating the rationale."
+    },
+    {
+      "id": "see2602-q10",
+      "q": "Why does the episode treat 'representative sampling' as a fairness duty rather than just thoroughness?",
+      "options": [
+        "Because larger samples always produce more statistically significant results",
+        "Because surveys are more representative than interviews in every situation",
+        "Because if you only listen to your most confident, tech-savvy users you build for them and exclude everyone else — a bias problem, the B in PABT",
+        "Because sampling more users reduces the cost of collecting feedback"
+      ],
+      "answer": 2,
+      "explanation": "Representative sampling means hearing the whole user base, not just the vocal minority. If you only listen to your most confident, tech-savvy users you build for them and exclude everyone else — a fairness and bias issue, the B in PABT, and the same data-representativeness concern as Software Automation's S-H-L-M bias sources. So 'collect from diverse sources' is not merely thoroughness; it is a fairness duty."
+    }
+  ]
+}

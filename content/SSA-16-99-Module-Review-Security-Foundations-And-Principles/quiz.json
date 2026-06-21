@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1699-q01",
+      "q": "Identify what C-I-A-A-A stands for and which part of it is 'what we protect'.",
+      "options": [
+        "Confidentiality, Integrity, Availability are what we protect; Authentication, Authorisation, Accountability are how we protect it",
+        "Confidentiality, Integrity, Availability are the controls; Authentication, Authorisation, Accountability are what we protect",
+        "Confidentiality, Identity, Access form the triad; Authentication, Auditing, Authorisation form triple-A",
+        "All five are properties we protect, delivered together by cryptography"
+      ],
+      "answer": 0,
+      "explanation": "The C-I-A triad — Confidentiality, Integrity, Availability — is what we protect; triple-A — Authentication, Authorisation, Accountability — is how we protect it. The script calls this 'the single most valuable thing in the module' and says to dump C-I-A-A-A in the margin in second one. Reversing the two groups (the swapped option) is the trap: the triad describes properties of the data, while triple-A describes the controls and processes that defend them."
+    },
+    {
+      "id": "ssa1699-q02",
+      "q": "Outline the two benefits of developing secure software named by the D-A mnemonic.",
+      "options": [
+        "Detect attacks and Audit access",
+        "Protect Data and prevent Attacks",
+        "Deploy faster and Avoid downtime",
+        "Document risk and Authenticate users"
+      ],
+      "answer": 1,
+      "explanation": "D-A stands for protect Data and prevent Attacks — the two syllabus benefits, with security framed as an enabler rather than just a cost. The script adds that prevention is far cheaper than response and that secure software also builds trust and meets compliance. Options about detection or auditing describe accountability mechanisms, not the two headline benefits the marker rewards."
+    },
+    {
+      "id": "ssa1699-q03",
+      "q": "Distinguish authentication from authorisation, as drilled in the module.",
+      "options": [
+        "Authentication verifies who you are and comes first; authorisation determines what you may do and comes second",
+        "Authentication checks what you are allowed to do; authorisation verifies who you are",
+        "Both verify identity, but authentication uses passwords and authorisation uses certificates",
+        "Authentication logs what you did; authorisation proves who you are"
+      ],
+      "answer": 0,
+      "explanation": "Authentication is proving identity — who you are — and it comes first; authorisation is checking permission — what you may do — and it comes second. The script's example: logging into the school portal is authentication, while seeing your own grades but not others' is authorisation. The trap, stated explicitly, is 'logged in is not allowed' — being authenticated does not mean you are authorised, which later appears as broken access control."
+    },
+    {
+      "id": "ssa1699-q04",
+      "q": "Explain why hashing, not encryption, is used to store passwords.",
+      "options": [
+        "Hashing is faster than encryption, so logins respond more quickly",
+        "Encryption cannot be applied to text-based passwords, only to binary files",
+        "Hashing is one-way and irreversible, so a breach does not reveal the actual passwords, and the system only needs to verify a login rather than recover the password",
+        "Hashing automatically adds a salt, whereas encryption never can"
+      ],
+      "answer": 2,
+      "explanation": "Hashing is one-way and irreversible, so the system only needs to verify a login by re-hashing the entered password — it never needs to recover the original. Encryption is two-way and its key would be a liability: if the key were compromised, every password could be reversed. The line to remember is 'hash is one-way, encrypt is two-way' — the most repeated line in the module. Speed (option A) is a side effect, not the security reason."
+    },
+    {
+      "id": "ssa1699-q05",
+      "q": "Distinguish confidentiality from integrity using the module's framing.",
+      "options": [
+        "Confidentiality is whether data can be changed; integrity is who can read it",
+        "Confidentiality is who can read the data (preventing unauthorised disclosure); integrity is whether the data can be changed (preventing unauthorised modification)",
+        "Both mean keeping data safe, and they always fail together",
+        "Confidentiality concerns availability of the data; integrity concerns its encryption"
+      ],
+      "answer": 1,
+      "explanation": "Confidentiality is secrecy — who can read the data — and integrity is trustworthiness — whether it can be modified. The script stresses they fail independently: a spy who reads but does not alter breaks confidentiality only, while a vandal who scrambles but cannot read breaks integrity only. The warning is explicit: do not blur them into 'keeps data safe' (option C)."
+    },
+    {
+      "id": "ssa1699-q06",
+      "q": "What are the three defensive input handling practices captured by V-S-E?",
+      "options": [
+        "Verify, Secure, Encrypt",
+        "Validate, Store, Export",
+        "Validate, Sanitise, handle Errors",
+        "View, Sanitise, Escape"
+      ],
+      "answer": 2,
+      "explanation": "V-S-E is Validate, Sanitise, and handle Errors — the three practices for never trusting input, where allow-list beats block-list. The script pairs this with parameterised queries (killing SQL injection) and output encoding (killing cross-site scripting), since both attacks are 'the same disease — input becoming code'. Error handling means 'log it private, show it generic', not encrypting the input (option A)."
+    },
+    {
+      "id": "ssa1699-q07",
+      "q": "Distinguish validation from sanitisation.",
+      "options": [
+        "Validation cleans or escapes input; sanitisation rejects input that breaks the rules",
+        "Both reject bad input, but validation runs on the client and sanitisation on the server",
+        "Validation encrypts input in transit; sanitisation hashes it at rest",
+        "Validation checks input against rules and rejects what does not conform; sanitisation transforms, cleans or escapes input to make it safe rather than rejecting it"
+      ],
+      "answer": 3,
+      "explanation": "Validation is a gate that rejects input failing the rules; sanitisation cleans or escapes input to make it safe to use. The module's phrasing is 'validation rejects; sanitisation cleans', and you typically validate first to throw out clearly bad input, then sanitise what you keep before using it. The first option simply swaps the two definitions, which is the most common confusion."
+    },
+    {
+      "id": "ssa1699-q08",
+      "q": "Distinguish privacy from security, the fifth distinction the marker tests.",
+      "options": [
+        "Privacy keeps attackers out; security governs whether data should be collected at all",
+        "Security protects data from unauthorised access; privacy governs whether personal data should be collected at all and how it is used, retained and consented to",
+        "Privacy and security are the same property delivered by different mnemonics",
+        "Security concerns data at rest; privacy concerns data in transit"
+      ],
+      "answer": 1,
+      "explanation": "Security is about access — keeping attackers out — while privacy is about appropriate handling — whether you should collect personal data and how you use, retain and consent to it. The script's example shows they are independent: an app with perfect security can still violate privacy by harvesting and selling data nobody breached. Privacy is governed by the PER principles (Proactive, Embed, Respect) and data minimisation — collect less, keep less."
+    },
+    {
+      "id": "ssa1699-q09",
+      "q": "A small online store serves its checkout over plain HTTP, so card numbers travel in clear text. Within C-I-A-A-A, which property is violated and what is the correct fix?",
+      "options": [
+        "Integrity is violated; fix it with hashing and input validation",
+        "Availability is violated; fix it with redundancy and load balancing",
+        "Confidentiality in transit is violated; fix it with HTTPS, where a certificate authenticates the server and then hybrid encryption protects the traffic",
+        "Accountability is violated; fix it with an audit log of every checkout"
+      ],
+      "answer": 2,
+      "explanation": "Plain HTTP sends card numbers as clear text open to eavesdropping — a confidentiality failure in transit. The fix is HTTPS (TLS): a certificate authenticates the server, then hybrid encryption protects the traffic. This matches the integrated 'audited online store' scenario in the script. Integrity (option A) concerns unauthorised modification, not interception, so it is the tempting but wrong property here."
+    },
+    {
+      "id": "ssa1699-q10",
+      "q": "A start-up is designing a telehealth app that stores patients' medical notes and lets doctors and patients message. Which response best applies the foundations block (Chapters 14-16) to its secure design?",
+      "options": [
+        "Encrypt the database, require strong passwords, and collect as much patient data as possible so the service is comprehensive",
+        "Focus mainly on availability through redundancy, since uptime is the only real concern for a messaging app",
+        "Bolt on encryption and access control at the end of development, since security can be added once the features work",
+        "Treat security as a business and legal necessity, build it in across the life cycle with STRIDE threat modelling; apply C-I-A-A-A with TLS in transit, salted slow-hashed credentials, role-based least-privilege authorisation and audit logging; and apply V-S-E plus privacy by design with strict data minimisation"
+      ],
+      "answer": 3,
+      "explanation": "The model integrated answer reaches across all three chapters: chapter 14's mindset (security as enabler and legal necessity, shift-left across the life cycle, STRIDE at design), chapter 15's C-I-A-A-A delivered by cryptography (TLS, salted slow hashing, least-privilege authorisation, audit logs for accountability), and chapter 16's V-S-E and privacy by design with data minimisation. Maximising collection fails privacy by design, an availability-only focus ignores confidentiality of sensitive notes, and bolting security on at the end contradicts security-by-design — fixing flaws late is far costlier than shifting left."
+    }
+  ]
+}

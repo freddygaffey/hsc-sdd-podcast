@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "sa2202-q01",
+      "q": "Identify the four patterns in human behaviour that, according to the syllabus, influence machine learning and AI software development.",
+      "options": [
+        "Psychological responses, acute stress response, cultural protocols, and belief systems",
+        "Trust, perceived control, cognitive load, and stress tolerance",
+        "Sampling, historical, labeler, and measurement bias",
+        "Forecasting, assistants, image recognition, and recommendation"
+      ],
+      "answer": 0,
+      "explanation": "The syllabus names exactly four factors: psychological responses, patterns related to acute stress response, cultural protocols, and belief systems. The mnemonic is P-S-C-B — Psychology, Stress, Culture, Belief. Option B lists the three psychological sub-factors (trust, control, cognitive load), not the four top-level patterns, and option C is the S-H-L-M bias hook from the next episode."
+    },
+    {
+      "id": "sa2202-q02",
+      "q": "State the central thesis that unifies all four human behaviour patterns covered in this episode.",
+      "options": [
+        "AI systems should automate as many human decisions as possible to reduce error",
+        "Successful AI adapts to human behaviour rather than forcing humans to adapt to the technology",
+        "AI systems should always be fully transparent and never use neural networks",
+        "Human behaviour is too varied to model, so AI should ignore individual differences"
+      ],
+      "answer": 1,
+      "explanation": "The single big idea under P, S, C, and B is that human behaviour is varied and context-dependent, so a successful AI system adapts to the human rather than forcing the human to adapt to it. Option A is the opposite of the perceived-control point about keeping a human override. Option D contradicts the whole episode, which argues you must design for human variation, not ignore it."
+    },
+    {
+      "id": "sa2202-q03",
+      "q": "Outline the three psychological responses identified under the 'P' factor and their effect on whether a system is adopted.",
+      "options": [
+        "Speed, accuracy, and consistency — they determine how fast a model trains",
+        "Trust, perceived control, and cognitive load — they shape whether users accept the system",
+        "Optimism, privacy, and fairness — they determine a user's belief system",
+        "Localisation, communication style, and authority — they shape cultural fit"
+      ],
+      "answer": 1,
+      "explanation": "The 'big three' psychological responses are trust (people trust decisions they can understand), perceived control (people need to feel they can question or override a decision), and cognitive load (too much automation makes people disengage or err). Option C lists belief-system dimensions, and option D lists cultural-protocol dimensions — both are different factors in P-S-C-B."
+    },
+    {
+      "id": "sa2202-q04",
+      "q": "Explain why a model trained only on calm, 'happy-path' data is a problem for stressed users.",
+      "options": [
+        "Calm data is always smaller, so the model overfits and memorises noise",
+        "Stressed users prefer fully automated systems, which calm-trained models cannot provide",
+        "Acute stress makes behaviour less accurate and consistent, so the model meets input it never saw in training and performs worst exactly when users most need it",
+        "Calm data contains personal information, which breaches privacy when deployed under stress"
+      ],
+      "answer": 2,
+      "explanation": "Under acute stress people are less accurate, rushed, and inconsistent — like the exhausted clinician at 3 a.m. typing fast and leaving fields blank. A model trained only on calm inputs meets behaviour it never saw and fails at the worst moment, which is often when the system is needed most. Option A describes overfitting, a separate concept; the issue here is unrepresentative training data, not data quantity."
+    },
+    {
+      "id": "sa2202-q05",
+      "q": "Explain what ICIP refers to and why it matters under the cultural protocols factor.",
+      "options": [
+        "Indigenous Cultural and Intellectual Property — protocols for collecting, using, and representing Aboriginal and Torres Strait Islander cultural knowledge and data",
+        "International Cultural Inclusion Policy — a global standard requiring AI to support all languages",
+        "Interface Cultural Index Protocol — a metric for scoring how localised an interface is",
+        "Individual Consent and Information Privacy — a rule that users must opt in to data collection"
+      ],
+      "answer": 0,
+      "explanation": "ICIP stands for Indigenous Cultural and Intellectual Property, the protocols for how Aboriginal and Torres Strait Islander cultural knowledge, data, and community engagement are collected, used, and represented. The episode stresses culture is not a cosmetic setting — it can be a matter of rights and respect. Option D is a plausible-sounding privacy rule but is not what the Australian-specific ICIP acronym means."
+    },
+    {
+      "id": "sa2202-q06",
+      "q": "Distinguish between the design responses appropriate to the psychological responses factor (P) and the belief systems factor (B).",
+      "options": [
+        "P requires localisation and cultural testing; B requires training on high-stress data",
+        "P requires explaining decisions and keeping a human override; B requires offering a choice of automation level, oversight, and data minimisation so users with differing beliefs can accept the same feature",
+        "P and B both require only that the model be retrained more frequently on fresh data",
+        "P requires data minimisation; B requires reducing on-screen clutter to lower cognitive load"
+      ],
+      "answer": 1,
+      "explanation": "P (psychology) is addressed by making decisions explainable and keeping a meaningful human override — responding to trust and control. B (belief systems) is addressed by offering transparency, oversight, a choice of automation level, and data minimisation, because two users can meet the identical feature and one accepts while the other rejects it. Option A swaps in the cultural (C) and stress (S) responses, and option D mislabels the data-minimisation and cognitive-load responses across the wrong factors."
+    },
+    {
+      "id": "sa2202-q07",
+      "q": "Compare how a 'technology optimist' and a 'privacy advocate' respond to the same automated feature, and what this implies for design.",
+      "options": [
+        "Both reject the feature, so the system should remove all automation",
+        "Both accept the feature, so a single default design is sufficient",
+        "The optimist welcomes the automated decision while the privacy advocate who values human control rejects it, so a one-size-fits-all design alienates part of the user base and the system should offer choice and transparency",
+        "Their responses depend only on how stressed they are at the time, not on their beliefs"
+      ],
+      "answer": 2,
+      "explanation": "Under the belief systems factor, two people meeting the very same feature can respond in opposite ways: a technology optimist welcomes the automation, while a privacy advocate who believes humans must stay in control rejects it. Because beliefs vary, a one-size-fits-all design alienates part of the user base, so the engineer offers choice, a human-override path, data minimisation, and explanation. Option D confuses belief systems (B) with the separate acute stress factor (S)."
+    },
+    {
+      "id": "sa2202-q08",
+      "q": "A team is building a medical-diagnosis assistant. They train it on the careful, complete inputs of an unhurried clinician, then deploy it to emergency departments. Explain the main flaw and the appropriate design response.",
+      "options": [
+        "The flaw is cultural — the assistant lacks localisation, so the team should test it with the target cultures",
+        "The flaw is that the assistant is a black box — the team should switch from a neural network to a decision tree for interpretability",
+        "The flaw is that calm-only training data does not represent stressed use, so the model fails an exhausted doctor entering rushed, incomplete input; the team should train on data reflecting high-pressure use and adapt the interface to stress indicators",
+        "The flaw is privacy — patient data was collected without consent, so the team should apply data minimisation"
+      ],
+      "answer": 2,
+      "explanation": "This is the worked acute-stress scenario: a model trained on calm, complete inputs meets the rushed, error-filled, field-skipping behaviour of a stressed doctor and fails when the system is needed most. The design response is to train on data across realistic stress conditions and design the interface to detect stress indicators and adapt — simplifying or asking for confirmation. Options A, B, and D each name a real concept (culture, transparency, privacy) but misdiagnose this specifically stress-and-data problem."
+    },
+    {
+      "id": "sa2202-q09",
+      "q": "Explain why an examiner would mark down the answer: 'People are all different, so AI has to be careful with people's feelings and not be biased.'",
+      "options": [
+        "It is factually incorrect — people are not actually all different",
+        "It is too long and should be reduced to a single sentence",
+        "It is vague, names no syllabus factor, and offers no design response, so it links no human factor to a concrete development decision",
+        "It mentions bias, which belongs only in the next episode and must never appear here"
+      ],
+      "answer": 2,
+      "explanation": "The episode contrasts this weak answer (band four at best) with the strong shape: it names none of the four P-S-C-B factors, identifies no mechanism (data and acceptance), and gives no design response. A band-six answer names the factor, the mechanism, and a concrete design response with an example, such as 'users distrust opaque decisions, so systems should explain reasoning and allow override'. The problem is missing structure and specificity, not length."
+    },
+    {
+      "id": "sa2202-q10",
+      "q": "Explain the bridge the episode draws between P-S-C-B and the bias hook S-H-L-M introduced for next episode.",
+      "options": [
+        "P-S-C-B and S-H-L-M are unrelated mnemonics that happen to have four letters each",
+        "The four human factors are precisely where bias enters: if training data over-represents one psychology, stress profile, culture, or belief system, the model becomes biased toward that group and fails everyone else",
+        "S-H-L-M describes the design responses to the P-S-C-B factors",
+        "P-S-C-B replaces S-H-L-M because human behaviour matters more than dataset bias"
+      ],
+      "answer": 1,
+      "explanation": "The connective tissue is that P-S-C-B is the human source and S-H-L-M (Sampling, Historical, Labeler, Measurement) is the bias that results. If your data over-represents one psychology, stress profile, culture, or belief system, the model is biased toward that group and fails the rest. Option C is wrong because S-H-L-M names types of bias, not design responses; the design responses are explanation, override, localisation, and data minimisation."
+    }
+  ]
+}

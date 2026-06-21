@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "sa2002-q01",
+      "q": "Identify the four models of training machine learning and the mnemonic used to recall them.",
+      "options": [
+        "Supervised, unsupervised, semi-supervised, and reinforcement learning — recalled as S-U-S-R ('suss-er')",
+        "Supervised, unsupervised, deep, and reinforcement learning — recalled as S-U-D-R",
+        "Classification, regression, clustering, and reward — recalled as C-R-C-R",
+        "Labelled, unlabelled, partly-labelled, and reward learning — recalled as L-U-P-R"
+      ],
+      "answer": 0,
+      "explanation": "The four training models in the syllabus are supervised, unsupervised, semi-supervised, and reinforcement learning, captured by the hook S-U-S-R, said 'suss-er'. Classification and regression (option C) are the two jobs *within* supervised learning, not training models in their own right, so that distractor confuses a sub-type with the top-level list."
+    },
+    {
+      "id": "sa2002-q02",
+      "q": "State the one-word data 'trigger word' the episode attaches to each of the four training models.",
+      "options": [
+        "Supervised — reward; unsupervised — labelled; semi-supervised — few-labels; reinforcement — find-structure",
+        "Supervised — labelled; unsupervised — find-structure; semi-supervised — few-labels; reinforcement — reward",
+        "Supervised — find-structure; unsupervised — labelled; semi-supervised — reward; reinforcement — few-labels",
+        "Supervised — predict; unsupervised — cluster; semi-supervised — anchor; reinforcement — explore"
+      ],
+      "answer": 1,
+      "explanation": "The trigger words are the one-word cue for the data each model uses: supervised is labelled, unsupervised is find-structure, semi-supervised is few-labels, and reinforcement is reward. The trigger word is what tells you which model a scenario needs. Option D lists real verbs from the episode (predict, cluster, anchor, explore) but those are not the data trigger words the hook relies on."
+    },
+    {
+      "id": "sa2002-q03",
+      "q": "Outline what supervised learning needs in its training data and what it is used to do.",
+      "options": [
+        "It needs unlabelled data and discovers hidden groupings the user did not define in advance",
+        "It needs an environment that returns rewards, and learns a sequence of actions by trial and error",
+        "It needs a labelled dataset of inputs paired with known correct outputs, and learns the mapping so it can predict the output for new, unseen inputs",
+        "It needs a small labelled set plus a large unlabelled pool, and combines both to cut labelling cost"
+      ],
+      "answer": 2,
+      "explanation": "Supervised learning trains on a labelled dataset where every example has both the input and the correct answer, learning the input-to-output mapping to predict a known answer for new inputs — like a spam filter trained on emails tagged 'spam' or 'not spam'. Think of it as learning with an answer key. Option D describes semi-supervised learning, which is a tempting trap because it also uses some labels, but supervised learning uses fully labelled data."
+    },
+    {
+      "id": "sa2002-q04",
+      "q": "Describe how unsupervised learning operates and give the technique used in its classic customer-segmentation example.",
+      "options": [
+        "It is told the correct category for each customer and predicts that category for new customers, using regression",
+        "It works on unlabelled data and discovers hidden structure such as natural groupings on its own, using clustering",
+        "It receives a reward each time it groups customers correctly and improves by trial and error, using a reward signal",
+        "It uses a few labelled customers to anchor the rest, using pseudo-labelling"
+      ],
+      "answer": 1,
+      "explanation": "Unsupervised learning works on data with no labels — just inputs — and discovers hidden structure such as natural clusters that nobody defined in advance; the customer-segmentation example uses clustering to surface groups like 'young high-spenders'. There is no answer key, so it cannot be told what is right. Option A fails because predicting a known category from labels is supervised learning, not unsupervised."
+    },
+    {
+      "id": "sa2002-q05",
+      "q": "Explain why semi-supervised learning exists and what data situation it is designed for.",
+      "options": [
+        "Labelling is cheap, so it labels everything and trains a fully supervised model for maximum accuracy",
+        "Because no labels exist at all, it discovers structure entirely on its own like clustering",
+        "Because there is no fixed dataset, it learns from rewards an environment returns over time",
+        "Because labelling is expensive, it combines a small labelled dataset with a large unlabelled one, using the few labels to anchor learning and the unlabelled pool to learn broader structure"
+      ],
+      "answer": 3,
+      "explanation": "Semi-supervised learning is the realistic middle ground: labelling is expensive (a radiologist tagging scans costs time and money) while unlabelled data is cheap and plentiful, so it uses a small labelled set to anchor the model and a large unlabelled pool to learn the broader structure. This beats the few labels alone. Option A is the trap — it assumes labelling is cheap, which is exactly the opposite of why semi-supervised learning is needed."
+    },
+    {
+      "id": "sa2002-q06",
+      "q": "Distinguish between supervised and unsupervised learning, the distinction markers test most.",
+      "options": [
+        "Supervised uses more data than unsupervised, but both predict a known answer from labels",
+        "Supervised discovers hidden groupings, while unsupervised predicts a category from an answer key",
+        "Supervised uses labelled data to predict a known answer, while unsupervised uses unlabelled data to discover unknown structure such as groupings",
+        "Supervised learns from rewards in an environment, while unsupervised learns from labelled answer keys"
+      ],
+      "answer": 2,
+      "explanation": "The key distinction is the presence of labels: supervised trains on labelled data and predicts a known answer, whereas unsupervised trains on unlabelled data and discovers unknown structure like clusters. The 'supervised discovers groupings, unsupervised predicts from an answer key' option reverses the two definitions, which is the exact mistake markers exploit. The single question that settles it is: do you have labels?"
+    },
+    {
+      "id": "sa2002-q07",
+      "q": "Explain how reinforcement learning differs from supervised learning, avoiding the trap markers set.",
+      "options": [
+        "There is no difference — the reward in reinforcement learning is just the label, so it is a form of supervised learning",
+        "Reinforcement learning uses labelled data while supervised learning uses unlabelled data",
+        "Supervised learning uses an agent and an environment, while reinforcement learning uses a fixed dataset of input-output pairs",
+        "Supervised learning is given a fixed answer key up front for every example, while reinforcement learning has no answer key and an agent learns by trial and error from rewards received after it acts"
+      ],
+      "answer": 3,
+      "explanation": "In supervised learning the correct answer is provided as a label for every example before any learning; in reinforcement learning there is no correct-answer key — an agent acts in an environment and gets a reward telling it how good the outcome was, never what the right action would have been. Supervised says 'the answer was spam'; reinforcement says 'that move lost you three points'. Option A is the classic trap: treating the reward as a label loses the mark because a reward is a rewarded consequence, not a labelled answer."
+    },
+    {
+      "id": "sa2002-q08",
+      "q": "The episode tells the story of Amazon's experimental résumé-screening tool that penalised the word 'women's'. What lesson does it teach about supervised learning?",
+      "options": [
+        "Supervised learning faithfully learns whatever its labels teach it, so biased historical labels reproduce that bias — 'garbage labels in, bias out' — the model was working exactly as trained",
+        "The model malfunctioned and a software bug caused the discriminatory behaviour",
+        "Unsupervised learning is always safer than supervised learning because it has no labels",
+        "Reinforcement learning would have avoided the problem by rewarding fair outcomes"
+      ],
+      "answer": 0,
+      "explanation": "The tool was supervised, trained on ten years of past hiring decisions whose labels encoded a historical bias toward men, so the model learned that prejudice as if it were truth — 'garbage labels in, bias out'. The episode stresses the model was not malfunctioning; it was working exactly as trained on biased data, which is why the 'software bug' option misses the point. Supervised learning is only as good as its labels, and the labels come from humans."
+    },
+    {
+      "id": "sa2002-q09",
+      "q": "A streaming company has years of viewing data but no labels, and wants to discover groups of similar viewers to inform recommendations. Identify the most appropriate training model and justify it.",
+      "options": [
+        "Supervised learning, because it is the most accurate model and the company has a lot of data",
+        "Semi-supervised learning, because the company can label a few viewers and leave the rest unlabelled",
+        "Reinforcement learning, because the recommendations can be rewarded when viewers watch more",
+        "Unsupervised learning, because the data is unlabelled and the goal is to discover natural groupings of similar viewers, which is clustering"
+      ],
+      "answer": 3,
+      "explanation": "Unsupervised learning is most appropriate because the data is unlabelled — there are no pre-defined viewer categories to learn from — and the goal is to discover unknown structure (natural groupings), which is exactly what clustering does. Supervised learning is ruled out because there are no labels to learn from. The mark comes from justifying the choice by the absence of labels and the discover-groupings goal, not just naming the model — and 'because it's accurate' (option A) is the weak-answer trap the episode warns against."
+    },
+    {
+      "id": "sa2002-q10",
+      "q": "A bank has only 200 transactions confirmed as fraudulent but millions of unlabelled transactions, and labelling more requires expensive manual investigation. Recommend a training model and justify it.",
+      "options": [
+        "Supervised learning, because the 200 confirmed fraud cases provide enough labels to train an accurate classifier",
+        "Unsupervised learning, because fraud detection is about discovering structure and the labels can be ignored",
+        "Semi-supervised learning, because there is a small expensive labelled set plus a huge unlabelled pool, so it anchors learning on the few labels and learns broader structure from the millions of unlabelled transactions",
+        "Reinforcement learning, because the bank can reward the model each time it flags a real fraud"
+      ],
+      "answer": 2,
+      "explanation": "Semi-supervised learning fits precisely because the bank has a small labelled set (200 confirmed fraud cases), a very large unlabelled set (millions of transactions), and labelling more is expensive — the exact situation it is designed for. It uses the few labels to anchor the model and the large unlabelled pool to learn the broader structure of normal versus suspicious behaviour. Option A is the weak answer: using only the 200 labels throws away millions of useful unlabelled transactions and pretends labelling is cheap. The justification must point at the data — few expensive labels plus a large unlabelled pool."
+    }
+  ]
+}

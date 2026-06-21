@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1601-q01",
+      "q": "Identify the three defensive data input handling practices named in the syllabus dot-point covered in this episode.",
+      "options": [
+        "Input validation, sanitisation, and error handling",
+        "Encryption, hashing, and salting",
+        "Authentication, authorisation, and accountability",
+        "Confidentiality, integrity, and availability"
+      ],
+      "answer": 0,
+      "explanation": "The dot-point names exactly three practices: input validation, sanitisation and error handling. The episode's hook for recalling them is V-S-E — Validate, Sanitise, handle Errors. Encryption and hashing (B) belong to the cryptography episodes, and the authentication/authorisation and C-I-A options (C and D) are the six security properties from 15.01, not the defensive input practices."
+    },
+    {
+      "id": "ssa1601-q02",
+      "q": "What is the single governing idea that underpins all defensive data input handling?",
+      "options": [
+        "Always return a detailed error message so users can correct their mistakes",
+        "Encrypt all data before it is stored",
+        "Never trust input — treat every piece of data from outside as potentially hostile",
+        "Validate input in the browser to give the user instant feedback"
+      ],
+      "answer": 2,
+      "explanation": "The episode's governing idea is 'never trust input' — every form field, URL parameter, uploaded file or API request is treated as potentially hostile until checked. That defensive mindset is the foundation for all three practices. Browser-side feedback (D) is a usability convenience, never the governing security principle, because the client can be bypassed."
+    },
+    {
+      "id": "ssa1601-q03",
+      "q": "Distinguish between input validation and sanitisation as defined in the episode.",
+      "options": [
+        "Validation cleans dangerous input to make it safe; sanitisation rejects input that breaks the rules",
+        "Validation runs on the server; sanitisation runs only in the browser",
+        "Validation checks input against rules and rejects what does not conform; sanitisation transforms or escapes input to render it safe for use",
+        "Validation encrypts the input; sanitisation hashes the input"
+      ],
+      "answer": 2,
+      "explanation": "The exam line is 'one rejects, one cleans': validation tests input against rules and rejects non-conforming input, while sanitisation modifies or escapes input so it is safe to use rather than rejecting it. Option A reverses the two definitions, which is the most common error. Both practices belong on the server; neither encrypts or hashes."
+    },
+    {
+      "id": "ssa1601-q04",
+      "q": "Explain why an allow-list approach to validation is preferred over a block-list.",
+      "options": [
+        "An allow-list runs faster because it checks fewer characters",
+        "A block-list is illegal under the OWASP Top Ten guidelines",
+        "An allow-list defines exactly what is permitted, so any unexpected or malicious input — including attacks not anticipated — is rejected by default, whereas a block-list cannot anticipate every malicious variation",
+        "An allow-list lets the user submit any input as long as it is encoded correctly"
+      ],
+      "answer": 2,
+      "explanation": "The marker wants the 'define what's good, not what's bad' reasoning: defining acceptable input is a small, finite, knowable set, so everything else — including novel attacks — fails automatically. A block-list is a losing game because attackers evade it with comments, mixed case, or URL encoding. The episode's hook: defining what's good is finite; defining what's bad is infinite."
+    },
+    {
+      "id": "ssa1601-q05",
+      "q": "Explain how a parameterised query prevents SQL injection.",
+      "options": [
+        "It scans the user input for dangerous keywords such as DROP and DELETE and removes them",
+        "It encrypts the SQL command so the database cannot be read by an attacker",
+        "It sends the query structure and the user-supplied data to the database through separate channels, so the input is always treated as a value and can never alter the query's commands",
+        "It limits the database account to read-only permissions so no damage can be done"
+      ],
+      "answer": 2,
+      "explanation": "A parameterised query (prepared statement) uses a placeholder for the value and passes the actual data separately; the database compiles the query plan first, then slots the value in as pure data that can never change the query's meaning. Even input like ' OR 1=1 -- is treated as a literal string that matches nothing. Scanning for keywords (A) is block-listing, which is evadable, and least privilege (D) is a useful extra layer but not the mechanism that stops injection."
+    },
+    {
+      "id": "ssa1601-q06",
+      "q": "The episode says SQL injection and cross-site scripting (XSS) are 'the same disease with two faces'. What is that shared root cause?",
+      "options": [
+        "Both occur because the database account has too many permissions",
+        "Both occur because the connection is not encrypted with HTTPS",
+        "Both occur because the user's password was stored without being hashed",
+        "Both occur because untrusted input crosses a boundary and is interpreted as code instead of data"
+      ],
+      "answer": 3,
+      "explanation": "Injection and XSS are both untrusted input becoming code — just in different interpreters: the database for SQL injection, and the browser for XSS. That is why they belong to the same defence family, V-S-E. HTTPS encryption and password hashing protect confidentiality but do nothing to stop input being executed as code."
+    },
+    {
+      "id": "ssa1601-q07",
+      "q": "Outline how error handling functions as a security control in defensive input handling.",
+      "options": [
+        "Log detailed error information internally for accountability, but return only a generic, safe message to the user",
+        "Show the full stack trace to the user so they can report the exact bug",
+        "Suppress all errors silently so the program never reveals that anything failed",
+        "Display the failing database query so developers can debug it quickly"
+      ],
+      "answer": 0,
+      "explanation": "The hook is 'log it private, show it generic': detailed errors are logged internally — providing the accountability audit trail from 15.01 — while the user sees only a vague message like 'a temporary error occurred'. Returning a stack trace or the failing query causes information disclosure, leaking database structure, file paths and library versions that act as a free map for an attacker. The system should also 'fail securely' by rejecting on any doubt."
+    },
+    {
+      "id": "ssa1601-q08",
+      "q": "A web form validates all its input only with JavaScript in the browser. Explain why this is insufficient as a security control.",
+      "options": [
+        "JavaScript is too slow to validate input before the form is submitted",
+        "JavaScript cannot check input formats such as email addresses or postcodes",
+        "Browser validation works, but it should be combined with encrypting the form data",
+        "The browser is controlled by the user, so the checks can be disabled, modified, or bypassed by sending a request directly to the server; validation must therefore be re-run server-side"
+      ],
+      "answer": 3,
+      "explanation": "Client-side checks run in the browser, which the user fully controls and can disable or bypass entirely by sending a request directly — so an attacker can submit any input regardless of the JavaScript. The fix is to treat server-side validation as the authoritative security control: client-side for friendliness, server-side for safety. If an answer says 'the form validates before sending', the marker pushes back with 'where? — it must be validated on the server'."
+    },
+    {
+      "id": "ssa1601-q09",
+      "q": "A blog allows users to post comments that may legitimately contain characters like apostrophes and angle brackets, and these comments are later displayed to other users. Which defensive practice is most appropriate, and why?",
+      "options": [
+        "Validation with an allow-list, because any comment containing an angle bracket should be rejected outright",
+        "Sanitisation via output encoding, because the comment cannot simply be rejected — the dangerous characters are escaped so the browser shows them as text instead of running them as script",
+        "A parameterised query, because that is what stops cross-site scripting in the browser",
+        "Error handling, because a generic message prevents the script from executing"
+      ],
+      "answer": 1,
+      "explanation": "Sometimes you cannot reject input — a legitimate comment may contain an angle bracket — so you neutralise the dangerous parts and keep the rest. Output encoding turns a less-than sign into its harmless HTML entity so the browser displays it as text rather than running it as a tag, stopping XSS. Allow-list validation (A) would wrongly refuse valid comments, and parameterised queries (C) stop SQL injection in the database, not XSS in the browser."
+    },
+    {
+      "id": "ssa1601-q10",
+      "q": "A registration handler takes a username, email and comment from a form, stores them, and later displays the comment to other users. Recommend the full defensive approach and justify why each layer is needed.",
+      "options": [
+        "Validate every field server-side against an allow-list, store using parameterised queries, output-encode the comment when displaying it, and handle errors by logging privately and showing generic messages",
+        "Encrypt the form data in transit, then store it and display it directly — HTTPS makes further checks unnecessary",
+        "Use a block-list to strip dangerous keywords from each field before storing them, which covers both injection and XSS",
+        "Validate the input in JavaScript for instant feedback, then trust those checks because the user has already corrected any errors"
+      ],
+      "answer": 0,
+      "explanation": "The full-mark answer applies V-S-E server-side: validate every field against an allow-list and reject non-conforming input, use parameterised queries so values are passed separately and cannot become SQL injection, output-encode the comment so it cannot execute as an XSS payload, and log errors privately while showing generic messages, failing securely. HTTPS (B) only protects data in transit, not against injection. A block-list (C) is evadable, and client-side-only checks (D) can be bypassed because the client is untrusted."
+    }
+  ]
+}

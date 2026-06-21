@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2301-q01",
+      "q": "Identify the four dimensions of feasibility captured by the TECO mnemonic.",
+      "options": [
+        "Time, Effort, Cost, Outcome",
+        "Technical, Economic, Cost-and-schedule, Operational",
+        "Testing, Engineering, Compliance, Operations",
+        "Technical, Ethical, Commercial, Organisational"
+      ],
+      "answer": 1,
+      "explanation": "TECO stands for Technical, Economic, Cost-and-schedule, and Operational feasibility. The episode stresses that on the six-mark 'explain how feasibility is assessed' question you must name each dimension and say what question it answers. The other options reuse plausible business words but are not the syllabus dimensions taught in the script."
+    },
+    {
+      "id": "see2301-q02",
+      "q": "What does the FUN versus PERF memory hook distinguish?",
+      "options": [
+        "Functional requirements (what the system does) versus non-functional requirements (how well it does it)",
+        "In-scope features versus out-of-scope features",
+        "User stories versus technical stories",
+        "Stakeholder needs versus stakeholder opportunities"
+      ],
+      "answer": 0,
+      "explanation": "FUN is functional — what the system does, the features and verbs; PERF stands in for the whole non-functional family — how well it does it, the qualities like speed, security, and reliability. The episode's test is to ask whether a requirement is a thing the system does or a quality of how it does it. The other options describe different distinctions in the episode (scope and stakeholders), not the FUN-versus-PERF split."
+    },
+    {
+      "id": "see2301-q03",
+      "q": "Classify this requirement: 'The system encrypts all stored data.'",
+      "options": [
+        "Functional, because encryption is a feature the user activates",
+        "Non-functional, because security is a quality attribute of the whole system",
+        "Functional, because it describes a specific action the system performs",
+        "Neither — it is an acceptance criterion, not a requirement"
+      ],
+      "answer": 1,
+      "explanation": "Security is a non-functional requirement — a quality attribute, the 'how well' rather than a user-facing feature, so it belongs to the PERF family. The script flags this as the one that trips people up, because encryption sounds like an action; but it is about how well the system protects data, not a feature the user asked for. It is still a genuine requirement, so 'neither' is wrong."
+    },
+    {
+      "id": "see2301-q04",
+      "q": "According to the episode, what is the single most important property of any requirement, functional or non-functional?",
+      "options": [
+        "It is written in formal 'the system shall' language",
+        "It is approved by a regulatory stakeholder",
+        "It is measurable and testable, with acceptance criteria giving a clear yes-or-no check",
+        "It maps to a field in the data dictionary"
+      ],
+      "answer": 2,
+      "explanation": "The episode calls measurability the single biggest mark-earner: a good requirement comes with acceptance criteria so that at the end you can run a clear check and get a yes or no. 'The system should be fast' is band four because it is untestable; a p95 figure under load is band six. Formal wording and stakeholder approval matter, but the script names testability as the property that separates a four from a six."
+    },
+    {
+      "id": "see2301-q05",
+      "q": "Outline the purpose of a data dictionary at the requirements stage.",
+      "options": [
+        "It is a glossary that defines technical jargon for non-technical stakeholders",
+        "It is the cost-benefit table used to calculate return on investment",
+        "It is a structured table listing every data field with its name, data type, whether it is required, constraints, and a description",
+        "It is the document that records what is in scope, out of scope, and future scope"
+      ],
+      "answer": 2,
+      "explanation": "A data dictionary is a structured table that pins down every piece of data before you build — for each field: name, data type, required or not, constraints such as ranges or length limits, and a short description. The episode notes this becomes the database schema later, reusing Year 11 data dictionaries and the relational modelling from Programming for the Web. The tempting distractors describe economic feasibility (the cost-benefit/ROI table) and boundaries (in/out/future scope), which are separate parts of the episode, not the data dictionary."
+    },
+    {
+      "id": "see2301-q06",
+      "q": "Distinguish between a 'need' and an 'opportunity' when justifying that a project should exist.",
+      "options": [
+        "A need is a functional requirement; an opportunity is a non-functional requirement",
+        "A need is a problem someone actually has; an opportunity is a gap you could fill",
+        "A need comes from end users; an opportunity comes from regulatory stakeholders",
+        "A need is in scope; an opportunity is future scope"
+      ],
+      "answer": 1,
+      "explanation": "The episode defines a need as a problem someone actually has (teachers spending hours on manual data entry) and an opportunity as a gap you could fill (no existing tool integrates with the school's systems). Both are demonstrated through research like stakeholder interviews and surveys. The other options confuse needs and opportunities with requirement types, stakeholder groups, or scope categories, which are separate parts of the episode."
+    },
+    {
+      "id": "see2301-q07",
+      "q": "Explain why defining clear project boundaries matters so much, and the term for the problem it prevents.",
+      "options": [
+        "It prevents feature drift, the loss of focus when too many developers join a project",
+        "It prevents requirement decay, where old requirements become outdated over time",
+        "It prevents gold-plating, where developers add polish stakeholders never requested",
+        "It prevents scope creep, the slow, uncontrolled expansion of a project as 'just one more feature' keeps getting added until the deadline blows out"
+      ],
+      "answer": 3,
+      "explanation": "Boundaries state what is in scope, out of scope (with a reason), and future scope, and they exist to defend against scope creep — the slow, uncontrolled expansion of a project as features keep getting bolted on until the schedule and quality collapse. When a stakeholder asks for something new mid-project, you point at the boundary document and say 'that's future scope, phase two.' The script names scope creep specifically; the other terms describe related but different problems and are not the one it teaches."
+    },
+    {
+      "id": "see2301-q08",
+      "q": "Compare technical feasibility with operational feasibility as defined in the episode.",
+      "options": [
+        "Technical asks whether the team has the skills, tools and technology to build it; operational asks whether the finished system will fit how people work so they adopt it",
+        "Technical asks whether the benefits outweigh the costs; operational asks whether it can be built on time",
+        "Technical asks whether people will adopt it; operational asks whether the code passes its tests",
+        "Technical and operational both ask the same go/no-go question from different budgets"
+      ],
+      "answer": 0,
+      "explanation": "Technical feasibility asks whether this team, now, has the skills, tools, and technology to build the thing at all; operational feasibility asks whether, once built, it will fit how people actually work so they adopt it rather than route around it. The episode links operational failure to the security-usability paradox — a technically perfect system staff refuse to use has failed operationally. The tempting distractor swaps in economic and cost-and-schedule definitions, while another reverses the two dimensions."
+    },
+    {
+      "id": "see2301-q09",
+      "q": "A research student writes the requirement: 'The website should be quick and not crash.' Using the episode's framework, what is the best rewrite into a strong non-functional requirement?",
+      "options": [
+        "'The website shall be fast and highly reliable at all times under any load.'",
+        "'The website shall be optimised for speed and built to industry best practice.'",
+        "'The website shall maintain a 95th-percentile response time under 300 ms while serving 200 concurrent users, and maintain 99.5% uptime, both verified by automated load and availability testing.'",
+        "'The website shall load all pages instantly and never go down.'"
+      ],
+      "answer": 2,
+      "explanation": "A strong requirement replaces vague adjectives with a number, a condition, and a method of verification — a measurable acceptance criterion you could actually test. Option C gives the percentile, the load, the uptime target, and the verification method, which is the band-six shape. Options A, B, and D just reword the vague claim ('fast', 'optimised', 'instantly', 'never') with no metric or test, so they remain band-four untestable requirements."
+    },
+    {
+      "id": "see2301-q10",
+      "q": "The Denver International Airport baggage system is used as the episode's cautionary tale. In the episode's own terms, what was the core requirements-and-feasibility failure?",
+      "options": [
+        "The team chose the wrong data types in the data dictionary, causing rounding errors",
+        "The requirements were never written down, so there was nothing to test against",
+        "The scope was unbounded and the project was neither technically nor schedule-feasible, but the honest go/no-go feasibility call was not made early enough to stop it",
+        "Stakeholders were never interviewed, so the system met no real need"
+      ],
+      "answer": 2,
+      "explanation": "The episode frames Denver as unbounded scope plus an infeasible plan: the ambition outran the technology, the timeline was fixed by the opening date, boundaries kept expanding, yet nobody made the honest technical-and-schedule feasibility call early enough — leading to a 16-month delay and hundreds of millions over budget. The lesson ties directly to TECO and boundaries. The other options describe failures from elsewhere in the episode (data types, missing requirements, stakeholder research) that were not the named cause of the Denver failure."
+    }
+  ]
+}

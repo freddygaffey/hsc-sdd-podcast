@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2402-q01",
+      "q": "Identify the rate of developing software that characterises the Agile approach, using the exact syllabus phrasing.",
+      "options": [
+        "Incremental and continuous, delivering working software frequently",
+        "Sequential and stage-gated, with formal sign-off between phases",
+        "Front-loaded, with all value delivered in one drop at the end",
+        "Documentation-driven, with comprehensive specifications signed off up front"
+      ],
+      "answer": 0,
+      "explanation": "Agile develops software iteratively and incrementally, so its rate of developing is incremental and continuous — working software is delivered frequently in short cycles rather than in one big drop. Option B and option C describe Waterfall ('Waterfall Falls once'), where value arrives sequentially and all at the end, not Agile's looping delivery."
+    },
+    {
+      "id": "see2402-q02",
+      "q": "What is the correct three-part template for writing an Agile user story?",
+      "options": [
+        "\"Given [context], when [event], then [outcome].\"",
+        "\"As a [type of user], I want [some functionality], so that [some benefit].\"",
+        "\"The system shall [requirement] under [condition] with [constraint].\"",
+        "\"In order to [goal], the developer must [task] before [deadline].\""
+      ],
+      "answer": 1,
+      "explanation": "A user story captures a feature from the user's point of view in the fixed template 'As a [role], I want [functionality], so that [benefit]' — the role, the want, and the why. Option A is the Given-When-Then format used for acceptance criteria or test scenarios, not the user story structure itself, which is the classic exam trap."
+    },
+    {
+      "id": "see2402-q03",
+      "q": "What does the P-S-R-R mnemonic stand for in the context of Agile ceremonies?",
+      "options": [
+        "Plan, Sprint, Release, Refactor",
+        "Prioritise, Standup, Refine, Report",
+        "Plan, Standup, Review, Retro",
+        "Product, Sprint, Roles, Responsibilities"
+      ],
+      "answer": 2,
+      "explanation": "P-S-R-R names the four ceremonies: Plan (sprint planning), Standup (the daily fifteen-minute sync), Review (demonstrating the increment to stakeholders), and Retro (the retrospective on the team's process). Option A is tempting because 'Sprint' and 'Release' sound Agile, but the ceremonies are specifically the structured meetings — Plan, Standup, Review, Retro — not the artefacts."
+    },
+    {
+      "id": "see2402-q04",
+      "q": "Outline what it means for an Agile sprint to be 'time-boxed'.",
+      "options": [
+        "The sprint can be extended until all committed work is finished",
+        "The sprint length is recalculated each cycle based on the team's velocity",
+        "The sprint has a fixed length that cannot be extended; if work isn't done, the sprint still ends and unfinished work returns to the queue",
+        "The sprint must be completed within a single working day to maintain momentum"
+      ],
+      "answer": 2,
+      "explanation": "Time-boxed means the iteration has a fixed length, typically two weeks, that cannot be extended — when the box closes, the sprint ends regardless of progress, and unfinished work goes back into the backlog. Option A inverts this: extending the sprint to fit the work defeats the steady, predictable rhythm that time-boxing exists to create."
+    },
+    {
+      "id": "see2402-q05",
+      "q": "Distinguish the purpose of the sprint review from the purpose of the sprint retrospective.",
+      "options": [
+        "The review estimates story points; the retrospective assigns tasks to developers",
+        "The review surfaces blockers; the retrospective demonstrates working software",
+        "The review demonstrates the working product to stakeholders for feedback; the retrospective reflects on improving the team's own process",
+        "The review and retrospective both demonstrate the product, but to different audiences"
+      ],
+      "answer": 2,
+      "explanation": "The distinction the exam loves: the Review is about the PRODUCT — demoing the working increment to stakeholders and gathering feedback — while the Retro is about the PROCESS — the team reflecting on what to start, stop, and continue to improve how it works. Option B swaps the standup's job (surfacing blockers) into the review, and confuses the two ceremonies the marker most wants you to keep separate."
+    },
+    {
+      "id": "see2402-q06",
+      "q": "Explain why the statement 'Agile means no planning and no documentation' is incorrect.",
+      "options": [
+        "Agile actually produces more documentation than Waterfall, just later in the project",
+        "Agile replaces all documentation with automated tests, so written records are unnecessary",
+        "The statement is correct for Scrum but wrong for Kanban",
+        "Agile values working software over comprehensive documentation, but 'over' does not mean 'instead of' — it still plans every sprint and documents lightly and continuously"
+      ],
+      "answer": 3,
+      "explanation": "Agile values working software over comprehensive documentation and responding to change over following a plan, but 'over' is a preference, not a replacement — it plans every single sprint and documents lightly and continuously rather than in giant upfront tomes. In an exam you should write 'Agile uses lighter, evolving documentation produced as needed', never 'Agile has no documentation', which is the trap that loses marks."
+    },
+    {
+      "id": "see2402-q07",
+      "q": "Define 'method tailoring' as the term is used in the Agile syllabus content.",
+      "options": [
+        "Following the Scrum framework exactly as written to guarantee consistency",
+        "Adapting Agile practices, ceremonies, and frameworks to fit a particular team, project, and context rather than applying one framework rigidly",
+        "Customising the user-interface styling of software to match a client's brand",
+        "Dropping any ceremony or practice a team finds inconvenient during a sprint"
+      ],
+      "answer": 1,
+      "explanation": "Method tailoring means adapting Agile practices — such as shortening sprints, adjusting ceremonies, or blending Scrum's sprints with Kanban's continuous flow — to suit the team, project, and context instead of following one recipe rigidly. Option D is the misconception to avoid: tailoring requires judgement and is a strength of Agile's flexibility, not a licence to abandon discipline."
+    },
+    {
+      "id": "see2402-q08",
+      "q": "Compare Agile and Waterfall on how each handles client feedback and change.",
+      "options": [
+        "Both gather feedback only near the end, but Agile makes changes cheaper to apply",
+        "Waterfall gathers feedback continuously while Agile freezes requirements after planning",
+        "Waterfall gets client feedback late and resists change once a phase is signed off; Agile gets feedback every sprint and embraces change at each iteration",
+        "Both embrace change equally, differing only in how much documentation they produce"
+      ],
+      "answer": 2,
+      "explanation": "Waterfall gathers client feedback late, near the end, and resists change once a phase is signed off, so late changes trigger expensive backflows; Agile gathers feedback every sprint review and embraces change at every iteration. This contrast across feedback timing and change-handling is captured by the paired hooks 'Waterfall Falls once' (one pass, late feedback) and 'Agile Goes around' (looping, continuous feedback)."
+    },
+    {
+      "id": "see2402-q09",
+      "q": "During sprint one of building a school portal, a developer says at the daily standup that she is blocked waiting on the database schema. According to the episode, what should happen with this blocker?",
+      "options": [
+        "The team solves the schema problem during the standup before moving on",
+        "The blocker is surfaced at the standup so it can be addressed and unblocked the same day, but it is not solved inside the meeting",
+        "The blocker is recorded and deferred to the sprint retrospective for discussion",
+        "The sprint is paused and extended until the schema dependency is resolved"
+      ],
+      "answer": 1,
+      "explanation": "The daily standup's job is to surface blockers fast, not to solve them in the meeting — in the worked example the dependency is flagged and then unblocked the same day outside the fifteen-minute sync. Option A is the common mistake: the standup is a strict fifteen-minute synchronisation, so problem-solving happens afterwards, keeping the meeting short."
+    },
+    {
+      "id": "see2402-q10",
+      "q": "A start-up is building a consumer-facing app whose requirements are expected to shift frequently as it gathers user feedback. Recommend the more appropriate development approach and justify your choice against the project's defining condition.",
+      "options": [
+        "Waterfall, because its comprehensive upfront documentation and stage-gates make the project predictable and auditable",
+        "Waterfall, because freezing requirements after sign-off prevents costly scope changes during development",
+        "Agile, because its iterative time-boxed sprints embrace change at every iteration and surface it through continuous feedback, suiting evolving requirements",
+        "Either approach works equally well, since both deliver the same software in the end"
+      ],
+      "answer": 2,
+      "explanation": "The defining condition is rapidly changing requirements, so Agile is more appropriate: its iterative sprints embrace change at every iteration and surface it through continuous sprint-review feedback, whereas Waterfall would force costly backflows each time a requirement shifts. Option A is a true description of Waterfall's strengths, but predictability and documentation are not what this project needs — matching the recommendation to the changing-requirements condition is what earns the marks."
+    }
+  ]
+}

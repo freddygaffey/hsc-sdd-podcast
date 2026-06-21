@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "case-medibank-q01",
+      "q": "Identify the single missing security control that the Australian privacy regulator's investigation found to be the central cause of the Medibank breach.",
+      "options": [
+        "Encryption of the customer health database at rest",
+        "Multi-factor authentication enforced on the remote-access login",
+        "A firewall on the contractor's personal home computer",
+        "Regular password rotation for all Medibank staff accounts"
+      ],
+      "answer": 1,
+      "explanation": "The episode states the regulator was 'scathing about exactly this: multi-factor authentication was not enforced on the access the attackers used.' The stolen password should have been a dead end behind a second lock. Encryption (option A) would not have helped here, because the attackers logged in as a legitimate user and were granted full access — the problem was authentication, not whether the stored data was scrambled."
+    },
+    {
+      "id": "case-medibank-q02",
+      "q": "State how the attackers initially obtained the valid Medibank credentials they used to log in.",
+      "options": [
+        "They guessed a weak password by brute force against the VPN",
+        "They phoned the help desk and impersonated a senior executive",
+        "An IT contractor's saved browser passwords were stolen by information-stealer malware on their personal home computer",
+        "A Medibank employee deliberately sold their login details on the dark web"
+      ],
+      "answer": 2,
+      "explanation": "The script describes a contractor whose 'saved usernames and passwords' were 'scooped up by malware' — an information-stealer — on their personal machine at home, where the browser had remembered them. The credentials reached into Medibank's network and ended up for sale. There was no brute force, no help-desk social engineering, and no insider deliberately selling access; the failure point was saved credentials on an infected device."
+    },
+    {
+      "id": "case-medibank-q03",
+      "q": "Multi-factor authentication is described as combining two different kinds of proof. Outline what those two kinds are.",
+      "options": [
+        "Something you know (a password) plus something you have (a phone or security key)",
+        "Two separate passwords that must both be entered correctly",
+        "A username plus a matching password",
+        "Something you have (a phone) plus somewhere you are (your location)"
+      ],
+      "answer": 0,
+      "explanation": "The episode defines MFA as 'two factors: something you know, plus something you have' — a password plus a phone generating a one-time code or a security key in your pocket. Two passwords (option B) are both the same kind of factor — things you know — so they do not provide multi-factor protection. The whole point is that the second factor is a different type of proof, so a stolen password alone becomes useless."
+    },
+    {
+      "id": "case-medibank-q04",
+      "q": "Explain why a password on its own cannot reliably prove that the person logging in is the genuine account holder.",
+      "options": [
+        "Passwords are too short to be unique to one person",
+        "Passwords expire too quickly to remain valid during a login attempt",
+        "A password only verifies the username, not the account holder",
+        "A password is something you know, and a stolen secret is indistinguishable from the real user — the password cannot tell you apart from the thief"
+      ],
+      "answer": 3,
+      "explanation": "The script's core argument is that 'the password alone can't tell the difference between you and the person who stole it' — because a thing you know can be copied, phished or lifted off a device without you noticing, and then the thief 'knows exactly what you know.' That is the flaw at the heart of password-only login. The length of the password (option A) is not the issue; even a strong password fails once it is stolen, which is why a second, different factor is needed."
+    },
+    {
+      "id": "case-medibank-q05",
+      "q": "Describe what the attackers did inside Medibank's network during the weeks between gaining access and being detected.",
+      "options": [
+        "They immediately encrypted every file and demanded payment for the decryption key",
+        "They deleted the customer records to cause maximum disruption",
+        "They moved laterally through the network, located the most sensitive databases, and slowly exfiltrated around 500 gigabytes of data over weeks",
+        "They installed ransomware that locked staff out of all systems within hours"
+      ],
+      "answer": 2,
+      "explanation": "The episode stresses that the attack 'was slow and quiet and devastating' — the attackers 'did the patient, professional thing,' moving through the network, escalating their reach, finding the health-claims databases, and exfiltrating 'something on the order of five hundred gigabytes' between late August and mid-October. They did not encrypt or delete files (options A, B and D); this was data theft for double-extortion, where the leverage is the threat of publication, not loss of access."
+    },
+    {
+      "id": "case-medibank-q06",
+      "q": "Distinguish the double-extortion attack used against Medibank from classic ransomware.",
+      "options": [
+        "Classic ransomware steals a copy of data to publish, while double-extortion only locks files",
+        "Both encrypt files, but double-extortion uses a stronger encryption algorithm",
+        "Classic ransomware encrypts your files and sells you the key, whereas double-extortion already holds a copy of your data and threatens to publish it unless paid",
+        "Double-extortion targets individuals while classic ransomware only targets companies"
+      ],
+      "answer": 2,
+      "explanation": "The script contrasts them directly: 'Classic ransomware scrambles your files and sells you the key to get them back. This is the other face of it: they've already taken a copy of your data, and now they're threatening to publish your customers' deepest secrets unless you pay.' The leverage in Medibank's case was 'the shame and the harm that publication would inflict,' not being locked out. Option A reverses the two definitions, which is the most tempting trap."
+    },
+    {
+      "id": "case-medibank-q07",
+      "q": "Explain why health information is treated as a special, most-sensitive category of personal data in this case.",
+      "options": [
+        "Health records are larger files that are more expensive to store securely",
+        "Health data is the only type of information protected by Australian privacy law",
+        "Health records are more valuable to criminals on the dark web than financial records",
+        "Publishing health data causes harm that cannot be undone — discrimination, shame and danger — unlike a credit card, which can simply be reissued"
+      ],
+      "answer": 3,
+      "explanation": "The episode makes the point that 'not all data is equal': you can reissue a credit card, but 'you cannot un-publish the fact that someone was treated for a mental illness.' The harm — discrimination, shame, danger — 'can't be undone,' which is why the law gives health data the highest level of protection and the duty of care is so heavy. The sensitivity is about irreversible human harm, not file size (option A) or resale value (option C)."
+    },
+    {
+      "id": "case-medibank-q08",
+      "q": "Medibank's own security tools raised alerts during the intrusion. Explain what this reveals about effective security, beyond simply having good 'locks on the doors'.",
+      "options": [
+        "It shows that detection and fast response matter — alarms fired but were not acted on in time, so early detection and a quick response are needed to turn a catastrophe into a near-miss",
+        "It shows that security alerts are unreliable and should be switched off to reduce noise",
+        "It shows that the firewall was the only control that worked correctly",
+        "It shows that the attackers had disabled all of Medibank's monitoring tools"
+      ],
+      "answer": 0,
+      "explanation": "The script notes the alarms 'did, at points, raise alerts about suspicious behaviour — and those alerts were not acted on properly in time,' adding that good security is also 'about whether anyone's watching the cameras and whether they move when something trips the alarm.' Detecting an intrusion early and responding fast 'can turn a catastrophe into a near-miss.' The tools were not disabled (option D) and the lesson is not to silence alerts (option B) — it is to triage and respond to them."
+    },
+    {
+      "id": "case-medibank-q09",
+      "q": "Medibank refused to pay the ransom. Outline the main argument the episode gives in favour of refusing, and the cost that refusal carried.",
+      "options": [
+        "Refusing was cheaper than paying, but it slowed down system recovery",
+        "Refusing guaranteed the criminals would delete the data, but it angered the government",
+        "Refusing was legally required, but it exposed Medibank to a larger fine",
+        "Refusing avoids funding and rewarding crime and removes the incentive to attack Australian companies, but in this case it meant the stolen data was published"
+      ],
+      "answer": 3,
+      "explanation": "The episode explains the case for refusing: there is no guarantee criminals keep their word, paying 'funded and rewarded the attack' and would paint a target on every other Australian organisation — so refusing 'makes everyone safer, because it makes the attack worthless.' But the 'agonising but' is that refusal meant 'the data got published,' including lists curated by condition to maximise harm. This is the genuine ethical collision: protect everyone in the future versus protect these specific victims now."
+    },
+    {
+      "id": "case-medibank-q10",
+      "q": "A hospital lets staff connect to patient records from home through a remote-access VPN that requires only a username and password. Applying the central lesson of the Medibank case, recommend the most important change and justify it.",
+      "options": [
+        "Force all staff to change their passwords every 30 days, because frequent rotation stops stolen passwords being reused",
+        "Enforce multi-factor authentication on the VPN, because a second factor (something you have) makes a stolen password useless on its own",
+        "Encrypt the patient database at rest, because attackers cannot read encrypted files even after logging in",
+        "Block all home access and require staff to be on-site, because the VPN itself is inherently insecure"
+      ],
+      "answer": 1,
+      "explanation": "The episode's one-sentence takeaway is that 'MFA is what makes a stolen password worthless,' and Medibank is 'the textbook proof of what happens without it' — the entire disaster traces to one missing second factor on remote access. Password rotation (option A) does not help if a current password is stolen and used immediately, and encryption at rest (option C) does not stop an attacker who logs in as a legitimate user. Enforcing MFA directly closes the exact gap the attackers walked through."
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "case-heartbleed-q01",
+      "q": "Identify the software library in which the Heartbleed vulnerability was found, and what that library does.",
+      "options": [
+        "OpenSSL, an open-source library that implements TLS so programs can handle encrypted connections",
+        "Apache, the web server software that hosts most websites",
+        "OpenVPN, a tool for creating private network tunnels",
+        "MySQL, a database engine that stores user credentials"
+      ],
+      "answer": 0,
+      "explanation": "Heartbleed lived inside OpenSSL, the free, volunteer-maintained open-source library that implements TLS — the protocol behind every secure web connection and the lock icon in your browser. By 2014 it ran on a huge fraction of the world's secure web servers. Apache is web server software, not the encryption library, which makes it the tempting but wrong choice."
+    },
+    {
+      "id": "case-heartbleed-q02",
+      "q": "What is the purpose of the heartbeat feature that Heartbleed exploited?",
+      "options": [
+        "To encrypt the data passing between two machines a second time for extra security",
+        "To check that the other end of a connection is still alive without re-doing all the expensive encryption setup",
+        "To log every request a server receives so attacks can be traced later",
+        "To compress data so the connection uses less bandwidth"
+      ],
+      "answer": 1,
+      "explanation": "Encrypted connections are expensive to set up, so once two machines have done the work they keep the line open. The heartbeat lets one machine ask 'still alive?' and get 'still alive' back, keeping the connection warm without sending real data or re-doing the encryption. It does not add a second layer of encryption (option A) — that misunderstands what a heartbeat is for."
+    },
+    {
+      "id": "case-heartbleed-q03",
+      "q": "Explain the specific programming flaw that caused Heartbleed.",
+      "options": [
+        "The TLS encryption algorithm itself was mathematically weak and could be cracked",
+        "The server stored passwords in plain text instead of hashing them",
+        "The server trusted the caller's claimed length without checking it matched the data actually sent, then copied that many bytes and read past the end of the buffer",
+        "The private encryption key was hard-coded into the source of the library"
+      ],
+      "answer": 2,
+      "explanation": "The heartbeat sends data plus a claimed length, and the server should have checked the two agreed — but it didn't. When an attacker sent 'hello' (5 characters) but claimed a length of 64,000, the server kept copying from its own memory far past the real data, scooping up whatever sat next to it. Crucially the encryption maths was fine (eliminating option A); the failure was a missing bounds check in the implementation around it."
+    },
+    {
+      "id": "case-heartbleed-q04",
+      "q": "Outline what kind of data an attacker could extract from a server's leaked memory using Heartbleed.",
+      "options": [
+        "Only harmless diagnostic information such as uptime and server version",
+        "Other users' usernames and passwords, private messages, session tokens, and in the worst case the server's own private encryption key",
+        "Only the contents of the attacker's own previous requests",
+        "The physical location and IP address of every connected user"
+      ],
+      "answer": 1,
+      "explanation": "Memory is a shared scratchpad, so the leaked 64 KB could contain anything the server had recently touched: other users' credentials as they logged in, private messages, session tokens that let an attacker impersonate a logged-in user, and the crown jewels — the server's private TLS key. Stealing the private key lets an attacker impersonate the site and decrypt recorded traffic, which is why the leak was so severe. Option A understates the damage drastically."
+    },
+    {
+      "id": "case-heartbleed-q05",
+      "q": "Why was Heartbleed considered so dangerous compared to a typical breach that leaves footprints in a log?",
+      "options": [
+        "It crashed the server every time, taking websites permanently offline",
+        "It spread automatically from server to server like a worm",
+        "It could only be fixed by replacing the server hardware",
+        "A poisoned heartbeat looks completely normal — nothing fails, crashes, or logs — so attackers could exploit it repeatedly and leave no trace"
+      ],
+      "answer": 3,
+      "explanation": "You normally find a breach by finding its footprints — a failed login, a strange connection, a log entry. A heartbeat request is the most ordinary thing in the world; the server happily did exactly what it was told, so attacks left no error, no alarm, and no log. When Heartbleed was announced nobody could say who had been exploited, so the advice was to assume secrets were already gone. It did not crash servers (option A) — the silence was precisely the problem."
+    },
+    {
+      "id": "case-heartbleed-q06",
+      "q": "Describe the fix that resolved Heartbleed.",
+      "options": [
+        "A complete rewrite of the TLS protocol to use stronger encryption",
+        "A few lines of code adding a check that the claimed length actually matches the data sent, rejecting the request if it does not",
+        "Disabling all encrypted connections until a new library could be written",
+        "Adding a firewall rule to block all heartbeat messages permanently"
+      ],
+      "answer": 1,
+      "explanation": "The fix was tiny — a few lines that, before copying data back, check whether the claimed length matches the data actually received; if you claim 64,000 but only sent 5 characters, that's a lie, so refuse and send nothing. It was one absent comparison between 'how much you said' and 'how much there really is'. The protocol did not need rewriting (option A) because the cryptography was never the problem — the implementation's missing sanity check was."
+    },
+    {
+      "id": "case-heartbleed-q07",
+      "q": "At its core, what class of programming error is Heartbleed an example of?",
+      "options": [
+        "A weak-encryption error, where the cipher can be broken by brute force",
+        "A SQL injection error, where untrusted input is run as a database command",
+        "A race condition, where two operations interfere with each other's timing",
+        "A memory-management failure — specifically reading past the end of a buffer because no one verified the length"
+      ],
+      "answer": 3,
+      "explanation": "Heartbleed is, at bottom, a memory-management failure: the classic mistake of reading past the end of a buffer because nobody verified the length. A buffer is a fixed-size region of memory, and disciplined, secure code never reads or writes outside the boundary it was given. This is why secure execution and careful resource management sit at the centre of safe systems programming — it is not an encryption weakness (option A), since the maths of TLS was fine."
+    },
+    {
+      "id": "case-heartbleed-q08",
+      "q": "Distinguish between the security of the encryption and the security of the code around it, as illustrated by Heartbleed.",
+      "options": [
+        "They are the same thing — if the encryption is strong, the surrounding code is automatically safe",
+        "Encryption in transit protects data from an eavesdropper on the wire, but it cannot protect against a bug that hands data over before it is encrypted or that leaks the key itself",
+        "The surrounding code is always more secure than the encryption because it is simpler",
+        "Encryption is irrelevant once the surrounding code has been tested"
+      ],
+      "answer": 1,
+      "explanation": "The lock was a good lock — the TLS maths was fine. The flaw was in the housekeeping code handling a side feature, which handed data over before it was ever encrypted and could even leak the private key the encryption relied on. The strength of the cryptography and the safety of the code that wraps it are two different things, and an attacker only needs the weaker of the two. Treating them as one (option A) is exactly the misconception Heartbleed disproves."
+    },
+    {
+      "id": "case-heartbleed-q09",
+      "q": "A development team wants to catch flaws like Heartbleed before attackers do. Recommend the most appropriate testing technique and justify your choice.",
+      "options": [
+        "Run the normal test suite more often, since it already checks that valid input produces correct output",
+        "Add more comments to the code so reviewers can spot bugs by reading it",
+        "Use fuzzing — bombard the software with floods of malformed, random, and deliberately wrong input and watch for it to misbehave, crash, or leak",
+        "Increase the encryption key length so any leaked data is harder to use"
+      ],
+      "answer": 2,
+      "explanation": "Most testing only checks the happy path — send 'hello', length five, get 'hello' back — but Heartbleed needed someone to ask the rude question: what happens when the input is a lie? Fuzzing does exactly that, hammering the software with malformed input; a fuzzer feeding the heartbeat mismatched lengths would have tripped over the bug almost immediately, and after Heartbleed fuzzing of OpenSSL was ramped up dramatically. Running the normal suite more often (option A) would never test for the dishonest input that exposed this flaw."
+    },
+    {
+      "id": "case-heartbleed-q10",
+      "q": "Heartbleed showed that a single flaw in one small library endangered a large share of the web at once. Explain this double edge of shared open-source code.",
+      "options": [
+        "Shared open-source code is purely a weakness and should always be replaced with custom in-house code",
+        "Everyone using the same well-tested library means more eyes and fewer bugs, but it also concentrates risk so that when the shared component has a hole, everyone has the hole at once",
+        "Open-source code cannot contain serious bugs because anyone can read it",
+        "The risk only existed because OpenSSL was paid commercial software with restricted access"
+      ],
+      "answer": 1,
+      "explanation": "Everyone using the same battle-tested library is mostly a strength — more eyes, fewer bugs, no reinventing of dangerous wheels — but it also concentrates risk, so when the thing everyone depends on has a hole, everyone has it simultaneously. The web's plumbing rests on a surprisingly small number of shared components, often maintained by underfunded volunteers. Open-source visibility does not guarantee bug-free code (option C); Heartbleed sat unnoticed from 2011 to 2014 despite being public."
+    }
+  ]
+}

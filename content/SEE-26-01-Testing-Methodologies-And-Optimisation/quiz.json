@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2601-q01",
+      "q": "Identify what each letter of the O-S-A-E-S mnemonic represents for the components of a test plan.",
+      "options": [
+        "Objectives, Scope, Approaches, Environments, Schedule",
+        "Outcomes, Scope, Activities, Evidence, Summary",
+        "Objectives, Standards, Audit, Evaluation, Sign-off",
+        "Operations, Security, Acceptance, Errors, Sprint"
+      ],
+      "answer": 0,
+      "explanation": "O-S-A-E-S ('oh-seas', like surveying the seas before you sail) stands for Objectives, Scope, Approaches, Environments, and Schedule. These are the five components a test plan documents so testing is structured rather than 'just clicking around'. Option B uses plausible synonyms but not the exact syllabus terms the episode names."
+    },
+    {
+      "id": "see2601-q02",
+      "q": "Distinguish quality assurance from testing as the episode frames them.",
+      "options": [
+        "QA detects defects by running test cases, while testing prevents defects through reviews and standards",
+        "QA is the process that prevents defects, while testing is the activity within QA that detects them",
+        "QA and testing are the same process described with different names",
+        "QA applies only to non-functional requirements, while testing applies only to functional ones"
+      ],
+      "answer": 1,
+      "explanation": "The episode states the distinction to hold: 'QA is the process that prevents defects; testing is the activity that detects them.' QA is the overall process-oriented framework (the three Cs from 24-06), and testing is one detecting activity inside it. Option A reverses the two roles, which is the most common trap on this distinguish question."
+    },
+    {
+      "id": "see2601-q03",
+      "q": "Outline what each of the three test types by purpose verifies, using the episode's hook.",
+      "options": [
+        "Functional checks performance, integration checks security, non-functional checks features",
+        "Functional checks the code structure, integration checks the edges, non-functional checks the branches",
+        "Functional checks 'what' it does, integration checks they work 'together', non-functional checks 'how well'",
+        "Functional checks one unit, integration checks the whole system, non-functional checks user acceptance"
+      ],
+      "answer": 2,
+      "explanation": "The hook is 'Functional is what, Integration is together, Non-functional is how well.' Functional testing verifies behaviours against requirements, integration testing verifies interfaces and data flow between modules, and non-functional testing covers performance, security, usability and reliability. Option D confuses test types by purpose with test levels (unit, integration, system, acceptance)."
+    },
+    {
+      "id": "see2601-q04",
+      "q": "A function accepts an age between 18 and 65 inclusive. Using boundary value analysis, which set of test data correctly covers the edges and states validity?",
+      "options": [
+        "17 invalid, 18 valid, 19 valid, 40 valid, 64 valid, 65 valid, 66 invalid",
+        "18 valid, 40 valid, 65 valid — only the on-boundary and a middle value need testing",
+        "0 invalid, 18 valid, 50 valid, 65 valid, 100 invalid — test the extremes of the data type",
+        "17 invalid, 18 valid, 64 valid, 66 invalid — only the values immediately outside each limit matter"
+      ],
+      "answer": 0,
+      "explanation": "Boundary value analysis tests just below the minimum, the minimum, just above the minimum, a typical middle value, just below the maximum, the maximum, and just above the maximum: 17 (invalid), 18, 19, 40, 64, 65 (all valid), 66 (invalid). The mark comes from naming the just-below, on, and just-above values for each end. Option B omits the off-by-one catchers (17, 66) — exactly where bugs hide."
+    },
+    {
+      "id": "see2601-q05",
+      "q": "Distinguish boundary testing from path testing.",
+      "options": [
+        "Boundary testing exercises every branch and loop; path testing checks the edges of the input range",
+        "Both test the same thing — the difference is only that boundary uses numbers and path uses text",
+        "Boundary testing checks the edges of the valid data range; path testing exercises every execution route through the code",
+        "Boundary testing is white box; path testing is black box, since paths are read from the specification"
+      ],
+      "answer": 2,
+      "explanation": "Boundary testing ('the edges') selects values just-below, on, and just-above each limit where off-by-one errors live, while path testing ('every road through') ensures every branch and decision — and loops at zero, one and many iterations — is exercised. Together they catch the two big bug families. Option D inverts the visibility link: boundary is black box, path is white box."
+    },
+    {
+      "id": "see2601-q06",
+      "q": "Explain why path testing is classified as white box testing while boundary testing is classified as black box.",
+      "options": [
+        "Path testing must run on the live server while boundary testing runs offline, defining their visibility",
+        "Path testing only uses valid data while boundary testing only uses invalid data",
+        "Path testing is automated and boundary testing is manual, so they differ in visibility",
+        "Path testing requires seeing the internal code to cover its branches, while boundary testing checks behaviour against the spec without viewing the implementation"
+      ],
+      "answer": 3,
+      "explanation": "The hook is 'Black sees nothing, White sees the code, Grey sees a bit.' Path testing is white box because you need to see the branches to cover them; boundary testing is black box because you check behaviour against the specification without caring how it's implemented. 'Boundary equals black box, path equals white box' is the connection markers love."
+    },
+    {
+      "id": "see2601-q07",
+      "q": "Compare static application security testing (SAST) with dynamic application security testing (DAST) as the episode maps them.",
+      "options": [
+        "SAST tests the running application from outside (black box, dynamic); DAST examines source code at rest (white box, static)",
+        "Both examine source code, differing only in whether the code is compiled first",
+        "SAST is a functional test and DAST is an integration test of security modules",
+        "SAST examines source code at rest (white box, static); DAST tests the running application from outside (black box, dynamic)"
+      ],
+      "answer": 3,
+      "explanation": "SAST examines the source code at rest for vulnerabilities — a white-box, static technique — while DAST tests the running application from the outside — a black-box, dynamic technique. This maps cleanly onto the white-box-versus-black-box distinction: static equals source, dynamic equals doing. Option A swaps the two definitions, the most tempting trap."
+    },
+    {
+      "id": "see2601-q08",
+      "q": "The HealthCare.gov launch in 2013 collapsed within hours under millions of users. In today's terms, which testing failure does this illustrate?",
+      "options": [
+        "An untested deployment of changed code, like the Knight Capital failure",
+        "A failure to run boundary testing on the user registration form's input fields",
+        "Skipping non-functional load testing — the performance test that throws realistic peak traffic at the system",
+        "A grey box testing gap where internal knowledge was not used to guide the test design"
+      ],
+      "answer": 2,
+      "explanation": "The site was never properly load-tested; load testing is a non-functional performance test that throws realistic peak traffic at the system, and it would have caught the collapse in advance. The lesson is that testing only the happy path while skipping the non-functional load test is how a technically-correct system fails in production. Option A describes Knight Capital — the other failure mode (an untested deployment), not this one."
+    },
+    {
+      "id": "see2601-q09",
+      "q": "You profile your app and find one function, called a thousand times, that recomputes the same expensive lookup each time. Recommend an optimisation and explain how to apply it responsibly.",
+      "options": [
+        "Rewrite the function in a faster language immediately, since profiling already proved it is slow",
+        "Apply memoisation — cache the result so repeated calls return the stored value — measuring before and after to confirm the gain and correctness",
+        "Add more comments and refactor for readability, because clearer code always runs faster",
+        "Optimise several functions at once to save time, then measure the whole app's speed afterward"
+      ],
+      "answer": 1,
+      "explanation": "Memoisation caches the lookup's result so repeated calls with the same input return the stored value instead of recomputing — in Python the language-dependent functools cache decorator does this in one line. The responsible discipline is measure-optimise-measure: profile to confirm the bottleneck and record a baseline, apply the fix, then re-time to confirm it helped without breaking correctness. Option D violates the rule by optimising parts that may not be the bottleneck — wasted effort that can hurt readability for no gain."
+    },
+    {
+      "id": "see2601-q10",
+      "q": "Explain why memoising a naive recursive Fibonacci function is the textbook example of a language-dependent optimisation.",
+      "options": [
+        "It changes the algorithm so it no longer uses recursion, removing the need for a base case",
+        "It compresses the function's memory footprint by storing fewer variables on the call stack",
+        "It caches each result the first time, turning the exponential recomputation of sub-results into linear time, and Python provides a built-in cache decorator to do it",
+        "It parallelises the recursive calls across multiple processor cores using a language feature"
+      ],
+      "answer": 2,
+      "explanation": "Naive Fibonacci recomputes the same sub-results thousands of times, an exponential blow-up; memoisation stores each result the first time and returns the cached value after, making it linear. It is 'language-dependent' because Python gives you the functools cache decorator that applies it in one line. The full-mark answer states the before and after — 'reduced from exponential to linear, confirmed by timing' — not just 'I made it faster'."
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1501-q01",
+      "q": "Identify what the six letters of the C-I-A-A-A memory hook stand for, and which group answers 'what we protect'.",
+      "options": [
+        "Confidentiality, Integrity, Availability, Authentication, Authorisation, Accountability — where Confidentiality, Integrity and Availability are 'what we protect'",
+        "Confidentiality, Integrity, Availability, Authentication, Authorisation, Accountability — where Authentication, Authorisation and Accountability are 'what we protect'",
+        "Cryptography, Identity, Access, Authentication, Authorisation, Auditing — where Cryptography, Identity and Access are 'what we protect'",
+        "Confidentiality, Identity, Access, Authentication, Authorisation, Auditing — where Authentication, Authorisation and Auditing are 'what we protect'"
+      ],
+      "answer": 0,
+      "explanation": "C-I-A is the triad — Confidentiality, Integrity, Availability — answering 'what are we protecting?', and A-A-A is the triple-A — Authentication, Authorisation, Accountability — answering 'how do we protect it?'. Option B swaps the two groups around, which is the tempting mistake. The script tells you to dump C-I-A-A-A in the exam margin the moment you are allowed to write, so you never blank under pressure."
+    },
+    {
+      "id": "ssa1501-q02",
+      "q": "Outline what the confidentiality property protects and name the main control that delivers it.",
+      "options": [
+        "It keeps data accurate and unmodified, delivered mainly through hashing and digital signatures",
+        "It keeps the system reachable when needed, delivered mainly through redundancy and failover",
+        "It keeps information accessible only to authorised parties, delivered mainly through encryption and access control",
+        "It verifies that users are who they claim to be, delivered mainly through multi-factor authentication"
+      ],
+      "answer": 2,
+      "explanation": "Confidentiality means information is accessible only to those authorised to see it — preventing unauthorised disclosure — achieved mainly through encryption (at rest and in transit) and access controls. Option A describes integrity, not confidentiality; the script stresses keeping the two distinct rather than blurring them into 'keeping data safe'. The one-line version is: confidentiality is preventing unauthorised disclosure."
+    },
+    {
+      "id": "ssa1501-q03",
+      "q": "Explain why hashing is described as the 'integrity workhorse' in this episode.",
+      "options": [
+        "Because hashing encrypts data so that a stolen database cannot be read by an attacker",
+        "Because you hash the data and store the fingerprint, then re-hash later — if the fingerprints differ, the data was tampered with",
+        "Because hashing throttles incoming requests so a denial-of-service flood cannot overwhelm the server",
+        "Because hashing verifies a user's identity before granting them access to a record"
+      ],
+      "answer": 1,
+      "explanation": "Integrity is about detecting unauthorised modification, and the script explains that you hash the data, store the fingerprint, and re-hash later — mismatched fingerprints reveal tampering. Option A confuses hashing with encryption; the callback 'hashing is one-way, encryption is two-way' is exactly the distinction the script draws. Hashing detects change, it does not hide data."
+    },
+    {
+      "id": "ssa1501-q04",
+      "q": "Distinguish between confidentiality and integrity as the episode does.",
+      "options": [
+        "Confidentiality is about whether data can be changed; integrity is about who can read it",
+        "Confidentiality applies to data in transit; integrity applies only to data at rest",
+        "Confidentiality is delivered by hashing; integrity is delivered by encryption",
+        "Confidentiality is about who can read the data; integrity is about whether the data can be changed"
+      ],
+      "answer": 3,
+      "explanation": "The script states the distinction directly: confidentiality is about who can read the data, integrity is about whether the data can be changed — secrecy versus trustworthiness. Option A reverses the two, which is the classic trap. They fail independently: a spy who reads but changes nothing breaks confidentiality while integrity holds; a vandal who scrambles a file they cannot read breaks integrity while confidentiality holds."
+    },
+    {
+      "id": "ssa1501-q05",
+      "q": "Identify a threat to availability and a control that directly counters it, as named in the script.",
+      "options": [
+        "Threat: social engineering; control: input validation",
+        "Threat: SQL injection; control: digital signatures",
+        "Threat: eavesdropping; control: encryption in transit",
+        "Threat: a denial-of-service attack; control: rate limiting combined with redundancy and failover"
+      ],
+      "answer": 3,
+      "explanation": "Availability means keeping the service reachable, and the script names a denial-of-service flood as the threat, countered by rate limiting to throttle the flood plus redundancy and failover so a backup takes over. Option C names a real threat and control, but eavesdropping and encryption-in-transit belong to confidentiality, not availability. Match the control to the property the threat attacks."
+    },
+    {
+      "id": "ssa1501-q06",
+      "q": "Distinguish between authentication and authorisation, the most common distinguish question in the module.",
+      "options": [
+        "Authentication determines what an authenticated user may do; authorisation verifies who the user is",
+        "Authentication and authorisation are interchangeable terms for the login process",
+        "Authentication verifies who you are and happens first; authorisation determines what you are allowed to do and happens second",
+        "Authentication logs what a user did; authorisation proves they cannot deny it"
+      ],
+      "answer": 2,
+      "explanation": "Authentication is verifying who you are and comes first; authorisation determines what you are allowed to do and comes second — 'who, then what'. Option A reverses the two, and the script flags the marker's red flag of using the words interchangeably or writing 'the system authorises the user's login' when you mean authenticates. Lock in the order: authenticate, then authorise."
+    },
+    {
+      "id": "ssa1501-q07",
+      "q": "Name the four authentication factor categories the script groups as 'Know, Have, Are, plus Where'.",
+      "options": [
+        "Something you know, something you have, something you are, and somewhere you are",
+        "Something you know, something you trust, something you own, and something you verify",
+        "A password, a token, a fingerprint, and an encryption key",
+        "Identity, permission, traceability, and non-repudiation"
+      ],
+      "answer": 0,
+      "explanation": "The script lists three classic factors plus a fourth — something you Know (a password or PIN), something you Have (a phone or hardware token), something you Are (a biometric), and somewhere you Are (location, like an IP restriction). Combining two or more of these is multi-factor authentication, so stealing one factor isn't enough. Option D lists the triple-A outcomes, not the authentication factors."
+    },
+    {
+      "id": "ssa1501-q08",
+      "q": "Explain what accountability provides and name the component that stops a user denying an action they took.",
+      "options": [
+        "It controls which rooms a user can enter, using role-based access control",
+        "It encrypts the audit trail so attackers cannot read past events",
+        "It verifies the user's identity before any access is granted",
+        "It logs every security-relevant action traceably, with non-repudiation making an action undeniable"
+      ],
+      "answer": 3,
+      "explanation": "Accountability means every security-relevant action is logged and traceable to a specific user — answering 'who did what, and when?' — and its components include audit logging, non-repudiation, forensic analysis and compliance reporting. Non-repudiation specifically makes an action undeniable, which a digital signature delivers. Option A describes authorisation, the property that decides what a user may do, not the after-the-fact record."
+    },
+    {
+      "id": "ssa1501-q09",
+      "q": "A teacher updates a student's grade in a school portal. Which sequence correctly applies the triple-A pipeline the script describes?",
+      "options": [
+        "Log the change, confirm the teacher role may write grades, write the grade, then confirm it is the teacher",
+        "Confirm it is the teacher, write the grade, confirm the teacher role may write grades, then log the change",
+        "Confirm it is the teacher, confirm the teacher role may write grades, write the grade, then log the change",
+        "Confirm the teacher role may write grades, confirm it is the teacher, log the change, then write the grade"
+      ],
+      "answer": 2,
+      "explanation": "The triple-A pipeline runs as authenticate, authorise, act, log: the system confirms it is the teacher (authentication), confirms the teacher role may write grades (authorisation), writes the grade (act), then records the change in the audit log (accountability). Option B acts before authorising, which would let an unpermitted change through. Narrating this four-step flow — who, then what, then act, then record — answers any 'how do they work together' question."
+    },
+    {
+      "id": "ssa1501-q10",
+      "q": "An online banking system must protect customer balances. Following the script's 'property, control, effect' structure, which choice is the strongest answer for confidentiality?",
+      "options": [
+        "The bank keeps the data secure so hackers can't get to the customers' balances",
+        "Confidentiality is maintained by encrypting account data at rest and using TLS in transit, so even if data is intercepted or a database is stolen it cannot be read by an unauthorised party",
+        "Confidentiality is maintained by hashing each transaction record so a tampered balance is detectable",
+        "Confidentiality is maintained by rate-limiting login attempts and running redundant servers so the service stays online"
+      ],
+      "answer": 1,
+      "explanation": "A band-six answer names the property, the control, and the effect: confidentiality is upheld by encrypting account data at rest and using TLS in transit so intercepted or stolen data cannot be read by an unauthorised party. Option A is the script's example of a weak answer — it names no property and no mechanism. Options C and D apply real controls but to integrity (hashing) and availability (rate limiting and redundancy), not confidentiality."
+    }
+  ]
+}

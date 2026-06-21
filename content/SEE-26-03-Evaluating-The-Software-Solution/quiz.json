@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2603-q01",
+      "q": "What do the three letters of the C-E-R evaluation mnemonic stand for?",
+      "options": [
+        "Correctness, Efficiency, Reliability",
+        "Criteria, Evidence, Reflection",
+        "Code, Errors, Resolution",
+        "Compare, Execute, Report"
+      ],
+      "answer": 1,
+      "explanation": "C-E-R is the marquee evaluation mnemonic for the whole module: Criteria (the measurable standards you judge against), Evidence (the proof from tests and feedback), and Reflection (looking back on maintainability, deployment, and lessons learned). Every strong evaluation has all three. Option A confuses this with the C-U-P-S quality criteria, which are only one part of the 'C' in C-E-R."
+    },
+    {
+      "id": "see2603-q02",
+      "q": "In NESA terms, what does the verb 'evaluate' require you to do?",
+      "options": [
+        "Describe the steps the program takes and confirm that it runs without crashing",
+        "List every test case you executed and whether each one passed",
+        "Make a justified judgement of effectiveness against defined criteria, supported by evidence, and reach a conclusion",
+        "Recommend improvements to the code without reference to the original requirements"
+      ],
+      "answer": 2,
+      "explanation": "To 'evaluate' means to weigh up strengths and weaknesses against a yardstick (the criteria) with proof, then reach a conclusion. The script's single biggest trap-killer is that evaluation is NOT 'it works' — writing 'the program runs and does what I wanted' earns a band four. Option A is exactly that trap, and option B is testing, which only produces evidence rather than the judgement evaluation demands."
+    },
+    {
+      "id": "see2603-q03",
+      "q": "The four quality criteria summarised as C-U-P-S, which feed the 'Criteria' part of C-E-R, are:",
+      "options": [
+        "Correctness, Usability, Performance, Security",
+        "Capacity, Uptime, Portability, Scalability",
+        "Compatibility, Usability, Privacy, Speed",
+        "Correctness, Uptime, Performance, Stability"
+      ],
+      "answer": 0,
+      "explanation": "C-U-P-S — Correctness, Usability, Performance, Security — comes from quality assurance (24-06) and supplies the measurable standards you evaluate against. The script stresses that QA criteria become the evaluation criteria. The other options swap in plausible-sounding but incorrect non-functional terms that are not the four named in the syllabus."
+    },
+    {
+      "id": "see2603-q04",
+      "q": "Explain how comparing actual output with expected output supports an evaluation.",
+      "options": [
+        "It proves the code is free of all bugs because every test produced some output",
+        "It provides objective evidence of whether the solution meets its functional criteria; a match is evidence the criterion is met, and a discrepancy is a finding to be analysed",
+        "It replaces the need for user feedback because actual output is always more reliable than opinion",
+        "It measures how fast the program runs so that performance can be judged"
+      ],
+      "answer": 1,
+      "explanation": "For each test the expected output is derived from the requirement and the actual output is what the system produced; a match is evidence the criterion is met, while a discrepancy is a finding to analyse for its gap, severity, and likely cause. This turns evaluation from a subjective opinion into an evidence-based judgement and directly tests correctness, the C of C-U-P-S. A discrepancy is a finding, not a failure to hide — so option A, which treats all output as proof of correctness, is wrong."
+    },
+    {
+      "id": "see2603-q05",
+      "q": "When a test reveals a discrepancy between actual and expected output, what is the technique that markers reward?",
+      "options": [
+        "Re-running the test until the outputs match",
+        "Recording only the tests that passed so the evaluation looks favourable",
+        "Naming the expected output, the actual output, the gap, and the probable cause of the discrepancy",
+        "Reporting that the feature works overall because most tests passed"
+      ],
+      "answer": 2,
+      "explanation": "Discrepancy analysis means stating the expected, the actual, the size of the gap, its severity, and the likely cause — for example, 'expected: conflict detected; actual: no conflicts detected; high severity; likely a logic error in the conflict-detection branch a path test should have caught.' Hiding a slow or wrong result (options B and D) is the weak, band-four move; evaluation rewards honest judgement with evidence, not pretending everything passed."
+    },
+    {
+      "id": "see2603-q06",
+      "q": "An evaluation criterion is 'the search returns results in under two seconds.' A test shows expected under two seconds but actual three-point-one seconds. What is the band-six response?",
+      "options": [
+        "Record it as a pass because the search still returns the correct results",
+        "Note that the performance criterion is not met by 1.1 seconds, identify the likely cause, and recommend a fix",
+        "Leave it out of the report because performance is subjective and depends on the user's connection",
+        "State that the search works and move on to the next test case"
+      ],
+      "answer": 1,
+      "explanation": "It is a fail against that criterion, and evaluation means saying so honestly: 'actual 3.1 s against an expected under 2 s, so the performance criterion is not met; the 1.1 s gap is likely an un-indexed query; recommendation is to add an index.' That compares actual versus expected, judges against the criterion, analyses the cause, and recommends a fix. Options A, C, and D all hide the slow result or fall back on 'search works', which is the weak answer the script warns against."
+    },
+    {
+      "id": "see2603-q07",
+      "q": "Distinguish testing from evaluation.",
+      "options": [
+        "Testing and evaluation are the same activity described with two different words",
+        "Testing is a justified judgement of overall worth; evaluation is the running of individual test cases",
+        "Testing executes test cases to detect defects and gather data; evaluation interprets that evidence, with feedback and reflection, into a justified judgement of overall effectiveness",
+        "Testing only checks security, whereas evaluation only checks performance"
+      ],
+      "answer": 2,
+      "explanation": "Testing is the activity of running test cases to detect defects and gather data, such as comparing actual and expected outputs. Evaluation is the broader judgement of the solution's overall effectiveness against its criteria, using test results as one source of evidence alongside synthesised feedback, plus reflection. In short, testing produces evidence; evaluation interprets it — option B reverses these two roles."
+    },
+    {
+      "id": "see2603-q08",
+      "q": "The 'Reflection' part of C-E-R, which students most often skip, looks beyond passing tests to consider which of the following?",
+      "options": [
+        "The number of lines of code and the choice of programming language",
+        "The total number of test cases and their pass rate",
+        "Whether the user interface uses an attractive colour scheme",
+        "Maintainability, deployment readiness, and lessons learned for next time"
+      ],
+      "answer": 3,
+      "explanation": "Reflection is a third of the hook and considers the bigger picture: maintainability (is the code documented and structured to extend), deployment readiness (backups and rollback in place), and lessons learned. A reflection such as 'the modular structure makes this easy to extend, though error-handling test coverage is a gap' is the kind of mature judgement markers reward. The most tempting wrong option is the total number of test cases and their pass rate, but that is test data which belongs under Evidence, not Reflection."
+    },
+    {
+      "id": "see2603-q09",
+      "q": "The script notes that C-E-R mirrors an evaluation loop from Secure Software Architecture. Which loop, and what does it stand for?",
+      "options": [
+        "C-S-A — Collect, Synthesise, Act",
+        "O-S-A-E-S — the test plan structure",
+        "M-A-I — Measure, Audit, Improve",
+        "I-E-P — Interactive, E-commerce, PWA"
+      ],
+      "answer": 2,
+      "explanation": "C-E-R and M-A-I (Measure, Audit, Improve, from SSA 19-04) are the same idea in different clothes: measure against criteria, audit the evidence, improve from the reflection. Noting this cross-module echo shows synthesis across the course. C-S-A is the feedback-analysis hook from 26-02 (the source of one evidence stream), not the security loop, so option A is the tempting trap."
+    },
+    {
+      "id": "see2603-q10",
+      "q": "A student evaluates a checkout feature against the requirement 'complete a purchase in under three steps and under five seconds' by writing only: 'The checkout works well and users liked it.' Which judgement of this response is correct?",
+      "options": [
+        "It is band six because it confirms the feature works and references user opinion",
+        "It is band four because it states no measurable criteria, gives no evidence, makes no justified judgement, and includes no reflection",
+        "It is acceptable because comparing actual and expected output is optional for usability criteria",
+        "It is strong because reflection on maintainability is not required for checkout features"
+      ],
+      "answer": 1,
+      "explanation": "This is the classic band-four answer: no criteria stated, no evidence, no judgement, no reflection. A band-six response restates the measurable criterion, presents evidence from actual-versus-expected testing (e.g. 'two steps, but 5.4 s against an expected under 5 s'), and synthesised feedback, reaches an honest judgement of partial effectiveness, and reflects on maintainability and lessons. Option A mistakes 'it works' for evaluation, which the script identifies as the single biggest trap."
+    }
+  ]
+}

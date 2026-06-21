@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw1299-q01",
+      "q": "Identify the mnemonic for the order of the request journey and the four steps it represents.",
+      "options": [
+        "I Eat Pizza — Interactive, E-commerce, Progressive",
+        "Dogs Take Tasty Hambones — DNS, TCP, TLS, HTTP",
+        "Front Back Store — client, server, database",
+        "Eighty plain, four-four-three safe — HTTP, HTTPS, SSH, FTP"
+      ],
+      "answer": 1,
+      "explanation": "The request journey runs DNS, then TCP, then TLS, then HTTP — recalled as 'Dogs Take Tasty Hambones'. DNS resolves the domain to an IP address, TCP opens the connection, TLS secures it, and HTTP carries the request. 'I Eat Pizza' (I-E-P) is a tempting choice but it lists the three application types, not the request journey."
+    },
+    {
+      "id": "pfw1299-q02",
+      "q": "Outline what DNS does, using the 'name, number, translator' framing from the episode.",
+      "options": [
+        "It encrypts the connection between the browser and the server before any data is sent",
+        "It translates a human-readable domain name into the server's IP address by walking a hierarchy of name servers",
+        "It splits data into numbered packets and reassembles them in sequence order at the destination",
+        "It assigns each device a unique port number so traffic reaches the correct service"
+      ],
+      "answer": 1,
+      "explanation": "DNS is the translator: the domain name is the human-readable label, the IP address is the number, and DNS converts one to the other while caching results under a time-to-live. The classic trap, named in the script, is confusing the IP address with the DNS name — they are the number and the translator, not the same thing. Encryption (option A) is the job of TLS, not DNS."
+    },
+    {
+      "id": "pfw1299-q03",
+      "q": "Distinguish hashing from encryption as the episode draws the boundary.",
+      "options": [
+        "Hashing is two-way and reversible; encryption is one-way and cannot be reversed",
+        "Hashing uses a pair of keys; encryption uses the same key for both directions",
+        "Hashing protects data in transit; encryption protects data only when it is stored",
+        "Hashing is one-way and cannot be reversed; encryption is two-way and is designed to be decrypted"
+      ],
+      "answer": 3,
+      "explanation": "Hash is one-way — it cannot be reversed — while encryption is two-way because it is designed to be decrypted with the correct key. Option A inverts the two, which is exactly the marking error the script warns against. This distinction matters for the school-portal answer, where passwords are hashed (one-way) but the login traffic is encrypted (two-way) over HTTPS."
+    },
+    {
+      "id": "pfw1299-q04",
+      "q": "State the three tiers of the web architecture model and where trust lives.",
+      "options": [
+        "Front, Back, Store — and trust lives in the Back, the server-side tier",
+        "Front, Back, Store — and trust lives in the Front, where the user interacts",
+        "Client, Network, Server — and trust lives in the Network tier",
+        "Presentation, Logic, Cache — and trust lives in the Cache tier"
+      ],
+      "answer": 0,
+      "explanation": "The tiers are Front (client-side, in the browser), Back (server-side, routing and business logic) and Store (the database), and trust lives in the Back because the Front is visible and tamperable. The tempting wrong choice puts trust in the Front, but the headline trap of the whole module is that client-side code can be bypassed — only server-side validation can be trusted. Only the Back tier talks to the Store."
+    },
+    {
+      "id": "pfw1299-q05",
+      "q": "Explain why a progressive web app must not be described simply as 'a website that looks good on a phone'.",
+      "options": [
+        "Because a PWA can only run inside a native app installed from an app store, not in a browser",
+        "Because looking good on a phone is responsive design (appearance), whereas a PWA is defined by being installable and offline-capable through a service worker (capability)",
+        "Because a PWA cannot display dynamic content and so is unsuitable for mobile screens",
+        "Because responsive design and progressive web apps both require server-side rendering to function"
+      ],
+      "answer": 1,
+      "explanation": "The episode states the trap directly: responsive is appearance, progressive is capability. A PWA is defined by MISO — Manifest, Installable, Service worker, Offline — so its essence is being installable and working offline via a service worker, not just resizing on a phone. A site can be fully responsive without being a PWA, which is why the 'looks good on a phone' description loses marks."
+    },
+    {
+      "id": "pfw1299-q06",
+      "q": "Compare an interactive website with an e-commerce platform in terms of security requirements.",
+      "options": [
+        "Both require identical security because all web applications handle sensitive user data",
+        "An interactive site requires stronger security because it has more dynamic input fields than an e-commerce site",
+        "Security is irrelevant to interactive sites because they do not store any user data",
+        "E-commerce requires comprehensive security because it processes money and identity where a breach causes direct financial and legal harm, whereas an interactive site needs only basic protection"
+      ],
+      "answer": 3,
+      "explanation": "The episode says to drive the comparison from the value of the asset and the consequence of failure: e-commerce protects money and identity, so a breach brings financial loss, legal liability and lost trust, demanding encryption, secure payment handling and authentication. An interactive site's assets are lower-value, so a failure is embarrassing rather than existential. This asset-and-consequence framing is what lifts the comparison into the top band."
+    },
+    {
+      "id": "pfw1299-q07",
+      "q": "Distinguish a library from a framework as the episode defines the relationship.",
+      "options": [
+        "A framework calls you (inversion of control) while you call a library yourself",
+        "A library calls you while you call a framework yourself",
+        "A library always produces a larger bundle size than a framework",
+        "A framework can only style pages, while a library can only handle behaviour"
+      ],
+      "answer": 0,
+      "explanation": "The episode's line is 'you call a library; a framework calls you' — that reversal is inversion of control. Option B states it backwards, which is the common confusion the question targets. The related decision is BUILD versus BUY: buy when needs are standard and the timeline is tight, build when needs are unique or performance-critical, always weighing bundle size, learning curve and lock-in."
+    },
+    {
+      "id": "pfw1299-q08",
+      "q": "A user reports that an online store's checkout page is slow to load and shows a 'not secure' warning. Identify what the 'not secure' warning most directly indicates.",
+      "options": [
+        "The DNS server failed to resolve the domain to an IP address, so the page loaded from a cache",
+        "The page is served over plain HTTP on port 80 rather than HTTPS on port 443, so there is no TLS and data travels as plain text",
+        "The front-end framework has too large a bundle size, which the browser flags as a security risk",
+        "The database returned a 5xx error because server-side validation rejected the payment"
+      ],
+      "answer": 1,
+      "explanation": "The script's worked answer says the 'not secure' warning means the page is served over plain HTTP on port 80 instead of HTTPS on port 443 — so there is no TLS, no valid certificate, and checkout data would travel as plain text rather than cipher text. For an e-commerce page that is critical, because e-commerce is defined by its security requirement. The slow load (option C) is a separate issue diagnosed with dev tools, not the cause of the security warning."
+    },
+    {
+      "id": "pfw1299-q09",
+      "q": "A school is building a portal where staff post content and students log in. Recommend the most appropriate data store and justify it.",
+      "options": [
+        "A NoSQL database, because flexible documents are always faster than structured tables for login systems",
+        "A plain text file on the Front tier, so the browser can read accounts without a server round-trip",
+        "An SQL database, because user accounts and their relationships are highly structured and need reliable transactions",
+        "A content delivery network, because it caches account data close to each user for faster logins"
+      ],
+      "answer": 2,
+      "explanation": "The episode recommends an SQL database — a 'Spreadsheet of structured tables' — because user accounts and their relationships are highly structured and need reliable transactions. NoSQL is a 'Notebook of flexible documents' suited to a different data shape, and the script stresses that NoSQL does not make SQL obsolete. A CDN caches content close to users but is not a store for relational account data, and storing accounts on the Front tier would violate the validate-on-the-server rule."
+    },
+    {
+      "id": "pfw1299-q10",
+      "q": "Explain why the W3C's role is described with the verb 'recommends' rather than 'enforces', and name its five concerns.",
+      "options": [
+        "Because the W3C legally mandates standards through WIPS-M: WAI, Internationalisation, Privacy, Security, Machine-readable data",
+        "Because the W3C develops open standards and publishes Recommendations whose adoption is voluntary; its concerns are WIPS-M: WAI accessibility, Internationalisation, Privacy, Security, Machine-readable data",
+        "Because the W3C only writes the WCAG accessibility guidelines and has no other concerns",
+        "Because browser vendors, not the W3C, decide the five POUR principles: Perceivable, Operable, Understandable, Robust"
+      ],
+      "answer": 1,
+      "explanation": "The W3C develops open web standards to keep the web interoperable, but it recommends rather than enforces — that verb is a marking boundary, since adoption is voluntary. Its five concerns are WIPS-M: WAI accessibility, Internationalisation, Privacy, Security and Machine-readable data. Option A uses the right mnemonic but the wrong verb ('mandates'), which is precisely the trap the question tests; POUR (option D) is the WCAG accessibility principle set, not the W3C's five concerns."
+    }
+  ]
+}

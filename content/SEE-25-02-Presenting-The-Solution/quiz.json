@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2502-q01",
+      "q": "Identify the four audience types for a software solution presentation captured by the T-B-E-D mnemonic.",
+      "options": [
+        "Testers, Builders, Engineers, Designers",
+        "Technical stakeholders, Business stakeholders, End users, Decision makers",
+        "Teachers, Boards, Executives, Developers",
+        "Team leads, Backers, Examiners, Directors"
+      ],
+      "answer": 1,
+      "explanation": "T-B-E-D stands for Technical stakeholders, Business stakeholders, End users, and Decision makers — the four audiences you tailor the same solution to. Naming all four, each with a distinct concern, is a clean four-mark answer. The script frames it as 'the four beds you have to make,' so don't confuse it with role titles like 'teachers' or 'developers.'"
+    },
+    {
+      "id": "see2502-q02",
+      "q": "Outline the five beats of the presentation narrative arc in the correct order.",
+      "options": [
+        "Solution, Problem, Benefits, Demo, Next steps",
+        "Problem, Demo, Solution, Next steps, Benefits",
+        "Problem, Solution, Demo, Benefits, Next steps",
+        "Introduction, Features, Demo, Cost, Conclusion"
+      ],
+      "answer": 2,
+      "explanation": "The arc is Problem, Solution, Demo, Benefits, Next steps — you open with the quantified problem, not your solution. A tempting wrong choice opens with the Solution, but the script is explicit: 'Don't open with your solution; open with the problem.' The Benefits beat then ties back to the problem using the same numbers, so it must come after the Demo, not before."
+    },
+    {
+      "id": "see2502-q03",
+      "q": "What does the script identify as the core idea that students most often miss about presenting?",
+      "options": [
+        "A brilliant solution nobody understands is worthless — the goal is making the audience confident your solution solves their problem",
+        "The presentation should demonstrate how technically clever the developer is",
+        "Slides should contain detailed code so technical reviewers can verify the work",
+        "The longest part of the presentation should be the list of features built"
+      ],
+      "answer": 0,
+      "explanation": "The script states the core reframing directly: 'a brilliant solution nobody understands is worthless,' and presenting is about making the audience confident your solution solves their problem — they are the centre of every slide, not your code. The 'how clever you are' option is the exact trap the script warns against; presenting 'isn't about showing how clever you are.' This audience-first framing drives every other technique in the episode."
+    },
+    {
+      "id": "see2502-q04",
+      "q": "Explain why the live demo should receive about half the time in a presentation and be structured around user scenarios rather than features.",
+      "options": [
+        "Scenarios are faster to present, so they leave more time for questions",
+        "Decisions are made during the demo, and a scenario walkthrough proves the solution works in a real workflow, whereas a feature-by-feature tour loses the room",
+        "User scenarios avoid showing any technical detail, which keeps the demo legally safe",
+        "Features-first demos are only acceptable for technical audiences, so scenarios are a fallback"
+      ],
+      "answer": 1,
+      "explanation": "The demo is 'where decisions are made,' so it earns about half a twenty-minute slot. Following a user — 'let's follow Sarah, a Year ten teacher, on Monday morning' — proves the real workflow and is band-six, while 'first the database schema, then the authentication' is features-first, band-four, and loses the room. This is 'involve and empower' in action: showing the client their own world, improved."
+    },
+    {
+      "id": "see2502-q05",
+      "q": "Identify the single most important rule the script gives for handling a question you cannot answer.",
+      "options": [
+        "Give your best guess confidently so the audience does not lose faith",
+        "Redirect the question to a colleague or to the documentation",
+        "Pause the presentation until you can find the answer in your notes",
+        "Admit you don't know, then commit to researching it and following up by a stated time"
+      ],
+      "answer": 3,
+      "explanation": "The script's 'most important rule' is: if you don't know, say so — 'I'll research it and get back to you by Friday.' Never fabricate an answer, because a made-up answer later exposed destroys the whole pitch and your credibility. Guessing confidently (option A) is exactly the behaviour the script says to avoid, since your credibility is worth more than appearing to know everything."
+    },
+    {
+      "id": "see2502-q06",
+      "q": "Distinguish between how a presenter should frame the same attendance system for the principal (business) versus the IT staff (technical).",
+      "options": [
+        "Both should hear the cost savings first, since money matters to every stakeholder",
+        "The principal hears cost, efficiency and ROI (e.g. 70% less processing); IT hears architecture and maintenance (e.g. Python with SQLite, on-prem, automated backups)",
+        "The principal hears the architecture details and IT hears the return on investment",
+        "Both should receive the identical technical deck to ensure consistency"
+      ],
+      "answer": 1,
+      "explanation": "Business stakeholders care about cost, efficiency and ROI, so the principal hears 'cuts attendance processing by seventy percent'; technical stakeholders care about architecture, security and maintenance, so IT hears 'Python with SQLite, on-prem, quarterly backups.' Option D is the named trap — 'one technical deck for everyone' — and option C simply swaps the two audiences. Matching content to audience is 'the whole skill.'"
+    },
+    {
+      "id": "see2502-q07",
+      "q": "Compare a weak opening with a strong opening for the Problem beat of the arc, according to the script.",
+      "options": [
+        "A weak opening quantifies the pain; a strong opening states the technology used",
+        "Both openings are equally effective as long as the demo is strong",
+        "A strong opening lists every feature; a weak opening summarises benefits",
+        "A weak opening states the technology ('my attendance system built in Python'); a strong opening quantifies the pain ('fifty teachers, five minutes each, twenty hours a week wasted')"
+      ],
+      "answer": 3,
+      "explanation": "The bad opening leads with the technology — 'Today I'll present my attendance system built in Python' — while the good opening makes the audience feel the pain with real numbers: 'across fifty teachers that's over twenty hours a week wasted.' Quantifying the problem so the audience feels its impact is what makes the Problem beat land. The first option reverses the two, which is the common mistake."
+    },
+    {
+      "id": "see2502-q08",
+      "q": "A developer's live demo crashes in front of the school board. Recommend the best course of action and justify it.",
+      "options": [
+        "Spend a few minutes troubleshooting the connection live so the board sees the real product working",
+        "Apologise at length, then skip the demo entirely and move to the benefits slides",
+        "Acknowledge the failure briefly and immediately switch to a prepared backup such as a recorded walkthrough, because a calm prepared recovery shows risk awareness and builds trust",
+        "End the presentation and reschedule once the technical issue is fixed"
+      ],
+      "answer": 2,
+      "explanation": "The script says to have a backup — a second device or a pre-recorded walkthrough — and to switch immediately rather than 'fighting connectivity in front of stakeholders.' Recovering smoothly builds more trust than a flawless demo because it shows you planned for risk, the same instinct as a rollback plan. Troubleshooting live (option A) burns limited time and erodes confidence, which is exactly what the model answer warns against."
+    },
+    {
+      "id": "see2502-q09",
+      "q": "Explain why the slide-design principle 'one idea per slide, visuals not walls of text' is effective, and which earlier concept the script links it to.",
+      "options": [
+        "It reduces cognitive load and shows only the essential — the same usability thinking as Nielsen's heuristics from the prototype episode",
+        "It speeds up loading on the projector, linking to performance optimisation",
+        "It hides technical detail from non-technical audiences, linking to secure coding",
+        "It makes the deck longer, which signals thoroughness to decision makers"
+      ],
+      "answer": 0,
+      "explanation": "Clean slides reduce cognitive load and surface only the essential, which the script ties directly to Nielsen's heuristics from the prototype episode (25-06): a fifteen-bullet slide fails for the same reason a cluttered interface fails. The 'projector loading' option confuses visual minimalism with technical performance — the principle is about usability and the audience's attention, not projector speed."
+    },
+    {
+      "id": "see2502-q10",
+      "q": "In the canteen pre-ordering worked example, why is there deliberately no code on a single slide of the strong pitch?",
+      "options": [
+        "Because the system was too simple to require any code",
+        "Because the audience — the principal and canteen manager — is non-technical, so the deck is tailored to business and end-user concerns",
+        "Because showing code is always banned in HSC presentations",
+        "Because the demo replaces the need to explain anything about the solution"
+      ],
+      "answer": 1,
+      "explanation": "The strong pitch shows no code because the audience is the principal and canteen manager — non-technical stakeholders who care about the quantified problem, the scenario demo, and benefits like 'queue time drops from twelve minutes to two.' This is audience-tailoring (the T in T-B-E-D would warrant code; B and E do not). Leading with 'a web app in Flask with a SQL database' is precisely the tech-first band-four trap the example contrasts against."
+    }
+  ]
+}

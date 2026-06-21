@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1402-q01",
+      "q": "Identify the eight steps of the software development life cycle in order, as recalled by the mnemonic 'Really Smart Developers Don't Ignore Testing In Maintenance'.",
+      "options": [
+        "Research, Strategy, Design, Documentation, Implementation, Testing, Integration, Monitoring",
+        "Requirements, Scoping, Development, Deployment, Integration, Testing, Installation, Modelling",
+        "Reconnaissance, Specifications, Design, Development, Inspection, Testing, Installation, Maintenance",
+        "Requirements, Specifications, Design, Development, Integration, Testing and debugging, Installation, Maintenance"
+      ],
+      "answer": 3,
+      "explanation": "The eight standard SDLC steps are Requirements definition, Specifications, Design, Development, Integration, Testing and debugging, Installation, and Maintenance, captured by 'Really Smart Developers Don't Ignore Testing In Maintenance'. The other options swap in plausible-sounding words like 'Research' or 'Reconnaissance' that break the mnemonic; the syllabus terms are exact and must be reproduced in order."
+    },
+    {
+      "id": "ssa1402-q02",
+      "q": "Outline what is meant by 'security-by-design', also known as 'shift left'.",
+      "options": [
+        "Designing the security features of an application before designing its user interface",
+        "Integrating security considerations into every phase of the SDLC from the very start, rather than adding security after the software is built",
+        "Choosing a programming language whose design makes insecure code impossible to write",
+        "Letting the security team, rather than the developers, design the whole application"
+      ],
+      "answer": 1,
+      "explanation": "Security-by-design (shifting left) means building security into every phase of the life cycle from requirements onward, not bolting it on at the end. The 'shift left' name comes from picturing the SDLC as a left-to-right timeline and moving security effort earlier (to the left), where flaws are cheapest to fix. Option A confuses it with UI ordering, which is not the concept."
+    },
+    {
+      "id": "ssa1402-q03",
+      "q": "The episode states that fixing a security flaw in production costs roughly how many times more than preventing it at the design phase?",
+      "options": [
+        "About 6 times",
+        "About 16 times",
+        "About 63 times",
+        "About 600 times"
+      ],
+      "answer": 2,
+      "explanation": "The textbook puts the figure at roughly 63 times the design-phase cost to fix a flaw once it reaches production. This concrete multiplier is the evidence behind 'shift left', so quoting 'about 63 times' strengthens an exam answer; the other figures are close-sounding distractors that lose the specific number the script gives."
+    },
+    {
+      "id": "ssa1402-q04",
+      "q": "Explain why fixing a security flaw during the design phase is so much cheaper than fixing it after deployment.",
+      "options": [
+        "Designers are paid less than the maintenance engineers who fix production systems",
+        "At design the flaw is just a decision on a whiteboard, while in production it requires emergency patches, downtime, re-testing everything it touches, and possibly breach response",
+        "Production flaws are usually minor cosmetic issues that are quick to ignore",
+        "Design-stage code has fewer lines, so any flaw is automatically smaller"
+      ],
+      "answer": 1,
+      "explanation": "Early in the life cycle a flaw is corrected by changing a decision before any code depends on it, whereas in production it demands emergency patches, system downtime, re-testing of everything affected, and possibly incident response if attackers got there first. This is 'prevention is far cheaper than response' applied inside the development process. Option A is a tempting but wrong cost argument — the cost is in the rework and risk, not staff salaries."
+    },
+    {
+      "id": "ssa1402-q05",
+      "q": "What does each letter of the STRIDE threat-modelling framework stand for?",
+      "options": [
+        "Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, Elevation of privilege",
+        "Scanning, Testing, Reviewing, Inspecting, Documenting, Encrypting",
+        "Spoofing, Throttling, Recovery, Integrity, Deployment, Encryption",
+        "Security, Trust, Risk, Identity, Defence, Exposure"
+      ],
+      "answer": 0,
+      "explanation": "STRIDE names six threat categories: Spoofing, Tampering, Repudiation, Information disclosure, Denial of service, and Elevation of privilege. Asking 'how could each of these six happen here?' for every component systematically surfaces threats instead of guessing. The other options are plausible security-flavoured words but are not the STRIDE categories the syllabus expects."
+    },
+    {
+      "id": "ssa1402-q06",
+      "q": "Describe the threat-modelling process the episode outlines for use at the design stage.",
+      "options": [
+        "Wait for a penetration test to fail, then patch whatever the testers found",
+        "Encrypt all data, enforce HTTPS, and assume the system is then secure",
+        "List every CVE published in the last year and check the code against each one",
+        "Model the system, identify the threats (e.g. using STRIDE), assess each by risk (likelihood times impact), and define countermeasures"
+      ],
+      "answer": 3,
+      "explanation": "Threat modelling is a structured early process: model the system, identify the threats (made systematic with STRIDE), assess each by risk as likelihood times impact, then define countermeasures. Done at design, it surfaces attacks when they are cheapest to fix. Option A is the bolt-on, test-at-the-end approach the episode rejects — threat modelling is proactive and early, not reactive."
+    },
+    {
+      "id": "ssa1402-q07",
+      "q": "Distinguish security-by-design from the 'bolt-on' approach to security.",
+      "options": [
+        "Bolt-on security is applied at requirements, while security-by-design is applied at maintenance",
+        "They are the same approach described with two different names",
+        "Security-by-design builds security into every phase from the start, whereas bolt-on adds it after the application is built, making it expensive, ineffective, and prone to breaking existing functionality",
+        "Security-by-design only suits small projects, while bolt-on is required for large enterprise systems"
+      ],
+      "answer": 2,
+      "explanation": "Security-by-design weaves security through every phase from the outset; the bolt-on approach retrofits protections after the build, which is costly, ineffective, and often breaks existing functionality because the design never anticipated those controls. 'Bolt security on at the end' is the named trap the exam wants you to reject. Option A reverses the timing and misrepresents both approaches."
+    },
+    {
+      "id": "ssa1402-q08",
+      "q": "Why does the episode warn against equating 'testing' with 'security'?",
+      "options": [
+        "Because testing tools are too expensive for most development teams to afford",
+        "Because testing is only one of the eight SDLC phases, so a strategy of 'we'll test it at the end' is the bolt-on trap wearing a lab coat and misses the other seven phases",
+        "Because automated testing can never detect a real security vulnerability",
+        "Because security testing must be done before requirements are gathered"
+      ],
+      "answer": 1,
+      "explanation": "Testing and debugging is just one phase of the life cycle; making it your entire security strategy ignores the security activities at requirements, specifications, design, development, integration, installation, and maintenance. The episode calls this 'the bolt-on trap wearing a lab coat'. Security spans the whole life cycle, so option C overstates the case — testing is valuable, it just cannot stand alone."
+    },
+    {
+      "id": "ssa1402-q09",
+      "q": "A team builds a user login feature. At which SDLC phase does the activity 'harden the deployment — enforce HTTPS, lock down configuration, and restrict database access' belong?",
+      "options": [
+        "Design",
+        "Development",
+        "Installation",
+        "Requirements"
+      ],
+      "answer": 2,
+      "explanation": "Hardening the deployment — enforcing HTTPS, locking down configuration, and restricting database access — is the security activity at the Installation phase, where the software is put into its running environment. Design (option A) is where threat modelling and control selection happen, and Development is where secure coding like hashing and parameterised queries occurs; deployment hardening comes later, at installation."
+    },
+    {
+      "id": "ssa1402-q10",
+      "q": "In 2024 an attacker spent two years earning a volunteer maintainer's trust before slipping a backdoor into the 'xz' compression library, which flowed via dependencies into millions of Linux server logins. Which SDLC phase does this case study most directly illustrate as an attack surface?",
+      "options": [
+        "Requirements definition, because the security needs were never gathered",
+        "Maintenance, because keeping software secure over time includes patching, monitoring, and the dependencies — the code you didn't write",
+        "Testing and debugging, because the backdoor should have been caught by a test",
+        "Design, because the trust boundaries were drawn incorrectly"
+      ],
+      "answer": 1,
+      "explanation": "The xz backdoor lives in the Maintenance phase, which includes patching vulnerabilities, monitoring for incidents, and updating dependencies — and 'maintenance security includes the code you didn't write', the software supply chain. While better testing might have helped (option C), the episode files this story specifically under maintenance-and-dependencies as a supply-chain attack surface, not as a testing failure."
+    }
+  ]
+}

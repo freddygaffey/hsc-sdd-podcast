@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2499-q01",
+      "q": "The review describes the two-chapter arc as a memory aid. What does each chapter cover?",
+      "options": [
+        "Chapter 23 plans how to build; Chapter 24 defines what to build",
+        "Chapter 23 defines what to build; Chapter 24 plans how to build it",
+        "Both chapters cover producing and implementing working code",
+        "Chapter 23 covers quality assurance; Chapter 24 covers requirements"
+      ],
+      "answer": 1,
+      "explanation": "The arc is 'define it, then plan how to build it' — Chapter 23 is defining (requirements and feasibility, ideation and modelling, implementation methods) and Chapter 24 is planning (the three approaches, project management, the people side, quality assurance). Option A reverses the order, which is the easy slip; the script stresses 'define what to build in twenty-three, plan how to build it in twenty-four.'"
+    },
+    {
+      "id": "see2499-q02",
+      "q": "Identify the four feasibility dimensions captured by the TECO mnemonic.",
+      "options": [
+        "Technical, Economic, Cost-and-schedule, Operational",
+        "Technical, Ethical, Commercial, Organisational",
+        "Testing, Economic, Compliance, Operational",
+        "Technical, Economic, Communication, Output"
+      ],
+      "answer": 0,
+      "explanation": "TECO stands for Technical (skills and tech), Economic (benefits versus costs, ROI), Cost-and-schedule (deliver on time and budget with a risk buffer), and Operational (will people actually adopt it). The tempting distractor swaps in 'Ethical' and 'Commercial', but the syllabus dimension is Economic, and ethics is handled separately under PABT."
+    },
+    {
+      "id": "see2499-q03",
+      "q": "The script contrasts two band levels for writing a requirement. Why is '95th percentile under 300 milliseconds at 200 users' a band-six requirement while 'it should be fast' is band four?",
+      "options": [
+        "It uses more technical vocabulary, which always scores higher",
+        "It specifies a non-functional category, and category names earn marks",
+        "It is measurable and testable, written with acceptance criteria, so it can be objectively verified",
+        "It describes a functional behaviour rather than a quality attribute"
+      ],
+      "answer": 2,
+      "explanation": "The single most important property of any requirement is that it must be measurable and testable, written with acceptance criteria — 'it should be fast' cannot be verified, but a percentile target at a stated load can. Option B is tempting but wrong: naming a category is not what earns the marks; objective testability is. This is also the through-line that requirements become your later quality criteria and evaluation yardstick."
+    },
+    {
+      "id": "see2499-q04",
+      "q": "Distinguish the phased, pilot, and parallel implementation methods as the script defines them.",
+      "options": [
+        "Phased splits by user group, pilot splits by feature, parallel runs the old system only",
+        "Phased splits by feature, pilot splits by user group, parallel runs both systems at once",
+        "Phased and pilot both run both systems at once, while parallel rolls out feature by feature",
+        "All three run the old and new systems simultaneously, differing only in cost"
+      ],
+      "answer": 1,
+      "explanation": "The distinction students lose is exactly this: phased splits by feature (rolled out to everyone), pilot splits by user group (the whole system tried on a small representative group), and parallel runs both systems at once as a safety net. Option A swaps the phased and pilot definitions, which is the classic mix-up the script warns is where marks leak (DiP-PP: Direct, Phased, Parallel, Pilot)."
+    },
+    {
+      "id": "see2499-q05",
+      "q": "A student writes that WAgile 'just combines the good parts of Waterfall and Agile.' According to the review, why is this only a band-four answer?",
+      "options": [
+        "WAgile is not a real approach, so any description of it loses marks",
+        "WAgile actually combines only the weak parts of both approaches",
+        "It omits the Scope-Time-Cost triangle, which defines WAgile",
+        "It fails to explain the when and how — which behaviour applies where governance dominates versus where adaptability dominates"
+      ],
+      "answer": 3,
+      "explanation": "The exam's key words for WAgile are when and how: apply Waterfall behaviour where governance dominates (compliance, formal reporting, predictable milestones) and Agile behaviour where adaptability dominates (changing requirements, essential user feedback). 'Combines the good parts' with no when-and-how is the band-four answer; done badly WAgile is actually the worst of both, so the 'weak parts' distractor states a real risk but is not the reason this answer scores low."
+    },
+    {
+      "id": "see2499-q06",
+      "q": "On a Gantt chart, what makes the critical path significant for a project manager?",
+      "options": [
+        "It is the longest chain of dependent tasks, has zero slack, and sets the minimum project duration, so a slip there slips the whole project",
+        "It is the chain of tasks with the most slack, so delays there are absorbed",
+        "It is the path with the highest cost, which determines the budget",
+        "It is the sequence of milestones used for executive reporting"
+      ],
+      "answer": 0,
+      "explanation": "The critical path is the longest chain of dependent tasks; it sets the minimum project duration and its tasks have zero slack, so any slip on it slips the whole project, whereas a slip within a non-critical task's slack does not move the finish date. The 'most slack' distractor inverts this — slack belongs to non-critical tasks. The script flags 'not checking whether a slipped task is on the critical path' as trap seven."
+    },
+    {
+      "id": "see2499-q07",
+      "q": "The review insists on a central distinction in the quality-assurance episode. How does quality assurance differ from testing?",
+      "options": [
+        "QA and testing are the same process under two different names",
+        "QA detects defects after release; testing prevents them before coding begins",
+        "QA applies only to compliance; testing applies only to performance",
+        "QA is the process that prevents defects; testing is one activity within it that detects them"
+      ],
+      "answer": 3,
+      "explanation": "The central distinction is that QA is the overall process that prevents defects — criteria, continual checking, compliance — while testing is one activity within QA that runs test cases to detect defects. The 'QA detects, testing prevents' option reverses the prevent/detect roles, which is the most tempting trap; the script calls conflating QA with testing 'the big one for this chapter' (trap nine)."
+    },
+    {
+      "id": "see2499-q08",
+      "q": "A state health department wants an online appointment-booking and patient-records portal. It must comply with health-privacy law, has a fixed 18-month deadline, executives need formal progress reports, but the patient-facing booking interface must be refined through real user feedback. Which development approach does the review recommend, and why?",
+      "options": [
+        "Pure Waterfall, because the fixed deadline and compliance demand predictable stage-gates throughout",
+        "Pure Agile, because the patient interface needs continuous user feedback above all else",
+        "WAgile, with the records core handled Waterfall-heavy for compliance and the booking interface Agile-heavy in sprints, under shared stage-gates",
+        "Direct cut-over of a single Waterfall build to meet the deadline"
+      ],
+      "answer": 2,
+      "explanation": "This is the textbook WAgile case: pure Waterfall cannot refine the patient interface through feedback, and pure Agile cannot give regulators and executives formal documentation and predictable milestones, so you run formal stage-gates across the 18 months with the records core Waterfall-heavy and the booking Agile-heavy. Options A and B each capture only one half of the conflicting requirements; WAgile resolves the tension by explaining the when and how, not just 'combines both'."
+    },
+    {
+      "id": "see2499-q09",
+      "q": "A hospital pharmacy dispensing system is being replaced. Distinguish direct from parallel implementation and recommend one with justification.",
+      "options": [
+        "Direct runs both systems at once; recommend it because duplicate running verifies outputs safely",
+        "Direct switches over in a single changeover with no fallback; parallel runs old and new together as a fallback — recommend parallel because the system is safety-critical with zero tolerance for failure",
+        "Parallel switches over instantly and cheaply; recommend it to minimise cost on a tight budget",
+        "Both methods carry equal risk, so recommend whichever is faster to deploy"
+      ],
+      "answer": 1,
+      "explanation": "Direct switches entirely to the new system in one changeover — fastest and cheapest but high-risk with no fallback; parallel runs old and new simultaneously, giving a working fallback and verifiable outputs but at the highest cost. For a dispensing system an error could harm or kill a patient, so it is safety-critical with zero tolerance; the higher cost of parallel is justified, which is the cost-versus-safety trade-off the mark depends on. Option A swaps the definitions of direct and parallel."
+    },
+    {
+      "id": "see2499-q10",
+      "q": "Both Denver airport's baggage system and Healthcare.gov are cited as the same lesson 'in different costumes.' What is that shared lesson?",
+      "options": [
+        "Both failures came from writing buggy code that better programmers would have avoided",
+        "Both failures were caused by choosing Agile when Waterfall was required",
+        "Both failures happened in defining and planning — before code was ever the problem — so getting Chapters 23–24 wrong dooms the build",
+        "Both projects succeeded technically but failed only because of poor marketing"
+      ],
+      "answer": 2,
+      "explanation": "Denver chose a direct cut-over of a giant untested system with unbounded scope and infeasible plans (a TECO and DiP-PP failure), while Healthcare.gov used Waterfall under a fixed deadline with frozen, flawed requirements and no real load testing — both failures happened in defining and planning, long before code was the problem. Option A misses the through-line: the script stresses the build is doomed no matter how good your code, which is why the module marker is justify, manage, document. Healthcare.gov was a Waterfall failure, so option B is also wrong."
+    }
+  ]
+}

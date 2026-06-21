@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1401-q01",
+      "q": "Identify the two benefits of developing secure software named in the syllabus dot-point.",
+      "options": [
+        "Data protection, and minimising cyber attacks and vulnerabilities",
+        "Faster performance and lower hosting costs",
+        "Encryption in transit and encryption at rest",
+        "Regulatory compliance and competitive differentiation"
+      ],
+      "answer": 0,
+      "explanation": "The syllabus names exactly two benefits: data protection (confidentiality and integrity of customer data) and minimising cyber attacks and vulnerabilities (fewer weaknesses for attackers to exploit). The mnemonic D-A — protect Data, prevent Attacks — captures both. Compliance and differentiation (option D) are part of the 'security as enabler' reframe, not the two named benefits, so writing them instead loses the recall mark."
+    },
+    {
+      "id": "ssa1401-q02",
+      "q": "The HSC outcome SE-12-01 attaches the verb 'justify' to this dot-point. What does that tell you about the exam skill being assessed?",
+      "options": [
+        "You must explain how to technically secure a system using protocols and code",
+        "You must argue that investing in security is worth it, using business reasoning rather than technical detail",
+        "You must list the protocols that protect data in transit",
+        "You must describe the steps of the software development life cycle"
+      ],
+      "answer": 1,
+      "explanation": "'Justify' means weigh up and reach a conclusion — here, arguing that securing software is worth the money using business language, not code. The episode stresses this is a different exam skill from the previous technical module: the marks come from business reasoning. Describing how to secure something (option A) answers 'how', not 'why it is worth it', and therefore misses the justify skill being assessed."
+    },
+    {
+      "id": "ssa1401-q03",
+      "q": "What does it mean to say 'security is a business enabler, not just a cost', and what does the T-C-D-R hook capture?",
+      "options": [
+        "Security only matters for large enterprises, captured as Trust, Capital, Data, Regulation",
+        "Security is an unavoidable expense that should be minimised wherever possible",
+        "Security actively creates value through Trust, Compliance, Differentiation, and Risk management, rather than being pure overhead",
+        "Security is purely a legal obligation, captured as Tax, Compliance, Duty, Reporting"
+      ],
+      "answer": 2,
+      "explanation": "The mature view is that security creates business value: it builds customer Trust, ensures regulatory Compliance, provides product Differentiation, and delivers Risk management — T-C-D-R, 'Trust Counts, Damage Repelled'. The naive view (option B) treats security as pure cost or overhead to be minimised, which the episode names as a trap. Saying 'enabler, not just a cost' is the phrase that signals the band-six mindset."
+    },
+    {
+      "id": "ssa1401-q04",
+      "q": "A startup argues 'we're too small to be a target, so why spend on security?' Evaluate this claim.",
+      "options": [
+        "It is reasonable, because attackers focus their effort on large, high-value organisations",
+        "It is flawed: most attacks are automated and indiscriminate, and a single breach can be financially fatal to a small business",
+        "It is correct for now, but the company should reconsider once it grows larger",
+        "It is flawed only because small companies are legally required to have security regardless of risk"
+      ],
+      "answer": 1,
+      "explanation": "The claim is wrong on two counts. First, most attacks are automated and indiscriminate — bots scan the whole internet for exploitable vulnerabilities regardless of size, and small firms are often easier because they under-invest. Second, a single breach can be fatal to a small business that cannot absorb the costs. Option A repeats the misconception; naming 'attacks are automated and indiscriminate' plus 'least able to survive' is the mark."
+    },
+    {
+      "id": "ssa1401-q05",
+      "q": "In the worked breach example, why are the indirect costs the part of a justify-investment answer that earns the most marks?",
+      "options": [
+        "Because indirect costs like customer churn and reputation damage are larger than direct costs and are the ones people forget",
+        "Because indirect costs are easier to calculate than direct costs",
+        "Because direct costs such as fines are always waived for first-time breaches",
+        "Because indirect costs are the only costs that regulators care about"
+      ],
+      "answer": 0,
+      "explanation": "Direct costs (forensics, legal fees, fines, customer notification) total a couple of hundred thousand, but the indirect costs — lost revenue during downtime, higher insurance, and above all customer churn from lost trust — are bigger and are the ones people forget. In the example, 20% of customers leaving is half a million dollars of lost future revenue. Indirect costs are actually harder to estimate, not easier (option B), so a strong justify answer makes the effort to name and quantify them rather than under-counting the breach by listing only the obvious direct costs."
+    },
+    {
+      "id": "ssa1401-q06",
+      "q": "In the worked example, an SQL injection breach costs about $800,000 while prevention costs about $30,000. What principle does this comparison establish?",
+      "options": [
+        "Security investment should be deferred until after a breach occurs",
+        "Prevention is far cheaper than response, returning many times its cost",
+        "Direct costs always exceed indirect costs in a data breach",
+        "Insurance fully covers the cost of any breach, so prevention is optional"
+      ],
+      "answer": 1,
+      "explanation": "A $30,000 prevention investment (secure-coding training, code reviews, automated scanning) avoids an $800,000 breach — a return of over 25 times the cost. The spine of every justify-security answer is: quantify the breach including indirect costs, quantify the much smaller prevention cost, and show the return — 'prevention is far cheaper than response'. Deferring until after a breach (option A) inverts this principle and abandons the cost-benefit argument the marker wants."
+    },
+    {
+      "id": "ssa1401-q07",
+      "q": "A company cannot fix every security risk at once. According to the episode, how should it decide what to spend on first?",
+      "options": [
+        "Fix the cheapest threats first to maximise the number of issues resolved",
+        "Fix whichever threats were exploited most recently in the news",
+        "Distribute the budget equally across every identified threat",
+        "Assess each threat as risk = likelihood × impact and address the highest-scoring threats first"
+      ],
+      "answer": 3,
+      "explanation": "A risk assessment uses the formula risk = likelihood × impact: rate how likely each threat is and how bad its impact would be, multiply, and prioritise the highest scores. A likely, high-impact threat like SQL injection exposing customer records is fixed immediately, while low-impact issues are monitored or accepted. This puts the most risk reduced per dollar; fixing the cheapest threats first (option A) ignores impact and can leave the most dangerous threats unaddressed."
+    },
+    {
+      "id": "ssa1401-q08",
+      "q": "Distinguish a weak answer from a strong answer to 'justify investment in secure software for an e-commerce business'.",
+      "options": [
+        "A weak answer quantifies costs; a strong answer simply says hackers are bad",
+        "A weak answer is too long; a strong answer is a single sentence",
+        "A weak answer uses business language; a strong answer uses only technical protocol detail",
+        "A weak answer is vague with no business reasoning; a strong answer quantifies both prevention and breach costs, names direct and indirect costs, and frames security as an enabler"
+      ],
+      "answer": 3,
+      "explanation": "A weak answer ('security is important because hackers are bad') is vague and has no business reasoning, so earns almost nothing. A strong answer uses business language and quantifies both sides: it shows prevention is a small fraction of a breach's cost, names both direct costs (fines, recovery) and larger indirect costs (churn, reputation), and frames security as the enabler the business depends on. Option A reverses which answer does the quantifying."
+    },
+    {
+      "id": "ssa1401-q09",
+      "q": "An online pharmacy stores customer prescriptions and payment details and is deciding whether to fund secure development. Which response best applies the episode's framework?",
+      "options": [
+        "Decline, because the pharmacy is small and unlikely to be specifically targeted",
+        "Fund it: prevention costs a small fraction of a breach whose indirect costs (churn, reputation) dominate, and security enables the trust and compliance the business depends on",
+        "Fund it only if a competitor is breached first, to avoid spending ahead of need",
+        "Decline, because storing data securely is purely a technical concern, not a business decision"
+      ],
+      "answer": 1,
+      "explanation": "The framework says secure development is a justified investment, not a discretionary cost: prevention is far cheaper than response once indirect costs like customer churn and reputation damage are counted, and for a business handling sensitive medical and payment data, security is the enabler of customer trust and regulatory compliance. Option A repeats the 'too small to be targeted' trap (attacks are automated and indiscriminate), and option D ignores that security is a business decision before it is a technical one."
+    },
+    {
+      "id": "ssa1401-q10",
+      "q": "The episode previews the 2017 Equifax breach. What is the single point you are meant to hold from it for now?",
+      "options": [
+        "The exact technical sequence of how the vulnerability was exploited",
+        "That credit agencies are the only organisations that suffer large breaches",
+        "The scale of what 'the cost of a breach' can really mean — 147 million records and over a billion dollars",
+        "That Equifax recovered fully and suffered no lasting financial impact"
+      ],
+      "answer": 2,
+      "explanation": "Equifax is seeded as a story to tell properly later as a case study; for now you only hold the scale — a single unpatched vulnerability exposed 147 million people's records at a cost of well over a billion dollars, illustrating what 'the cost of a breach' can really mean. The technical exploit detail (option A) is deliberately deferred, so it is not the takeaway the episode asks you to retain at this stage."
+    }
+  ]
+}

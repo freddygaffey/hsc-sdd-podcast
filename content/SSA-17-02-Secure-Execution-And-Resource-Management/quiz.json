@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1702-q01",
+      "q": "Identify the three areas of secure and efficient execution management named in this episode.",
+      "options": [
+        "Authentication, authorisation, and rate limiting",
+        "Memory management, session management, and exception management",
+        "Validation, sanitisation, and error handling",
+        "Confidentiality, integrity, and availability"
+      ],
+      "answer": 1,
+      "explanation": "The three execution-management areas are Memory management, Session management, and Exception management, captured by the mnemonic M-S-E. Authentication, authorisation and rate limiting (option A) are the A-A-R-T framework from the previous secure-API episode, not the execution-management list, so they are a tempting but out-of-scope distractor."
+    },
+    {
+      "id": "ssa1702-q02",
+      "q": "Explain how a constant-time comparison defends against a timing attack.",
+      "options": [
+        "It encrypts the password before comparing it so the attacker cannot read the value",
+        "It rejects any comparison that takes longer than a fixed timeout, blocking slow attackers",
+        "It compares the values randomly each time so the response time cannot be predicted",
+        "It always takes the same amount of time regardless of how much of the input matches, so no information leaks through timing"
+      ],
+      "answer": 3,
+      "explanation": "A timing attack measures how long a comparison takes; a check that returns false the instant a character mismatches takes slightly longer the more leading characters are correct, letting an attacker recover the secret character by character. A constant-time comparison always inspects the whole input and takes the same time regardless of how much matches, leaking no timing information. Encryption (option A) protects the stored value but does not address the response-time side channel."
+    },
+    {
+      "id": "ssa1702-q03",
+      "q": "Name the file attack in which an attacker includes 'dot-dot-slash' sequences in a filename to climb out of the intended folder.",
+      "options": [
+        "Path traversal (directory traversal)",
+        "A buffer overflow",
+        "An unsafe upload attack",
+        "A side-channel attack"
+      ],
+      "answer": 0,
+      "explanation": "Path traversal, also called directory traversal, happens when a program builds a file path from user input without checking it, and the attacker uses 'dot-dot-slash' to go up directories out of the intended folder — the hook is 'dot-dot-slash climbs out'. A buffer overflow (option B) is a memory attack, not a file path attack, so it is the most tempting wrong answer for students who confuse the back-door attack families."
+    },
+    {
+      "id": "ssa1702-q04",
+      "q": "Explain why Heartbleed is described in this episode as a memory-management failure rather than a flaw in the cryptography.",
+      "options": [
+        "The encryption algorithm used a weak key length that attackers could brute-force",
+        "The TLS code trusted a client-supplied length without validating it, then over-read and returned adjacent memory contents including private keys",
+        "The server stored private keys in plain text instead of hashing them",
+        "An attacker injected malicious code through a buffer overflow to take control of the server"
+      ],
+      "answer": 1,
+      "explanation": "The episode stresses that the maths was flawless — the bug was failing to validate a length before a memory operation. The TLS code accepted a length value from the client, trusted it, and read that many bytes, handing back whatever happened to be adjacent in memory (an over-read), including private keys. It was not a code-execution buffer overflow (option D); it was an over-read caused by not validating an input-supplied size."
+    },
+    {
+      "id": "ssa1702-q05",
+      "q": "Outline how resource exhaustion can be used to cause a denial of service from inside a program, and one defence against it.",
+      "options": [
+        "An attacker floods the network with packets; the defence is HTTPS transport security",
+        "An attacker steals a session ID; the defence is to regenerate the ID at login",
+        "An attacker makes the program allocate unbounded memory, open unlimited connections, or spawn endless work until the resource is exhausted; the defence is to set limits and timeouts everywhere",
+        "An attacker reads a stack trace to map the system; the defence is to log errors privately and show generic messages"
+      ],
+      "answer": 2,
+      "explanation": "Resource exhaustion is a denial-of-service from the inside: if an attacker can make the program allocate unbounded memory, open unlimited connections, or spawn endless work, the resource falls over. The defences are limits — cap request and upload sizes, cap concurrent operations, and use timeouts so no operation hangs. The episode's rule is that 'the absence of a limit is a vulnerability'; option D describes information disclosure, a different threat."
+    },
+    {
+      "id": "ssa1702-q06",
+      "q": "Describe what distinguishes a side-channel attack from a conventional attack on a system.",
+      "options": [
+        "It exploits a flaw in the encryption algorithm itself to recover the key directly",
+        "It comes through the authenticated front door using stolen credentials",
+        "It overwhelms the server with traffic to make it unavailable to legitimate users",
+        "It extracts secrets by measuring an indirect physical or behavioural side effect of the computation, such as timing, power, sound or emissions, rather than attacking the algorithm directly"
+      ],
+      "answer": 3,
+      "explanation": "A side-channel attack does not break the algorithm or come through the front door; it extracts secrets by measuring an indirect side effect of the computation — how long it takes, how much power it draws, the sound it makes, or electromagnetic emissions. The episode's hook is that 'the secret leaks through timing, power, sound or emissions, not through the front door'. Attacking the algorithm directly (option A) is precisely what a side-channel attack does not do."
+    },
+    {
+      "id": "ssa1702-q07",
+      "q": "Distinguish how memory risks differ between a low-level language like C and a managed language like Python, according to the episode.",
+      "options": [
+        "In C you manage memory by hand so buffer overflows are a constant danger; in Python the runtime bounds-checks arrays so classic overflows are largely prevented, but leaks, exhaustion and over-reads can still occur",
+        "C is completely memory-safe because the compiler checks every operation, while Python is vulnerable to all memory attacks",
+        "Both languages are equally immune to memory attacks because all modern hardware bounds-checks memory automatically",
+        "Python is vulnerable to buffer overflows but C prevents them through manual memory management"
+      ],
+      "answer": 0,
+      "explanation": "In low-level languages you manage memory by hand, so buffer overflows are a constant danger; in a managed language the runtime handles memory and bounds-checks arrays, so classic buffer overflows are largely prevented. The trap the episode flags is assuming a managed language makes you immune — you can still leak memory by holding references, exhaust memory by reading huge input at once, and leak data through over-reads, which is exactly Heartbleed. Option D inverts reality by claiming Python (not C) is overflow-prone, so it is the most tempting wrong answer for students who confuse which language requires manual memory management."
+    },
+    {
+      "id": "ssa1702-q08",
+      "q": "Explain the two distinct dangers that poor exception handling can create.",
+      "options": [
+        "Slower performance and higher memory use, both of which reduce availability",
+        "Information disclosure, where a stack trace leaks internal details to the attacker, and failing open, where a failed security check lets execution continue and grants access",
+        "Session hijacking and session fixation, where an attacker steals or plants a session ID",
+        "Path traversal and unsafe uploads, where an attacker reaches files outside the intended folder"
+      ],
+      "answer": 1,
+      "explanation": "Poor exception handling creates a vulnerability in two ways: information disclosure, where an unhandled exception dumps a stack trace revealing file paths, library versions and database structure to the attacker; and failing open, where a security check that throws is caught so that execution continues and access is granted instead of denied. The fix is to log full detail internally, return only a generic message externally, and fail securely (fail closed). Options C and D are real threats but belong to session and file attacks, not exception handling."
+    },
+    {
+      "id": "ssa1702-q09",
+      "q": "A web app serves user files by inserting the requested filename directly into a file path with no checks. Identify the most appropriate mitigation.",
+      "options": [
+        "Encrypt every file on disk so that even if the path is wrong the contents stay confidential",
+        "Apply rate limiting so the attacker cannot request many files quickly",
+        "Canonicalise the resolved path to its real absolute form, verify it still sits inside the intended directory, and use an allow-list of permitted filenames or strip the input to its base name",
+        "Return a detailed error message so developers can see which path the user requested"
+      ],
+      "answer": 2,
+      "explanation": "This setup enables a path traversal attack, where 'dot-dot-slash' sequences climb out of the intended folder to reach sensitive files. The mitigation is to treat the filename as untrusted input: canonicalise the path to its real absolute form, verify it remains inside the intended directory, and use an allow-list or strip to the base name — and the episode reminds us that allow-list beats block-list. Encryption (option A) does not stop the attacker reaching files outside the folder; returning a detailed error (option D) would itself cause information disclosure."
+    },
+    {
+      "id": "ssa1702-q10",
+      "q": "A marker asks how errors should be handled securely. Which response would earn full marks according to the episode's weak-versus-strong contrast?",
+      "options": [
+        "Exceptions are caught and handled so the program fails securely; full details including stack traces are logged internally while the user receives only a generic message, and any failed security check defaults to denying access",
+        "The program should show a clear error message when something goes wrong so the user knows there is a problem and can report it",
+        "All exceptions should be suppressed silently so the attacker never learns that an error occurred at all",
+        "The program should display the stack trace only to logged-in users, since authenticated users can be trusted with internal details"
+      ],
+      "answer": 0,
+      "explanation": "The strong answer separates internal logging from external messaging and adds fail-securely: log full detail internally for developers, return only a generic message such as 'an error occurred, please try again', and default any failed security check to denying access. The episode calls option B 'actively dangerous' because suggesting you show the error leaks information — that is the weak answer the contrast warns against. The mark is 'log private, show generic, fail closed'."
+    }
+  ]
+}

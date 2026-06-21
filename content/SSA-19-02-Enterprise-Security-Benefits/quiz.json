@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "ssa1902-q01",
+      "q": "Name the five benefits to an enterprise of implementing safe and secure development practices, as captured by the episode's mnemonic.",
+      "options": [
+        "Protection, Integrity, Privacy, Performance, Backups",
+        "Improved products or services, influence on future development, improved work practices, productivity, and business interactivity",
+        "Prevention, Inspection, Patching, Provisioning, Backups",
+        "Fewer bugs, faster code, encrypted data, secure logins, and reduced costs"
+      ],
+      "answer": 1,
+      "explanation": "The dot-point names exactly five enterprise benefits, captured by PIP-PB: Products, Influence, Practices, Productivity, Business interactivity. Option D is the classic trap — those are technical or code-level outcomes, not the organisational and commercial benefits the dot-point asks for."
+    },
+    {
+      "id": "ssa1902-q02",
+      "q": "What does the mnemonic PIP-PB stand for?",
+      "options": [
+        "Products, Influence, Practices, Productivity, Business interactivity",
+        "Prevention, Inspection, Patching, Productivity, Backups",
+        "Privacy, Integrity, Protection, Patching, Breach response",
+        "People, Information, Process, Policy, Budget"
+      ],
+      "answer": 0,
+      "explanation": "PIP-PB stands for improved Products or services, Influence on future development, improved work Practices, Productivity, and Business interactivity. The episode pictures 'Pip', who is so good at security the whole business runs better and earns a personal best (P-B) every quarter, so you can dump all five into the exam margin."
+    },
+    {
+      "id": "ssa1902-q03",
+      "q": "The 19.2 dot-point uses the verb 'explain'. What does this require beyond simply listing the five benefits?",
+      "options": [
+        "Ranking the benefits from most to least financially valuable",
+        "Providing a real-world case study for every benefit named",
+        "Stating, for each benefit, why it follows from doing security well — the mechanism that links the practice to the outcome",
+        "Defining each technical security control used to achieve the benefit"
+      ],
+      "answer": 2,
+      "explanation": "'Explain' demands the mechanism — for each benefit you must say why it follows from secure development, not just name it. Option A confuses 'explain' with 'evaluate' or 'justify', which would ask you to weigh up and rank; the verb here only requires you to give the reason or mechanism behind each benefit."
+    },
+    {
+      "id": "ssa1902-q04",
+      "q": "Outline how secure development practices improve an enterprise's 'products or services'.",
+      "options": [
+        "By guaranteeing the software contains zero defects of any kind before release",
+        "By making the product more reliable and trustworthy and protecting customer data, so security becomes a marketable part of the value proposition",
+        "By reducing the size of the codebase so the product loads faster for users",
+        "By forcing competitors out of the market through stronger encryption"
+      ],
+      "answer": 1,
+      "explanation": "Secure-by-design makes the product more reliable, with fewer outages and incidents, and protects customer data — a quality customers value, like a bank or health app marketing 'your data is encrypted and protected'. Option A overstates it: the benefit is reliability and trust as part of the value proposition, not an impossible guarantee of zero defects."
+    },
+    {
+      "id": "ssa1902-q05",
+      "q": "Explain the 'influence on future software development' benefit, described as the most easily missed of the five.",
+      "options": [
+        "Secure code runs faster, so future projects need less hardware to deploy",
+        "Future regulations will be easier to comply with because the law changes slowly",
+        "It encourages the enterprise to hire more security specialists in future years",
+        "Doing security well establishes reusable secure-by-design patterns, standards and institutional knowledge, so each later project starts from a more secure baseline"
+      ],
+      "answer": 3,
+      "explanation": "Security done well becomes the default — secure-by-design templates, validated reusable components and threat-modelling habits feed forward into standards and tooling, so the next project starts more secure from day one. The episode frames this as 'shift left' from 14.02 scaled across the whole organisation over time. Option B is out of scope — the benefit is about internal patterns and institutional knowledge, not external law."
+    },
+    {
+      "id": "ssa1902-q06",
+      "q": "Why does the episode argue that good security practices increase productivity rather than reduce it?",
+      "options": [
+        "Because security tools automatically write new features for the developers",
+        "Because secure code requires fewer developers, lowering the wage bill",
+        "Because compliance audits are no longer legally required once security is built in",
+        "Because preventing vulnerabilities early avoids the far larger cost of production incidents and rework, and automation plus built-in documentation reduce friction, so developer time goes into building features instead of firefighting"
+      ],
+      "answer": 3,
+      "explanation": "Prevention is far cheaper than response: a vulnerability caught early by review or a static scan never becomes a production incident eating days of firefighting, and secure-by-default tooling adds little friction while built-in documentation makes audits efficient — so over time the team ships more, not less. This is the 'enabler' argument from 14.01 proven. The audit option is wrong because audits become faster, not eliminated — security is never legally optional."
+    },
+    {
+      "id": "ssa1902-q07",
+      "q": "Explain what 'business interactivity' means as a benefit of secure development, with an example.",
+      "options": [
+        "The responsiveness of the user interface, which improves when secure code reduces lag",
+        "The frequency of internal meetings the development team holds about security",
+        "The enterprise's ability to safely connect, integrate and transact with external parties such as customers, partners and suppliers — for example, an e-commerce business can only sell online because secure transactions earn customer trust",
+        "The number of social media interactions the enterprise's brand generates online"
+      ],
+      "answer": 2,
+      "explanation": "Business interactivity is the ability to connect, integrate and transact with other parties safely — APIs between companies, shared partner data, online transactions — none of which happen at scale without the trust that security provides. The episode ties this back to e-commerce from Programming for the Web, whose defining feature was secure financial transactions. Option A confuses 'interactivity' with UI responsiveness, the wrong concept entirely."
+    },
+    {
+      "id": "ssa1902-q08",
+      "q": "Distinguish between the 'improved work practices' benefit and the 'productivity' benefit.",
+      "options": [
+        "Work practices is about how the team operates day to day — disciplined review, documentation and clear ownership that lift general engineering quality — whereas productivity is about output over time, where prevention and automation free developer time so the enterprise ships more",
+        "Work practices applies only to security staff, whereas productivity applies only to managers",
+        "Work practices is a technical benefit, whereas productivity is a commercial benefit",
+        "They are the same benefit described with two different words and cannot be distinguished"
+      ],
+      "answer": 0,
+      "explanation": "Improved work practices is about the quality and consistency of how the team operates — disciplined habits like review, documentation and clear ownership that raise general engineering discipline, not just security. Productivity is the output consequence over time — fewer incidents and automated checks free time from firefighting so the team ships more. Both are enterprise benefits (eliminating C), and they are distinct (eliminating D)."
+    },
+    {
+      "id": "ssa1902-q09",
+      "q": "In the Equifax case study, how does the breach demonstrate the value of PIP-PB?",
+      "options": [
+        "It shows the five benefits only matter for credit agencies, not other enterprises",
+        "It proves security is purely a technical concern with no business consequences",
+        "It demonstrates that fines are the only real cost of a data breach",
+        "A single unpatched framework vulnerability exposed around 147 million records, and the fallout meant Equifax lost every one of the five benefits — reputation, future development, disciplined practices, productivity and partner trust"
+      ],
+      "answer": 3,
+      "explanation": "Read in reverse against PIP-PB, Equifax lost all five: product reputation destroyed, future development consumed by remediation, undisciplined practices exposed (a known patch left unapplied), productivity cratered under incident response, and business interactivity collapsed as partners and regulators lost confidence. This counterfactual proves PIP-PB is not abstract. The 'fines only' option understates it — the episode stresses indirect costs like lost trust and reputation usually dominate the direct fines."
+    },
+    {
+      "id": "ssa1902-q10",
+      "q": "A software company is deciding whether to invest in embedding secure development practices across all its teams and asks you to justify the benefits to the enterprise. Which response best matches the skill the dot-point tests?",
+      "options": [
+        "'The software will have fewer security holes and won't get hacked as easily, so it's safer.'",
+        "'Encryption and input validation will be added everywhere, so attackers cannot exploit the code.'",
+        "'Products become more trustworthy and marketable, secure-by-design patterns raise every future project's baseline, work practices and productivity improve as prevention frees time from firefighting, and business interactivity is enabled as trust allows safe API integrations and online transactions — as Equifax shows, the breach destroyed all of these.'",
+        "'The team will spend more time on code review and threat modelling, which is good engineering practice.'"
+      ],
+      "answer": 2,
+      "explanation": "The skill tested is connecting each security practice to a business consequence — naming PIP-PB and landing every point on the enterprise, not the codebase. Option A is the band-four trap the episode warns about: it never leaves the code and names no enterprise benefit. Option C names the benefit, the mechanism and the organisational payoff, and uses the Equifax counterfactual — that is the band-six answer."
+    }
+  ]
+}

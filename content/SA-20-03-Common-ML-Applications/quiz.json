@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "sa2003-q01",
+      "q": "Identify the three common application areas of machine learning named in this episode.",
+      "options": [
+        "Data analysis and forecasting, virtual personal assistants, and image recognition",
+        "Classification, regression, and clustering",
+        "Supervised learning, unsupervised learning, and reinforcement learning",
+        "Speech recognition, natural language processing, and computer vision"
+      ],
+      "answer": 0,
+      "explanation": "The syllabus dot-point names exactly three application areas: data analysis and forecasting, virtual personal assistants, and image recognition. The hook is F-A-I (\"fie\") — Forecasting, Assistants, Image. Option C lists the four training models from the previous episode, and option B lists supervised sub-types, which are techniques underneath the applications, not the application areas themselves."
+    },
+    {
+      "id": "sa2003-q02",
+      "q": "What does the F-A-I mnemonic introduced in this episode stand for?",
+      "options": [
+        "Find, Analyse, Implement",
+        "Forecasting, Assistants, Image recognition",
+        "Features, Algorithms, Inference",
+        "Forecasting, Automation, Intelligence"
+      ],
+      "answer": 1,
+      "explanation": "F-A-I — say it \"fie\" — stands for Forecasting (data analysis and forecasting), Assistants (virtual personal assistants), and Image recognition. The episode says to write F-A-I in the margin to recall the three application areas. The other options use plausible ML-sounding words but are not the mnemonic the script defines."
+    },
+    {
+      "id": "sa2003-q03",
+      "q": "Which training model and technique sit underneath demand forecasting?",
+      "options": [
+        "Unsupervised learning using clustering",
+        "Reinforcement learning using trial-and-error rewards",
+        "Supervised learning, specifically regression",
+        "Neural networks, specifically deep networks"
+      ],
+      "answer": 2,
+      "explanation": "Forecasting is supervised learning, specifically regression — you predict a continuous number and train on historical data where the outcome (past demand) is the known label. This ties straight back to S-U-S-R from the previous episode. Neural networks (option D) power image recognition, not forecasting, and reinforcement learning involves an environment with rewards, not labelled history."
+    },
+    {
+      "id": "sa2003-q04",
+      "q": "Outline what happens inside a virtual personal assistant when you speak to it.",
+      "options": [
+        "It searches a fixed database of pre-written rules to find a matching reply",
+        "It records your voice and forwards it to a human operator who replies",
+        "It uses regression to predict the most likely numeric response value",
+        "Speech recognition converts speech to text, natural language processing interprets the meaning, then a response is generated and turned back into speech"
+      ],
+      "answer": 3,
+      "explanation": "The episode describes a stack: speech recognition turns spoken words into text, natural language processing (NLP) interprets what you meant, and the response is generated and, for voice, turned back into speech. Option A describes a rule-based program, which is exactly what assistants are NOT — they learn language patterns from vast data rather than following hand-written rules."
+    },
+    {
+      "id": "sa2003-q05",
+      "q": "Explain how machine learning supports demand forecasting.",
+      "options": [
+        "A supervised regression model is trained on historical data where past demand is the known label, learning the relationship between factors like season, price, and promotions, then predicts future demand as a continuous number",
+        "It clusters customers into unlabelled groups to discover hidden segments",
+        "A reinforcement agent buys and sells stock by trial and error until it maximises a reward",
+        "A deep neural network reads images of past sales receipts and counts the totals"
+      ],
+      "answer": 0,
+      "explanation": "The strong answer names supervised regression, names the labelled historical data, states the mechanism (learning factors such as season, price and promotions), and gives the output type (a continuous numeric prediction). The clustering option describes data analysis, which is unsupervised and finds structure rather than predicting a future number, so it does not answer a forecasting question."
+    },
+    {
+      "id": "sa2003-q06",
+      "q": "Why is image recognition described as the flagship application of neural networks, and what training model does it usually use?",
+      "options": [
+        "It uses unsupervised clustering, because images are never labelled",
+        "It uses reinforcement learning, because the model is rewarded each time it sees a new image",
+        "It uses deep neural networks and is usually supervised, trained on huge sets of images each labelled with what they contain",
+        "It uses supervised regression, because each image is converted to a single numeric value"
+      ],
+      "answer": 2,
+      "explanation": "Image recognition is the flagship application of neural networks, specifically deep neural networks, and in training terms is usually supervised — trained on large sets of images each labelled, like \"this is a cat\" or \"this is a stop sign\". Because labelled image data is expensive, medical imaging often uses semi-supervised learning. Regression (option D) predicts continuous numbers and is the forecasting technique, not image classification."
+    },
+    {
+      "id": "sa2003-q07",
+      "q": "Distinguish a band-six answer to \"explain how ML supports demand forecasting\" from a weak band-four answer.",
+      "options": [
+        "The strong answer is longer; the weak answer is shorter",
+        "The strong answer names the technique (supervised regression), the data (labelled history), the mechanism, and the limitation, while the weak answer just says ML predicts what customers will buy without naming any technique, data, or mechanism",
+        "The strong answer avoids mentioning data so it sounds more confident",
+        "The strong answer claims the model predicts perfectly, while the weak answer admits errors"
+      ],
+      "answer": 1,
+      "explanation": "The script contrasts \"Machine learning predicts what customers will buy\" (band four — no technique, no data, no mechanism) against an answer that names supervised regression, the labelled historical data, the mechanism, the numeric output, AND the limitation. The marking pattern is technique, data, mechanism, limitation. Claiming perfect prediction (option D) is actually the trap the episode warns against — ML is not magic."
+    },
+    {
+      "id": "sa2003-q08",
+      "q": "In the Zillow Offers case, what was the root lesson the episode says you can write in an exam?",
+      "options": [
+        "Zillow used unsupervised learning when it should have used supervised learning",
+        "Zillow's model was too slow, so it bought houses after prices had already moved",
+        "A forecasting model assumes the future behaves like its training data, so when the world changes or the model is overfitted, predictions fail — forecasts need human oversight and confidence limits, not blind trust",
+        "The model had too little compute power to process the housing data in time"
+      ],
+      "answer": 2,
+      "explanation": "Zillow's price-forecasting model bought thousands of homes, but when the market moved in ways its history had not seen, the forecasts were badly off and the company lost hundreds of millions and shut the unit down. The lesson is that forecasting assumes the future resembles the past, so it needs human oversight and confidence limits. This makes \"ML is not magic\" concrete; the other options invent technical causes the script never states."
+    },
+    {
+      "id": "sa2003-q09",
+      "q": "A start-up claims its app \"uses AI to perfectly predict house prices\". Evaluate this claim using the episode's framework.",
+      "options": [
+        "The claim is fully credible, because house-price prediction is a solved supervised regression problem",
+        "The claim should be rejected entirely, because machine learning cannot estimate house prices at all",
+        "The claim is overstated: predicting house prices is a plausible supervised regression task, but \"perfectly predict\" is not credible because a forecast assumes the future resembles its training data and can fail badly when the market shifts, as Zillow's model did",
+        "The claim is reasonable, because deep neural networks remove all uncertainty from forecasts"
+      ],
+      "answer": 2,
+      "explanation": "A justified evaluation accepts that house-price prediction is a forecasting task achievable with supervised regression on historical sales data, but rejects \"perfectly\" — forecasts carry error and can fail when conditions shift, exactly as Zillow's iBuying model did. The judgement is that ML can give useful estimates with uncertainty, not guarantees. Option A ignores the limitation, and option B overcorrects by denying ML can help at all."
+    },
+    {
+      "id": "sa2003-q10",
+      "q": "A markers' trap is treating machine learning as \"magic that just works\". What single habit does the episode say lifts an application answer by a band?",
+      "options": [
+        "Always naming the programming language and library used, such as pandas or scikit-learn",
+        "Always describing the application as cutting-edge and powered by AI",
+        "Always giving at least three real-world examples of the application",
+        "Whenever you describe an application, also state the data it needs and how it can fail when the data is wrong, missing, biased, or no longer matches reality"
+      ],
+      "answer": 3,
+      "explanation": "The episode says the habit that marks you as understanding the technique rather than the hype is naming the data requirement and the failure mode for each application — forecasting needs representative history, assistants need vast language data, image recognition needs large labelled image sets, and each fails when its data is wrong, missing, biased, or outdated. Naming a library is useful but is not the band-lifting habit; calling it \"powered by AI\" is the magic-thinking trap itself."
+    }
+  ]
+}

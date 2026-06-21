@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw05-q01",
+      "q": "Identify what the World Wide Web Consortium (W3C) is and who founded it.",
+      "options": [
+        "A government regulator that licenses browsers, founded by the United Nations in 2001",
+        "An international community that develops open web standards, founded in 1994 by Tim Berners-Lee",
+        "A commercial company that sells the HTML and CSS specifications, founded by Google",
+        "A browser-vendor alliance that certifies websites for security, founded by the major browser makers"
+      ],
+      "answer": 1,
+      "explanation": "The W3C is the international community that develops open standards to ensure the long-term growth of the web, founded in 1994 by Tim Berners-Lee, the inventor of the web itself. It is not a government regulator or a commercial vendor (eliminating the other options) — it brings together organisations, developers, and the public to agree on how the web should work."
+    },
+    {
+      "id": "pfw05-q02",
+      "q": "Does the W3C enforce its standards, and what is a finished W3C standard officially called?",
+      "options": [
+        "Yes, it can compel browsers to comply; a finished standard is called a 'W3C Mandate'",
+        "Yes, through fines on non-compliant browser vendors; a finished standard is called a 'W3C Law'",
+        "No, it only recommends standards that are voluntarily adopted; a finished standard is called a 'W3C Recommendation'",
+        "No, but each standard is legally binding once published; a finished standard is called a 'W3C Specification'"
+      ],
+      "answer": 2,
+      "explanation": "The W3C does not enforce anything — it publishes recommendations, and a finished standard is literally called a 'W3C Recommendation'. Browser makers and developers adopt them voluntarily because consistency benefits everyone; there is no 'W3C police'. The marking boundary is writing 'recommends' rather than 'enforces', which is the single most common trap on this topic."
+    },
+    {
+      "id": "pfw05-q03",
+      "q": "The script uses the mnemonic WIPS-M for the W3C's five areas of concern. What does it stand for?",
+      "options": [
+        "WAI accessibility, Internationalisation, Privacy, Security, Machine-readable data",
+        "Web hosting, Internet protocols, Performance, Standards, Markup",
+        "Web design, Interoperability, Portability, Scalability, Mobility",
+        "Wireframing, Indexing, Permissions, Scripting, Metadata"
+      ],
+      "answer": 0,
+      "explanation": "WIPS-M captures the five focus areas from the dot-point: WAI accessibility, Internationalisation, Privacy, Security, and Machine-readable data — picture wiping the M off a whiteboard. The other options mix in unrelated concepts like performance and scripting that are not the five named syllabus areas."
+    },
+    {
+      "id": "pfw05-q04",
+      "q": "Explain why interoperability is described as the single most important thing the W3C provides.",
+      "options": [
+        "Because it lets the W3C charge browser vendors a licensing fee for using the standards",
+        "Because everyone follows the same agreed standards, so a page works the same way across different browsers, devices, and years, preventing the web from fragmenting",
+        "Because it guarantees that every website loads faster than it would without standards",
+        "Because it ensures all websites are automatically encrypted with HTTPS"
+      ],
+      "answer": 1,
+      "explanation": "Interoperability means a page works the same in Chrome, Firefox, and Safari, on a phone or desktop, this year and in ten years, because everyone follows the same agreed standards. Without a standards body every browser would do its own thing and the web would fragment. The other options describe speed or encryption, which are separate concerns, not the meaning of interoperability."
+    },
+    {
+      "id": "pfw05-q05",
+      "q": "The Web Accessibility Initiative (WAI) produces the WCAG guidelines, which are built on four principles spelling the word POUR. What does POUR stand for?",
+      "options": [
+        "Portable, Optimised, Usable, Responsive",
+        "Private, Open, Universal, Reliable",
+        "Perceivable, Operable, Understandable, Robust",
+        "Permanent, Organised, Uniform, Readable"
+      ],
+      "answer": 2,
+      "explanation": "WCAG's four principles are Perceivable, Operable, Understandable, and Robust — POUR. Content must be perceivable by all senses, operable by all input methods including keyboard, understandable in content and behaviour, and robust enough to work with assistive technologies. Writing POUR in the exam margin gives you the structure of any accessibility answer."
+    },
+    {
+      "id": "pfw05-q06",
+      "q": "A student writes that 'web accessibility is about making sites usable for blind users.' What is the problem with this statement?",
+      "options": [
+        "It is correct — accessibility only concerns visual impairment",
+        "Accessibility is far broader: it covers motor impairments (keyboard operability), deafness (captions), cognitive differences (clear, predictable design), and situational limits like bright sunlight",
+        "Accessibility is actually only about colour contrast, not blindness at all",
+        "Accessibility only applies to e-commerce sites that handle payments"
+      ],
+      "answer": 1,
+      "explanation": "This is the named accessibility trap: students think accessibility means 'for blind users only'. In fact it covers a wide range of disabilities and contexts — motor impairments where keyboard operability matters, deafness where captions matter, cognitive differences, and even situational limits like using a phone in bright sunlight. Stating that accessibility is broader than visual impairment is what dodges the trap and earns the mark."
+    },
+    {
+      "id": "pfw05-q07",
+      "q": "Distinguish between internationalisation (i18n) and localisation (l10n) as the exam expects.",
+      "options": [
+        "Internationalisation translates the text; localisation builds the software to support translation",
+        "Internationalisation only changes the currency symbol; localisation only changes the language",
+        "They are interchangeable terms for the same process of supporting multiple languages",
+        "Internationalisation is preparing software so it can be adapted to many locales; localisation is the actual adaptation to a specific locale, such as translating text and switching currency and date formats"
+      ],
+      "answer": 3,
+      "explanation": "Internationalisation is designing and building software so it can be adapted to different languages and regions without re-engineering, while localisation is the actual adaptation to a particular locale — translating text and applying that region's currency, date, and number formats. Internationalisation prepares; localisation adapts. The first option reverses the two definitions, which is the common confusion the exam tests."
+    },
+    {
+      "id": "pfw05-q08",
+      "q": "Explain why internationalisation matters, beyond simply 'supporting other languages'.",
+      "options": [
+        "It reduces server costs because translated pages are smaller in file size",
+        "It improves reach and inclusion by serving a global audience, and ensures correctness and trust by avoiding ambiguous date, currency, and number formats",
+        "It is required by the W3C and websites are fined if they ignore it",
+        "It makes a site load faster in countries with slow internet connections"
+      ],
+      "answer": 1,
+      "explanation": "The mark-earning pair is reach plus correctness. First, most of the world does not read English, so an app that cannot be localised locks out the majority of potential users. Second, dates, currencies, and number formats are genuinely ambiguous across regions — '03/04' is 3 April in Australia but 4 March in the US — so getting them wrong causes real mistakes and lost trust. The other options describe cost or speed, which are not the syllabus argument."
+    },
+    {
+      "id": "pfw05-q09",
+      "q": "The script links machine-readable data back to a concept from an earlier episode. Which concept, and which standards express it?",
+      "options": [
+        "It links to HTTPS, expressed through certificates and encryption keys",
+        "It links to DNS caching, expressed through content delivery networks",
+        "It links to metadata (data about data) from the big-data episode, expressed through standards like ARIA, microdata, and JSON-LD",
+        "It links to the three Vs of big data, expressed through streaming management protocols"
+      ],
+      "answer": 2,
+      "explanation": "Machine-readable data is the metadata idea — data about data — from the big-data episode made into a standard. Standards like ARIA, microdata, and JSON-LD let machines such as search engines, screen readers, and voice assistants understand web content, as shown in the JSON-LD record in Listing 2. The other options refer to transport (HTTPS, DNS) or the three Vs, which are separate threads."
+    },
+    {
+      "id": "pfw05-q10",
+      "q": "A council is rebuilding its rates-payment website and must ensure people who cannot use a mouse can complete the payment form, and that low-vision users can read it. Which set of fixes best follows WCAG?",
+      "options": [
+        "Make the form look nicer, add more colours, and shorten the labels so the page loads faster",
+        "Add HTTPS, a privacy policy, and a cookie-consent banner to protect user data",
+        "Translate the form into several languages and switch the currency to the local format",
+        "Associate a descriptive label with every input, ensure a colour-contrast ratio of at least 4.5:1 for normal text, and make all controls keyboard-operable with a visible focus indicator"
+      ],
+      "answer": 3,
+      "explanation": "The driving requirements are keyboard operability and readability, which map directly to WCAG: labelling every input and providing text alternatives (Perceivable), a contrast ratio of at least 4.5:1 (Perceivable), and full keyboard operability with a visible focus indicator (Operable). The first option is the named weak answer ('make it look nicer'); the HTTPS/privacy and translation options address security/privacy and internationalisation, which are different W3C areas, not the accessibility need described."
+    }
+  ]
+}

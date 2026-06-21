@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "see2302-q01",
+      "q": "Identify the three ideation tools captured by the B-M-S hook, in the order you would use them.",
+      "options": [
+        "Brainstorm, Mind-map, Storyboard",
+        "Blueprint, Model, Schema",
+        "Backlog, Milestone, Sprint",
+        "Brief, Mock-up, Specification"
+      ],
+      "answer": 0,
+      "explanation": "The ideation half of the dot-point is B-M-S: Brainstorm to generate a pile of ideas, Mind-map to organise them, then Storyboard the chosen one. The order mirrors the workflow — generate, organise, walk-through. The other options name real software-process terms (backlog, milestone, schema) but they are not the syllabus's three named ideation tools."
+    },
+    {
+      "id": "see2302-q02",
+      "q": "What is the governing rule of brainstorming, and why does it matter?",
+      "options": [
+        "Filter ideas immediately so the team only pursues realistic solutions",
+        "Defer judgement and aim for quantity, so promising but unconventional ideas are not killed too early",
+        "Assign each idea a feasibility score before discussing the next one",
+        "Limit the session to ideas that fit the existing data dictionary"
+      ],
+      "answer": 1,
+      "explanation": "The rule is defer judgement: go for quantity first, accept wild ideas, and only filter later. The reason the exam rewards is the mechanism — premature criticism kills the unusual idea that might have been the good one. Filtering immediately (option A) describes the refinement phase that deliberately comes after generation, not the brainstorm itself."
+    },
+    {
+      "id": "see2302-q03",
+      "q": "Outline the purpose of a data dictionary in software design.",
+      "options": [
+        "It stores the live data the running system processes during execution",
+        "It records bug reports and feature requests across the project lifecycle",
+        "It documents every data element — name, data type, whether required, constraints and a description — to provide one authoritative reference and remove ambiguity before development",
+        "It is written at the end of a project to satisfy the documentation requirement"
+      ],
+      "answer": 2,
+      "explanation": "A data dictionary documents the structure and meaning of every data element (name, type, required, constraints, description) so all stakeholders and developers share one consistent understanding before they build. Its purpose is to remove ambiguity up front, which drives accurate database and validation design. The 'written at the end' option is the trap the script warns about — treating the data dictionary as afterthought paperwork rather than a design tool used first."
+    },
+    {
+      "id": "see2302-q04",
+      "q": "A field stores a product price. Which data type should the data dictionary specify, and why?",
+      "options": [
+        "Floating-point, because it handles large and small numbers efficiently",
+        "String, because currency is displayed with a symbol",
+        "Decimal with fixed precision, because floating-point introduces rounding errors on money",
+        "Integer, because prices are always whole numbers of cents"
+      ],
+      "answer": 2,
+      "explanation": "A price should be a Decimal with fixed precision because floats give rounding errors on money — this interleaves back to handling money in e-commerce. The exam move is to name the type AND justify it: 'Decimal, to avoid floating-point rounding on currency' earns more than just 'Decimal'. Floating-point (option A) is exactly the type the script says to avoid for currency."
+    },
+    {
+      "id": "see2302-q05",
+      "q": "Explain why a developer should design an algorithm before writing code.",
+      "options": [
+        "Pseudocode runs faster than compiled code, so testing it first saves time",
+        "The syllabus requires a flowchart to be submitted before any code is graded",
+        "Real programming languages cannot express conditionals or loops clearly",
+        "Designing the logic in a language-independent form lets you verify it on paper, where logic errors are far cheaper to fix than after the code is written"
+      ],
+      "answer": 3,
+      "explanation": "Designing the algorithm first — in NESA pseudocode, a flowchart, or a structure chart — lets the developer reason about and verify the logic before the syntax of a real language gets in the way. This matters because logic errors are far cheaper to identify and fix at the design stage, on paper, than after coding and integration — the same shift-left principle from Secure Software Architecture. Pseudocode does not 'run' at all (option A), so that reasoning is false."
+    },
+    {
+      "id": "see2302-q06",
+      "q": "What does the C-T-I-M hook stand for in the context of developing a solution?",
+      "options": [
+        "Code generation, Testing and debugging, Installation, Maintenance",
+        "Compile, Test, Integrate, Merge",
+        "Configuration, Tracking, Iteration, Monitoring",
+        "Containerise, Trial, Implement, Migrate"
+      ],
+      "answer": 0,
+      "explanation": "C-T-I-M — said almost like 'see-tim' — covers the build toolkit: Code generation, Testing and debugging, Installation, and Maintenance. These are the tools across the rest of the build, reminding you that producing a solution is more than just typing. The other options use plausible process words but none match the four stages the dot-point actually lists."
+    },
+    {
+      "id": "see2302-q07",
+      "q": "Distinguish between a mind-map and a storyboard as modelling tools.",
+      "options": [
+        "A mind-map walks through the user's journey over time; a storyboard branches a central concept into related ideas",
+        "A mind-map organises ideas around a central concept to show relationships; a storyboard walks through the user's journey step by step to surface usability problems",
+        "Both show the user journey, but a mind-map adds how the user feels at each step",
+        "A mind-map defines data types; a storyboard defines the algorithm's logic"
+      ],
+      "answer": 1,
+      "explanation": "A mind-map is a structural tool — a central concept with branches radiating outward, showing relationships that linear lists hide. A storyboard is a narrative tool — it walks the user's journey frame by frame, often with how they feel, to catch usability problems early. Option A simply swaps the two definitions, which is the most tempting trap; the storyboard, not the mind-map, models the journey over time."
+    },
+    {
+      "id": "see2302-q08",
+      "q": "The episode warns that jumping straight to code before modelling is marked down. Which principle explains why?",
+      "options": [
+        "Agile development, because code should always be written in short iterations",
+        "Separation of concerns, because logic and data must live in different modules",
+        "Defer judgement, because you should never criticise an idea during generation",
+        "Shift-left, because a flaw caught at design is far cheaper to fix than the same flaw caught after the solution is built"
+      ],
+      "answer": 3,
+      "explanation": "Modelling is shift-left applied to the whole solution: mistakes caught at the modelling stage are nearly free, while the same mistakes caught after building are expensive — roughly sixty-three times cheaper to fix a flaw at design than in production. 'Defer judgement' is a real principle from this episode, but it governs brainstorming, not the cost of fixing modelling errors."
+    },
+    {
+      "id": "see2302-q09",
+      "q": "A team is modelling a new feature. Justify using a storyboard over immediately coding the user interface.",
+      "options": [
+        "A storyboard generates the boilerplate UI code automatically, saving development time",
+        "A storyboard models the user's journey step by step, surfacing usability problems early while they are cheap to fix and keeping the design focused on UX before any interface is built",
+        "A storyboard guarantees the interface will look good on every screen size through responsive design",
+        "A storyboard documents every data element and its type, removing ambiguity before development"
+      ],
+      "answer": 1,
+      "explanation": "A storyboard models the user's journey — the sequence of actions and where pain points occur — before any interface exists, so usability problems are caught while they are cheap to fix rather than after effort is spent building the wrong flow. It keeps the design focused on UX (from Programming for the Web) and gives stakeholders something concrete to react to. Option D describes the data dictionary's purpose, not the storyboard's — a classic mix-up between modelling tools."
+    },
+    {
+      "id": "see2302-q10",
+      "q": "In the worked deadline-reminder example, a 'reminder_sent' Boolean flag is added to the data dictionary. What is its purpose, and why is modelling it first valuable?",
+      "options": [
+        "It records the user's feelings at each frame of the storyboard, captured during ideation",
+        "It converts the due-date String into a Date so date arithmetic can be performed",
+        "It guards against sending the same reminder twice, and modelling it in the data dictionary first means the duplicate-send problem is solved on paper before any code is written",
+        "It schedules the installation script to run each morning on the target environment"
+      ],
+      "answer": 2,
+      "explanation": "The reminder_sent Boolean stops the SAME reminder firing twice; the algorithm checks it is False before sending and sets it True afterward. Modelling this in the data dictionary up front means the duplicate-send issue is designed away before coding — modelling before building, where fixes are cheap. The 'converts String into a Date' option describes choosing a Date type for due_date, a different data-type decision in the same example."
+    }
+  ]
+}

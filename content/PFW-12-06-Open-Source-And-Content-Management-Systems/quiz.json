@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "pfw1206-q01",
+      "q": "Identify the three pillars of the open-source development model captured by the L-C-C mnemonic.",
+      "options": [
+        "Licence, Community, Contribution",
+        "Licence, Code, Community",
+        "Library, Component, Codebase",
+        "Linux, Community, Collaboration"
+      ],
+      "answer": 0,
+      "explanation": "The three pillars are Licence, Community, and Contribution — L-C-C. The Licence is the legal grant governing use, the Community (maintainers, contributors, users) sustains the project, and Contribution is the fork-branch-pull-request workflow. The tempting 'Licence, Code, Community' swaps the heaviest-examined pillar's partner 'Contribution' for the vaguer 'Code'."
+    },
+    {
+      "id": "pfw1206-q02",
+      "q": "A student writes: 'Open source is unreliable because anyone can edit the code, and it is always free of cost.' What is the precise correction the episode demands?",
+      "options": [
+        "The statement is correct on both points and would earn full marks",
+        "Open source means the source code is publicly available to view, modify, and distribute; 'free' refers to the freedom to read and change code, not necessarily price, and openness is a strength because thousands of eyes can inspect it",
+        "Open source code cannot be modified once published, so it is in fact very stable",
+        "Open source is only used for small hobby projects, so reliability is not a concern"
+      ],
+      "answer": 1,
+      "explanation": "The episode kills two myths in its first minute: open source is not 'free of cost' (it is free as in freedom, not necessarily price) and it is not low-quality or insecure (critical web servers, languages, and operating systems run on it). Openness is a strength, not a weakness, precisely because the code is open to inspection. Option A is the named trap the script warns against."
+    },
+    {
+      "id": "pfw1206-q03",
+      "q": "Distinguish between a permissive and a copyleft open-source licence.",
+      "options": [
+        "Permissive licences require a fee while copyleft licences are always free of charge",
+        "Permissive licences forbid commercial use while copyleft licences permit it",
+        "Permissive licences (e.g. MIT, Apache, BSD) allow use even in closed-source proprietary products, usually requiring only attribution, whereas copyleft licences (e.g. GPL) require any distributed derivative work to also be released under the same open-source licence",
+        "Permissive licences apply only to web frameworks while copyleft licences apply only to operating systems"
+      ],
+      "answer": 2,
+      "explanation": "Permissive is Polite — use it freely, even in proprietary products, just keep the attribution notice. Copyleft is Contagious — the GPL spreads its openness, so a distributed derivative must also be open-sourced. The first option confuses licence type with price, but both families are typically free of cost; the real distinction is what you may do with the code in a closed product."
+    },
+    {
+      "id": "pfw1206-q04",
+      "q": "You are building a closed-source, paid commercial product and want to include an open-source library. Explain why the licence type matters enormously here.",
+      "options": [
+        "A copyleft licence makes the library run more slowly, hurting your product's performance",
+        "A permissive licence forces you to pay royalties on every sale, raising costs",
+        "The licence type only affects whether you can view the source code, not how you may sell your product",
+        "If you build on and distribute a copyleft (GPL) library, the copyleft terms can require you to release your own source code under the GPL, destroying your closed-source commercial model; a permissive (MIT/Apache) library lets you keep your product closed"
+      ],
+      "answer": 3,
+      "explanation": "Copyleft is contagious: distributing a proprietary product built on GPL code can legally require your derivative work to be open-sourced too, ending your closed-source model. A permissive MIT or Apache library allows proprietary use, so it is the safe choice for a commercial product. Ignoring licence obligations is a named trap and a real legal risk, not a performance or royalty issue."
+    },
+    {
+      "id": "pfw1206-q05",
+      "q": "What does the term 'software supply chain' refer to in the context of open-source risk?",
+      "options": [
+        "The logistics network that physically delivers servers and hardware to a data centre",
+        "The sequence of HTTP requests a browser makes when loading a page",
+        "The chain of dependencies where your app relies on a library, which relies on another library, down to tiny components maintained by one volunteer — trusted code you did not write and probably did not read",
+        "The internal process a company uses to ship software updates to its own customers"
+      ],
+      "answer": 2,
+      "explanation": "The software supply chain is the dependency chain: your app depends on a library, which depends on another, down to a tiny one maintained by one person in their spare time. Because you trust code you did not write, this is an attack surface — the openness that lets thousands inspect the code is a strength, but the trust model can be exploited. The first option confuses it with a physical hardware supply chain."
+    },
+    {
+      "id": "pfw1206-q06",
+      "q": "Outline what the xz backdoor incident of 2024 demonstrates about open-source trust and security.",
+      "options": [
+        "That open-source code should never be used in any production system",
+        "That open-source projects are immune to attack because the code is public",
+        "That copyleft licences automatically prevent backdoors from being inserted",
+        "That an attacker spent two years gaining a struggling maintainer's trust, became a co-maintainer, and slipped a backdoor into a widely-used compression library, nearly compromising SSH logins on millions of servers — showing the trust model is itself an attack surface"
+      ],
+      "answer": 3,
+      "explanation": "The xz backdoor shows the supply-chain risk concretely: an attacker earned the trust of an overworked maintainer, became a co-maintainer, and quietly inserted a backdoor used across Linux that nearly compromised secure-shell logins before one engineer caught it by accident. It demonstrates that the trust model is an attack surface, not that open source is unusable or immune. This case study pays off later in Secure Software Architecture."
+    },
+    {
+      "id": "pfw1206-q07",
+      "q": "Outline what a content management system (CMS) is and one reason it is so prevalent.",
+      "options": [
+        "A tool that compiles source code into machine-readable binaries, prevalent because it speeds up builds",
+        "A protocol for moving data securely across the internet, prevalent because it encrypts traffic",
+        "Software that lets people create, manage, and publish web content through an admin interface without coding every change, prevalent because it lets non-technical people update their own sites and has a huge plugin ecosystem",
+        "A database engine for storing transactions, prevalent because it scales to millions of records"
+      ],
+      "answer": 2,
+      "explanation": "A CMS lets people create, manage, and publish web content through an admin interface without writing code for every change — WordPress alone powers a large fraction of all websites. Its prevalence comes from enabling non-technical users (office staff, small-business owners) to update sites and from a huge plugin ecosystem that adds features without custom development. The CMS itself is built from a database, a template engine, and an admin front end."
+    },
+    {
+      "id": "pfw1206-q08",
+      "q": "Distinguish a hosted CMS from a self-hosted CMS in terms of the core trade-off.",
+      "options": [
+        "Hosted (e.g. WordPress.com, Squarespace) means the provider handles security updates, backups, and scaling but you have limited control and pay ongoing fees; self-hosted (e.g. WordPress.org on your own server) gives full control and data ownership but makes you responsible for security, updates, and maintenance",
+        "Hosted is always free while self-hosted always costs money",
+        "Hosted can only build blogs while self-hosted can only build online shops",
+        "Hosted requires advanced coding skills while self-hosted requires none"
+      ],
+      "answer": 0,
+      "explanation": "The trade is convenience and managed security versus control and responsibility. Hosted offloads security updates, backups, and scaling to the provider at the cost of customisation and ongoing fees; self-hosted gives full control and data ownership but you carry the security and maintenance burden. The 'hosted is always free' option is wrong because both involve cost — hosted is a subscription, self-hosted is hosting plus your time."
+    },
+    {
+      "id": "pfw1206-q09",
+      "q": "A small craft business owner who is non-technical with a tight budget wants an online shop. Recommend a hosted or self-hosted CMS and justify your choice.",
+      "options": [
+        "Self-hosted WordPress, because it is more powerful and customisable than any hosted option",
+        "Self-hosted WordPress, because owning the data is the most important factor for a craft business",
+        "Neither — the owner should hire a full development team to build a custom site from scratch",
+        "A hosted CMS, because the non-technical owner cannot safely handle security updates, backups, and server maintenance, which the provider manages for them at a predictable cost, accepting reduced customisation as a worthwhile trade-off"
+      ],
+      "answer": 3,
+      "explanation": "The strong answer drives the recommendation from the client's capability and the security responsibility: a hosted CMS manages security updates, backups, and maintenance the owner cannot safely meet, at a predictable monthly cost, with reduced customisation as an acceptable trade-off. The 'self-hosted because more powerful' option is the weak answer the script flags — it argues from raw power and ignores who is running the site."
+    },
+    {
+      "id": "pfw1206-q10",
+      "q": "A self-hosted WordPress site runs several plugins, one of which has been abandoned by its developer. Explain why this is a security concern and the mark-earning response.",
+      "options": [
+        "Abandoned plugins make pages load faster but use more bandwidth, so they should be removed for cost reasons",
+        "An out-of-date or abandoned plugin is an unmaintained dependency and a common way small sites get hacked — the supply-chain risk inside the CMS — so the mark-earning point is to keep the CMS core and every plugin patched and remove abandoned ones",
+        "Plugins cannot affect security because they only change a site's appearance",
+        "The only fix is to switch the entire site to a copyleft licence"
+      ],
+      "answer": 1,
+      "explanation": "A self-hosted CMS with many plugins is a large attack surface, and out-of-date or abandoned plugins are one of the most common ways small sites get hacked — the same supply-chain problem, just inside the CMS. The mark-earning security point is patching discipline: keep the CMS core and all plugins updated and remove unmaintained ones. This links directly to the patching taught in Secure Software Architecture, not to licensing (D) or appearance (C)."
+    }
+  ]
+}

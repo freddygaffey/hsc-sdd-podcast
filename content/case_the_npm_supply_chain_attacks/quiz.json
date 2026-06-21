@@ -1,0 +1,124 @@
+{
+  "questions": [
+    {
+      "id": "case-the-npm-supply-chain-attacks-q01",
+      "q": "Identify the term used in the episode for the long, mostly invisible chain of trust that delivers code from the person who wrote it to the millions of machines that run it.",
+      "options": [
+        "The software supply chain",
+        "The dependency injection pipeline",
+        "The continuous integration loop",
+        "The open-source distribution network"
+      ],
+      "answer": 0,
+      "explanation": "The episode repeatedly names this the 'software supply chain' — the chain of trust from author to the machines that run the code. Both the phishing attack and the worm targeted this chain rather than any bug in the code itself. 'Dependency injection' is a real but unrelated programming concept, not what the episode describes."
+    },
+    {
+      "id": "case-the-npm-supply-chain-attacks-q02",
+      "q": "State the single event that gave the September 2025 attacker control of the maintainer 'Qix' account, according to the episode.",
+      "options": [
+        "A brute-force attack guessed his password over several days",
+        "A phishing email tricked him into entering his username, password, and a live one-time 2FA code on a fake login page",
+        "A vulnerability in the chalk package leaked his credentials",
+        "An insider at the npm registry sold his account details"
+      ],
+      "answer": 1,
+      "explanation": "The attacker sent a fake '2FA reset' email; the maintainer entered his username, password, and the live six-digit one-time code on a look-alike page, and the attacker relayed all three within about a minute. The episode stresses there was no clever bug — 'the code did exactly what it was written to do.' Option C is the common misconception that some flaw in the package was exploited, which the episode explicitly rules out."
+    },
+    {
+      "id": "case-the-npm-supply-chain-attacks-q03",
+      "q": "Outline why a single stolen login was able to reach more than two billion downloads a week.",
+      "options": [
+        "The attacker also stole the npm registry's master encryption key",
+        "The packages automatically forwarded the malware to every user's email contacts",
+        "The npm registry had no rate limiting, so the attacker copied billions of accounts",
+        "The maintainer controlled a family of tiny, widely-depended-on packages (such as chalk and debug) that are buried in the foundations of huge swathes of the web"
+      ],
+      "answer": 3,
+      "explanation": "The maintainer controlled microscopic utilities like chalk, debug, strip-ansi and ansi-styles, pulled in several layers deep by countless projects that never chose them directly — chalk alone is around 300 million downloads a week, and the combined set exceeded two billion. Compromising one upstream link compromises everyone downstream at once. The 'master encryption key' option wrongly assumes a registry-wide breach rather than one maintainer's account."
+    },
+    {
+      "id": "case-the-npm-supply-chain-attacks-q04",
+      "q": "Describe what the malicious payload in the September attack actually did once it was running inside a victim's browser.",
+      "options": [
+        "It encrypted the user's files and demanded a ransom payment",
+        "It deleted the contents of the developer's code repositories",
+        "It watched the bridge to crypto wallets and silently swapped the destination address of outgoing transactions",
+        "It mined cryptocurrency in the background using the victim's CPU"
+      ],
+      "answer": 2,
+      "explanation": "The payload was a 'crypto-clipper' or 'wallet-drainer': it hooked into the browser bridge a wallet like MetaMask uses, watched for a transaction being set up, and quietly rewrote the recipient to an attacker-controlled wallet while the screen still showed the right-looking address. It was patient and quiet, not a smash-and-grab. Ransomware (option A) is a different attack class entirely and is not what this payload did."
+    },
+    {
+      "id": "case-the-npm-supply-chain-attacks-q05",
+      "q": "Explain why the actual financial damage from the September attack was only a few hundred dollars despite its enormous reach.",
+      "options": [
+        "The community spotted the malicious code within about two hours and the maintainer reverted to clean versions, slamming the poisoned window shut",
+        "The malware contained a bug that stopped it stealing more than a small amount",
+        "Most developers had pinned their dependencies, so almost no one pulled the bad versions",
+        "The attacker only targeted a single wealthy victim and ignored everyone else"
+      ],
+      "answer": 0,
+      "explanation": "The episode stresses the damage was small purely because of speed: within roughly two hours other developers raised the alarm and the mortified maintainer pulled the malicious versions and pushed clean ones. The defences were not good — the attackers 'failed' only because they were noticed. The 'pinned dependencies' option is the tempting trap: the episode actually argues most people do NOT pin dependencies, which is precisely the problem."
+    },
+    {
+      "id": "case-the-npm-supply-chain-attacks-q06",
+      "q": "Identify the name given to the self-replicating worm that appeared a week after the phishing attack.",
+      "options": [
+        "Shai-Hulud",
+        "Stuxnet",
+        "event-stream",
+        "MetaMask"
+      ],
+      "answer": 0,
+      "explanation": "The worm was named Shai-Hulud, after the great sandworm from Dune, because it 'burrowed' through the ecosystem. 'event-stream' was the unrelated 2018 'warning shot' package, and MetaMask is a crypto wallet the September payload targeted, so both are tempting but wrong."
+    },
+    {
+      "id": "case-the-npm-supply-chain-attacks-q07",
+      "q": "Explain the mechanism that allowed Shai-Hulud to spread from machine to machine with no human involved.",
+      "options": [
+        "It exploited a flaw in the operating system's network stack to jump between computers",
+        "An install-time script scanned each machine for credentials, then used the stolen npm publishing token to auto-inject copies of itself into every package the victim could publish",
+        "It emailed a phishing link to everyone in the victim's contact list",
+        "It waited for the maintainer to manually publish an update and rode along with it"
+      ],
+      "answer": 1,
+      "explanation": "On install, a postinstall script ran automatically: it scanned for secrets (npm, code-host, and cloud tokens), exfiltrated them, then used the stolen npm token to log in as the victim and republish a poisoned copy into all of that victim's packages — making each victim a launch pad for the next. The key contrast with the September attack is that no human clicked publish (which rules out option D). Option A describes a traditional network worm, but this one spread through the supply chain, not the OS network stack."
+    },
+    {
+      "id": "case-the-npm-supply-chain-attacks-q08",
+      "q": "Distinguish why the episode argues the worm is a more dangerous class of threat than the human-driven phishing attack.",
+      "options": [
+        "The worm stole far more money than the phishing attack did",
+        "The worm attacked the operating system while phishing only attacked the browser",
+        "The worm used a clever bug in the code while the phishing attack did not",
+        "A human attacker picks targets, takes risks, and can be spotted and stopped, whereas a worm just runs automatically, tirelessly, without a human to catch"
+      ],
+      "answer": 3,
+      "explanation": "The episode's core distinction is human versus automatic: you can train people not to click and you can catch a human attacker (as Qix was caught in two hours), but 'you can't train a thousand machines not to run an install script' — a worm works while everyone sleeps and needs no phishing email. The 'more money' option is wrong on the facts; the worm's danger is its self-propagation, not the sums stolen. The 'clever bug' option is wrong because neither attack relied on a code bug — both abused trust."
+    },
+    {
+      "id": "case-the-npm-supply-chain-attacks-q09",
+      "q": "The 2018 'event-stream' incident and the 2025 Qix attack both compromised a trusted maintainer account. Distinguish how the attacker obtained control in each case.",
+      "options": [
+        "Both attackers phished a live two-factor code from the maintainer",
+        "In 2018 the attacker brute-forced the password, whereas in 2025 they bribed an insider",
+        "In 2018 a burned-out maintainer voluntarily handed publish rights to a friendly stranger, whereas in 2025 the attacker stole the login by phishing a live 2FA code",
+        "Both attackers exploited a vulnerability in the package's own code"
+      ],
+      "answer": 2,
+      "explanation": "In 2018 the tired, unpaid author of event-stream simply said yes when a 'friendly stranger' offered to help maintain it and handed over the publishing keys; in 2025 the attacker phished Qix's username, password, and live one-time code. Different doorways — voluntary handover versus stolen credentials — but the same weak point: the human who holds the keys to publish. The claim that both exploited a code flaw restates a misconception the episode explicitly rejects for both."
+    },
+    {
+      "id": "case-the-npm-supply-chain-attacks-q10",
+      "q": "A student team building an HSC project pulls in dozens of open-source packages, none of which they have read, and always installs the newest version automatically. Recommend the defence the episode would most strongly endorse, and justify it.",
+      "options": [
+        "Switch to a different programming language so the npm registry is irrelevant",
+        "Pin dependencies to specific known versions and rely on integrity checks, so a malicious new release is not pulled in automatically and a swapped-out version is caught at the door",
+        "Only install packages that have more than a million downloads a week, since popularity guarantees safety",
+        "Disable two-factor authentication on their accounts to avoid phishing of the 2FA code"
+      ],
+      "answer": 1,
+      "explanation": "The episode names pinning dependencies (locking to specific versions) and using integrity checks (cryptographic fingerprints that refuse a package whose contents do not match the lock) as the boring-but-decisive defences, alongside reviewing what you add and checking provenance. Option C is a trap: the most-installed packages — chalk at 300 million a week — were exactly the ones poisoned, so popularity is no guarantee. Option D is backwards: the fix is phishing-resistant MFA, not removing 2FA. The deepest lesson is that 'your dependencies are part of your software,' so choosing, locking and checking them is core to building and maintaining it."
+    }
+  ]
+}
