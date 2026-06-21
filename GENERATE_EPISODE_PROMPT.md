@@ -48,7 +48,7 @@ AUTHORING.md). The `script.md` must satisfy every box in STYLE.md §9. Non-negot
 - **`script.md` YAML frontmatter** (`title, module, lesson, kind, supplementary: supplementary.md`).
 - **Two voices only:** `NARRATOR:` (teaches) and `QUESTION:` (only ever asks). ~80%+ narrator.
 - **~5-min spaced-repetition opener** recapping the last up-to-5 episodes, leading into today.
-- One **focused home topic** (~30–45 min; case studies 10–20). Never teach two topics.
+- One **focused home topic** (~30–45 min; case studies ~25–35, full narrative documentary). Never teach two topics.
 - Audience = strong programmer weak on HSC framing: **don't re-teach programming**; teach the
   syllabus terms, exam phrasing, and mark-earning answers. Name the exact syllabus terminology.
 - **≥2 real interleaving links** (back and/or forward, including cross-module) with preludes.

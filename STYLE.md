@@ -207,7 +207,7 @@ Some episodes are **pure case studies**: one real story, told to be genuinely gr
 These break the normal rules deliberately:
 
 - **One case study per episode. One story, told well.** Not a list of three.
-- **Shorter — roughly 10–20 minutes.** Tell it tight; don't pad it to lecture length.
+- **A full narrative documentary — roughly 25–35 minutes.** Give the story room: scene-setting, the people involved, the timeline beat by beat, the technical "how" woven into the drama, the tension and the payoff. Aim for the depth and craft of a Veritasium documentary. Don't pad with filler, but don't cut the story short either — earn the length with real detail and momentum, not repetition.
 - **No spaced-repetition opener, no forced interleaving, no exam framing *during* the story.** Skip §5.1 and §5.2 here. Trying to bolt syllabus links onto the narrative kills it. Just tell the story.
 - **It only has to be interesting.** Vivid, well-paced, a real narrative with a hook and a payoff. This is the one place where being *entertaining* is the primary job.
 - **The syllabus tie-in happens later, in a separate episode.** A normal teaching episode down the line refers back to the case study ("remember the xz backdoor story? that's a supply-chain attack, which the syllabus calls...") and does the linking there. Don't do it inside the case study itself.
