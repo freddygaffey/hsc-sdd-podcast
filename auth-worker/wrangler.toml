@@ -1,0 +1,9 @@
+name = "hsc-podcast-auth"
+main = "src/index.js"
+compatibility_date = "2026-01-01"
+
+# D1 binding. Fill database_id after: wrangler d1 create hsc-podcast-auth
+[[d1_databases]]
+binding = "DB"
+database_name = "hsc-podcast-auth"
+database_id = "8bb6552b-f098-4563-bdb2-650e62525edb"

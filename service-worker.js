@@ -5,11 +5,11 @@
 //                markdown + quiz JSON. Populated on demand (browsing) and by explicit
 //                "download" actions from the page. NEVER wiped on a shell version bump,
 //                so app updates don't delete the user's downloads.
-const APP_SHELL = 'podcast-shell-v3';
+const APP_SHELL = 'podcast-shell-v4';
 const DOWNLOADS = 'podcast-downloads-v1';
 
 const SHELL = [
-  '/', '/index.html', '/app.js', '/speed-engine.js', '/style.css', '/app.webmanifest',
+  '/', '/index.html', '/app.js', '/auth.js', '/speed-engine.js', '/style.css', '/app.webmanifest',
   '/vendor/marked.min.js', '/vendor/highlight.min.js',
   '/vendor/github-dark-dimmed.min.css', '/vendor/github.min.css',
 ];

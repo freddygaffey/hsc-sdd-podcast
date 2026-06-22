@@ -54,7 +54,7 @@
           <input id="speed-slider" class="speed-slider" type="range" min="0" max="62" step="1" value="3">
           <button id="btn-speed-up" class="speed-arrow" aria-label="Increase speed">+</button>
           <input id="speed-input" class="speed-input" type="text" value="3.8" aria-label="Speed in syllables per second" inputmode="decimal">
-          <span class="speed-unit">syl/s</span>
+          <span class="speed-unit" id="speed-unit">syl/s</span>
         </div>
       </div>
     </div>
@@ -120,6 +120,15 @@
       <p class="setting-hint">New episodes start in this voice. You can still switch voice per episode from the player bar.</p>
 
       <div class="setting-row">
+        <label for="speed-unit-select" class="setting-label">Speed display</label>
+        <select id="speed-unit-select" class="meta-select setting-select" aria-label="Speed display unit">
+          <option value="mult">× (multiplier)</option>
+          <option value="sps">Syllables / second</option>
+        </select>
+      </div>
+      <p class="setting-hint">Show playback speed as a simple multiplier (1×, 1.5×, 2×) or as syllables per second.</p>
+
+      <div class="setting-row">
         <label for="dl-all-voices" class="setting-label">Download alternate voices</label>
         <input type="checkbox" id="dl-all-voices" class="setting-toggle" aria-label="Download alternate voices">
       </div>
@@ -130,6 +139,9 @@
         <span id="storage-usage" class="setting-value">—</span>
       </div>
       <button id="btn-clear-downloads" class="setting-btn-danger">Clear all downloads</button>
+
+      <h3 class="settings-section">Sync</h3>
+      <div id="sync-panel"></div>
     </div>
   </div>
 </div>
@@ -139,6 +151,7 @@
 <script src="vendor/marked.min.js"></script>
 <script src="vendor/highlight.min.js"></script>
 <script src="speed-engine.js"></script>
+<script src="auth.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

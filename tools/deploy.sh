@@ -32,7 +32,7 @@ rm -rf "$DIST"
 mkdir -p "$DIST"
 
 # App shell — the only root files the running app needs.
-cp index.html app.js style.css service-worker.js app.webmanifest "$DIST/"
+cp index.html app.js auth.js style.css service-worker.js app.webmanifest "$DIST/"
 
 # Vendored libraries (marked + highlight.js + themes) the app loads locally so
 # markdown/code rendering works offline. Must ship or the app 404s on them.

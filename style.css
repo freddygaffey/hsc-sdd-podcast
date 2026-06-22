@@ -1225,3 +1225,52 @@ body.offline .episode-row:not(.ep-downloaded) .ep-play { opacity: 0.4; }
 }
 .footer-credit a { color: var(--accent); text-decoration: none; }
 .footer-credit a:hover { text-decoration: underline; }
+
+/* ── Settings: sync section ─────────────────────────────── */
+.settings-section {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  margin: 22px 0 10px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.sync-input {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 14px;
+  padding: 9px 11px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  outline: none;
+}
+.sync-input:focus { border-color: var(--accent); }
+.sync-actions { display: flex; gap: 8px; margin-top: 4px; }
+.setting-btn {
+  flex: 1;
+  padding: 9px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.setting-btn:active { opacity: 0.85; }
+.setting-btn-ghost {
+  flex: 1;
+  padding: 9px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.setting-btn-ghost:active { background: var(--accent-soft); }

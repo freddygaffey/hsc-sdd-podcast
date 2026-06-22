@@ -6,6 +6,7 @@
   const DOWNLOADS_KEY = "podcast-downloads";          // localStorage index of downloaded episodes
   const DOWNLOAD_ALL_VOICES_KEY = "podcast-download-all-voices";
   const DOWNLOADS_CACHE = "podcast-downloads-v1";     // must match service-worker.js
+  const SPEED_UNIT_KEY = "podcast-speed-unit";        // "mult" (×) | "sps" (syllables/sec)
 
   // Speed is shown in syllables/second, not "×". BASE_SPS is the narration's
   // natural rate at 1× playback: this content runs ~140 wpm (modules)–177
@@ -66,6 +67,8 @@
   const speedInput = document.getElementById("speed-input");
   const btnSpeedDown = document.getElementById("btn-speed-down");
   const btnSpeedUp = document.getElementById("btn-speed-up");
+  const speedUnitEl = document.getElementById("speed-unit");
+  const speedUnitSelect = document.getElementById("speed-unit-select");
   const episodeTitleEl = document.getElementById("episode-title");
   const episodeContentEl = document.getElementById("episode-content");
   const tabBtns = document.querySelectorAll(".tab-btn");
@@ -89,18 +92,25 @@
   function getCurrentSpeedIdx() { return parseInt(speedSlider.value, 10); }
   function getCurrentSpeed() { return SPEED_OPTIONS[getCurrentSpeedIdx()]; }
 
-  // Display helpers: playback multiplier -> syllables/second.
-  function fmtSpsNum(mult) {
-    const v = BASE_SPS * mult;
-    return v >= 10 ? Math.round(v).toString() : v.toFixed(1);
+  // Display helpers — the speed is editable either as a playback multiplier ("×")
+  // or as syllables/second, chosen in Settings (default: ×).
+  function speedUnitMode() { return localStorage.getItem(SPEED_UNIT_KEY) === "sps" ? "sps" : "mult"; }
+  function speedUnitLabel() { return speedUnitMode() === "sps" ? "syl/s" : "×"; }
+  function speedNum(mult) {
+    if (speedUnitMode() === "sps") {
+      const v = BASE_SPS * mult;
+      return v >= 10 ? Math.round(v).toString() : v.toFixed(1);
+    }
+    return (Math.round(mult * 100) / 100).toString(); // multiplier, e.g. 1.5
   }
-  function fmtSps(mult) { return fmtSpsNum(mult) + " syl/s"; }
+  function fmtSpeed(mult) { return speedNum(mult) + (speedUnitMode() === "sps" ? " syl/s" : "×"); }
 
   function setSpeed(index) {
     const i = Math.max(0, Math.min(SPEED_OPTIONS.length - 1, index));
     speedSlider.value = i;
     const s = SPEED_OPTIONS[i];
-    speedInput.value = fmtSpsNum(s);
+    speedInput.value = speedNum(s);
+    if (speedUnitEl) speedUnitEl.textContent = speedUnitLabel();
     audio.playbackRate = s;
     localStorage.setItem(SPEED_KEY, i);
     if (audio.duration) {
@@ -111,8 +121,10 @@
 
   function applySpeedInput() {
     const val = parseFloat(speedInput.value.replace(/[^0-9.]/g, ""));
-    if (isNaN(val)) { speedInput.value = fmtSpsNum(getCurrentSpeed()); return; }
-    const mult = Math.max(0.25, Math.min(16, val / BASE_SPS)); // syllables/sec -> multiplier
+    if (isNaN(val)) { speedInput.value = speedNum(getCurrentSpeed()); return; }
+    // In × mode the typed value IS the multiplier; in syl/s mode convert it.
+    const raw = speedUnitMode() === "sps" ? val / BASE_SPS : val;
+    const mult = Math.max(0.25, Math.min(16, raw));
     const idx = SPEED_OPTIONS.reduce((best, s, i) =>
       Math.abs(s - mult) < Math.abs(SPEED_OPTIONS[best] - mult) ? i : best, 0);
     setSpeed(idx);
@@ -129,7 +141,7 @@
   speedInput.addEventListener("focus", () => speedInput.select());
   speedInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") { applySpeedInput(); speedInput.blur(); }
-    if (e.key === "Escape") { speedInput.value = fmtSpsNum(getCurrentSpeed()); speedInput.blur(); }
+    if (e.key === "Escape") { speedInput.value = speedNum(getCurrentSpeed()); speedInput.blur(); }
     if (e.key === "ArrowUp") { e.preventDefault(); setSpeed(getCurrentSpeedIdx() + 1); }
     if (e.key === "ArrowDown") { e.preventDefault(); setSpeed(getCurrentSpeedIdx() - 1); }
   });
@@ -179,6 +191,7 @@
     const all = loadProgress();
     all[id] = { ...all[id], ...patch };
     localStorage.setItem(PROGRESS_KEY, JSON.stringify(all));
+    window.Sync && window.Sync.scheduleSync();
   }
 
   // --- Utils ---
@@ -575,7 +588,7 @@
     statsContent.innerHTML = `
       <div class="stats-grid">
         <div class="stat-card"><div class="stat-value">${listenedStr}</div><div class="stat-label">Content heard</div></div>
-        <div class="stat-card"><div class="stat-value">${savedStr}</div><div class="stat-label">Saved at ${fmtSps(speed)}</div></div>
+        <div class="stat-card"><div class="stat-value">${savedStr}</div><div class="stat-label">Saved at ${fmtSpeed(speed)}</div></div>
         <div class="stat-card"><div class="stat-value">${stats.completedCount}/${stats.totalCount}</div><div class="stat-label">Completed</div></div>
         <div class="stat-card"><div class="stat-value">${stats.streak}</div><div class="stat-label">Day streak</div></div>
       </div>
@@ -757,8 +770,14 @@
     if (!manifest) return;
     populateDefaultVoiceSelect();
     if (dlAllVoicesToggle) dlAllVoicesToggle.checked = localStorage.getItem(DOWNLOAD_ALL_VOICES_KEY) === "1";
+    if (speedUnitSelect) speedUnitSelect.value = speedUnitMode();
     refreshStorageUsage();
+    if (window.Sync) window.Sync.renderPanel();
     setHidden(settingsOverlay, false);
+  });
+  if (speedUnitSelect) speedUnitSelect.addEventListener("change", () => {
+    localStorage.setItem(SPEED_UNIT_KEY, speedUnitSelect.value === "sps" ? "sps" : "mult");
+    setSpeed(getCurrentSpeedIdx()); // refresh the player display + unit label
   });
   btnSettingsClose.addEventListener("click", () => setHidden(settingsOverlay, true));
   settingsOverlay.addEventListener("click", (e) => {
@@ -1111,6 +1130,7 @@
     c.due = Date.now() + c.interval * 86400000;
     all[k] = c;
     saveSR(all);
+    window.Sync && window.Sync.scheduleSync();
   }
 
   function isDue(ep, q) {
@@ -1343,6 +1363,9 @@
   window.addEventListener("online", updateOnlineState);
   window.addEventListener("offline", updateOnlineState);
   updateOnlineState();
+
+  // When a sync pulls remote changes, refresh the library if it's showing.
+  window.addEventListener("sync-updated", () => { if (!viewLibrary.hidden) renderLibrary(); });
 
   // --- Service worker ---
   if ("serviceWorker" in navigator) {
