@@ -807,6 +807,16 @@ button, select, input { font-family: inherit; }
   cursor: pointer;
 }
 .stats-content { font-size: 14px; }
+
+/* On wider screens, center the panel as a modal instead of a bottom sheet. */
+@media (min-width: 640px) {
+  .stats-overlay { align-items: center; }
+  .stats-panel {
+    border-radius: 16px;
+    max-height: 85vh;
+    margin: 0 16px;
+  }
+}
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
