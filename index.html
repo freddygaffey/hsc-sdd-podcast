@@ -10,7 +10,7 @@
 <link rel="manifest" href="app.webmanifest">
 <title>Podcast Library</title>
 <link rel="stylesheet" href="style.css">
-<link id="hljs-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css">
+<link id="hljs-theme" rel="stylesheet" href="vendor/github-dark-dimmed.min.css">
 </head>
 <body>
 
@@ -61,6 +61,8 @@
   </div>
 </div>
 
+<div id="offline-banner" class="offline-banner" hidden>Offline — only downloaded episodes will play</div>
+
 <audio id="audio" preload="metadata"></audio>
 
 <main id="view-library" class="view"></main>
@@ -109,12 +111,26 @@
         <select id="default-voice-select" class="meta-select setting-select" aria-label="Default voice"></select>
       </div>
       <p class="setting-hint">New episodes start in this voice. You can still switch voice per episode from the player bar.</p>
+
+      <div class="setting-row">
+        <label for="dl-all-voices" class="setting-label">Download alternate voices</label>
+        <input type="checkbox" id="dl-all-voices" class="setting-toggle" aria-label="Download alternate voices">
+      </div>
+      <p class="setting-hint">Downloads include only your default voice unless this is on. Other voices are larger and rarely needed offline.</p>
+
+      <div class="setting-row">
+        <span class="setting-label">Offline storage used</span>
+        <span id="storage-usage" class="setting-value">—</span>
+      </div>
+      <button id="btn-clear-downloads" class="setting-btn-danger">Clear all downloads</button>
     </div>
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<div id="toast" class="toast" hidden></div>
+
+<script src="vendor/marked.min.js"></script>
+<script src="vendor/highlight.min.js"></script>
 <script src="speed-engine.js"></script>
 <script src="app.js"></script>
 </body>

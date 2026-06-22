@@ -1,0 +1,14 @@
+[
+  {
+    "AllowedOrigins": [
+      "https://sdd.pebnum.com",
+      "https://hsc-podcast.pages.dev",
+      "https://phy.pebnum.com",
+      "https://hsc-phy-podcast.pages.dev"
+    ],
+    "AllowedMethods": ["GET", "HEAD"],
+    "AllowedHeaders": ["Range", "Content-Type"],
+    "ExposeHeaders": ["Content-Range", "Content-Length", "Accept-Ranges", "Content-Type", "ETag"],
+    "MaxAgeSeconds": 86400
+  }
+]

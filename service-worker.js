@@ -1,50 +1,146 @@
-const CACHE = 'podcast-shell-v2';
-const SHELL = ['/', '/index.html', '/app.js', '/speed-engine.js', '/style.css', '/app.webmanifest', '/manifest.json'];
+// Two caches:
+//   APP_SHELL  — the app itself (HTML/JS/CSS + vendored libs). Versioned; bumping the
+//                version replaces it on the next activate. Precached on install.
+//   DOWNLOADS  — content fetched for offline use: audio (.m4a) + script/supplementary
+//                markdown + quiz JSON. Populated on demand (browsing) and by explicit
+//                "download" actions from the page. NEVER wiped on a shell version bump,
+//                so app updates don't delete the user's downloads.
+const APP_SHELL = 'podcast-shell-v3';
+const DOWNLOADS = 'podcast-downloads-v1';
+
+const SHELL = [
+  '/', '/index.html', '/app.js', '/speed-engine.js', '/style.css', '/app.webmanifest',
+  '/vendor/marked.min.js', '/vendor/highlight.min.js',
+  '/vendor/github-dark-dimmed.min.css', '/vendor/github.min.css',
+];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(
-    caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())
+    caches.open(APP_SHELL).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())
   );
 });
 
 self.addEventListener('activate', (e) => {
   e.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      // Drop only stale shell caches; keep DOWNLOADS (and the current shell).
+      .then((keys) => Promise.all(
+        keys.filter((k) => k.startsWith('podcast-shell-') && k !== APP_SHELL)
+            .map((k) => caches.delete(k))
+      ))
       .then(() => self.clients.claim())
   );
 });
 
+// Build a 206 Partial Content response by slicing a fully-cached audio body. iOS
+// Safari's <audio> element requests audio with a Range header; if we've downloaded
+// the whole file we can satisfy those ranges from cache so playback works offline.
+async function rangeFromCache(request) {
+  const cache = await caches.open(DOWNLOADS);
+  const cached = await cache.match(request.url); // match the full GET, ignoring Range
+  if (!cached) return fetch(request);            // not downloaded → stream from network
+
+  const buf = await cached.arrayBuffer();
+  const total = buf.byteLength;
+  const m = /bytes=(\d*)-(\d*)/.exec(request.headers.get('Range') || '');
+  let start, end;
+  if (m && m[1] === '' && m[2] !== '') {
+    // Suffix range: "bytes=-N" → the last N bytes (MP4 players probe the tail).
+    start = Math.max(0, total - parseInt(m[2], 10));
+    end = total - 1;
+  } else {
+    start = m && m[1] ? parseInt(m[1], 10) : 0;
+    end = m && m[2] ? parseInt(m[2], 10) : total - 1;
+  }
+  if (isNaN(start) || start < 0) start = 0;
+  if (isNaN(end) || end >= total) end = total - 1;
+  if (start > end) { start = 0; end = total - 1; }
+
+  const slice = buf.slice(start, end + 1);
+  return new Response(slice, {
+    status: 206,
+    statusText: 'Partial Content',
+    headers: {
+      'Content-Type': cached.headers.get('Content-Type') || 'audio/mp4',
+      'Content-Range': `bytes ${start}-${end}/${total}`,
+      'Content-Length': String(slice.byteLength),
+      'Accept-Ranges': 'bytes',
+    },
+  });
+}
+
+// Cache-first against a named cache; on miss, fetch and store the result.
+async function cacheFirst(request, cacheName) {
+  const cache = await caches.open(cacheName);
+  const cached = await cache.match(request);
+  if (cached) return cached;
+  const res = await fetch(request);
+  if (res && (res.ok || res.type === 'opaque')) cache.put(request, res.clone());
+  return res;
+}
+
+// Return cache immediately if present, refresh it in the background; otherwise wait
+// on the network and cache the result. Good for markdown/quiz that rarely change.
+async function staleWhileRevalidate(request, cacheName) {
+  const cache = await caches.open(cacheName);
+  const cached = await cache.match(request);
+  const network = fetch(request)
+    .then((res) => { if (res && res.ok) cache.put(request, res.clone()); return res; })
+    .catch(() => null);
+  return cached || network || fetch(request);
+}
+
+// Network-first: keep the cached copy fresh, fall back to it offline. Used for
+// manifest.json so new episodes show up online but the app still loads offline.
+async function networkFirst(request, cacheName) {
+  const cache = await caches.open(cacheName);
+  try {
+    const res = await fetch(request);
+    if (res && res.ok) cache.put(request, res.clone());
+    return res;
+  } catch (err) {
+    const cached = await cache.match(request);
+    if (cached) return cached;
+    throw err;
+  }
+}
+
 self.addEventListener('fetch', (e) => {
-  const { pathname } = new URL(e.request.url);
+  const req = e.request;
+  if (req.method !== 'GET') return;
 
-  // Cache audio on demand (skip Range requests — serve from network)
-  if (pathname.endsWith('.m4a')) {
-    if (e.request.headers.get('Range')) return; // let browser handle range requests directly
-    e.respondWith(
-      caches.open(CACHE).then((c) =>
-        c.match(e.request).then((cached) => {
-          if (cached) return cached;
-          return fetch(e.request).then((res) => {
-            if (res.ok) c.put(e.request, res.clone());
-            return res;
-          });
-        })
-      )
-    );
+  const url = new URL(req.url);
+  const sameOrigin = url.origin === self.location.origin;
+  const path = url.pathname;
+
+  // manifest.json — always try the network first so new content appears.
+  if (sameOrigin && path.endsWith('/manifest.json')) {
+    e.respondWith(networkFirst(req, APP_SHELL));
     return;
   }
 
-  // Shell files: cache-first
-  if (SHELL.includes(pathname)) {
-    e.respondWith(
-      caches.match(e.request).then((cached) => cached || fetch(e.request))
-    );
+  // Audio. Range requests (iOS <audio>) are served from a downloaded full body when
+  // available; plain GETs (speed engine + downloads) are cache-first in DOWNLOADS.
+  if (path.endsWith('.m4a')) {
+    if (req.headers.get('Range')) e.respondWith(rangeFromCache(req));
+    else e.respondWith(cacheFirst(req, DOWNLOADS));
     return;
   }
 
-  // Everything else (CDN scripts, markdown): network-first with cache fallback
-  e.respondWith(
-    fetch(e.request).catch(() => caches.match(e.request))
-  );
+  // App shell — cache-first from the versioned shell cache.
+  if (sameOrigin && SHELL.includes(path)) {
+    e.respondWith(cacheFirst(req, APP_SHELL));
+    return;
+  }
+
+  // Other same-origin content (script/supplementary markdown, quiz JSON, etc.):
+  // serve cached instantly, refresh in the background, and cache on first fetch so
+  // it's available offline after being viewed or downloaded.
+  if (sameOrigin) {
+    e.respondWith(staleWhileRevalidate(req, DOWNLOADS));
+    return;
+  }
+
+  // Cross-origin (shouldn't be much after vendoring): network, fall back to any cache.
+  e.respondWith(fetch(req).catch(() => caches.match(req)));
 });

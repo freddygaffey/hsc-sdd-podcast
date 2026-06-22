@@ -3,6 +3,9 @@
   const THEME_KEY = "podcast-theme";
   const SPEED_KEY = "podcast-speed";
   const DEFAULT_VOICE_KEY = "podcast-default-voice";
+  const DOWNLOADS_KEY = "podcast-downloads";          // localStorage index of downloaded episodes
+  const DOWNLOAD_ALL_VOICES_KEY = "podcast-download-all-voices";
+  const DOWNLOADS_CACHE = "podcast-downloads-v1";     // must match service-worker.js
 
   // Speed is shown in syllables/second, not "×". BASE_SPS is the narration's
   // natural rate at 1× playback: this content runs ~140 wpm (modules)–177
@@ -45,6 +48,9 @@
   const settingsOverlay = document.getElementById("settings-overlay");
   const btnSettingsClose = document.getElementById("btn-settings-close");
   const defaultVoiceSelect = document.getElementById("default-voice-select");
+  const dlAllVoicesToggle = document.getElementById("dl-all-voices");
+  const storageUsageEl = document.getElementById("storage-usage");
+  const btnClearDownloads = document.getElementById("btn-clear-downloads");
   const queueBadge = document.getElementById("queue-badge");
   const playerTimeEl = document.querySelector(".player-time");
   const playerBar = document.getElementById("player-bar");
@@ -132,8 +138,8 @@
 
   // --- Theme ---
   const HLJS_THEMES = {
-    dark:  "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark-dimmed.min.css",
-    light: "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css",
+    dark:  "vendor/github-dark-dimmed.min.css",
+    light: "vendor/github.min.css",
   };
 
   function applyTheme(theme) {
@@ -201,6 +207,10 @@
   // or CSS-border hacks.
   const playIcon = (s = 16) =>
     `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
+  const downloadIcon = (s = 15) =>
+    `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor"><path d="M12 16l-5-5 1.4-1.4L11 12.2V4h2v8.2l2.6-2.6L17 11z"/><path d="M5 18h14v2H5z"/></svg>`;
+  const checkIcon = (s = 15) =>
+    `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>`;
 
   function updateProgressFill(pct) {
     progressBarEl.style.setProperty("--pct", pct * 100 + "%");
@@ -580,6 +590,138 @@
     if (e.target === statsOverlay) setHidden(statsOverlay, true);
   });
 
+  // --- Downloads ---
+  // The DOWNLOADS cache (see service-worker.js) holds the bytes; this localStorage
+  // index is the fast source of truth for the UI: { [epId]: { voices:[names], at } }.
+  function loadDownloads() {
+    try { return JSON.parse(localStorage.getItem(DOWNLOADS_KEY)) || {}; } catch { return {}; }
+  }
+  function saveDownloads(all) { localStorage.setItem(DOWNLOADS_KEY, JSON.stringify(all)); }
+  function isDownloaded(id) { return !!loadDownloads()[id]; }
+
+  // The default voice for an episode = global default if this episode has it, else
+  // the first voice. (Distinct from loadEpisode's resume logic, which prefers the
+  // per-episode last-played voice.)
+  function defaultVoiceForEpisode(ep) {
+    const def = localStorage.getItem(DEFAULT_VOICE_KEY);
+    return (def && ep.voices.find((v) => v.name === def)) || ep.voices[0];
+  }
+  function chosenVoiceNames(ep) {
+    if (localStorage.getItem(DOWNLOAD_ALL_VOICES_KEY) === "1") return ep.voices.map((v) => v.name);
+    const v = defaultVoiceForEpisode(ep);
+    return v ? [v.name] : [];
+  }
+  function episodeAssets(ep, voiceNames) {
+    const urls = voiceNames
+      .map((n) => ep.voices.find((v) => v.name === n))
+      .filter(Boolean)
+      .map((v) => v.file);
+    [ep.scriptPath, ep.supplementaryPath, ep.quizPath].forEach((p) => { if (p) urls.push(p); });
+    return urls;
+  }
+
+  let persistRequested = false;
+  async function downloadEpisode(ep, onProgress) {
+    if (!persistRequested && navigator.storage && navigator.storage.persist) {
+      persistRequested = true;
+      try { await navigator.storage.persist(); } catch {}
+    }
+    const voiceNames = chosenVoiceNames(ep);
+    const urls = episodeAssets(ep, voiceNames);
+    const cache = await caches.open(DOWNLOADS_CACHE);
+    let done = 0;
+    if (onProgress) onProgress(0, urls.length);
+    for (const url of urls) {
+      if (!(await cache.match(url))) {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
+        await cache.put(url, res);
+      }
+      done++;
+      if (onProgress) onProgress(done, urls.length);
+    }
+    const all = loadDownloads();
+    all[ep.id] = { voices: voiceNames, at: new Date().toISOString() };
+    saveDownloads(all);
+  }
+
+  async function deleteEpisode(ep) {
+    const all = loadDownloads();
+    const voiceNames = all[ep.id]?.voices || ep.voices.map((v) => v.name);
+    const cache = await caches.open(DOWNLOADS_CACHE);
+    for (const url of episodeAssets(ep, voiceNames)) await cache.delete(url);
+    delete all[ep.id];
+    saveDownloads(all);
+  }
+
+  async function downloadModule(group, { onEpisodeState, onProgress } = {}) {
+    const eps = group.episodes;
+    let done = 0;
+    for (const ep of eps) {
+      if (!isDownloaded(ep.id)) {
+        if (onEpisodeState) onEpisodeState(ep.id, "busy");
+        await downloadEpisode(ep);
+      }
+      if (onEpisodeState) onEpisodeState(ep.id, "done");
+      done++;
+      if (onProgress) onProgress(done, eps.length);
+    }
+  }
+
+  async function clearAllDownloads() {
+    await caches.delete(DOWNLOADS_CACHE);
+    localStorage.removeItem(DOWNLOADS_KEY);
+  }
+
+  async function storageUsage() {
+    if (navigator.storage && navigator.storage.estimate) {
+      const { usage = 0, quota = 0 } = await navigator.storage.estimate();
+      return { usage, quota };
+    }
+    return { usage: 0, quota: 0 };
+  }
+
+  function fmtBytes(n) {
+    if (!n) return "0 MB";
+    const mb = n / (1024 * 1024);
+    return mb >= 1024 ? (mb / 1024).toFixed(1) + " GB" : Math.round(mb) + " MB";
+  }
+
+  // Reflect a download button's state (idle / busy / done) in place.
+  function setDlState(btn, state) {
+    if (!btn) return;
+    btn.classList.remove("dl-busy", "dl-done");
+    if (state === "busy") {
+      btn.classList.add("dl-busy");
+      btn.innerHTML = `<span class="dl-spinner"></span>`;
+      btn.setAttribute("aria-label", "Downloading…");
+    } else if (state === "done") {
+      btn.classList.add("dl-done");
+      btn.innerHTML = checkIcon(15);
+      btn.setAttribute("aria-label", "Delete download");
+    } else {
+      btn.innerHTML = downloadIcon(15);
+      btn.setAttribute("aria-label", "Download");
+    }
+  }
+
+  let toastTimer = null;
+  function showToast(msg) {
+    const el = document.getElementById("toast");
+    if (!el) return;
+    el.textContent = msg;
+    setHidden(el, false);
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => setHidden(el, true), 3200);
+  }
+
+  // Offline, only downloaded episodes can play. Block + explain otherwise.
+  function guardPlayable(ep) {
+    if (navigator.onLine || isDownloaded(ep.id)) return true;
+    showToast("Not downloaded — connect to the internet to play this.");
+    return false;
+  }
+
   // --- Settings ---
   function getVoiceCatalog() {
     const names = [];
@@ -602,9 +744,17 @@
     });
   }
 
+  function refreshStorageUsage() {
+    if (!storageUsageEl) return;
+    storageUsageEl.textContent = "…";
+    storageUsage().then(({ usage }) => { storageUsageEl.textContent = fmtBytes(usage); });
+  }
+
   btnSettings.addEventListener("click", () => {
     if (!manifest) return;
     populateDefaultVoiceSelect();
+    if (dlAllVoicesToggle) dlAllVoicesToggle.checked = localStorage.getItem(DOWNLOAD_ALL_VOICES_KEY) === "1";
+    refreshStorageUsage();
     setHidden(settingsOverlay, false);
   });
   btnSettingsClose.addEventListener("click", () => setHidden(settingsOverlay, true));
@@ -618,6 +768,16 @@
       const idx = currentEpisode.voices.findIndex((v) => v.name === name);
       if (idx >= 0) switchVoice(idx);
     }
+  });
+  if (dlAllVoicesToggle) dlAllVoicesToggle.addEventListener("change", () => {
+    localStorage.setItem(DOWNLOAD_ALL_VOICES_KEY, dlAllVoicesToggle.checked ? "1" : "");
+  });
+  if (btnClearDownloads) btnClearDownloads.addEventListener("click", async () => {
+    if (!confirm("Delete all downloaded episodes? They'll need to be downloaded again for offline use.")) return;
+    await clearAllDownloads();
+    refreshStorageUsage();
+    if (!viewLibrary.hidden) renderLibrary();
+    showToast("Downloads cleared.");
   });
 
   // --- Library ---
@@ -639,10 +799,46 @@
     const eps = group.episodes;
     let idx = eps.findIndex((e) => !getEpisodeProgress(e.id).completed);
     if (idx < 0) idx = 0; // all completed → start from the top
+    if (!guardPlayable(eps[idx])) return;
     queue = eps.slice(idx + 1).map((e) => e.id);
     updateQueueBadge();
     loadEpisode(eps[idx], { autoplay: true });
     navigateToEpisode(eps[idx].id);
+  }
+
+  // Find a rendered episode row's download button within a module element.
+  function rowDlBtn(groupEl, epId) {
+    const row = groupEl.querySelector(`.episode-row[data-ep-id="${CSS.escape(epId)}"]`);
+    return row && row.querySelector(".ep-dl-btn");
+  }
+
+  // Download or remove an entire module, keeping the module's row buttons and the
+  // module button in sync as it goes (no full re-render → the module stays open).
+  async function handleModuleDownload(group, groupEl, mdlBtn) {
+    if (mdlBtn.classList.contains("dl-busy")) return;
+    const syncRow = (id, state) => {
+      const b = rowDlBtn(groupEl, id);
+      setDlState(b, state);
+      const r = b && b.closest(".episode-row");
+      if (r) r.classList.toggle("ep-downloaded", state === "done");
+    };
+    if (mdlBtn.classList.contains("dl-done")) {
+      for (const ep of group.episodes) {
+        await deleteEpisode(ep);
+        syncRow(ep.id, "idle");
+      }
+      setDlState(mdlBtn, "idle");
+      return;
+    }
+    setDlState(mdlBtn, "busy");
+    try {
+      await downloadModule(group, { onEpisodeState: syncRow });
+      setDlState(mdlBtn, "done");
+    } catch (err) {
+      console.error("[download:module]", err);
+      setDlState(mdlBtn, group.episodes.every((e) => isDownloaded(e.id)) ? "done" : "idle");
+      showToast("Module download failed — check your connection.");
+    }
   }
 
   function renderLibrary() {
@@ -663,6 +859,7 @@
         <button class="continue-play" aria-label="Resume">${playIcon(18)}</button>`;
       banner.querySelector(".continue-play").addEventListener("click", (e) => {
         e.stopPropagation();
+        if (!guardPlayable(lastEp)) return;
         loadEpisode(lastEp, { autoplay: true });
         navigateToEpisode(lastEp.id);
       });
@@ -684,10 +881,12 @@
 
       const completed = group.episodes.filter((e) => getEpisodeProgress(e.id).completed).length;
       const name = GROUP_NAMES[group.prefix] || group.prefix;
+      const allDl = group.episodes.every((e) => isDownloaded(e.id));
       const head = document.createElement("div");
       head.className = "module-head";
       head.innerHTML = `
         <button class="module-start" aria-label="Start ${name}">${playIcon(16)}</button>
+        <button class="module-dl${allDl ? " dl-done" : ""}" aria-label="${allDl ? "Delete module download" : "Download module"}">${allDl ? checkIcon(16) : downloadIcon(16)}</button>
         <button class="module-toggle">
           <span class="module-name">${name}</span>
           <span class="module-meta">${completed}/${group.episodes.length} listened</span>
@@ -697,6 +896,11 @@
       head.querySelector(".module-start").addEventListener("click", (e) => {
         e.stopPropagation();
         startModule(group);
+      });
+      const mdlBtn = head.querySelector(".module-dl");
+      mdlBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        handleModuleDownload(group, groupEl, mdlBtn);
       });
       groupEl.appendChild(head);
 
@@ -716,9 +920,11 @@
 
   function renderEpisodeRow(ep, index) {
     const row = document.createElement("div");
+    row.dataset.epId = ep.id;
     const progress = getEpisodeProgress(ep.id);
     const done = progress.completed;
-    row.className = "episode-row" + (done ? " ep-row-done" : "");
+    const dl = isDownloaded(ep.id);
+    row.className = "episode-row" + (done ? " ep-row-done" : "") + (dl ? " ep-downloaded" : "");
     const pct = Math.round((progress.progressPct || 0) * 100);
     const rawDur = ep.voices[0]?.duration;
     const durStr = rawDur ? fmtDuration(rawDur / getCurrentSpeed()) : "";
@@ -733,8 +939,31 @@
         </div>
         <div class="ep-progress-track"><div class="ep-progress-fill" style="width:${pct}%"></div></div>
       </div>
+      <button class="ep-dl-btn${dl ? " dl-done" : ""}" aria-label="${dl ? "Delete download" : "Download"}">${dl ? checkIcon(15) : downloadIcon(15)}</button>
       <button class="ep-queue-btn${inQueue ? " in-queue" : ""}" aria-label="${inQueue ? "Remove from queue" : "Add to queue"}">${inQueue ? "&#10003;" : "+"}</button>
       <button class="ep-play" aria-label="Play ${ep.title}">${playIcon(16)}</button>`;
+
+    const dlBtn = row.querySelector(".ep-dl-btn");
+    dlBtn.addEventListener("click", async (e) => {
+      e.stopPropagation();
+      if (dlBtn.classList.contains("dl-busy")) return;
+      if (dlBtn.classList.contains("dl-done")) {
+        await deleteEpisode(ep);
+        setDlState(dlBtn, "idle");
+        row.classList.remove("ep-downloaded");
+        return;
+      }
+      setDlState(dlBtn, "busy");
+      try {
+        await downloadEpisode(ep);
+        setDlState(dlBtn, "done");
+        row.classList.add("ep-downloaded");
+      } catch (err) {
+        console.error("[download]", err);
+        setDlState(dlBtn, "idle");
+        showToast("Download failed — check your connection.");
+      }
+    });
 
     const qBtn = row.querySelector(".ep-queue-btn");
     qBtn.addEventListener("click", (e) => {
@@ -752,6 +981,7 @@
     });
     row.querySelector(".ep-play").addEventListener("click", (e) => {
       e.stopPropagation();
+      if (!guardPlayable(ep)) return;
       loadEpisode(ep, { autoplay: true });
       navigateToEpisode(ep.id);
     });
@@ -838,7 +1068,9 @@
       enhanceCodeBlocks();
       window.scrollTo({ top: 0, behavior: "instant" });
     } catch {
-      episodeContentEl.innerHTML = "<p><em>Failed to load.</em></p>";
+      episodeContentEl.innerHTML = navigator.onLine
+        ? "<p><em>Failed to load.</em></p>"
+        : "<p><em>Not available offline — download this episode to read it here.</em></p>";
     }
   }
 
@@ -1095,9 +1327,30 @@
   window.addEventListener("hashchange", handleRoute);
   btnBack.addEventListener("click", navigateToLibrary);
 
+  // --- Offline state ---
+  const offlineBanner = document.getElementById("offline-banner");
+  function updateOnlineState() {
+    document.body.classList.toggle("offline", !navigator.onLine);
+    if (offlineBanner) setHidden(offlineBanner, navigator.onLine);
+  }
+  window.addEventListener("online", updateOnlineState);
+  window.addEventListener("offline", updateOnlineState);
+  updateOnlineState();
+
   // --- Service worker ---
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/service-worker.js").catch(() => {});
+    navigator.serviceWorker.register("/service-worker.js").then((reg) => {
+      // Notify (don't force-reload) when an updated app version is installed.
+      reg.addEventListener("updatefound", () => {
+        const nw = reg.installing;
+        if (!nw) return;
+        nw.addEventListener("statechange", () => {
+          if (nw.state === "installed" && navigator.serviceWorker.controller) {
+            showToast("App updated — reload for the latest.");
+          }
+        });
+      });
+    }).catch(() => {});
   }
 
   // --- Init ---
