@@ -1336,15 +1336,39 @@ body.offline .episode-row:not(.ep-downloaded) .ep-play { opacity: 0.4; }
   letter-spacing: 0;
 }
 .q-row {
-  display: grid;
-  grid-template-columns: 20px 1fr auto auto auto auto;
-  align-items: center;
-  gap: 6px;
-  padding: 9px 0;
+  position: relative;
+  overflow: hidden;
   border-top: 1px solid var(--border);
 }
 .q-row:first-of-type { border-top: none; }
-.q-index { font-size: 12px; color: var(--text-dim); }
+.q-remove-bg {
+  position: absolute;
+  inset: 0;
+  background: #ef4444;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 18px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.q-row.q-will-remove .q-remove-bg { background: #dc2626; }
+.q-fg {
+  position: relative;
+  background: var(--bg-elevated);
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 4px;
+  cursor: pointer;
+  touch-action: pan-y;       /* vertical list scroll stays native; JS owns horizontal swipe */
+  user-select: none;
+}
+.q-dragging { opacity: 0.9; }
+.q-dragging .q-fg { background: var(--bg-card); box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+.q-index { font-size: 12px; color: var(--text-dim); text-align: center; }
 .q-title {
   font-size: 14px;
   min-width: 0;
@@ -1352,20 +1376,12 @@ body.offline .episode-row:not(.ep-downloaded) .ep-play { opacity: 0.4; }
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.q-btn {
-  background: none;
-  border: none;
+.q-handle {
   color: var(--text-dim);
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
+  font-size: 20px;
+  line-height: 1;
+  padding: 0 8px;
+  cursor: grab;
+  touch-action: none;        /* JS owns the vertical reorder drag */
 }
-.q-btn:active { background: var(--accent-soft); }
-.q-btn:disabled { opacity: 0.25; cursor: default; }
-.q-play { color: var(--accent); }
-.q-remove { color: #ef4444; }
+.q-handle:active { cursor: grabbing; }

@@ -377,27 +377,81 @@
     queueListEl.innerHTML = nowPlaying + queue.map((id, i) => {
       const ep = findEpisode(id);
       return `<div class="q-row" data-ep-id="${id}">
-        <span class="q-index">${i + 1}</span>
-        <span class="q-title">${ep ? ep.title : id}</span>
-        <button class="q-btn q-up" aria-label="Move up"${i === 0 ? " disabled" : ""}>&#9650;</button>
-        <button class="q-btn q-down" aria-label="Move down"${i === queue.length - 1 ? " disabled" : ""}>&#9660;</button>
-        <button class="q-btn q-play" aria-label="Play now">&#9654;</button>
-        <button class="q-btn q-remove" aria-label="Remove from queue">&#10005;</button>
+        <div class="q-remove-bg"><span>Remove</span></div>
+        <div class="q-fg">
+          <span class="q-index">${i + 1}</span>
+          <span class="q-title">${ep ? ep.title : id}</span>
+          <span class="q-handle" aria-label="Drag to reorder" title="Drag to reorder">&#8285;</span>
+        </div>
       </div>`;
     }).join("");
-    queueListEl.querySelectorAll(".q-row").forEach((row) => {
-      const id = row.dataset.epId;
-      row.querySelector(".q-up").addEventListener("click", () => moveInQueue(id, -1));
-      row.querySelector(".q-down").addEventListener("click", () => moveInQueue(id, 1));
-      row.querySelector(".q-remove").addEventListener("click", () => removeFromQueue(id));
-      row.querySelector(".q-play").addEventListener("click", () => playFromQueue(id));
-    });
+    attachQueueGestures();
   }
-  function moveInQueue(id, dir) {
-    const i = queue.indexOf(id), j = i + dir;
-    if (i < 0 || j < 0 || j >= queue.length) return;
-    [queue[i], queue[j]] = [queue[j], queue[i]];
-    renderQueuePanel();
+
+  // Spotify-style queue rows: tap to play, swipe left to remove, drag handle to reorder.
+  function attachQueueGestures() {
+    queueListEl.querySelectorAll(".q-row").forEach((row) => {
+      const fg = row.querySelector(".q-fg");
+      const handle = row.querySelector(".q-handle");
+      const id = row.dataset.epId;
+      let sx = 0, sy = 0, dx = 0, swiping = false, active = false;
+
+      // tap-to-play + swipe-left-to-remove (on the row, excluding the handle)
+      fg.addEventListener("pointerdown", (e) => {
+        if (e.target === handle) return;
+        active = true; swiping = false; dx = 0; sx = e.clientX; sy = e.clientY;
+        try { fg.setPointerCapture(e.pointerId); } catch (_) {}
+      });
+      fg.addEventListener("pointermove", (e) => {
+        if (!active) return;
+        const mx = e.clientX - sx, my = e.clientY - sy;
+        if (!swiping && Math.abs(mx) > 8 && Math.abs(mx) > Math.abs(my)) swiping = true;
+        if (swiping) {
+          dx = Math.min(0, mx);
+          fg.style.transition = "none";
+          fg.style.transform = `translateX(${dx}px)`;
+          row.classList.toggle("q-will-remove", dx < -80);
+        }
+      });
+      fg.addEventListener("pointerup", (e) => {
+        if (!active) return;
+        active = false;
+        fg.style.transition = "";
+        if (swiping) {
+          if (dx < -80) { removeFromQueue(id); return; }
+          fg.style.transform = "";
+          row.classList.remove("q-will-remove");
+        } else if (Math.abs((e.clientX || sx) - sx) < 8) {
+          playFromQueue(id); // it was a tap
+        }
+      });
+      fg.addEventListener("pointercancel", () => {
+        active = false; fg.style.transition = ""; fg.style.transform = "";
+        row.classList.remove("q-will-remove");
+      });
+
+      // drag handle to reorder
+      handle.addEventListener("pointerdown", (e) => {
+        e.preventDefault();
+        try { handle.setPointerCapture(e.pointerId); } catch (_) {}
+        row.classList.add("q-dragging");
+      });
+      handle.addEventListener("pointermove", (e) => {
+        if (!row.classList.contains("q-dragging")) return;
+        const before = [...queueListEl.querySelectorAll(".q-row:not(.q-dragging)")]
+          .find((s) => { const r = s.getBoundingClientRect(); return e.clientY < r.top + r.height / 2; });
+        if (before) queueListEl.insertBefore(row, before);
+        else queueListEl.appendChild(row);
+      });
+      handle.addEventListener("pointerup", () => {
+        if (!row.classList.contains("q-dragging")) return;
+        row.classList.remove("q-dragging");
+        queue = [...queueListEl.querySelectorAll(".q-row")].map((r) => r.dataset.epId);
+        updateQueueBadge();
+        syncQueueButtons();
+        renderQueuePanel();
+      });
+    });
   }
   function removeFromQueue(id) {
     const i = queue.indexOf(id);
