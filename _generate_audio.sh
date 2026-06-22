@@ -93,6 +93,7 @@ STRIPPER="$HERE/strip_markdown.py"
 # Isolated venv that holds the Kokoro neural model (created during setup).
 KOKORO_PY="$HERE/.tts-venv/bin/python"
 KOKORO_DRIVER="$HERE/kokoro_tts.py"
+KOKORO_MLX_DRIVER="$HERE/kokoro_mlx_tts.py"   # Apple-Silicon (MLX GPU) Kokoro
 
 # --- Pick an engine ----------------------------------------------------------
 # No silent fallback: each engine must be explicitly requested or correctly
@@ -111,6 +112,19 @@ Set it up with:
   "$HERE/.tts-venv/bin/pip" install kokoro soundfile
 
 (See README.md "Setup" for details, or set ENGINE=piper / ENGINE=say to use a different engine.)
+EOF
+      exit 1
+    fi
+    ;;
+  mlx)
+    if ! [[ -x "$KOKORO_PY" ]] || ! "$KOKORO_PY" -c "import mlx_audio" >/dev/null 2>&1; then
+      cat >&2 <<EOF
+Error: mlx-audio not installed in $HERE/.tts-venv (needed for ENGINE=mlx).
+
+Install it with:
+  "$KOKORO_PY" -m pip install mlx-audio
+
+(ENGINE=mlx runs the same Kokoro voices on the Apple-Silicon GPU via $KOKORO_MLX_DRIVER.)
 EOF
       exit 1
     fi
@@ -138,7 +152,7 @@ EOF
 esac
 
 echo "TTS engine: $ENGINE"
-[[ "$ENGINE" == "kokoro" ]] && echo "Kokoro narrators: ${VOICES[*]}  question: $KOKORO_VOICE2  speed: $KOKORO_SPEED"
+[[ "$ENGINE" == "kokoro" || "$ENGINE" == "mlx" ]] && echo "Kokoro narrators: ${VOICES[*]}  question: $KOKORO_VOICE2  speed: $KOKORO_SPEED"
 
 # --- Gather episodes to convert ---------------------------------------------
 # An episode is any folder under content/ that contains a script.md.
@@ -182,8 +196,8 @@ render_one() {
   # Skip if this voice's output is already newer than script.md, so re-running
   # over all episodes/voices only re-renders the pairs that changed.
   case "$ENGINE" in
-    kokoro|say) existing="$ep/$voice.m4a" ;;
-    piper)      existing="$ep/$voice.wav" ;;
+    kokoro|mlx|say) existing="$ep/$voice.m4a" ;;
+    piper)          existing="$ep/$voice.wav" ;;
   esac
   if [[ -e "$existing" && "$existing" -nt "$src" ]]; then
     echo "  = $name/$(basename "$existing") up to date, skipping"
@@ -234,6 +248,38 @@ render_one() {
           -metadata artist="Kokoro: $voice" \
           -metadata album="Voice: $voice / Q: $KOKORO_VOICE2" \
           -metadata comment="narrator=$voice question=$KOKORO_VOICE2 speed=$KOKORO_SPEED" \
+          "$out" && rm -f "$wav"
+      else
+        echo "     (ffmpeg not found; left WAV at $wav)"
+      fi
+      ;;
+    mlx)
+      # Same Kokoro voices, rendered on the Apple-Silicon GPU via mlx-audio.
+      # Always uses the GPU, so $device is ignored here.
+      wav="$ep/$voice.wav"
+      out="$ep/$voice.m4a"
+      echo "  -> $name/$voice.m4a [mlx-gpu]"
+      local mlx_log
+      mlx_log="$(mktemp -t tts-mlx.XXXXXX)"
+      if ! PYTHONWARNINGS="ignore::UserWarning,ignore::FutureWarning" \
+        "$KOKORO_PY" "$KOKORO_MLX_DRIVER" "$tmp_txt" "$wav" \
+          --voice "$voice" \
+          --voice2 "$KOKORO_VOICE2" \
+          --speed "$KOKORO_SPEED" \
+          --lang "$KOKORO_LANG" > "$mlx_log" 2>&1
+      then
+        echo "  ! $name/$voice failed:" >&2
+        cat "$mlx_log" >&2
+        rm -f "$mlx_log"
+        return 1
+      fi
+      grep -E "segments?,.*->" "$mlx_log" | tail -1
+      rm -f "$mlx_log"
+      if command -v ffmpeg >/dev/null 2>&1; then
+        ffmpeg -y -loglevel error -i "$wav" -c:a aac -b:a 96k \
+          -metadata artist="Kokoro-MLX: $voice" \
+          -metadata album="Voice: $voice / Q: $KOKORO_VOICE2" \
+          -metadata comment="engine=mlx narrator=$voice question=$KOKORO_VOICE2 speed=$KOKORO_SPEED" \
           "$out" && rm -f "$wav"
       else
         echo "     (ffmpeg not found; left WAV at $wav)"
