@@ -156,13 +156,23 @@
 </div>
 
 <div id="queue-overlay" class="stats-overlay" hidden>
-  <div class="stats-panel">
+  <div class="stats-panel queue-panel">
     <div class="sheet-handle" aria-hidden="true"></div>
-    <div class="stats-header">
-      <h2 class="stats-heading">Up Next</h2>
+    <div class="q-head">
+      <h2 class="q-h-title">Queue</h2>
+      <p class="q-h-sub">Playing <span id="q-now-title">nothing</span></p>
     </div>
     <div id="queue-list" class="stats-content"></div>
-    <button id="btn-queue-clear" class="setting-btn-danger" hidden>Clear queue</button>
+    <div class="q-toolbar">
+      <button id="q-shuffle" class="q-tool-btn" hidden>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M18 4l3 3-3 3v-2h-2.2l-2.1 2.1-1.4-1.4L14.4 7H18V4zM3 7h4.4l9 9H21v3l-3-3v2h-2.6l-9-9H3V7zm0 10h4.4l2.1-2.1 1.4 1.4L8.6 19H3v-2z"/></svg>
+        <span>Shuffle</span>
+      </button>
+      <button id="btn-queue-clear" class="q-tool-btn" hidden>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M6 7h12l-1 13a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 7zm3-3h6l1 2h4v2H4V6h4l1-2z"/></svg>
+        <span>Clear</span>
+      </button>
+    </div>
   </div>
 </div>
 

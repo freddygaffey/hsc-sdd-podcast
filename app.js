@@ -53,6 +53,8 @@
   const queueOverlay = document.getElementById("queue-overlay");
   const queueListEl = document.getElementById("queue-list");
   const btnQueueClear = document.getElementById("btn-queue-clear");
+  const qNowTitleEl = document.getElementById("q-now-title");
+  const btnShuffle = document.getElementById("q-shuffle");
   const btnSettings = document.getElementById("btn-settings");
   const settingsOverlay = document.getElementById("settings-overlay");
   const btnSettingsClose = document.getElementById("btn-settings-close");
@@ -257,6 +259,12 @@
     `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor"><path d="M12 16l-5-5 1.4-1.4L11 12.2V4h2v8.2l2.6-2.6L17 11z"/><path d="M5 18h14v2H5z"/></svg>`;
   const checkIcon = (s = 15) =>
     `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>`;
+  const pauseIcon = (s = 16) =>
+    `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>`;
+  // Three horizontal lines = "drag to reorder" (a ⋮ reads as a click-menu instead).
+  const handleIcon = (s = 20) =>
+    `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor"><rect x="4" y="7" width="16" height="2" rx="1"/><rect x="4" y="11" width="16" height="2" rx="1"/><rect x="4" y="15" width="16" height="2" rx="1"/></svg>`;
+  const waveTile = `<svg viewBox="0 0 24 24" width="20" height="20" fill="rgba(255,255,255,.95)"><rect x="3" y="10" width="3" height="4" rx="1.5"/><rect x="8" y="7" width="3" height="10" rx="1.5"/><rect x="13" y="4" width="3" height="16" rx="1.5"/><rect x="18" y="9" width="3" height="6" rx="1.5"/></svg>`;
 
   function updateProgressFill(pct) {
     progressBarEl.style.setProperty("--pct", pct * 100 + "%");
@@ -271,7 +279,7 @@
       btnSleep.textContent = mins + "m";
       btnSleep.classList.add("sleep-active");
     } else {
-      btnSleep.innerHTML = `<svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>`;
+      btnSleep.innerHTML = `<svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M21 10.78V8c0-1.65-1.35-3-3-3h-4c-.77 0-1.47.3-2 .78-.53-.48-1.23-.78-2-.78H6C4.35 5 3 6.35 3 8v2.78c-.61.55-1 1.34-1 2.22v6h2v-2h16v2h2v-6c0-.88-.39-1.67-1-2.22z"/></svg>`;
       btnSleep.classList.remove("sleep-active");
     }
   }
@@ -361,34 +369,71 @@
     syncQueueButtons();
     renderQueuePanel();
   });
+  if (btnShuffle) btnShuffle.addEventListener("click", () => {
+    if (queue.length < 2) return;
+    queue = shuffle(queue);
+    updateQueueBadge();
+    syncQueueButtons();
+    renderQueuePanel();
+  });
+
+  // A deterministic, on-brand colored art tile (no real per-episode artwork).
+  function qHue(s) { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 360; return h; }
+  function qArt(id) {
+    const h = qHue(id || "x");
+    return `<span class="q-art" style="background:linear-gradient(135deg,hsl(${h} 55% 48%),hsl(${(h + 40) % 360} 60% 38%))">${waveTile}</span>`;
+  }
+  function episodeModuleName(id) {
+    if (!manifest) return "";
+    for (const mod of manifest.modules) {
+      if (mod.episodes.some((e) => e.id === id)) return GROUP_NAMES[mod.prefix] || mod.prefix;
+    }
+    return "";
+  }
+  function refreshNowRow() {
+    const btn = queueListEl && queueListEl.querySelector(".q-now-row .q-pp");
+    if (btn) btn.innerHTML = audio.paused ? playIcon(16) : pauseIcon(16);
+  }
+
+  function queueRowHTML(id, kind) {
+    const ep = kind === "now" ? currentEpisode : findEpisode(id);
+    const title = ep ? ep.title : id;
+    const sub = ep ? episodeModuleName(ep.id) : "";
+    const ctrl = kind === "now"
+      ? `<button class="q-pp" aria-label="Play or pause">${audio.paused ? playIcon(16) : pauseIcon(16)}</button>`
+      : `<span class="q-handle" aria-label="Drag to reorder" title="Drag to reorder">${handleIcon(20)}</span>`;
+    return `<div class="${kind === "now" ? "q-now-row" : "q-row"}" data-ep-id="${ep ? ep.id : id}">
+      <div class="q-remove-bg"><span>Remove</span></div>
+      <div class="q-fg">
+        ${qArt(ep ? ep.id : id)}
+        <span class="q-text"><span class="q-title">${title}</span><span class="q-sub">${sub}</span></span>
+        ${ctrl}
+      </div>
+    </div>`;
+  }
 
   function renderQueuePanel() {
     if (!queueListEl) return;
-    const nowPlaying = currentEpisode
-      ? `<div class="q-now">Now playing<span class="q-now-title">${currentEpisode.title}</span></div>`
-      : "";
+    if (qNowTitleEl) qNowTitleEl.textContent = currentEpisode ? currentEpisode.title : "nothing";
+
+    let html = currentEpisode ? queueRowHTML(currentEpisode.id, "now") : "";
+    html += queue.map((id) => queueRowHTML(id, "queued")).join("");
     if (!queue.length) {
-      queueListEl.innerHTML = nowPlaying +
-        `<p class="setting-hint">Your queue is empty. Add episodes with the + button, or Start a module.</p>`;
-      if (btnQueueClear) setHidden(btnQueueClear, true);
-      return;
+      html += `<p class="setting-hint">Nothing queued. Add episodes with the + button, or Start a module.</p>`;
     }
-    if (btnQueueClear) setHidden(btnQueueClear, false);
-    queueListEl.innerHTML = nowPlaying + queue.map((id, i) => {
-      const ep = findEpisode(id);
-      return `<div class="q-row" data-ep-id="${id}">
-        <div class="q-remove-bg"><span>Remove</span></div>
-        <div class="q-fg">
-          <span class="q-index">${i + 1}</span>
-          <span class="q-title">${ep ? ep.title : id}</span>
-          <span class="q-handle" aria-label="Drag to reorder" title="Drag to reorder">&#8285;</span>
-        </div>
-      </div>`;
-    }).join("");
+    queueListEl.innerHTML = html;
+    if (btnQueueClear) setHidden(btnQueueClear, !queue.length);
+    if (btnShuffle) setHidden(btnShuffle, queue.length < 2);
+
+    const nowRow = queueListEl.querySelector(".q-now-row");
+    if (nowRow) nowRow.querySelector(".q-pp").addEventListener("click", (e) => {
+      e.stopPropagation();
+      audio.paused ? audio.play() : audio.pause();
+    });
     attachQueueGestures();
   }
 
-  // Spotify-style queue rows: tap to play, swipe left to remove, drag handle to reorder.
+  // Tap a row to play, swipe left to remove, drag the ≡ handle to reorder.
   function attachQueueGestures() {
     queueListEl.querySelectorAll(".q-row").forEach((row) => {
       const fg = row.querySelector(".q-fg");
@@ -396,9 +441,9 @@
       const id = row.dataset.epId;
       let sx = 0, sy = 0, dx = 0, swiping = false, active = false;
 
-      // tap-to-play + swipe-left-to-remove (on the row, excluding the handle)
+      // tap-to-play + swipe-left-to-remove (anywhere on the row except the handle)
       fg.addEventListener("pointerdown", (e) => {
-        if (e.target === handle) return;
+        if (handle.contains(e.target)) return;
         active = true; swiping = false; dx = 0; sx = e.clientX; sy = e.clientY;
         try { fg.setPointerCapture(e.pointerId); } catch (_) {}
       });
@@ -418,11 +463,11 @@
         active = false;
         fg.style.transition = "";
         if (swiping) {
-          if (dx < -80) { removeFromQueue(id); return; }
+          if (dx < -80) { row.classList.add("q-removing"); setTimeout(() => removeFromQueue(id), 160); return; }
           fg.style.transform = "";
           row.classList.remove("q-will-remove");
         } else if (Math.abs((e.clientX || sx) - sx) < 8) {
-          playFromQueue(id); // it was a tap
+          playFromQueue(id);
         }
       });
       fg.addEventListener("pointercancel", () => {
@@ -430,27 +475,40 @@
         row.classList.remove("q-will-remove");
       });
 
-      // drag handle to reorder
+      // drag handle → smooth float-and-drop reorder
+      let startY = 0, rowH = 0, fromIndex = 0, dragging = false;
       handle.addEventListener("pointerdown", (e) => {
         e.preventDefault();
         try { handle.setPointerCapture(e.pointerId); } catch (_) {}
+        dragging = true;
+        startY = e.clientY;
+        rowH = row.offsetHeight || 64;
+        fromIndex = queue.indexOf(id);
         row.classList.add("q-dragging");
       });
       handle.addEventListener("pointermove", (e) => {
-        if (!row.classList.contains("q-dragging")) return;
-        const before = [...queueListEl.querySelectorAll(".q-row:not(.q-dragging)")]
-          .find((s) => { const r = s.getBoundingClientRect(); return e.clientY < r.top + r.height / 2; });
-        if (before) queueListEl.insertBefore(row, before);
-        else queueListEl.appendChild(row);
+        if (!dragging) return;
+        const dy = e.clientY - startY;
+        row.style.transition = "none";
+        row.style.transform = `translateY(${dy}px)`;
       });
-      handle.addEventListener("pointerup", () => {
-        if (!row.classList.contains("q-dragging")) return;
+      const endDrag = (e) => {
+        if (!dragging) return;
+        dragging = false;
+        const dy = (e.clientY || startY) - startY;
         row.classList.remove("q-dragging");
-        queue = [...queueListEl.querySelectorAll(".q-row")].map((r) => r.dataset.epId);
-        updateQueueBadge();
-        syncQueueButtons();
+        row.style.transition = ""; row.style.transform = "";
+        let to = fromIndex + Math.round(dy / rowH);
+        to = Math.max(0, Math.min(queue.length - 1, to));
+        if (to !== fromIndex && fromIndex >= 0) {
+          queue.splice(fromIndex, 1);
+          queue.splice(to, 0, id);
+          syncQueueButtons();
+        }
         renderQueuePanel();
-      });
+      };
+      handle.addEventListener("pointerup", endDrag);
+      handle.addEventListener("pointercancel", endDrag);
     });
   }
   function removeFromQueue(id) {
@@ -555,6 +613,7 @@
   function setPlayState(playing) {
     setHidden(btnPlay.querySelector(".icon-play"), playing);
     setHidden(btnPlay.querySelector(".icon-pause"), !playing);
+    if (queueOverlay && !queueOverlay.hidden) refreshNowRow();
   }
 
   // --- Controls ---
