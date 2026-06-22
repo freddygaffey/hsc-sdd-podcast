@@ -240,6 +240,7 @@ button, select, input { font-family: inherit; }
   border: 1px solid var(--border);
   border-radius: 10px;
   overflow: hidden;
+  touch-action: manipulation;
 }
 
 .speed-arrow {
@@ -265,7 +266,7 @@ button, select, input { font-family: inherit; }
 #btn-speed-up   { border-left: 1px solid var(--border); border-right: 1px solid var(--border); }
 
 .speed-slider {
-  width: 100px;
+  width: 80px;
   -webkit-appearance: none;
   appearance: none;
   height: 4px;
@@ -295,18 +296,44 @@ button, select, input { font-family: inherit; }
 }
 
 .speed-input {
-  width: 48px;
+  width: 38px;
   height: 100%;
   background: transparent;
   border: none;
   color: var(--text);
   font-size: 13px;
   font-weight: 600;
-  text-align: center;
+  text-align: right;
   outline: none;
-  padding: 0 6px;
+  padding: 0 2px 0 6px;
 }
 .speed-input:focus { background: var(--accent-soft); color: var(--accent); }
+
+.speed-unit {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim);
+  padding: 0 8px 0 2px;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* ── Settings panel ─────────────────────────────────────── */
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+}
+.setting-label { font-size: 14px; font-weight: 500; }
+.setting-select { max-width: 160px; }
+.setting-hint {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.45;
+  margin: 10px 0 0;
+}
 
 /* ── Views ──────────────────────────────────────────────── */
 .view {

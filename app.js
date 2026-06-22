@@ -2,6 +2,14 @@
   const PROGRESS_KEY = "podcast-progress";
   const THEME_KEY = "podcast-theme";
   const SPEED_KEY = "podcast-speed";
+  const DEFAULT_VOICE_KEY = "podcast-default-voice";
+
+  // Speed is shown in syllables/second, not "×". BASE_SPS is the narration's
+  // natural rate at 1× playback: this content runs ~140 wpm (modules)–177
+  // (case studies) at ~1.5 syllables/word → ~3.75 syl/s. Tune BASE_WPM to taste.
+  const BASE_WPM = 150;
+  const SYLLABLES_PER_WORD = 1.5;
+  const BASE_SPS = (BASE_WPM * SYLLABLES_PER_WORD) / 60;
 
   const SPEED_OPTIONS = [];
   for (let s = 0.25; s <= 16; s += 0.25) SPEED_OPTIONS.push(Math.round(s * 100) / 100);
@@ -33,6 +41,10 @@
   const btnSleep = document.getElementById("btn-sleep");
   const btnStats = document.getElementById("btn-stats");
   const btnQueue = document.getElementById("btn-queue");
+  const btnSettings = document.getElementById("btn-settings");
+  const settingsOverlay = document.getElementById("settings-overlay");
+  const btnSettingsClose = document.getElementById("btn-settings-close");
+  const defaultVoiceSelect = document.getElementById("default-voice-select");
   const queueBadge = document.getElementById("queue-badge");
   const playerTimeEl = document.querySelector(".player-time");
   const playerBar = document.getElementById("player-bar");
@@ -71,11 +83,18 @@
   function getCurrentSpeedIdx() { return parseInt(speedSlider.value, 10); }
   function getCurrentSpeed() { return SPEED_OPTIONS[getCurrentSpeedIdx()]; }
 
+  // Display helpers: playback multiplier -> syllables/second.
+  function fmtSpsNum(mult) {
+    const v = BASE_SPS * mult;
+    return v >= 10 ? Math.round(v).toString() : v.toFixed(1);
+  }
+  function fmtSps(mult) { return fmtSpsNum(mult) + " syl/s"; }
+
   function setSpeed(index) {
     const i = Math.max(0, Math.min(SPEED_OPTIONS.length - 1, index));
     speedSlider.value = i;
     const s = SPEED_OPTIONS[i];
-    speedInput.value = s + "x";
+    speedInput.value = fmtSpsNum(s);
     audio.playbackRate = s;
     localStorage.setItem(SPEED_KEY, i);
     if (audio.duration) {
@@ -85,12 +104,11 @@
   }
 
   function applySpeedInput() {
-    const raw = speedInput.value.replace(/x$/i, "").trim();
-    const val = parseFloat(raw);
-    if (isNaN(val)) { speedInput.value = getCurrentSpeed() + "x"; return; }
-    const clamped = Math.max(0.25, Math.min(16, val));
+    const val = parseFloat(speedInput.value.replace(/[^0-9.]/g, ""));
+    if (isNaN(val)) { speedInput.value = fmtSpsNum(getCurrentSpeed()); return; }
+    const mult = Math.max(0.25, Math.min(16, val / BASE_SPS)); // syllables/sec -> multiplier
     const idx = SPEED_OPTIONS.reduce((best, s, i) =>
-      Math.abs(s - clamped) < Math.abs(SPEED_OPTIONS[best] - clamped) ? i : best, 0);
+      Math.abs(s - mult) < Math.abs(SPEED_OPTIONS[best] - mult) ? i : best, 0);
     setSpeed(idx);
   }
 
@@ -105,7 +123,7 @@
   speedInput.addEventListener("focus", () => speedInput.select());
   speedInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter") { applySpeedInput(); speedInput.blur(); }
-    if (e.key === "Escape") { speedInput.value = getCurrentSpeed() + "x"; speedInput.blur(); }
+    if (e.key === "Escape") { speedInput.value = fmtSpsNum(getCurrentSpeed()); speedInput.blur(); }
     if (e.key === "ArrowUp") { e.preventDefault(); setSpeed(getCurrentSpeedIdx() + 1); }
     if (e.key === "ArrowDown") { e.preventDefault(); setSpeed(getCurrentSpeedIdx() - 1); }
   });
@@ -382,7 +400,11 @@
     currentEpisode = ep;
     const progress = getEpisodeProgress(ep.id);
     currentVoiceIndex = ep.voices.findIndex((v) => v.name === progress.lastVoice);
-    if (currentVoiceIndex < 0) currentVoiceIndex = 0;
+    if (currentVoiceIndex < 0) {
+      const def = localStorage.getItem(DEFAULT_VOICE_KEY);
+      currentVoiceIndex = def ? ep.voices.findIndex((v) => v.name === def) : -1;
+      if (currentVoiceIndex < 0) currentVoiceIndex = 0;
+    }
 
     playerBar.hidden = false;
     setHidden(btnSleep, false);
@@ -416,6 +438,7 @@
     const pct = audio.duration ? audio.currentTime / audio.duration : 0;
     const wasPlaying = !audio.paused;
     currentVoiceIndex = index;
+    voiceSelect.value = index;
     const voice = currentEpisode.voices[index];
     audio.src = voice.file;
     audio.load();
@@ -523,7 +546,7 @@
     statsContent.innerHTML = `
       <div class="stats-grid">
         <div class="stat-card"><div class="stat-value">${listenedStr}</div><div class="stat-label">Content heard</div></div>
-        <div class="stat-card"><div class="stat-value">${savedStr}</div><div class="stat-label">Saved at ${speed}×</div></div>
+        <div class="stat-card"><div class="stat-value">${savedStr}</div><div class="stat-label">Saved at ${fmtSps(speed)}</div></div>
         <div class="stat-card"><div class="stat-value">${stats.completedCount}/${stats.totalCount}</div><div class="stat-label">Completed</div></div>
         <div class="stat-card"><div class="stat-value">${stats.streak}</div><div class="stat-label">Day streak</div></div>
       </div>
@@ -539,6 +562,46 @@
   btnStatsClose.addEventListener("click", () => setHidden(statsOverlay, true));
   statsOverlay.addEventListener("click", (e) => {
     if (e.target === statsOverlay) setHidden(statsOverlay, true);
+  });
+
+  // --- Settings ---
+  function getVoiceCatalog() {
+    const names = [];
+    if (!manifest) return names;
+    manifest.modules.forEach((mod) => mod.episodes.forEach((ep) =>
+      (ep.voices || []).forEach((v) => { if (!names.includes(v.name)) names.push(v.name); })));
+    return names;
+  }
+
+  function populateDefaultVoiceSelect() {
+    const names = getVoiceCatalog();
+    const current = localStorage.getItem(DEFAULT_VOICE_KEY) || names[0] || "";
+    defaultVoiceSelect.innerHTML = "";
+    names.forEach((name) => {
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.textContent = cleanVoiceName(name);
+      if (name === current) opt.selected = true;
+      defaultVoiceSelect.appendChild(opt);
+    });
+  }
+
+  btnSettings.addEventListener("click", () => {
+    if (!manifest) return;
+    populateDefaultVoiceSelect();
+    setHidden(settingsOverlay, false);
+  });
+  btnSettingsClose.addEventListener("click", () => setHidden(settingsOverlay, true));
+  settingsOverlay.addEventListener("click", (e) => {
+    if (e.target === settingsOverlay) setHidden(settingsOverlay, true);
+  });
+  defaultVoiceSelect.addEventListener("change", () => {
+    const name = defaultVoiceSelect.value;
+    localStorage.setItem(DEFAULT_VOICE_KEY, name);
+    if (currentEpisode) {
+      const idx = currentEpisode.voices.findIndex((v) => v.name === name);
+      if (idx >= 0) switchVoice(idx);
+    }
   });
 
   // --- Library ---

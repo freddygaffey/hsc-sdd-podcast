@@ -15,33 +15,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/case_colonial_pipeline/af_heart.m4a",
-              "duration": 562.9
+              "file": "https://audio.sdd.pebnum.com/case_colonial_pipeline/af_heart.m4a",
+              "duration": 1715.2
             },
             {
               "name": "am_onyx",
-              "file": "content/case_colonial_pipeline/am_onyx.m4a",
-              "duration": 493.2
+              "file": "https://audio.sdd.pebnum.com/case_colonial_pipeline/am_onyx.m4a",
+              "duration": 1492.7
             },
             {
               "name": "am_santa",
-              "file": "content/case_colonial_pipeline/am_santa.m4a",
-              "duration": 540.2
+              "file": "https://audio.sdd.pebnum.com/case_colonial_pipeline/am_santa.m4a",
+              "duration": 1630.2
             },
             {
               "name": "bf_isabella",
-              "file": "content/case_colonial_pipeline/bf_isabella.m4a",
-              "duration": 534.8
+              "file": "https://audio.sdd.pebnum.com/case_colonial_pipeline/bf_isabella.m4a",
+              "duration": 1633.0
             },
             {
               "name": "bm_daniel",
-              "file": "content/case_colonial_pipeline/bm_daniel.m4a",
-              "duration": 481.4
+              "file": "https://audio.sdd.pebnum.com/case_colonial_pipeline/bm_daniel.m4a",
+              "duration": 1456.8
             },
             {
               "name": "bm_george",
-              "file": "content/case_colonial_pipeline/bm_george.m4a",
-              "duration": 572.1
+              "file": "https://audio.sdd.pebnum.com/case_colonial_pipeline/bm_george.m4a",
+              "duration": 1729.0
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/case_colonial_pipeline/zz_eloquence.m4a",
+              "duration": 1620.1
             }
           ]
         },
@@ -55,33 +60,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/case_heartbleed/af_heart.m4a",
-              "duration": 531.5
+              "file": "https://audio.sdd.pebnum.com/case_heartbleed/af_heart.m4a",
+              "duration": 1709.4
             },
             {
               "name": "am_onyx",
-              "file": "content/case_heartbleed/am_onyx.m4a",
-              "duration": 465.4
+              "file": "https://audio.sdd.pebnum.com/case_heartbleed/am_onyx.m4a",
+              "duration": 1487.2
             },
             {
               "name": "am_santa",
-              "file": "content/case_heartbleed/am_santa.m4a",
-              "duration": 507.5
+              "file": "https://audio.sdd.pebnum.com/case_heartbleed/am_santa.m4a",
+              "duration": 1627.4
             },
             {
               "name": "bf_isabella",
-              "file": "content/case_heartbleed/bf_isabella.m4a",
-              "duration": 506.9
+              "file": "https://audio.sdd.pebnum.com/case_heartbleed/bf_isabella.m4a",
+              "duration": 1630.5
             },
             {
               "name": "bm_daniel",
-              "file": "content/case_heartbleed/bm_daniel.m4a",
-              "duration": 455.9
+              "file": "https://audio.sdd.pebnum.com/case_heartbleed/bm_daniel.m4a",
+              "duration": 1457.6
             },
             {
               "name": "bm_george",
-              "file": "content/case_heartbleed/bm_george.m4a",
-              "duration": 543.0
+              "file": "https://audio.sdd.pebnum.com/case_heartbleed/bm_george.m4a",
+              "duration": 1734.8
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/case_heartbleed/zz_eloquence.m4a",
+              "duration": 1621.6
             }
           ]
         },
@@ -95,33 +105,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/case_log4shell/af_heart.m4a",
-              "duration": 795.6
+              "file": "https://audio.sdd.pebnum.com/case_log4shell/af_heart.m4a",
+              "duration": 1745.8
             },
             {
               "name": "am_onyx",
-              "file": "content/case_log4shell/am_onyx.m4a",
-              "duration": 690.9
+              "file": "https://audio.sdd.pebnum.com/case_log4shell/am_onyx.m4a",
+              "duration": 1522.0
             },
             {
               "name": "am_santa",
-              "file": "content/case_log4shell/am_santa.m4a",
-              "duration": 763.4
+              "file": "https://audio.sdd.pebnum.com/case_log4shell/am_santa.m4a",
+              "duration": 1665.3
             },
             {
               "name": "bf_isabella",
-              "file": "content/case_log4shell/bf_isabella.m4a",
-              "duration": 755.6
+              "file": "https://audio.sdd.pebnum.com/case_log4shell/bf_isabella.m4a",
+              "duration": 1663.5
             },
             {
               "name": "bm_daniel",
-              "file": "content/case_log4shell/bm_daniel.m4a",
-              "duration": 681.2
+              "file": "https://audio.sdd.pebnum.com/case_log4shell/bm_daniel.m4a",
+              "duration": 1488.8
             },
             {
               "name": "bm_george",
-              "file": "content/case_log4shell/bm_george.m4a",
-              "duration": 814.5
+              "file": "https://audio.sdd.pebnum.com/case_log4shell/bm_george.m4a",
+              "duration": 1767.3
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/case_log4shell/zz_eloquence.m4a",
+              "duration": 1636.2
             }
           ]
         },
@@ -135,33 +150,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/case_stuxnet/af_heart.m4a",
-              "duration": 813.3
+              "file": "https://audio.sdd.pebnum.com/case_stuxnet/af_heart.m4a",
+              "duration": 1535.8
             },
             {
               "name": "am_onyx",
-              "file": "content/case_stuxnet/am_onyx.m4a",
-              "duration": 712.4
+              "file": "https://audio.sdd.pebnum.com/case_stuxnet/am_onyx.m4a",
+              "duration": 1328.2
             },
             {
               "name": "am_santa",
-              "file": "content/case_stuxnet/am_santa.m4a",
-              "duration": 780.4
+              "file": "https://audio.sdd.pebnum.com/case_stuxnet/am_santa.m4a",
+              "duration": 1458.1
             },
             {
               "name": "bf_isabella",
-              "file": "content/case_stuxnet/bf_isabella.m4a",
-              "duration": 774.4
+              "file": "https://audio.sdd.pebnum.com/case_stuxnet/bf_isabella.m4a",
+              "duration": 1458.3
             },
             {
               "name": "bm_daniel",
-              "file": "content/case_stuxnet/bm_daniel.m4a",
-              "duration": 693.1
+              "file": "https://audio.sdd.pebnum.com/case_stuxnet/bm_daniel.m4a",
+              "duration": 1296.2
             },
             {
               "name": "bm_george",
-              "file": "content/case_stuxnet/bm_george.m4a",
-              "duration": 829.3
+              "file": "https://audio.sdd.pebnum.com/case_stuxnet/bm_george.m4a",
+              "duration": 1545.3
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/case_stuxnet/zz_eloquence.m4a",
+              "duration": 1462.5
             }
           ]
         },
@@ -175,33 +195,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/case_the_dyn_dns_ddos_2016/af_heart.m4a",
-              "duration": 531.8
+              "file": "https://audio.sdd.pebnum.com/case_the_dyn_dns_ddos_2016/af_heart.m4a",
+              "duration": 1749.2
             },
             {
               "name": "am_onyx",
-              "file": "content/case_the_dyn_dns_ddos_2016/am_onyx.m4a",
-              "duration": 460.4
+              "file": "https://audio.sdd.pebnum.com/case_the_dyn_dns_ddos_2016/am_onyx.m4a",
+              "duration": 1528.4
             },
             {
               "name": "am_santa",
-              "file": "content/case_the_dyn_dns_ddos_2016/am_santa.m4a",
-              "duration": 507.4
+              "file": "https://audio.sdd.pebnum.com/case_the_dyn_dns_ddos_2016/am_santa.m4a",
+              "duration": 1663.4
             },
             {
               "name": "bf_isabella",
-              "file": "content/case_the_dyn_dns_ddos_2016/bf_isabella.m4a",
-              "duration": 507.6
+              "file": "https://audio.sdd.pebnum.com/case_the_dyn_dns_ddos_2016/bf_isabella.m4a",
+              "duration": 1681.4
             },
             {
               "name": "bm_daniel",
-              "file": "content/case_the_dyn_dns_ddos_2016/bm_daniel.m4a",
-              "duration": 455.0
+              "file": "https://audio.sdd.pebnum.com/case_the_dyn_dns_ddos_2016/bm_daniel.m4a",
+              "duration": 1496.8
             },
             {
               "name": "bm_george",
-              "file": "content/case_the_dyn_dns_ddos_2016/bm_george.m4a",
-              "duration": 542.0
+              "file": "https://audio.sdd.pebnum.com/case_the_dyn_dns_ddos_2016/bm_george.m4a",
+              "duration": 1777.7
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/case_the_dyn_dns_ddos_2016/zz_eloquence.m4a",
+              "duration": 1680.3
             }
           ]
         },
@@ -215,33 +240,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/case_the_equifax_breach/af_heart.m4a",
-              "duration": 684.2
+              "file": "https://audio.sdd.pebnum.com/case_the_equifax_breach/af_heart.m4a",
+              "duration": 1630.0
             },
             {
               "name": "am_onyx",
-              "file": "content/case_the_equifax_breach/am_onyx.m4a",
-              "duration": 602.0
+              "file": "https://audio.sdd.pebnum.com/case_the_equifax_breach/am_onyx.m4a",
+              "duration": 1421.5
             },
             {
               "name": "am_santa",
-              "file": "content/case_the_equifax_breach/am_santa.m4a",
-              "duration": 655.9
+              "file": "https://audio.sdd.pebnum.com/case_the_equifax_breach/am_santa.m4a",
+              "duration": 1554.8
             },
             {
               "name": "bf_isabella",
-              "file": "content/case_the_equifax_breach/bf_isabella.m4a",
-              "duration": 658.5
+              "file": "https://audio.sdd.pebnum.com/case_the_equifax_breach/bf_isabella.m4a",
+              "duration": 1556.0
             },
             {
               "name": "bm_daniel",
-              "file": "content/case_the_equifax_breach/bm_daniel.m4a",
-              "duration": 590.2
+              "file": "https://audio.sdd.pebnum.com/case_the_equifax_breach/bm_daniel.m4a",
+              "duration": 1389.6
             },
             {
               "name": "bm_george",
-              "file": "content/case_the_equifax_breach/bm_george.m4a",
-              "duration": 699.0
+              "file": "https://audio.sdd.pebnum.com/case_the_equifax_breach/bm_george.m4a",
+              "duration": 1653.6
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/case_the_equifax_breach/zz_eloquence.m4a",
+              "duration": 1547.4
             }
           ]
         },
@@ -255,33 +285,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/case_the_linkedin_password_leak/af_heart.m4a",
-              "duration": 586.5
+              "file": "https://audio.sdd.pebnum.com/case_the_linkedin_password_leak/af_heart.m4a",
+              "duration": 1694.5
             },
             {
               "name": "am_onyx",
-              "file": "content/case_the_linkedin_password_leak/am_onyx.m4a",
-              "duration": 511.6
+              "file": "https://audio.sdd.pebnum.com/case_the_linkedin_password_leak/am_onyx.m4a",
+              "duration": 1475.2
             },
             {
               "name": "am_santa",
-              "file": "content/case_the_linkedin_password_leak/am_santa.m4a",
-              "duration": 559.0
+              "file": "https://audio.sdd.pebnum.com/case_the_linkedin_password_leak/am_santa.m4a",
+              "duration": 1610.6
             },
             {
               "name": "bf_isabella",
-              "file": "content/case_the_linkedin_password_leak/bf_isabella.m4a",
-              "duration": 562.6
+              "file": "https://audio.sdd.pebnum.com/case_the_linkedin_password_leak/bf_isabella.m4a",
+              "duration": 1629.5
             },
             {
               "name": "bm_daniel",
-              "file": "content/case_the_linkedin_password_leak/bm_daniel.m4a",
-              "duration": 503.1
+              "file": "https://audio.sdd.pebnum.com/case_the_linkedin_password_leak/bm_daniel.m4a",
+              "duration": 1449.1
             },
             {
               "name": "bm_george",
-              "file": "content/case_the_linkedin_password_leak/bm_george.m4a",
-              "duration": 595.6
+              "file": "https://audio.sdd.pebnum.com/case_the_linkedin_password_leak/bm_george.m4a",
+              "duration": 1721.2
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/case_the_linkedin_password_leak/zz_eloquence.m4a",
+              "duration": 1630.8
             }
           ]
         },
@@ -295,33 +330,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/case_the_medibank_breach/af_heart.m4a",
-              "duration": 695.0
+              "file": "https://audio.sdd.pebnum.com/case_the_medibank_breach/af_heart.m4a",
+              "duration": 1618.5
             },
             {
               "name": "am_onyx",
-              "file": "content/case_the_medibank_breach/am_onyx.m4a",
-              "duration": 601.6
+              "file": "https://audio.sdd.pebnum.com/case_the_medibank_breach/am_onyx.m4a",
+              "duration": 1407.2
             },
             {
               "name": "am_santa",
-              "file": "content/case_the_medibank_breach/am_santa.m4a",
-              "duration": 659.1
+              "file": "https://audio.sdd.pebnum.com/case_the_medibank_breach/am_santa.m4a",
+              "duration": 1536.2
             },
             {
               "name": "bf_isabella",
-              "file": "content/case_the_medibank_breach/bf_isabella.m4a",
-              "duration": 660.9
+              "file": "https://audio.sdd.pebnum.com/case_the_medibank_breach/bf_isabella.m4a",
+              "duration": 1546.5
             },
             {
               "name": "bm_daniel",
-              "file": "content/case_the_medibank_breach/bm_daniel.m4a",
-              "duration": 591.0
+              "file": "https://audio.sdd.pebnum.com/case_the_medibank_breach/bm_daniel.m4a",
+              "duration": 1379.5
             },
             {
               "name": "bm_george",
-              "file": "content/case_the_medibank_breach/bm_george.m4a",
-              "duration": 700.7
+              "file": "https://audio.sdd.pebnum.com/case_the_medibank_breach/bm_george.m4a",
+              "duration": 1635.4
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/case_the_medibank_breach/zz_eloquence.m4a",
+              "duration": 1529.7
             }
           ]
         },
@@ -335,33 +375,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/case_the_morris_worm/af_heart.m4a",
-              "duration": 843.4
+              "file": "https://audio.sdd.pebnum.com/case_the_morris_worm/af_heart.m4a",
+              "duration": 1601.2
             },
             {
               "name": "am_onyx",
-              "file": "content/case_the_morris_worm/am_onyx.m4a",
-              "duration": 732.3
+              "file": "https://audio.sdd.pebnum.com/case_the_morris_worm/am_onyx.m4a",
+              "duration": 1391.3
             },
             {
               "name": "am_santa",
-              "file": "content/case_the_morris_worm/am_santa.m4a",
-              "duration": 806.9
+              "file": "https://audio.sdd.pebnum.com/case_the_morris_worm/am_santa.m4a",
+              "duration": 1528.4
             },
             {
               "name": "bf_isabella",
-              "file": "content/case_the_morris_worm/bf_isabella.m4a",
-              "duration": 803.3
+              "file": "https://audio.sdd.pebnum.com/case_the_morris_worm/bf_isabella.m4a",
+              "duration": 1522.7
             },
             {
               "name": "bm_daniel",
-              "file": "content/case_the_morris_worm/bm_daniel.m4a",
-              "duration": 719.1
+              "file": "https://audio.sdd.pebnum.com/case_the_morris_worm/bm_daniel.m4a",
+              "duration": 1361.2
             },
             {
               "name": "bm_george",
-              "file": "content/case_the_morris_worm/bm_george.m4a",
-              "duration": 857.6
+              "file": "https://audio.sdd.pebnum.com/case_the_morris_worm/bm_george.m4a",
+              "duration": 1620.8
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/case_the_morris_worm/zz_eloquence.m4a",
+              "duration": 1514.0
             }
           ]
         },
@@ -375,33 +420,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/case_the_optus_breach/af_heart.m4a",
-              "duration": 735.7
+              "file": "https://audio.sdd.pebnum.com/case_the_optus_breach/af_heart.m4a",
+              "duration": 1630.6
             },
             {
               "name": "am_onyx",
-              "file": "content/case_the_optus_breach/am_onyx.m4a",
-              "duration": 637.8
+              "file": "https://audio.sdd.pebnum.com/case_the_optus_breach/am_onyx.m4a",
+              "duration": 1414.8
             },
             {
               "name": "am_santa",
-              "file": "content/case_the_optus_breach/am_santa.m4a",
-              "duration": 699.5
+              "file": "https://audio.sdd.pebnum.com/case_the_optus_breach/am_santa.m4a",
+              "duration": 1550.9
             },
             {
               "name": "bf_isabella",
-              "file": "content/case_the_optus_breach/bf_isabella.m4a",
-              "duration": 703.9
+              "file": "https://audio.sdd.pebnum.com/case_the_optus_breach/bf_isabella.m4a",
+              "duration": 1556.3
             },
             {
               "name": "bm_daniel",
-              "file": "content/case_the_optus_breach/bm_daniel.m4a",
-              "duration": 631.2
+              "file": "https://audio.sdd.pebnum.com/case_the_optus_breach/bm_daniel.m4a",
+              "duration": 1389.1
             },
             {
               "name": "bm_george",
-              "file": "content/case_the_optus_breach/bm_george.m4a",
-              "duration": 748.6
+              "file": "https://audio.sdd.pebnum.com/case_the_optus_breach/bm_george.m4a",
+              "duration": 1652.6
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/case_the_optus_breach/zz_eloquence.m4a",
+              "duration": 1547.0
             }
           ]
         },
@@ -415,33 +465,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/case_the_target_breach/af_heart.m4a",
-              "duration": 568.8
+              "file": "https://audio.sdd.pebnum.com/case_the_target_breach/af_heart.m4a",
+              "duration": 1748.8
             },
             {
               "name": "am_onyx",
-              "file": "content/case_the_target_breach/am_onyx.m4a",
-              "duration": 499.3
+              "file": "https://audio.sdd.pebnum.com/case_the_target_breach/am_onyx.m4a",
+              "duration": 1535.7
             },
             {
               "name": "am_santa",
-              "file": "content/case_the_target_breach/am_santa.m4a",
-              "duration": 543.9
+              "file": "https://audio.sdd.pebnum.com/case_the_target_breach/am_santa.m4a",
+              "duration": 1673.2
             },
             {
               "name": "bf_isabella",
-              "file": "content/case_the_target_breach/bf_isabella.m4a",
-              "duration": 541.8
+              "file": "https://audio.sdd.pebnum.com/case_the_target_breach/bf_isabella.m4a",
+              "duration": 1668.3
             },
             {
               "name": "bm_daniel",
-              "file": "content/case_the_target_breach/bm_daniel.m4a",
-              "duration": 491.4
+              "file": "https://audio.sdd.pebnum.com/case_the_target_breach/bm_daniel.m4a",
+              "duration": 1508.0
             },
             {
               "name": "bm_george",
-              "file": "content/case_the_target_breach/bm_george.m4a",
-              "duration": 582.1
+              "file": "https://audio.sdd.pebnum.com/case_the_target_breach/bm_george.m4a",
+              "duration": 1782.4
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/case_the_target_breach/zz_eloquence.m4a",
+              "duration": 1650.6
             }
           ]
         },
@@ -455,33 +510,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/case_the_xz_backdoor/af_heart.m4a",
-              "duration": 643.0
+              "file": "https://audio.sdd.pebnum.com/case_the_xz_backdoor/af_heart.m4a",
+              "duration": 1704.7
             },
             {
               "name": "am_onyx",
-              "file": "content/case_the_xz_backdoor/am_onyx.m4a",
-              "duration": 563.3
+              "file": "https://audio.sdd.pebnum.com/case_the_xz_backdoor/am_onyx.m4a",
+              "duration": 1498.4
             },
             {
               "name": "am_santa",
-              "file": "content/case_the_xz_backdoor/am_santa.m4a",
-              "duration": 617.3
+              "file": "https://audio.sdd.pebnum.com/case_the_xz_backdoor/am_santa.m4a",
+              "duration": 1638.3
             },
             {
               "name": "bf_isabella",
-              "file": "content/case_the_xz_backdoor/bf_isabella.m4a",
-              "duration": 611.7
+              "file": "https://audio.sdd.pebnum.com/case_the_xz_backdoor/bf_isabella.m4a",
+              "duration": 1622.3
             },
             {
               "name": "bm_daniel",
-              "file": "content/case_the_xz_backdoor/bm_daniel.m4a",
-              "duration": 551.0
+              "file": "https://audio.sdd.pebnum.com/case_the_xz_backdoor/bm_daniel.m4a",
+              "duration": 1467.8
             },
             {
               "name": "bm_george",
-              "file": "content/case_the_xz_backdoor/bm_george.m4a",
-              "duration": 653.2
+              "file": "https://audio.sdd.pebnum.com/case_the_xz_backdoor/bm_george.m4a",
+              "duration": 1735.7
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/case_the_xz_backdoor/zz_eloquence.m4a",
+              "duration": 1605.3
             }
           ]
         },
@@ -495,33 +555,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/case_the_npm_supply_chain_attacks/af_heart.m4a",
-              "duration": 1138.4
+              "file": "https://audio.sdd.pebnum.com/case_the_npm_supply_chain_attacks/af_heart.m4a",
+              "duration": 1708.7
             },
             {
               "name": "am_onyx",
-              "file": "content/case_the_npm_supply_chain_attacks/am_onyx.m4a",
-              "duration": 991.3
+              "file": "https://audio.sdd.pebnum.com/case_the_npm_supply_chain_attacks/am_onyx.m4a",
+              "duration": 1481.8
             },
             {
               "name": "am_santa",
-              "file": "content/case_the_npm_supply_chain_attacks/am_santa.m4a",
-              "duration": 1086.4
+              "file": "https://audio.sdd.pebnum.com/case_the_npm_supply_chain_attacks/am_santa.m4a",
+              "duration": 1621.7
             },
             {
               "name": "bf_isabella",
-              "file": "content/case_the_npm_supply_chain_attacks/bf_isabella.m4a",
-              "duration": 1085.0
+              "file": "https://audio.sdd.pebnum.com/case_the_npm_supply_chain_attacks/bf_isabella.m4a",
+              "duration": 1630.3
             },
             {
               "name": "bm_daniel",
-              "file": "content/case_the_npm_supply_chain_attacks/bm_daniel.m4a",
-              "duration": 966.2
+              "file": "https://audio.sdd.pebnum.com/case_the_npm_supply_chain_attacks/bm_daniel.m4a",
+              "duration": 1450.8
             },
             {
               "name": "bm_george",
-              "file": "content/case_the_npm_supply_chain_attacks/bm_george.m4a",
-              "duration": 1149.1
+              "file": "https://audio.sdd.pebnum.com/case_the_npm_supply_chain_attacks/bm_george.m4a",
+              "duration": 1729.2
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/case_the_npm_supply_chain_attacks/zz_eloquence.m4a",
+              "duration": 1628.8
             }
           ]
         },
@@ -535,33 +600,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/case_wannacry/af_heart.m4a",
-              "duration": 604.5
+              "file": "https://audio.sdd.pebnum.com/case_wannacry/af_heart.m4a",
+              "duration": 1565.9
             },
             {
               "name": "am_onyx",
-              "file": "content/case_wannacry/am_onyx.m4a",
-              "duration": 530.1
+              "file": "https://audio.sdd.pebnum.com/case_wannacry/am_onyx.m4a",
+              "duration": 1368.6
             },
             {
               "name": "am_santa",
-              "file": "content/case_wannacry/am_santa.m4a",
-              "duration": 577.6
+              "file": "https://audio.sdd.pebnum.com/case_wannacry/am_santa.m4a",
+              "duration": 1503.9
             },
             {
               "name": "bf_isabella",
-              "file": "content/case_wannacry/bf_isabella.m4a",
-              "duration": 577.7
+              "file": "https://audio.sdd.pebnum.com/case_wannacry/bf_isabella.m4a",
+              "duration": 1493.0
             },
             {
               "name": "bm_daniel",
-              "file": "content/case_wannacry/bm_daniel.m4a",
-              "duration": 514.8
+              "file": "https://audio.sdd.pebnum.com/case_wannacry/bm_daniel.m4a",
+              "duration": 1340.2
             },
             {
               "name": "bm_george",
-              "file": "content/case_wannacry/bm_george.m4a",
-              "duration": 611.9
+              "file": "https://audio.sdd.pebnum.com/case_wannacry/bm_george.m4a",
+              "duration": 1592.5
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/case_wannacry/zz_eloquence.m4a",
+              "duration": 1481.8
             }
           ]
         }
@@ -582,33 +652,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-01-Applications-Of-Web-Programming/af_heart.m4a",
-              "duration": 1400.9
+              "file": "https://audio.sdd.pebnum.com/PFW-01-Applications-Of-Web-Programming/af_heart.m4a",
+              "duration": 1321.0
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-01-Applications-Of-Web-Programming/am_onyx.m4a",
-              "duration": 1233.2
+              "file": "https://audio.sdd.pebnum.com/PFW-01-Applications-Of-Web-Programming/am_onyx.m4a",
+              "duration": 1161.2
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-01-Applications-Of-Web-Programming/am_santa.m4a",
-              "duration": 1337.4
+              "file": "https://audio.sdd.pebnum.com/PFW-01-Applications-Of-Web-Programming/am_santa.m4a",
+              "duration": 1257.1
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-01-Applications-Of-Web-Programming/bf_isabella.m4a",
-              "duration": 1349.2
+              "file": "https://audio.sdd.pebnum.com/PFW-01-Applications-Of-Web-Programming/bf_isabella.m4a",
+              "duration": 1265.1
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-01-Applications-Of-Web-Programming/bm_daniel.m4a",
-              "duration": 1208.3
+              "file": "https://audio.sdd.pebnum.com/PFW-01-Applications-Of-Web-Programming/bm_daniel.m4a",
+              "duration": 1133.2
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-01-Applications-Of-Web-Programming/bm_george.m4a",
-              "duration": 1421.3
+              "file": "https://audio.sdd.pebnum.com/PFW-01-Applications-Of-Web-Programming/bm_george.m4a",
+              "duration": 1332.6
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-01-Applications-Of-Web-Programming/zz_eloquence.m4a",
+              "duration": 1254.1
             }
           ]
         }
@@ -629,33 +704,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-02-How-Data-Moves-On-The-Internet/af_heart.m4a",
-              "duration": 1140.7
+              "file": "https://audio.sdd.pebnum.com/PFW-02-How-Data-Moves-On-The-Internet/af_heart.m4a",
+              "duration": 1094.0
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-02-How-Data-Moves-On-The-Internet/am_onyx.m4a",
-              "duration": 1004.2
+              "file": "https://audio.sdd.pebnum.com/PFW-02-How-Data-Moves-On-The-Internet/am_onyx.m4a",
+              "duration": 964.0
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-02-How-Data-Moves-On-The-Internet/am_santa.m4a",
-              "duration": 1092.6
+              "file": "https://audio.sdd.pebnum.com/PFW-02-How-Data-Moves-On-The-Internet/am_santa.m4a",
+              "duration": 1043.2
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-02-How-Data-Moves-On-The-Internet/bf_isabella.m4a",
-              "duration": 1091.4
+              "file": "https://audio.sdd.pebnum.com/PFW-02-How-Data-Moves-On-The-Internet/bf_isabella.m4a",
+              "duration": 1048.0
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-02-How-Data-Moves-On-The-Internet/bm_daniel.m4a",
-              "duration": 981.0
+              "file": "https://audio.sdd.pebnum.com/PFW-02-How-Data-Moves-On-The-Internet/bm_daniel.m4a",
+              "duration": 938.4
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-02-How-Data-Moves-On-The-Internet/bm_george.m4a",
-              "duration": 1156.2
+              "file": "https://audio.sdd.pebnum.com/PFW-02-How-Data-Moves-On-The-Internet/bm_george.m4a",
+              "duration": 1103.2
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-02-How-Data-Moves-On-The-Internet/zz_eloquence.m4a",
+              "duration": 1040.1
             }
           ]
         }
@@ -676,33 +756,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/af_heart.m4a",
-              "duration": 1247.9
+              "file": "https://audio.sdd.pebnum.com/PFW-03-Web-Protocols-Ports-And-Secure-Transport/af_heart.m4a",
+              "duration": 1187.0
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/am_onyx.m4a",
-              "duration": 1099.5
+              "file": "https://audio.sdd.pebnum.com/PFW-03-Web-Protocols-Ports-And-Secure-Transport/am_onyx.m4a",
+              "duration": 1044.9
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/am_santa.m4a",
-              "duration": 1189.5
+              "file": "https://audio.sdd.pebnum.com/PFW-03-Web-Protocols-Ports-And-Secure-Transport/am_santa.m4a",
+              "duration": 1131.2
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/bf_isabella.m4a",
-              "duration": 1197.3
+              "file": "https://audio.sdd.pebnum.com/PFW-03-Web-Protocols-Ports-And-Secure-Transport/bf_isabella.m4a",
+              "duration": 1145.2
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/bm_daniel.m4a",
-              "duration": 1077.8
+              "file": "https://audio.sdd.pebnum.com/PFW-03-Web-Protocols-Ports-And-Secure-Transport/bm_daniel.m4a",
+              "duration": 1030.2
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-03-Web-Protocols-Ports-And-Secure-Transport/bm_george.m4a",
-              "duration": 1264.7
+              "file": "https://audio.sdd.pebnum.com/PFW-03-Web-Protocols-Ports-And-Secure-Transport/bm_george.m4a",
+              "duration": 1208.3
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-03-Web-Protocols-Ports-And-Secure-Transport/zz_eloquence.m4a",
+              "duration": 1130.7
             }
           ]
         }
@@ -723,33 +808,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-04-Big-Data-And-Web-Architectures/af_heart.m4a",
-              "duration": 1152.6
+              "file": "https://audio.sdd.pebnum.com/PFW-04-Big-Data-And-Web-Architectures/af_heart.m4a",
+              "duration": 1123.0
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-04-Big-Data-And-Web-Architectures/am_onyx.m4a",
-              "duration": 1019.5
+              "file": "https://audio.sdd.pebnum.com/PFW-04-Big-Data-And-Web-Architectures/am_onyx.m4a",
+              "duration": 991.2
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-04-Big-Data-And-Web-Architectures/am_santa.m4a",
-              "duration": 1100.5
+              "file": "https://audio.sdd.pebnum.com/PFW-04-Big-Data-And-Web-Architectures/am_santa.m4a",
+              "duration": 1070.5
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-04-Big-Data-And-Web-Architectures/bf_isabella.m4a",
-              "duration": 1110.6
+              "file": "https://audio.sdd.pebnum.com/PFW-04-Big-Data-And-Web-Architectures/bf_isabella.m4a",
+              "duration": 1079.5
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-04-Big-Data-And-Web-Architectures/bm_daniel.m4a",
-              "duration": 995.4
+              "file": "https://audio.sdd.pebnum.com/PFW-04-Big-Data-And-Web-Architectures/bm_daniel.m4a",
+              "duration": 967.0
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-04-Big-Data-And-Web-Architectures/bm_george.m4a",
-              "duration": 1168.6
+              "file": "https://audio.sdd.pebnum.com/PFW-04-Big-Data-And-Web-Architectures/bm_george.m4a",
+              "duration": 1135.2
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-04-Big-Data-And-Web-Architectures/zz_eloquence.m4a",
+              "duration": 1057.0
             }
           ]
         }
@@ -770,33 +860,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-05-The-W3C-And-Web-Standards/af_heart.m4a",
-              "duration": 1080.7
+              "file": "https://audio.sdd.pebnum.com/PFW-05-The-W3C-And-Web-Standards/af_heart.m4a",
+              "duration": 1059.6
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-05-The-W3C-And-Web-Standards/am_onyx.m4a",
-              "duration": 949.7
+              "file": "https://audio.sdd.pebnum.com/PFW-05-The-W3C-And-Web-Standards/am_onyx.m4a",
+              "duration": 931.5
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-05-The-W3C-And-Web-Standards/am_santa.m4a",
-              "duration": 1028.9
+              "file": "https://audio.sdd.pebnum.com/PFW-05-The-W3C-And-Web-Standards/am_santa.m4a",
+              "duration": 1011.7
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-05-The-W3C-And-Web-Standards/bf_isabella.m4a",
-              "duration": 1037.7
+              "file": "https://audio.sdd.pebnum.com/PFW-05-The-W3C-And-Web-Standards/bf_isabella.m4a",
+              "duration": 1010.5
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-05-The-W3C-And-Web-Standards/bm_daniel.m4a",
-              "duration": 933.4
+              "file": "https://audio.sdd.pebnum.com/PFW-05-The-W3C-And-Web-Standards/bm_daniel.m4a",
+              "duration": 908.2
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-05-The-W3C-And-Web-Standards/bm_george.m4a",
-              "duration": 1097.9
+              "file": "https://audio.sdd.pebnum.com/PFW-05-The-W3C-And-Web-Standards/bm_george.m4a",
+              "duration": 1070.3
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-05-The-W3C-And-Web-Standards/zz_eloquence.m4a",
+              "duration": 983.1
             }
           ]
         }
@@ -817,33 +912,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-06-Modelling-A-Web-Development-System/af_heart.m4a",
-              "duration": 988.2
+              "file": "https://audio.sdd.pebnum.com/PFW-06-Modelling-A-Web-Development-System/af_heart.m4a",
+              "duration": 932.2
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-06-Modelling-A-Web-Development-System/am_onyx.m4a",
-              "duration": 874.7
+              "file": "https://audio.sdd.pebnum.com/PFW-06-Modelling-A-Web-Development-System/am_onyx.m4a",
+              "duration": 822.5
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-06-Modelling-A-Web-Development-System/am_santa.m4a",
-              "duration": 944.3
+              "file": "https://audio.sdd.pebnum.com/PFW-06-Modelling-A-Web-Development-System/am_santa.m4a",
+              "duration": 889.2
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-06-Modelling-A-Web-Development-System/bf_isabella.m4a",
-              "duration": 950.8
+              "file": "https://audio.sdd.pebnum.com/PFW-06-Modelling-A-Web-Development-System/bf_isabella.m4a",
+              "duration": 895.8
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-06-Modelling-A-Web-Development-System/bm_daniel.m4a",
-              "duration": 849.6
+              "file": "https://audio.sdd.pebnum.com/PFW-06-Modelling-A-Web-Development-System/bm_daniel.m4a",
+              "duration": 799.9
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-06-Modelling-A-Web-Development-System/bm_george.m4a",
-              "duration": 999.5
+              "file": "https://audio.sdd.pebnum.com/PFW-06-Modelling-A-Web-Development-System/bm_george.m4a",
+              "duration": 940.0
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-06-Modelling-A-Web-Development-System/zz_eloquence.m4a",
+              "duration": 900.3
             }
           ]
         }
@@ -864,33 +964,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-07-The-Browser-And-Developer-Tools/af_heart.m4a",
-              "duration": 954.9
-            },
-            {
-              "name": "am_onyx",
-              "file": "content/PFW-07-The-Browser-And-Developer-Tools/am_onyx.m4a",
-              "duration": 842.2
-            },
-            {
-              "name": "am_santa",
-              "file": "content/PFW-07-The-Browser-And-Developer-Tools/am_santa.m4a",
+              "file": "https://audio.sdd.pebnum.com/PFW-07-The-Browser-And-Developer-Tools/af_heart.m4a",
               "duration": 914.8
             },
             {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/PFW-07-The-Browser-And-Developer-Tools/am_onyx.m4a",
+              "duration": 806.5
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/PFW-07-The-Browser-And-Developer-Tools/am_santa.m4a",
+              "duration": 874.9
+            },
+            {
               "name": "bf_isabella",
-              "file": "content/PFW-07-The-Browser-And-Developer-Tools/bf_isabella.m4a",
-              "duration": 914.3
+              "file": "https://audio.sdd.pebnum.com/PFW-07-The-Browser-And-Developer-Tools/bf_isabella.m4a",
+              "duration": 874.5
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-07-The-Browser-And-Developer-Tools/bm_daniel.m4a",
-              "duration": 818.7
+              "file": "https://audio.sdd.pebnum.com/PFW-07-The-Browser-And-Developer-Tools/bm_daniel.m4a",
+              "duration": 783.8
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-07-The-Browser-And-Developer-Tools/bm_george.m4a",
-              "duration": 962.4
+              "file": "https://audio.sdd.pebnum.com/PFW-07-The-Browser-And-Developer-Tools/bm_george.m4a",
+              "duration": 920.6
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-07-The-Browser-And-Developer-Tools/zz_eloquence.m4a",
+              "duration": 869.7
             }
           ]
         }
@@ -911,33 +1016,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-08-CSS-UI-And-UX-Principles/af_heart.m4a",
-              "duration": 1011.2
+              "file": "https://audio.sdd.pebnum.com/PFW-08-CSS-UI-And-UX-Principles/af_heart.m4a",
+              "duration": 960.6
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-08-CSS-UI-And-UX-Principles/am_onyx.m4a",
-              "duration": 892.4
+              "file": "https://audio.sdd.pebnum.com/PFW-08-CSS-UI-And-UX-Principles/am_onyx.m4a",
+              "duration": 847.8
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-08-CSS-UI-And-UX-Principles/am_santa.m4a",
-              "duration": 963.7
+              "file": "https://audio.sdd.pebnum.com/PFW-08-CSS-UI-And-UX-Principles/am_santa.m4a",
+              "duration": 914.6
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-08-CSS-UI-And-UX-Principles/bf_isabella.m4a",
-              "duration": 971.1
+              "file": "https://audio.sdd.pebnum.com/PFW-08-CSS-UI-And-UX-Principles/bf_isabella.m4a",
+              "duration": 926.8
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-08-CSS-UI-And-UX-Principles/bm_daniel.m4a",
-              "duration": 868.0
+              "file": "https://audio.sdd.pebnum.com/PFW-08-CSS-UI-And-UX-Principles/bm_daniel.m4a",
+              "duration": 828.2
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-08-CSS-UI-And-UX-Principles/bm_george.m4a",
-              "duration": 1021.2
+              "file": "https://audio.sdd.pebnum.com/PFW-08-CSS-UI-And-UX-Principles/bm_george.m4a",
+              "duration": 974.1
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-08-CSS-UI-And-UX-Principles/zz_eloquence.m4a",
+              "duration": 921.2
             }
           ]
         }
@@ -958,33 +1068,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/af_heart.m4a",
-              "duration": 893.0
+              "file": "https://audio.sdd.pebnum.com/PFW-12-05-Front-End-Libraries-And-Frameworks/af_heart.m4a",
+              "duration": 871.0
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/am_onyx.m4a",
-              "duration": 783.8
+              "file": "https://audio.sdd.pebnum.com/PFW-12-05-Front-End-Libraries-And-Frameworks/am_onyx.m4a",
+              "duration": 764.5
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/am_santa.m4a",
-              "duration": 851.7
+              "file": "https://audio.sdd.pebnum.com/PFW-12-05-Front-End-Libraries-And-Frameworks/am_santa.m4a",
+              "duration": 831.5
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/bf_isabella.m4a",
-              "duration": 859.4
+              "file": "https://audio.sdd.pebnum.com/PFW-12-05-Front-End-Libraries-And-Frameworks/bf_isabella.m4a",
+              "duration": 838.2
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/bm_daniel.m4a",
-              "duration": 762.8
+              "file": "https://audio.sdd.pebnum.com/PFW-12-05-Front-End-Libraries-And-Frameworks/bm_daniel.m4a",
+              "duration": 747.2
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-12-05-Front-End-Libraries-And-Frameworks/bm_george.m4a",
-              "duration": 903.6
+              "file": "https://audio.sdd.pebnum.com/PFW-12-05-Front-End-Libraries-And-Frameworks/bm_george.m4a",
+              "duration": 884.7
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-12-05-Front-End-Libraries-And-Frameworks/zz_eloquence.m4a",
+              "duration": 841.9
             }
           ]
         },
@@ -998,33 +1113,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/af_heart.m4a",
-              "duration": 1031.5
+              "file": "https://audio.sdd.pebnum.com/PFW-12-06-Open-Source-And-Content-Management-Systems/af_heart.m4a",
+              "duration": 998.8
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/am_onyx.m4a",
-              "duration": 904.5
+              "file": "https://audio.sdd.pebnum.com/PFW-12-06-Open-Source-And-Content-Management-Systems/am_onyx.m4a",
+              "duration": 874.4
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/am_santa.m4a",
-              "duration": 977.6
+              "file": "https://audio.sdd.pebnum.com/PFW-12-06-Open-Source-And-Content-Management-Systems/am_santa.m4a",
+              "duration": 948.4
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/bf_isabella.m4a",
-              "duration": 990.4
+              "file": "https://audio.sdd.pebnum.com/PFW-12-06-Open-Source-And-Content-Management-Systems/bf_isabella.m4a",
+              "duration": 956.5
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/bm_daniel.m4a",
-              "duration": 880.7
+              "file": "https://audio.sdd.pebnum.com/PFW-12-06-Open-Source-And-Content-Management-Systems/bm_daniel.m4a",
+              "duration": 852.1
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-12-06-Open-Source-And-Content-Management-Systems/bm_george.m4a",
-              "duration": 1037.6
+              "file": "https://audio.sdd.pebnum.com/PFW-12-06-Open-Source-And-Content-Management-Systems/bm_george.m4a",
+              "duration": 1006.3
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-12-06-Open-Source-And-Content-Management-Systems/zz_eloquence.m4a",
+              "duration": 941.1
             }
           ]
         },
@@ -1038,33 +1158,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/af_heart.m4a",
-              "duration": 1080.1
+              "file": "https://audio.sdd.pebnum.com/PFW-12-99-Module-Review-Web-Foundations-And-Design/af_heart.m4a",
+              "duration": 1053.1
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/am_onyx.m4a",
-              "duration": 966.0
+              "file": "https://audio.sdd.pebnum.com/PFW-12-99-Module-Review-Web-Foundations-And-Design/am_onyx.m4a",
+              "duration": 943.6
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/am_santa.m4a",
-              "duration": 1039.0
+              "file": "https://audio.sdd.pebnum.com/PFW-12-99-Module-Review-Web-Foundations-And-Design/am_santa.m4a",
+              "duration": 1013.5
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/bf_isabella.m4a",
-              "duration": 1034.3
+              "file": "https://audio.sdd.pebnum.com/PFW-12-99-Module-Review-Web-Foundations-And-Design/bf_isabella.m4a",
+              "duration": 1011.9
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/bm_daniel.m4a",
-              "duration": 941.0
+              "file": "https://audio.sdd.pebnum.com/PFW-12-99-Module-Review-Web-Foundations-And-Design/bm_daniel.m4a",
+              "duration": 919.6
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-12-99-Module-Review-Web-Foundations-And-Design/bm_george.m4a",
-              "duration": 1096.7
+              "file": "https://audio.sdd.pebnum.com/PFW-12-99-Module-Review-Web-Foundations-And-Design/bm_george.m4a",
+              "duration": 1068.6
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-12-99-Module-Review-Web-Foundations-And-Design/zz_eloquence.m4a",
+              "duration": 996.6
             }
           ]
         }
@@ -1085,33 +1210,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/af_heart.m4a",
-              "duration": 936.2
+              "file": "https://audio.sdd.pebnum.com/PFW-13-01-Server-Side-Python-And-The-Request-Flow/af_heart.m4a",
+              "duration": 914.0
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/am_onyx.m4a",
-              "duration": 827.9
+              "file": "https://audio.sdd.pebnum.com/PFW-13-01-Server-Side-Python-And-The-Request-Flow/am_onyx.m4a",
+              "duration": 808.8
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/am_santa.m4a",
-              "duration": 890.0
+              "file": "https://audio.sdd.pebnum.com/PFW-13-01-Server-Side-Python-And-The-Request-Flow/am_santa.m4a",
+              "duration": 868.7
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/bf_isabella.m4a",
-              "duration": 899.9
+              "file": "https://audio.sdd.pebnum.com/PFW-13-01-Server-Side-Python-And-The-Request-Flow/bf_isabella.m4a",
+              "duration": 878.4
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/bm_daniel.m4a",
-              "duration": 802.5
+              "file": "https://audio.sdd.pebnum.com/PFW-13-01-Server-Side-Python-And-The-Request-Flow/bm_daniel.m4a",
+              "duration": 785.8
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-13-01-Server-Side-Python-And-The-Request-Flow/bm_george.m4a",
-              "duration": 939.4
+              "file": "https://audio.sdd.pebnum.com/PFW-13-01-Server-Side-Python-And-The-Request-Flow/bm_george.m4a",
+              "duration": 918.8
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-13-01-Server-Side-Python-And-The-Request-Flow/zz_eloquence.m4a",
+              "duration": 885.4
             }
           ]
         },
@@ -1125,33 +1255,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-13-02-Databases-SQL-And-ORM/af_heart.m4a",
-              "duration": 1032.2
+              "file": "https://audio.sdd.pebnum.com/PFW-13-02-Databases-SQL-And-ORM/af_heart.m4a",
+              "duration": 990.9
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-13-02-Databases-SQL-And-ORM/am_onyx.m4a",
-              "duration": 911.0
+              "file": "https://audio.sdd.pebnum.com/PFW-13-02-Databases-SQL-And-ORM/am_onyx.m4a",
+              "duration": 877.7
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-13-02-Databases-SQL-And-ORM/am_santa.m4a",
-              "duration": 983.2
+              "file": "https://audio.sdd.pebnum.com/PFW-13-02-Databases-SQL-And-ORM/am_santa.m4a",
+              "duration": 943.6
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-13-02-Databases-SQL-And-ORM/bf_isabella.m4a",
-              "duration": 986.2
+              "file": "https://audio.sdd.pebnum.com/PFW-13-02-Databases-SQL-And-ORM/bf_isabella.m4a",
+              "duration": 951.9
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-13-02-Databases-SQL-And-ORM/bm_daniel.m4a",
-              "duration": 884.2
+              "file": "https://audio.sdd.pebnum.com/PFW-13-02-Databases-SQL-And-ORM/bm_daniel.m4a",
+              "duration": 852.5
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-13-02-Databases-SQL-And-ORM/bm_george.m4a",
-              "duration": 1038.0
+              "file": "https://audio.sdd.pebnum.com/PFW-13-02-Databases-SQL-And-ORM/bm_george.m4a",
+              "duration": 999.2
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-13-02-Databases-SQL-And-ORM/zz_eloquence.m4a",
+              "duration": 941.4
             }
           ]
         },
@@ -1165,33 +1300,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-13-03-Performance-And-Page-Load-Management/af_heart.m4a",
-              "duration": 919.4
+              "file": "https://audio.sdd.pebnum.com/PFW-13-03-Performance-And-Page-Load-Management/af_heart.m4a",
+              "duration": 894.2
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-13-03-Performance-And-Page-Load-Management/am_onyx.m4a",
-              "duration": 811.2
+              "file": "https://audio.sdd.pebnum.com/PFW-13-03-Performance-And-Page-Load-Management/am_onyx.m4a",
+              "duration": 789.0
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-13-03-Performance-And-Page-Load-Management/am_santa.m4a",
-              "duration": 877.1
+              "file": "https://audio.sdd.pebnum.com/PFW-13-03-Performance-And-Page-Load-Management/am_santa.m4a",
+              "duration": 852.0
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-13-03-Performance-And-Page-Load-Management/bf_isabella.m4a",
-              "duration": 877.2
+              "file": "https://audio.sdd.pebnum.com/PFW-13-03-Performance-And-Page-Load-Management/bf_isabella.m4a",
+              "duration": 854.5
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-13-03-Performance-And-Page-Load-Management/bm_daniel.m4a",
-              "duration": 786.0
+              "file": "https://audio.sdd.pebnum.com/PFW-13-03-Performance-And-Page-Load-Management/bm_daniel.m4a",
+              "duration": 765.4
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-13-03-Performance-And-Page-Load-Management/bm_george.m4a",
-              "duration": 920.0
+              "file": "https://audio.sdd.pebnum.com/PFW-13-03-Performance-And-Page-Load-Management/bm_george.m4a",
+              "duration": 896.9
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-13-03-Performance-And-Page-Load-Management/zz_eloquence.m4a",
+              "duration": 845.9
             }
           ]
         },
@@ -1205,33 +1345,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-13-04-Designing-And-Implementing-A-PWA/af_heart.m4a",
-              "duration": 908.6
+              "file": "https://audio.sdd.pebnum.com/PFW-13-04-Designing-And-Implementing-A-PWA/af_heart.m4a",
+              "duration": 881.3
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-13-04-Designing-And-Implementing-A-PWA/am_onyx.m4a",
-              "duration": 803.5
+              "file": "https://audio.sdd.pebnum.com/PFW-13-04-Designing-And-Implementing-A-PWA/am_onyx.m4a",
+              "duration": 777.5
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-13-04-Designing-And-Implementing-A-PWA/am_santa.m4a",
-              "duration": 867.8
+              "file": "https://audio.sdd.pebnum.com/PFW-13-04-Designing-And-Implementing-A-PWA/am_santa.m4a",
+              "duration": 841.4
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-13-04-Designing-And-Implementing-A-PWA/bf_isabella.m4a",
-              "duration": 869.7
+              "file": "https://audio.sdd.pebnum.com/PFW-13-04-Designing-And-Implementing-A-PWA/bf_isabella.m4a",
+              "duration": 840.6
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-13-04-Designing-And-Implementing-A-PWA/bm_daniel.m4a",
-              "duration": 784.9
+              "file": "https://audio.sdd.pebnum.com/PFW-13-04-Designing-And-Implementing-A-PWA/bm_daniel.m4a",
+              "duration": 760.9
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-13-04-Designing-And-Implementing-A-PWA/bm_george.m4a",
-              "duration": 923.2
+              "file": "https://audio.sdd.pebnum.com/PFW-13-04-Designing-And-Implementing-A-PWA/bm_george.m4a",
+              "duration": 893.9
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-13-04-Designing-And-Implementing-A-PWA/zz_eloquence.m4a",
+              "duration": 824.3
             }
           ]
         },
@@ -1242,7 +1387,43 @@
           "scriptPath": "content/PFW-13-98-Module-Summary-Programming-For-The-Web/script.md",
           "supplementaryPath": "content/PFW-13-98-Module-Summary-Programming-For-The-Web/supplementary.md",
           "quizPath": "content/PFW-13-98-Module-Summary-Programming-For-The-Web/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/PFW-13-98-Module-Summary-Programming-For-The-Web/af_heart.m4a",
+              "duration": 1694.4
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/PFW-13-98-Module-Summary-Programming-For-The-Web/am_onyx.m4a",
+              "duration": 1489.1
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/PFW-13-98-Module-Summary-Programming-For-The-Web/am_santa.m4a",
+              "duration": 1600.5
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/PFW-13-98-Module-Summary-Programming-For-The-Web/bf_isabella.m4a",
+              "duration": 1623.2
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/PFW-13-98-Module-Summary-Programming-For-The-Web/bm_daniel.m4a",
+              "duration": 1439.1
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/PFW-13-98-Module-Summary-Programming-For-The-Web/bm_george.m4a",
+              "duration": 1697.3
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-13-98-Module-Summary-Programming-For-The-Web/zz_eloquence.m4a",
+              "duration": 1655.2
+            }
+          ]
         },
         {
           "id": "PFW-13-99-Module-Review-Programming-For-The-Web",
@@ -1254,33 +1435,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/PFW-13-99-Module-Review-Programming-For-The-Web/af_heart.m4a",
-              "duration": 726.3
+              "file": "https://audio.sdd.pebnum.com/PFW-13-99-Module-Review-Programming-For-The-Web/af_heart.m4a",
+              "duration": 734.3
             },
             {
               "name": "am_onyx",
-              "file": "content/PFW-13-99-Module-Review-Programming-For-The-Web/am_onyx.m4a",
-              "duration": 646.2
+              "file": "https://audio.sdd.pebnum.com/PFW-13-99-Module-Review-Programming-For-The-Web/am_onyx.m4a",
+              "duration": 654.7
             },
             {
               "name": "am_santa",
-              "file": "content/PFW-13-99-Module-Review-Programming-For-The-Web/am_santa.m4a",
-              "duration": 695.3
+              "file": "https://audio.sdd.pebnum.com/PFW-13-99-Module-Review-Programming-For-The-Web/am_santa.m4a",
+              "duration": 703.8
             },
             {
               "name": "bf_isabella",
-              "file": "content/PFW-13-99-Module-Review-Programming-For-The-Web/bf_isabella.m4a",
-              "duration": 697.3
+              "file": "https://audio.sdd.pebnum.com/PFW-13-99-Module-Review-Programming-For-The-Web/bf_isabella.m4a",
+              "duration": 706.5
             },
             {
               "name": "bm_daniel",
-              "file": "content/PFW-13-99-Module-Review-Programming-For-The-Web/bm_daniel.m4a",
-              "duration": 629.6
+              "file": "https://audio.sdd.pebnum.com/PFW-13-99-Module-Review-Programming-For-The-Web/bm_daniel.m4a",
+              "duration": 639.2
             },
             {
               "name": "bm_george",
-              "file": "content/PFW-13-99-Module-Review-Programming-For-The-Web/bm_george.m4a",
-              "duration": 730.9
+              "file": "https://audio.sdd.pebnum.com/PFW-13-99-Module-Review-Programming-For-The-Web/bm_george.m4a",
+              "duration": 741.6
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/PFW-13-99-Module-Review-Programming-For-The-Web/zz_eloquence.m4a",
+              "duration": 705.2
             }
           ]
         }
@@ -1301,37 +1487,37 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SA-20-01-What-is-AI-vs-ML/af_heart.m4a",
-              "duration": 1534.6
+              "file": "https://audio.sdd.pebnum.com/SA-20-01-What-is-AI-vs-ML/af_heart.m4a",
+              "duration": 1455.3
             },
             {
               "name": "am_onyx",
-              "file": "content/SA-20-01-What-is-AI-vs-ML/am_onyx.m4a",
-              "duration": 1342.8
+              "file": "https://audio.sdd.pebnum.com/SA-20-01-What-is-AI-vs-ML/am_onyx.m4a",
+              "duration": 1272.3
             },
             {
               "name": "am_santa",
-              "file": "content/SA-20-01-What-is-AI-vs-ML/am_santa.m4a",
-              "duration": 1461.5
+              "file": "https://audio.sdd.pebnum.com/SA-20-01-What-is-AI-vs-ML/am_santa.m4a",
+              "duration": 1386.2
             },
             {
               "name": "bf_isabella",
-              "file": "content/SA-20-01-What-is-AI-vs-ML/bf_isabella.m4a",
-              "duration": 1467.6
+              "file": "https://audio.sdd.pebnum.com/SA-20-01-What-is-AI-vs-ML/bf_isabella.m4a",
+              "duration": 1393.5
             },
             {
               "name": "bm_daniel",
-              "file": "content/SA-20-01-What-is-AI-vs-ML/bm_daniel.m4a",
-              "duration": 1313.2
+              "file": "https://audio.sdd.pebnum.com/SA-20-01-What-is-AI-vs-ML/bm_daniel.m4a",
+              "duration": 1248.2
             },
             {
               "name": "bm_george",
-              "file": "content/SA-20-01-What-is-AI-vs-ML/bm_george.m4a",
-              "duration": 1555.7
+              "file": "https://audio.sdd.pebnum.com/SA-20-01-What-is-AI-vs-ML/bm_george.m4a",
+              "duration": 1477.3
             },
             {
               "name": "zz_eloquence",
-              "file": "content/SA-20-01-What-is-AI-vs-ML/zz_eloquence.m4a",
+              "file": "https://audio.sdd.pebnum.com/SA-20-01-What-is-AI-vs-ML/zz_eloquence.m4a",
               "duration": 1347.7
             }
           ]
@@ -1346,33 +1532,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SA-20-02-ML-Training-Models/af_heart.m4a",
-              "duration": 1280.5
+              "file": "https://audio.sdd.pebnum.com/SA-20-02-ML-Training-Models/af_heart.m4a",
+              "duration": 1249.8
             },
             {
               "name": "am_onyx",
-              "file": "content/SA-20-02-ML-Training-Models/am_onyx.m4a",
-              "duration": 1118.9
+              "file": "https://audio.sdd.pebnum.com/SA-20-02-ML-Training-Models/am_onyx.m4a",
+              "duration": 1095.2
             },
             {
               "name": "am_santa",
-              "file": "content/SA-20-02-ML-Training-Models/am_santa.m4a",
-              "duration": 1219.3
+              "file": "https://audio.sdd.pebnum.com/SA-20-02-ML-Training-Models/am_santa.m4a",
+              "duration": 1192.0
             },
             {
               "name": "bf_isabella",
-              "file": "content/SA-20-02-ML-Training-Models/bf_isabella.m4a",
-              "duration": 1212.5
+              "file": "https://audio.sdd.pebnum.com/SA-20-02-ML-Training-Models/bf_isabella.m4a",
+              "duration": 1185.5
             },
             {
               "name": "bm_daniel",
-              "file": "content/SA-20-02-ML-Training-Models/bm_daniel.m4a",
-              "duration": 1083.7
+              "file": "https://audio.sdd.pebnum.com/SA-20-02-ML-Training-Models/bm_daniel.m4a",
+              "duration": 1062.0
             },
             {
               "name": "bm_george",
-              "file": "content/SA-20-02-ML-Training-Models/bm_george.m4a",
-              "duration": 1282.5
+              "file": "https://audio.sdd.pebnum.com/SA-20-02-ML-Training-Models/bm_george.m4a",
+              "duration": 1256.7
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SA-20-02-ML-Training-Models/zz_eloquence.m4a",
+              "duration": 1166.9
             }
           ]
         },
@@ -1386,23 +1577,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SA-20-03-Common-ML-Applications/af_heart.m4a",
-              "duration": 1126.8
+              "file": "https://audio.sdd.pebnum.com/SA-20-03-Common-ML-Applications/af_heart.m4a",
+              "duration": 1061.6
             },
             {
               "name": "am_onyx",
-              "file": "content/SA-20-03-Common-ML-Applications/am_onyx.m4a",
-              "duration": 987.1
+              "file": "https://audio.sdd.pebnum.com/SA-20-03-Common-ML-Applications/am_onyx.m4a",
+              "duration": 928.7
             },
             {
               "name": "am_santa",
-              "file": "content/SA-20-03-Common-ML-Applications/am_santa.m4a",
-              "duration": 1080.8
+              "file": "https://audio.sdd.pebnum.com/SA-20-03-Common-ML-Applications/am_santa.m4a",
+              "duration": 1013.3
             },
             {
               "name": "bf_isabella",
-              "file": "content/SA-20-03-Common-ML-Applications/bf_isabella.m4a",
-              "duration": 1067.1
+              "file": "https://audio.sdd.pebnum.com/SA-20-03-Common-ML-Applications/bf_isabella.m4a",
+              "duration": 1010.2
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SA-20-03-Common-ML-Applications/bm_daniel.m4a",
+              "duration": 911.7
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SA-20-03-Common-ML-Applications/bm_george.m4a",
+              "duration": 1078.6
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SA-20-03-Common-ML-Applications/zz_eloquence.m4a",
+              "duration": 981.2
             }
           ]
         },
@@ -1413,7 +1619,43 @@
           "scriptPath": "content/SA-20-04-Decision-Trees-And-Neural-Networks/script.md",
           "supplementaryPath": "content/SA-20-04-Decision-Trees-And-Neural-Networks/supplementary.md",
           "quizPath": "content/SA-20-04-Decision-Trees-And-Neural-Networks/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SA-20-04-Decision-Trees-And-Neural-Networks/af_heart.m4a",
+              "duration": 1092.3
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SA-20-04-Decision-Trees-And-Neural-Networks/am_onyx.m4a",
+              "duration": 957.9
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SA-20-04-Decision-Trees-And-Neural-Networks/am_santa.m4a",
+              "duration": 1038.9
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SA-20-04-Decision-Trees-And-Neural-Networks/bf_isabella.m4a",
+              "duration": 1045.1
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SA-20-04-Decision-Trees-And-Neural-Networks/bm_daniel.m4a",
+              "duration": 933.6
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SA-20-04-Decision-Trees-And-Neural-Networks/bm_george.m4a",
+              "duration": 1099.6
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SA-20-04-Decision-Trees-And-Neural-Networks/zz_eloquence.m4a",
+              "duration": 1030.3
+            }
+          ]
         },
         {
           "id": "SA-20-05-RPA-And-BPA-Practical-Considerations",
@@ -1422,7 +1664,43 @@
           "scriptPath": "content/SA-20-05-RPA-And-BPA-Practical-Considerations/script.md",
           "supplementaryPath": "content/SA-20-05-RPA-And-BPA-Practical-Considerations/supplementary.md",
           "quizPath": "content/SA-20-05-RPA-And-BPA-Practical-Considerations/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SA-20-05-RPA-And-BPA-Practical-Considerations/af_heart.m4a",
+              "duration": 1117.2
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SA-20-05-RPA-And-BPA-Practical-Considerations/am_onyx.m4a",
+              "duration": 978.7
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SA-20-05-RPA-And-BPA-Practical-Considerations/am_santa.m4a",
+              "duration": 1062.2
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SA-20-05-RPA-And-BPA-Practical-Considerations/bf_isabella.m4a",
+              "duration": 1076.2
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SA-20-05-RPA-And-BPA-Practical-Considerations/bm_daniel.m4a",
+              "duration": 954.8
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SA-20-05-RPA-And-BPA-Practical-Considerations/bm_george.m4a",
+              "duration": 1127.8
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SA-20-05-RPA-And-BPA-Practical-Considerations/zz_eloquence.m4a",
+              "duration": 1038.5
+            }
+          ]
         }
       ]
     },
@@ -1438,7 +1716,43 @@
           "scriptPath": "content/SA-21-01-Regression-And-Core-Algorithm-Types/script.md",
           "supplementaryPath": "content/SA-21-01-Regression-And-Core-Algorithm-Types/supplementary.md",
           "quizPath": "content/SA-21-01-Regression-And-Core-Algorithm-Types/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SA-21-01-Regression-And-Core-Algorithm-Types/af_heart.m4a",
+              "duration": 1252.2
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SA-21-01-Regression-And-Core-Algorithm-Types/am_onyx.m4a",
+              "duration": 1096.3
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SA-21-01-Regression-And-Core-Algorithm-Types/am_santa.m4a",
+              "duration": 1190.9
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SA-21-01-Regression-And-Core-Algorithm-Types/bf_isabella.m4a",
+              "duration": 1195.2
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SA-21-01-Regression-And-Core-Algorithm-Types/bm_daniel.m4a",
+              "duration": 1070.1
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SA-21-01-Regression-And-Core-Algorithm-Types/bm_george.m4a",
+              "duration": 1261.3
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SA-21-01-Regression-And-Core-Algorithm-Types/zz_eloquence.m4a",
+              "duration": 1171.4
+            }
+          ]
         },
         {
           "id": "SA-21-02-Neural-Networks-Concepts-And-Implementation",
@@ -1447,7 +1761,43 @@
           "scriptPath": "content/SA-21-02-Neural-Networks-Concepts-And-Implementation/script.md",
           "supplementaryPath": "content/SA-21-02-Neural-Networks-Concepts-And-Implementation/supplementary.md",
           "quizPath": "content/SA-21-02-Neural-Networks-Concepts-And-Implementation/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SA-21-02-Neural-Networks-Concepts-And-Implementation/af_heart.m4a",
+              "duration": 1095.2
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SA-21-02-Neural-Networks-Concepts-And-Implementation/am_onyx.m4a",
+              "duration": 957.5
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SA-21-02-Neural-Networks-Concepts-And-Implementation/am_santa.m4a",
+              "duration": 1039.5
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SA-21-02-Neural-Networks-Concepts-And-Implementation/bf_isabella.m4a",
+              "duration": 1045.8
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SA-21-02-Neural-Networks-Concepts-And-Implementation/bm_daniel.m4a",
+              "duration": 931.8
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SA-21-02-Neural-Networks-Concepts-And-Implementation/bm_george.m4a",
+              "duration": 1098.0
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SA-21-02-Neural-Networks-Concepts-And-Implementation/zz_eloquence.m4a",
+              "duration": 1039.1
+            }
+          ]
         }
       ]
     },
@@ -1463,7 +1813,43 @@
           "scriptPath": "content/SA-22-01-Assessing-The-Impact-Of-Automation/script.md",
           "supplementaryPath": "content/SA-22-01-Assessing-The-Impact-Of-Automation/supplementary.md",
           "quizPath": "content/SA-22-01-Assessing-The-Impact-Of-Automation/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SA-22-01-Assessing-The-Impact-Of-Automation/af_heart.m4a",
+              "duration": 1124.7
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SA-22-01-Assessing-The-Impact-Of-Automation/am_onyx.m4a",
+              "duration": 986.7
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SA-22-01-Assessing-The-Impact-Of-Automation/am_santa.m4a",
+              "duration": 1078.1
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SA-22-01-Assessing-The-Impact-Of-Automation/bf_isabella.m4a",
+              "duration": 1071.5
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SA-22-01-Assessing-The-Impact-Of-Automation/bm_daniel.m4a",
+              "duration": 963.8
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SA-22-01-Assessing-The-Impact-Of-Automation/bm_george.m4a",
+              "duration": 1141.0
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SA-22-01-Assessing-The-Impact-Of-Automation/zz_eloquence.m4a",
+              "duration": 1039.6
+            }
+          ]
         },
         {
           "id": "SA-22-02-Human-Behaviour-Patterns-And-ML-AI",
@@ -1472,7 +1858,43 @@
           "scriptPath": "content/SA-22-02-Human-Behaviour-Patterns-And-ML-AI/script.md",
           "supplementaryPath": "content/SA-22-02-Human-Behaviour-Patterns-And-ML-AI/supplementary.md",
           "quizPath": "content/SA-22-02-Human-Behaviour-Patterns-And-ML-AI/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SA-22-02-Human-Behaviour-Patterns-And-ML-AI/af_heart.m4a",
+              "duration": 1336.1
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SA-22-02-Human-Behaviour-Patterns-And-ML-AI/am_onyx.m4a",
+              "duration": 1173.2
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SA-22-02-Human-Behaviour-Patterns-And-ML-AI/am_santa.m4a",
+              "duration": 1275.5
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SA-22-02-Human-Behaviour-Patterns-And-ML-AI/bf_isabella.m4a",
+              "duration": 1274.4
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SA-22-02-Human-Behaviour-Patterns-And-ML-AI/bm_daniel.m4a",
+              "duration": 1142.6
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SA-22-02-Human-Behaviour-Patterns-And-ML-AI/bm_george.m4a",
+              "duration": 1351.2
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SA-22-02-Human-Behaviour-Patterns-And-ML-AI/zz_eloquence.m4a",
+              "duration": 1251.1
+            }
+          ]
         },
         {
           "id": "SA-22-03-Bias-In-Datasets-And-Models",
@@ -1481,7 +1903,43 @@
           "scriptPath": "content/SA-22-03-Bias-In-Datasets-And-Models/script.md",
           "supplementaryPath": "content/SA-22-03-Bias-In-Datasets-And-Models/supplementary.md",
           "quizPath": "content/SA-22-03-Bias-In-Datasets-And-Models/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SA-22-03-Bias-In-Datasets-And-Models/af_heart.m4a",
+              "duration": 1377.0
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SA-22-03-Bias-In-Datasets-And-Models/am_onyx.m4a",
+              "duration": 1205.8
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SA-22-03-Bias-In-Datasets-And-Models/am_santa.m4a",
+              "duration": 1306.1
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SA-22-03-Bias-In-Datasets-And-Models/bf_isabella.m4a",
+              "duration": 1320.1
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SA-22-03-Bias-In-Datasets-And-Models/bm_daniel.m4a",
+              "duration": 1171.7
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SA-22-03-Bias-In-Datasets-And-Models/bm_george.m4a",
+              "duration": 1378.5
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SA-22-03-Bias-In-Datasets-And-Models/zz_eloquence.m4a",
+              "duration": 1283.2
+            }
+          ]
         },
         {
           "id": "SA-22-98-Module-Summary-Software-Automation",
@@ -1490,7 +1948,43 @@
           "scriptPath": "content/SA-22-98-Module-Summary-Software-Automation/script.md",
           "supplementaryPath": null,
           "quizPath": "content/SA-22-98-Module-Summary-Software-Automation/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SA-22-98-Module-Summary-Software-Automation/af_heart.m4a",
+              "duration": 1438.4
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SA-22-98-Module-Summary-Software-Automation/am_onyx.m4a",
+              "duration": 1253.6
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SA-22-98-Module-Summary-Software-Automation/am_santa.m4a",
+              "duration": 1360.1
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SA-22-98-Module-Summary-Software-Automation/bf_isabella.m4a",
+              "duration": 1381.7
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SA-22-98-Module-Summary-Software-Automation/bm_daniel.m4a",
+              "duration": 1221.8
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SA-22-98-Module-Summary-Software-Automation/bm_george.m4a",
+              "duration": 1448.2
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SA-22-98-Module-Summary-Software-Automation/zz_eloquence.m4a",
+              "duration": 1380.2
+            }
+          ]
         },
         {
           "id": "SA-22-99-Module-Review-Software-Automation",
@@ -1499,7 +1993,43 @@
           "scriptPath": "content/SA-22-99-Module-Review-Software-Automation/script.md",
           "supplementaryPath": "content/SA-22-99-Module-Review-Software-Automation/supplementary.md",
           "quizPath": "content/SA-22-99-Module-Review-Software-Automation/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SA-22-99-Module-Review-Software-Automation/af_heart.m4a",
+              "duration": 1529.8
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SA-22-99-Module-Review-Software-Automation/am_onyx.m4a",
+              "duration": 1337.5
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SA-22-99-Module-Review-Software-Automation/am_santa.m4a",
+              "duration": 1443.5
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SA-22-99-Module-Review-Software-Automation/bf_isabella.m4a",
+              "duration": 1461.5
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SA-22-99-Module-Review-Software-Automation/bm_daniel.m4a",
+              "duration": 1296.3
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SA-22-99-Module-Review-Software-Automation/bm_george.m4a",
+              "duration": 1533.0
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SA-22-99-Module-Review-Software-Automation/zz_eloquence.m4a",
+              "duration": 1459.3
+            }
+          ]
         }
       ]
     },
@@ -1515,7 +2045,43 @@
           "scriptPath": "content/SEE-23-01-Requirements-And-Feasibility/script.md",
           "supplementaryPath": "content/SEE-23-01-Requirements-And-Feasibility/supplementary.md",
           "quizPath": "content/SEE-23-01-Requirements-And-Feasibility/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-01-Requirements-And-Feasibility/af_heart.m4a",
+              "duration": 1568.0
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-01-Requirements-And-Feasibility/am_onyx.m4a",
+              "duration": 1378.3
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-01-Requirements-And-Feasibility/am_santa.m4a",
+              "duration": 1490.8
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-01-Requirements-And-Feasibility/bf_isabella.m4a",
+              "duration": 1502.9
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-01-Requirements-And-Feasibility/bm_daniel.m4a",
+              "duration": 1341.9
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-01-Requirements-And-Feasibility/bm_george.m4a",
+              "duration": 1583.0
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-01-Requirements-And-Feasibility/zz_eloquence.m4a",
+              "duration": 1517.3
+            }
+          ]
         },
         {
           "id": "SEE-23-02-Ideation-And-Modelling-Tools",
@@ -1524,7 +2090,43 @@
           "scriptPath": "content/SEE-23-02-Ideation-And-Modelling-Tools/script.md",
           "supplementaryPath": "content/SEE-23-02-Ideation-And-Modelling-Tools/supplementary.md",
           "quizPath": "content/SEE-23-02-Ideation-And-Modelling-Tools/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-02-Ideation-And-Modelling-Tools/af_heart.m4a",
+              "duration": 1113.4
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-02-Ideation-And-Modelling-Tools/am_onyx.m4a",
+              "duration": 976.1
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-02-Ideation-And-Modelling-Tools/am_santa.m4a",
+              "duration": 1060.5
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-02-Ideation-And-Modelling-Tools/bf_isabella.m4a",
+              "duration": 1066.7
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-02-Ideation-And-Modelling-Tools/bm_daniel.m4a",
+              "duration": 950.0
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-02-Ideation-And-Modelling-Tools/bm_george.m4a",
+              "duration": 1124.3
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-02-Ideation-And-Modelling-Tools/zz_eloquence.m4a",
+              "duration": 1060.7
+            }
+          ]
         },
         {
           "id": "SEE-23-03-Implementation-Methods",
@@ -1533,7 +2135,43 @@
           "scriptPath": "content/SEE-23-03-Implementation-Methods/script.md",
           "supplementaryPath": "content/SEE-23-03-Implementation-Methods/supplementary.md",
           "quizPath": "content/SEE-23-03-Implementation-Methods/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-03-Implementation-Methods/af_heart.m4a",
+              "duration": 1111.8
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-03-Implementation-Methods/am_onyx.m4a",
+              "duration": 976.4
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-03-Implementation-Methods/am_santa.m4a",
+              "duration": 1057.3
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-03-Implementation-Methods/bf_isabella.m4a",
+              "duration": 1051.5
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-03-Implementation-Methods/bm_daniel.m4a",
+              "duration": 942.6
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-03-Implementation-Methods/bm_george.m4a",
+              "duration": 1111.4
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-23-03-Implementation-Methods/zz_eloquence.m4a",
+              "duration": 1045.0
+            }
+          ]
         }
       ]
     },
@@ -1549,7 +2187,43 @@
           "scriptPath": "content/SEE-24-01-Waterfall-Approach/script.md",
           "supplementaryPath": "content/SEE-24-01-Waterfall-Approach/supplementary.md",
           "quizPath": "content/SEE-24-01-Waterfall-Approach/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-01-Waterfall-Approach/af_heart.m4a",
+              "duration": 1110.8
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-01-Waterfall-Approach/am_onyx.m4a",
+              "duration": 976.4
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-01-Waterfall-Approach/am_santa.m4a",
+              "duration": 1057.8
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-01-Waterfall-Approach/bf_isabella.m4a",
+              "duration": 1063.7
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-01-Waterfall-Approach/bm_daniel.m4a",
+              "duration": 952.1
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-01-Waterfall-Approach/bm_george.m4a",
+              "duration": 1117.0
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-01-Waterfall-Approach/zz_eloquence.m4a",
+              "duration": 1063.9
+            }
+          ]
         },
         {
           "id": "SEE-24-02-Agile-Approach",
@@ -1558,7 +2232,43 @@
           "scriptPath": "content/SEE-24-02-Agile-Approach/script.md",
           "supplementaryPath": "content/SEE-24-02-Agile-Approach/supplementary.md",
           "quizPath": "content/SEE-24-02-Agile-Approach/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-02-Agile-Approach/af_heart.m4a",
+              "duration": 1109.5
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-02-Agile-Approach/am_onyx.m4a",
+              "duration": 975.4
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-02-Agile-Approach/am_santa.m4a",
+              "duration": 1049.2
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-02-Agile-Approach/bf_isabella.m4a",
+              "duration": 1068.4
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-02-Agile-Approach/bm_daniel.m4a",
+              "duration": 950.6
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-02-Agile-Approach/bm_george.m4a",
+              "duration": 1118.8
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-02-Agile-Approach/zz_eloquence.m4a",
+              "duration": 1096.0
+            }
+          ]
         },
         {
           "id": "SEE-24-03-WAgile-Hybrid-Approach",
@@ -1567,7 +2277,43 @@
           "scriptPath": "content/SEE-24-03-WAgile-Hybrid-Approach/script.md",
           "supplementaryPath": "content/SEE-24-03-WAgile-Hybrid-Approach/supplementary.md",
           "quizPath": "content/SEE-24-03-WAgile-Hybrid-Approach/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-03-WAgile-Hybrid-Approach/af_heart.m4a",
+              "duration": 1111.6
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-03-WAgile-Hybrid-Approach/am_onyx.m4a",
+              "duration": 982.4
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-03-WAgile-Hybrid-Approach/am_santa.m4a",
+              "duration": 1065.7
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-03-WAgile-Hybrid-Approach/bf_isabella.m4a",
+              "duration": 1062.8
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-03-WAgile-Hybrid-Approach/bm_daniel.m4a",
+              "duration": 959.8
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-03-WAgile-Hybrid-Approach/bm_george.m4a",
+              "duration": 1127.9
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-03-WAgile-Hybrid-Approach/zz_eloquence.m4a",
+              "duration": 1066.8
+            }
+          ]
         },
         {
           "id": "SEE-24-04-Project-Management-Tools-And-Gantt",
@@ -1576,7 +2322,43 @@
           "scriptPath": "content/SEE-24-04-Project-Management-Tools-And-Gantt/script.md",
           "supplementaryPath": "content/SEE-24-04-Project-Management-Tools-And-Gantt/supplementary.md",
           "quizPath": "content/SEE-24-04-Project-Management-Tools-And-Gantt/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-04-Project-Management-Tools-And-Gantt/af_heart.m4a",
+              "duration": 1045.4
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-04-Project-Management-Tools-And-Gantt/am_onyx.m4a",
+              "duration": 925.2
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-04-Project-Management-Tools-And-Gantt/am_santa.m4a",
+              "duration": 996.4
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-04-Project-Management-Tools-And-Gantt/bf_isabella.m4a",
+              "duration": 999.8
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-04-Project-Management-Tools-And-Gantt/bm_daniel.m4a",
+              "duration": 897.7
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-04-Project-Management-Tools-And-Gantt/bm_george.m4a",
+              "duration": 1057.1
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-04-Project-Management-Tools-And-Gantt/zz_eloquence.m4a",
+              "duration": 1023.1
+            }
+          ]
         },
         {
           "id": "SEE-24-05-Social-Ethical-And-Communication-Issues",
@@ -1585,7 +2367,43 @@
           "scriptPath": "content/SEE-24-05-Social-Ethical-And-Communication-Issues/script.md",
           "supplementaryPath": "content/SEE-24-05-Social-Ethical-And-Communication-Issues/supplementary.md",
           "quizPath": "content/SEE-24-05-Social-Ethical-And-Communication-Issues/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-05-Social-Ethical-And-Communication-Issues/af_heart.m4a",
+              "duration": 1219.9
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-05-Social-Ethical-And-Communication-Issues/am_onyx.m4a",
+              "duration": 1075.0
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-05-Social-Ethical-And-Communication-Issues/am_santa.m4a",
+              "duration": 1162.3
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-05-Social-Ethical-And-Communication-Issues/bf_isabella.m4a",
+              "duration": 1174.1
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-05-Social-Ethical-And-Communication-Issues/bm_daniel.m4a",
+              "duration": 1051.0
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-05-Social-Ethical-And-Communication-Issues/bm_george.m4a",
+              "duration": 1242.0
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-05-Social-Ethical-And-Communication-Issues/zz_eloquence.m4a",
+              "duration": 1173.3
+            }
+          ]
         },
         {
           "id": "SEE-24-06-Quality-Assurance",
@@ -1594,7 +2412,43 @@
           "scriptPath": "content/SEE-24-06-Quality-Assurance/script.md",
           "supplementaryPath": "content/SEE-24-06-Quality-Assurance/supplementary.md",
           "quizPath": "content/SEE-24-06-Quality-Assurance/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-06-Quality-Assurance/af_heart.m4a",
+              "duration": 1134.7
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-06-Quality-Assurance/am_onyx.m4a",
+              "duration": 995.2
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-06-Quality-Assurance/am_santa.m4a",
+              "duration": 1080.0
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-06-Quality-Assurance/bf_isabella.m4a",
+              "duration": 1093.1
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-06-Quality-Assurance/bm_daniel.m4a",
+              "duration": 978.6
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-06-Quality-Assurance/bm_george.m4a",
+              "duration": 1157.3
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-06-Quality-Assurance/zz_eloquence.m4a",
+              "duration": 1078.8
+            }
+          ]
         },
         {
           "id": "SEE-24-99-Module-Review-Defining-And-Planning",
@@ -1603,7 +2457,43 @@
           "scriptPath": "content/SEE-24-99-Module-Review-Defining-And-Planning/script.md",
           "supplementaryPath": "content/SEE-24-99-Module-Review-Defining-And-Planning/supplementary.md",
           "quizPath": "content/SEE-24-99-Module-Review-Defining-And-Planning/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-99-Module-Review-Defining-And-Planning/af_heart.m4a",
+              "duration": 1486.9
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-99-Module-Review-Defining-And-Planning/am_onyx.m4a",
+              "duration": 1309.7
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-99-Module-Review-Defining-And-Planning/am_santa.m4a",
+              "duration": 1410.8
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-99-Module-Review-Defining-And-Planning/bf_isabella.m4a",
+              "duration": 1428.3
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-99-Module-Review-Defining-And-Planning/bm_daniel.m4a",
+              "duration": 1274.2
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-99-Module-Review-Defining-And-Planning/bm_george.m4a",
+              "duration": 1498.5
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-24-99-Module-Review-Defining-And-Planning/zz_eloquence.m4a",
+              "duration": 1442.6
+            }
+          ]
         }
       ]
     },
@@ -1619,7 +2509,43 @@
           "scriptPath": "content/SEE-25-01-Building-The-Solution/script.md",
           "supplementaryPath": "content/SEE-25-01-Building-The-Solution/supplementary.md",
           "quizPath": "content/SEE-25-01-Building-The-Solution/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-01-Building-The-Solution/af_heart.m4a",
+              "duration": 1136.2
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-01-Building-The-Solution/am_onyx.m4a",
+              "duration": 1000.0
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-01-Building-The-Solution/am_santa.m4a",
+              "duration": 1083.8
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-01-Building-The-Solution/bf_isabella.m4a",
+              "duration": 1094.3
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-01-Building-The-Solution/bm_daniel.m4a",
+              "duration": 978.5
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-01-Building-The-Solution/bm_george.m4a",
+              "duration": 1153.6
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-01-Building-The-Solution/zz_eloquence.m4a",
+              "duration": 1095.2
+            }
+          ]
         },
         {
           "id": "SEE-25-02-Presenting-The-Solution",
@@ -1628,7 +2554,43 @@
           "scriptPath": "content/SEE-25-02-Presenting-The-Solution/script.md",
           "supplementaryPath": "content/SEE-25-02-Presenting-The-Solution/supplementary.md",
           "quizPath": "content/SEE-25-02-Presenting-The-Solution/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-02-Presenting-The-Solution/af_heart.m4a",
+              "duration": 933.9
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-02-Presenting-The-Solution/am_onyx.m4a",
+              "duration": 826.0
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-02-Presenting-The-Solution/am_santa.m4a",
+              "duration": 889.1
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-02-Presenting-The-Solution/bf_isabella.m4a",
+              "duration": 899.6
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-02-Presenting-The-Solution/bm_daniel.m4a",
+              "duration": 805.7
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-02-Presenting-The-Solution/bm_george.m4a",
+              "duration": 944.9
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-02-Presenting-The-Solution/zz_eloquence.m4a",
+              "duration": 914.2
+            }
+          ]
         },
         {
           "id": "SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering",
@@ -1637,7 +2599,43 @@
           "scriptPath": "content/SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering/script.md",
           "supplementaryPath": "content/SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering/supplementary.md",
           "quizPath": "content/SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering/af_heart.m4a",
+              "duration": 1147.5
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering/am_onyx.m4a",
+              "duration": 1008.8
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering/am_santa.m4a",
+              "duration": 1088.9
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering/bf_isabella.m4a",
+              "duration": 1097.7
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering/bm_daniel.m4a",
+              "duration": 983.4
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering/bm_george.m4a",
+              "duration": 1159.1
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-03-Algorithms-Documentation-And-Back-End-Engineering/zz_eloquence.m4a",
+              "duration": 1094.1
+            }
+          ]
         },
         {
           "id": "SEE-25-04-Data-Backup-And-Version-Control",
@@ -1646,7 +2644,43 @@
           "scriptPath": "content/SEE-25-04-Data-Backup-And-Version-Control/script.md",
           "supplementaryPath": "content/SEE-25-04-Data-Backup-And-Version-Control/supplementary.md",
           "quizPath": "content/SEE-25-04-Data-Backup-And-Version-Control/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-04-Data-Backup-And-Version-Control/af_heart.m4a",
+              "duration": 1020.0
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-04-Data-Backup-And-Version-Control/am_onyx.m4a",
+              "duration": 905.6
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-04-Data-Backup-And-Version-Control/am_santa.m4a",
+              "duration": 974.4
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-04-Data-Backup-And-Version-Control/bf_isabella.m4a",
+              "duration": 978.7
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-04-Data-Backup-And-Version-Control/bm_daniel.m4a",
+              "duration": 877.9
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-04-Data-Backup-And-Version-Control/bm_george.m4a",
+              "duration": 1032.7
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-04-Data-Backup-And-Version-Control/zz_eloquence.m4a",
+              "duration": 988.1
+            }
+          ]
         },
         {
           "id": "SEE-25-05-Overcoming-Development-Difficulties",
@@ -1655,7 +2689,43 @@
           "scriptPath": "content/SEE-25-05-Overcoming-Development-Difficulties/script.md",
           "supplementaryPath": "content/SEE-25-05-Overcoming-Development-Difficulties/supplementary.md",
           "quizPath": "content/SEE-25-05-Overcoming-Development-Difficulties/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-05-Overcoming-Development-Difficulties/af_heart.m4a",
+              "duration": 959.7
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-05-Overcoming-Development-Difficulties/am_onyx.m4a",
+              "duration": 847.8
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-05-Overcoming-Development-Difficulties/am_santa.m4a",
+              "duration": 911.9
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-05-Overcoming-Development-Difficulties/bf_isabella.m4a",
+              "duration": 918.8
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-05-Overcoming-Development-Difficulties/bm_daniel.m4a",
+              "duration": 822.0
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-05-Overcoming-Development-Difficulties/bm_george.m4a",
+              "duration": 970.6
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-05-Overcoming-Development-Difficulties/zz_eloquence.m4a",
+              "duration": 920.2
+            }
+          ]
         },
         {
           "id": "SEE-25-06-Prototype-And-UI-Design",
@@ -1664,7 +2734,43 @@
           "scriptPath": "content/SEE-25-06-Prototype-And-UI-Design/script.md",
           "supplementaryPath": "content/SEE-25-06-Prototype-And-UI-Design/supplementary.md",
           "quizPath": "content/SEE-25-06-Prototype-And-UI-Design/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-06-Prototype-And-UI-Design/af_heart.m4a",
+              "duration": 943.7
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-06-Prototype-And-UI-Design/am_onyx.m4a",
+              "duration": 832.1
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-06-Prototype-And-UI-Design/am_santa.m4a",
+              "duration": 896.5
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-06-Prototype-And-UI-Design/bf_isabella.m4a",
+              "duration": 906.4
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-06-Prototype-And-UI-Design/bm_daniel.m4a",
+              "duration": 810.6
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-06-Prototype-And-UI-Design/bm_george.m4a",
+              "duration": 950.0
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-25-06-Prototype-And-UI-Design/zz_eloquence.m4a",
+              "duration": 904.3
+            }
+          ]
         }
       ]
     },
@@ -1680,7 +2786,43 @@
           "scriptPath": "content/SEE-26-01-Testing-Methodologies-And-Optimisation/script.md",
           "supplementaryPath": "content/SEE-26-01-Testing-Methodologies-And-Optimisation/supplementary.md",
           "quizPath": "content/SEE-26-01-Testing-Methodologies-And-Optimisation/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-01-Testing-Methodologies-And-Optimisation/af_heart.m4a",
+              "duration": 1069.4
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-01-Testing-Methodologies-And-Optimisation/am_onyx.m4a",
+              "duration": 946.5
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-01-Testing-Methodologies-And-Optimisation/am_santa.m4a",
+              "duration": 1017.7
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-01-Testing-Methodologies-And-Optimisation/bf_isabella.m4a",
+              "duration": 1020.4
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-01-Testing-Methodologies-And-Optimisation/bm_daniel.m4a",
+              "duration": 912.1
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-01-Testing-Methodologies-And-Optimisation/bm_george.m4a",
+              "duration": 1077.6
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-01-Testing-Methodologies-And-Optimisation/zz_eloquence.m4a",
+              "duration": 1035.6
+            }
+          ]
         },
         {
           "id": "SEE-26-02-Feedback-Analysis",
@@ -1689,7 +2831,43 @@
           "scriptPath": "content/SEE-26-02-Feedback-Analysis/script.md",
           "supplementaryPath": "content/SEE-26-02-Feedback-Analysis/supplementary.md",
           "quizPath": "content/SEE-26-02-Feedback-Analysis/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-02-Feedback-Analysis/af_heart.m4a",
+              "duration": 889.4
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-02-Feedback-Analysis/am_onyx.m4a",
+              "duration": 788.0
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-02-Feedback-Analysis/am_santa.m4a",
+              "duration": 847.6
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-02-Feedback-Analysis/bf_isabella.m4a",
+              "duration": 854.6
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-02-Feedback-Analysis/bm_daniel.m4a",
+              "duration": 765.8
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-02-Feedback-Analysis/bm_george.m4a",
+              "duration": 898.0
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-02-Feedback-Analysis/zz_eloquence.m4a",
+              "duration": 861.6
+            }
+          ]
         },
         {
           "id": "SEE-26-03-Evaluating-The-Software-Solution",
@@ -1698,7 +2876,43 @@
           "scriptPath": "content/SEE-26-03-Evaluating-The-Software-Solution/script.md",
           "supplementaryPath": "content/SEE-26-03-Evaluating-The-Software-Solution/supplementary.md",
           "quizPath": "content/SEE-26-03-Evaluating-The-Software-Solution/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-03-Evaluating-The-Software-Solution/af_heart.m4a",
+              "duration": 996.6
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-03-Evaluating-The-Software-Solution/am_onyx.m4a",
+              "duration": 878.5
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-03-Evaluating-The-Software-Solution/am_santa.m4a",
+              "duration": 947.3
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-03-Evaluating-The-Software-Solution/bf_isabella.m4a",
+              "duration": 952.6
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-03-Evaluating-The-Software-Solution/bm_daniel.m4a",
+              "duration": 857.7
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-03-Evaluating-The-Software-Solution/bm_george.m4a",
+              "duration": 1011.4
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-03-Evaluating-The-Software-Solution/zz_eloquence.m4a",
+              "duration": 947.7
+            }
+          ]
         },
         {
           "id": "SEE-26-99-Module-Review-Software-Engineering-Project",
@@ -1707,7 +2921,43 @@
           "scriptPath": "content/SEE-26-99-Module-Review-Software-Engineering-Project/script.md",
           "supplementaryPath": "content/SEE-26-99-Module-Review-Software-Engineering-Project/supplementary.md",
           "quizPath": "content/SEE-26-99-Module-Review-Software-Engineering-Project/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-99-Module-Review-Software-Engineering-Project/af_heart.m4a",
+              "duration": 1498.2
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-99-Module-Review-Software-Engineering-Project/am_onyx.m4a",
+              "duration": 1322.4
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-99-Module-Review-Software-Engineering-Project/am_santa.m4a",
+              "duration": 1419.6
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-99-Module-Review-Software-Engineering-Project/bf_isabella.m4a",
+              "duration": 1440.0
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-99-Module-Review-Software-Engineering-Project/bm_daniel.m4a",
+              "duration": 1281.2
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-99-Module-Review-Software-Engineering-Project/bm_george.m4a",
+              "duration": 1507.1
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SEE-26-99-Module-Review-Software-Engineering-Project/zz_eloquence.m4a",
+              "duration": 1464.0
+            }
+          ]
         }
       ]
     },
@@ -1726,33 +2976,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SSA-14-01-The-Business-Case-For-Security/af_heart.m4a",
-              "duration": 933.4
+              "file": "https://audio.sdd.pebnum.com/SSA-14-01-The-Business-Case-For-Security/af_heart.m4a",
+              "duration": 913.9
             },
             {
               "name": "am_onyx",
-              "file": "content/SSA-14-01-The-Business-Case-For-Security/am_onyx.m4a",
-              "duration": 819.9
+              "file": "https://audio.sdd.pebnum.com/SSA-14-01-The-Business-Case-For-Security/am_onyx.m4a",
+              "duration": 801.6
             },
             {
               "name": "am_santa",
-              "file": "content/SSA-14-01-The-Business-Case-For-Security/am_santa.m4a",
-              "duration": 893.9
+              "file": "https://audio.sdd.pebnum.com/SSA-14-01-The-Business-Case-For-Security/am_santa.m4a",
+              "duration": 872.0
             },
             {
               "name": "bf_isabella",
-              "file": "content/SSA-14-01-The-Business-Case-For-Security/bf_isabella.m4a",
-              "duration": 889.5
+              "file": "https://audio.sdd.pebnum.com/SSA-14-01-The-Business-Case-For-Security/bf_isabella.m4a",
+              "duration": 871.4
             },
             {
               "name": "bm_daniel",
-              "file": "content/SSA-14-01-The-Business-Case-For-Security/bm_daniel.m4a",
-              "duration": 800.7
+              "file": "https://audio.sdd.pebnum.com/SSA-14-01-The-Business-Case-For-Security/bm_daniel.m4a",
+              "duration": 782.5
             },
             {
               "name": "bm_george",
-              "file": "content/SSA-14-01-The-Business-Case-For-Security/bm_george.m4a",
-              "duration": 944.1
+              "file": "https://audio.sdd.pebnum.com/SSA-14-01-The-Business-Case-For-Security/bm_george.m4a",
+              "duration": 922.6
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-14-01-The-Business-Case-For-Security/zz_eloquence.m4a",
+              "duration": 860.7
             }
           ]
         },
@@ -1766,33 +3021,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/af_heart.m4a",
-              "duration": 963.9
+              "file": "https://audio.sdd.pebnum.com/SSA-14-02-Integrating-Security-Into-The-SDLC/af_heart.m4a",
+              "duration": 946.8
             },
             {
               "name": "am_onyx",
-              "file": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/am_onyx.m4a",
-              "duration": 843.3
+              "file": "https://audio.sdd.pebnum.com/SSA-14-02-Integrating-Security-Into-The-SDLC/am_onyx.m4a",
+              "duration": 829.4
             },
             {
               "name": "am_santa",
-              "file": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/am_santa.m4a",
-              "duration": 919.1
+              "file": "https://audio.sdd.pebnum.com/SSA-14-02-Integrating-Security-Into-The-SDLC/am_santa.m4a",
+              "duration": 903.0
             },
             {
               "name": "bf_isabella",
-              "file": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/bf_isabella.m4a",
-              "duration": 923.2
+              "file": "https://audio.sdd.pebnum.com/SSA-14-02-Integrating-Security-Into-The-SDLC/bf_isabella.m4a",
+              "duration": 905.5
             },
             {
               "name": "bm_daniel",
-              "file": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/bm_daniel.m4a",
-              "duration": 826.5
+              "file": "https://audio.sdd.pebnum.com/SSA-14-02-Integrating-Security-Into-The-SDLC/bm_daniel.m4a",
+              "duration": 812.0
             },
             {
               "name": "bm_george",
-              "file": "content/SSA-14-02-Integrating-Security-Into-The-SDLC/bm_george.m4a",
-              "duration": 980.5
+              "file": "https://audio.sdd.pebnum.com/SSA-14-02-Integrating-Security-Into-The-SDLC/bm_george.m4a",
+              "duration": 960.8
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-14-02-Integrating-Security-Into-The-SDLC/zz_eloquence.m4a",
+              "duration": 905.2
             }
           ]
         },
@@ -1806,33 +3066,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SSA-14-03-User-Centered-Security-Design/af_heart.m4a",
-              "duration": 933.1
+              "file": "https://audio.sdd.pebnum.com/SSA-14-03-User-Centered-Security-Design/af_heart.m4a",
+              "duration": 921.5
             },
             {
               "name": "am_onyx",
-              "file": "content/SSA-14-03-User-Centered-Security-Design/am_onyx.m4a",
-              "duration": 819.1
+              "file": "https://audio.sdd.pebnum.com/SSA-14-03-User-Centered-Security-Design/am_onyx.m4a",
+              "duration": 809.0
             },
             {
               "name": "am_santa",
-              "file": "content/SSA-14-03-User-Centered-Security-Design/am_santa.m4a",
-              "duration": 893.4
+              "file": "https://audio.sdd.pebnum.com/SSA-14-03-User-Centered-Security-Design/am_santa.m4a",
+              "duration": 881.0
             },
             {
               "name": "bf_isabella",
-              "file": "content/SSA-14-03-User-Centered-Security-Design/bf_isabella.m4a",
-              "duration": 897.6
+              "file": "https://audio.sdd.pebnum.com/SSA-14-03-User-Centered-Security-Design/bf_isabella.m4a",
+              "duration": 887.9
             },
             {
               "name": "bm_daniel",
-              "file": "content/SSA-14-03-User-Centered-Security-Design/bm_daniel.m4a",
-              "duration": 806.5
+              "file": "https://audio.sdd.pebnum.com/SSA-14-03-User-Centered-Security-Design/bm_daniel.m4a",
+              "duration": 797.4
             },
             {
               "name": "bm_george",
-              "file": "content/SSA-14-03-User-Centered-Security-Design/bm_george.m4a",
-              "duration": 951.6
+              "file": "https://audio.sdd.pebnum.com/SSA-14-03-User-Centered-Security-Design/bm_george.m4a",
+              "duration": 939.3
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-14-03-User-Centered-Security-Design/zz_eloquence.m4a",
+              "duration": 865.4
             }
           ]
         }
@@ -1853,33 +3118,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SSA-15-01-CIA-Triad-And-AAA/af_heart.m4a",
-              "duration": 1494.8
+              "file": "https://audio.sdd.pebnum.com/SSA-15-01-CIA-Triad-And-AAA/af_heart.m4a",
+              "duration": 1460.0
             },
             {
               "name": "am_onyx",
-              "file": "content/SSA-15-01-CIA-Triad-And-AAA/am_onyx.m4a",
-              "duration": 1309.9
+              "file": "https://audio.sdd.pebnum.com/SSA-15-01-CIA-Triad-And-AAA/am_onyx.m4a",
+              "duration": 1283.0
             },
             {
               "name": "am_santa",
-              "file": "content/SSA-15-01-CIA-Triad-And-AAA/am_santa.m4a",
-              "duration": 1423.2
+              "file": "https://audio.sdd.pebnum.com/SSA-15-01-CIA-Triad-And-AAA/am_santa.m4a",
+              "duration": 1390.8
             },
             {
               "name": "bf_isabella",
-              "file": "content/SSA-15-01-CIA-Triad-And-AAA/bf_isabella.m4a",
-              "duration": 1435.6
+              "file": "https://audio.sdd.pebnum.com/SSA-15-01-CIA-Triad-And-AAA/bf_isabella.m4a",
+              "duration": 1398.2
             },
             {
               "name": "bm_daniel",
-              "file": "content/SSA-15-01-CIA-Triad-And-AAA/bm_daniel.m4a",
-              "duration": 1288.2
+              "file": "https://audio.sdd.pebnum.com/SSA-15-01-CIA-Triad-And-AAA/bm_daniel.m4a",
+              "duration": 1253.4
             },
             {
               "name": "bm_george",
-              "file": "content/SSA-15-01-CIA-Triad-And-AAA/bm_george.m4a",
-              "duration": 1520.5
+              "file": "https://audio.sdd.pebnum.com/SSA-15-01-CIA-Triad-And-AAA/bm_george.m4a",
+              "duration": 1478.9
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-15-01-CIA-Triad-And-AAA/zz_eloquence.m4a",
+              "duration": 1384.5
             }
           ]
         },
@@ -1893,33 +3163,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/af_heart.m4a",
-              "duration": 1231.0
+              "file": "https://audio.sdd.pebnum.com/SSA-15-02-Cryptography-And-Data-Protection-Part-1/af_heart.m4a",
+              "duration": 1195.1
             },
             {
               "name": "am_onyx",
-              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/am_onyx.m4a",
-              "duration": 1078.8
+              "file": "https://audio.sdd.pebnum.com/SSA-15-02-Cryptography-And-Data-Protection-Part-1/am_onyx.m4a",
+              "duration": 1048.1
             },
             {
               "name": "am_santa",
-              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/am_santa.m4a",
-              "duration": 1170.6
+              "file": "https://audio.sdd.pebnum.com/SSA-15-02-Cryptography-And-Data-Protection-Part-1/am_santa.m4a",
+              "duration": 1135.8
             },
             {
               "name": "bf_isabella",
-              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/bf_isabella.m4a",
-              "duration": 1182.5
+              "file": "https://audio.sdd.pebnum.com/SSA-15-02-Cryptography-And-Data-Protection-Part-1/bf_isabella.m4a",
+              "duration": 1149.8
             },
             {
               "name": "bm_daniel",
-              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/bm_daniel.m4a",
-              "duration": 1054.9
+              "file": "https://audio.sdd.pebnum.com/SSA-15-02-Cryptography-And-Data-Protection-Part-1/bm_daniel.m4a",
+              "duration": 1027.8
             },
             {
               "name": "bm_george",
-              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-1/bm_george.m4a",
-              "duration": 1243.4
+              "file": "https://audio.sdd.pebnum.com/SSA-15-02-Cryptography-And-Data-Protection-Part-1/bm_george.m4a",
+              "duration": 1210.4
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-15-02-Cryptography-And-Data-Protection-Part-1/zz_eloquence.m4a",
+              "duration": 1146.6
             }
           ]
         },
@@ -1933,33 +3208,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/af_heart.m4a",
-              "duration": 1577.1
+              "file": "https://audio.sdd.pebnum.com/SSA-15-02-Cryptography-And-Data-Protection-Part-2/af_heart.m4a",
+              "duration": 1514.2
             },
             {
               "name": "am_onyx",
-              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/am_onyx.m4a",
-              "duration": 1385.2
+              "file": "https://audio.sdd.pebnum.com/SSA-15-02-Cryptography-And-Data-Protection-Part-2/am_onyx.m4a",
+              "duration": 1327.2
             },
             {
               "name": "am_santa",
-              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/am_santa.m4a",
-              "duration": 1501.2
+              "file": "https://audio.sdd.pebnum.com/SSA-15-02-Cryptography-And-Data-Protection-Part-2/am_santa.m4a",
+              "duration": 1438.5
             },
             {
               "name": "bf_isabella",
-              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/bf_isabella.m4a",
-              "duration": 1516.0
+              "file": "https://audio.sdd.pebnum.com/SSA-15-02-Cryptography-And-Data-Protection-Part-2/bf_isabella.m4a",
+              "duration": 1451.2
             },
             {
               "name": "bm_daniel",
-              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/bm_daniel.m4a",
-              "duration": 1352.7
+              "file": "https://audio.sdd.pebnum.com/SSA-15-02-Cryptography-And-Data-Protection-Part-2/bm_daniel.m4a",
+              "duration": 1295.4
             },
             {
               "name": "bm_george",
-              "file": "content/SSA-15-02-Cryptography-And-Data-Protection-Part-2/bm_george.m4a",
-              "duration": 1590.6
+              "file": "https://audio.sdd.pebnum.com/SSA-15-02-Cryptography-And-Data-Protection-Part-2/bm_george.m4a",
+              "duration": 1523.2
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-15-02-Cryptography-And-Data-Protection-Part-2/zz_eloquence.m4a",
+              "duration": 1447.0
             }
           ]
         }
@@ -1980,33 +3260,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SSA-16-01-Input-Validation-And-Sanitisation/af_heart.m4a",
-              "duration": 1354.0
+              "file": "https://audio.sdd.pebnum.com/SSA-16-01-Input-Validation-And-Sanitisation/af_heart.m4a",
+              "duration": 1329.8
             },
             {
               "name": "am_onyx",
-              "file": "content/SSA-16-01-Input-Validation-And-Sanitisation/am_onyx.m4a",
-              "duration": 1192.7
+              "file": "https://audio.sdd.pebnum.com/SSA-16-01-Input-Validation-And-Sanitisation/am_onyx.m4a",
+              "duration": 1172.3
             },
             {
               "name": "am_santa",
-              "file": "content/SSA-16-01-Input-Validation-And-Sanitisation/am_santa.m4a",
-              "duration": 1291.0
+              "file": "https://audio.sdd.pebnum.com/SSA-16-01-Input-Validation-And-Sanitisation/am_santa.m4a",
+              "duration": 1268.1
             },
             {
               "name": "bf_isabella",
-              "file": "content/SSA-16-01-Input-Validation-And-Sanitisation/bf_isabella.m4a",
-              "duration": 1297.1
+              "file": "https://audio.sdd.pebnum.com/SSA-16-01-Input-Validation-And-Sanitisation/bf_isabella.m4a",
+              "duration": 1272.8
             },
             {
               "name": "bm_daniel",
-              "file": "content/SSA-16-01-Input-Validation-And-Sanitisation/bm_daniel.m4a",
-              "duration": 1159.4
+              "file": "https://audio.sdd.pebnum.com/SSA-16-01-Input-Validation-And-Sanitisation/bm_daniel.m4a",
+              "duration": 1139.3
             },
             {
               "name": "bm_george",
-              "file": "content/SSA-16-01-Input-Validation-And-Sanitisation/bm_george.m4a",
-              "duration": 1365.6
+              "file": "https://audio.sdd.pebnum.com/SSA-16-01-Input-Validation-And-Sanitisation/bm_george.m4a",
+              "duration": 1343.5
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-16-01-Input-Validation-And-Sanitisation/zz_eloquence.m4a",
+              "duration": 1243.3
             }
           ]
         },
@@ -2020,33 +3305,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SSA-16-02-Privacy-By-Design/af_heart.m4a",
-              "duration": 1249.7
+              "file": "https://audio.sdd.pebnum.com/SSA-16-02-Privacy-By-Design/af_heart.m4a",
+              "duration": 1222.0
             },
             {
               "name": "am_onyx",
-              "file": "content/SSA-16-02-Privacy-By-Design/am_onyx.m4a",
-              "duration": 1099.2
+              "file": "https://audio.sdd.pebnum.com/SSA-16-02-Privacy-By-Design/am_onyx.m4a",
+              "duration": 1072.5
             },
             {
               "name": "am_santa",
-              "file": "content/SSA-16-02-Privacy-By-Design/am_santa.m4a",
-              "duration": 1189.2
+              "file": "https://audio.sdd.pebnum.com/SSA-16-02-Privacy-By-Design/am_santa.m4a",
+              "duration": 1161.2
             },
             {
               "name": "bf_isabella",
-              "file": "content/SSA-16-02-Privacy-By-Design/bf_isabella.m4a",
-              "duration": 1203.1
+              "file": "https://audio.sdd.pebnum.com/SSA-16-02-Privacy-By-Design/bf_isabella.m4a",
+              "duration": 1172.0
             },
             {
               "name": "bm_daniel",
-              "file": "content/SSA-16-02-Privacy-By-Design/bm_daniel.m4a",
-              "duration": 1076.0
+              "file": "https://audio.sdd.pebnum.com/SSA-16-02-Privacy-By-Design/bm_daniel.m4a",
+              "duration": 1045.9
             },
             {
               "name": "bm_george",
-              "file": "content/SSA-16-02-Privacy-By-Design/bm_george.m4a",
-              "duration": 1266.9
+              "file": "https://audio.sdd.pebnum.com/SSA-16-02-Privacy-By-Design/bm_george.m4a",
+              "duration": 1233.1
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-16-02-Privacy-By-Design/zz_eloquence.m4a",
+              "duration": 1156.1
             }
           ]
         },
@@ -2060,33 +3350,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/af_heart.m4a",
-              "duration": 1095.2
+              "file": "https://audio.sdd.pebnum.com/SSA-16-99-Module-Review-Security-Foundations-And-Principles/af_heart.m4a",
+              "duration": 1099.4
             },
             {
               "name": "am_onyx",
-              "file": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/am_onyx.m4a",
-              "duration": 975.6
+              "file": "https://audio.sdd.pebnum.com/SSA-16-99-Module-Review-Security-Foundations-And-Principles/am_onyx.m4a",
+              "duration": 977.4
             },
             {
               "name": "am_santa",
-              "file": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/am_santa.m4a",
-              "duration": 1046.9
+              "file": "https://audio.sdd.pebnum.com/SSA-16-99-Module-Review-Security-Foundations-And-Principles/am_santa.m4a",
+              "duration": 1048.9
             },
             {
               "name": "bf_isabella",
-              "file": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/bf_isabella.m4a",
-              "duration": 1054.9
+              "file": "https://audio.sdd.pebnum.com/SSA-16-99-Module-Review-Security-Foundations-And-Principles/bf_isabella.m4a",
+              "duration": 1052.3
             },
             {
               "name": "bm_daniel",
-              "file": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/bm_daniel.m4a",
-              "duration": 955.7
+              "file": "https://audio.sdd.pebnum.com/SSA-16-99-Module-Review-Security-Foundations-And-Principles/bm_daniel.m4a",
+              "duration": 952.4
             },
             {
               "name": "bm_george",
-              "file": "content/SSA-16-99-Module-Review-Security-Foundations-And-Principles/bm_george.m4a",
-              "duration": 1105.6
+              "file": "https://audio.sdd.pebnum.com/SSA-16-99-Module-Review-Security-Foundations-And-Principles/bm_george.m4a",
+              "duration": 1104.3
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-16-99-Module-Review-Security-Foundations-And-Principles/zz_eloquence.m4a",
+              "duration": 1046.2
             }
           ]
         }
@@ -2107,33 +3402,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SSA-17-01-Secure-API-Design/af_heart.m4a",
-              "duration": 1294.2
+              "file": "https://audio.sdd.pebnum.com/SSA-17-01-Secure-API-Design/af_heart.m4a",
+              "duration": 1260.8
             },
             {
               "name": "am_onyx",
-              "file": "content/SSA-17-01-Secure-API-Design/am_onyx.m4a",
-              "duration": 1133.8
+              "file": "https://audio.sdd.pebnum.com/SSA-17-01-Secure-API-Design/am_onyx.m4a",
+              "duration": 1106.9
             },
             {
               "name": "am_santa",
-              "file": "content/SSA-17-01-Secure-API-Design/am_santa.m4a",
-              "duration": 1230.7
+              "file": "https://audio.sdd.pebnum.com/SSA-17-01-Secure-API-Design/am_santa.m4a",
+              "duration": 1200.1
             },
             {
               "name": "bf_isabella",
-              "file": "content/SSA-17-01-Secure-API-Design/bf_isabella.m4a",
-              "duration": 1238.8
+              "file": "https://audio.sdd.pebnum.com/SSA-17-01-Secure-API-Design/bf_isabella.m4a",
+              "duration": 1211.2
             },
             {
               "name": "bm_daniel",
-              "file": "content/SSA-17-01-Secure-API-Design/bm_daniel.m4a",
-              "duration": 1108.7
+              "file": "https://audio.sdd.pebnum.com/SSA-17-01-Secure-API-Design/bm_daniel.m4a",
+              "duration": 1086.1
             },
             {
               "name": "bm_george",
-              "file": "content/SSA-17-01-Secure-API-Design/bm_george.m4a",
-              "duration": 1309.9
+              "file": "https://audio.sdd.pebnum.com/SSA-17-01-Secure-API-Design/bm_george.m4a",
+              "duration": 1282.7
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-17-01-Secure-API-Design/zz_eloquence.m4a",
+              "duration": 1161.3
             }
           ]
         },
@@ -2147,33 +3447,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SSA-17-02-Secure-Execution-And-Resource-Management/af_heart.m4a",
-              "duration": 1252.2
+              "file": "https://audio.sdd.pebnum.com/SSA-17-02-Secure-Execution-And-Resource-Management/af_heart.m4a",
+              "duration": 1234.8
             },
             {
               "name": "am_onyx",
-              "file": "content/SSA-17-02-Secure-Execution-And-Resource-Management/am_onyx.m4a",
-              "duration": 1105.3
+              "file": "https://audio.sdd.pebnum.com/SSA-17-02-Secure-Execution-And-Resource-Management/am_onyx.m4a",
+              "duration": 1091.8
             },
             {
               "name": "am_santa",
-              "file": "content/SSA-17-02-Secure-Execution-And-Resource-Management/am_santa.m4a",
-              "duration": 1199.4
+              "file": "https://audio.sdd.pebnum.com/SSA-17-02-Secure-Execution-And-Resource-Management/am_santa.m4a",
+              "duration": 1184.0
             },
             {
               "name": "bf_isabella",
-              "file": "content/SSA-17-02-Secure-Execution-And-Resource-Management/bf_isabella.m4a",
-              "duration": 1191.0
+              "file": "https://audio.sdd.pebnum.com/SSA-17-02-Secure-Execution-And-Resource-Management/bf_isabella.m4a",
+              "duration": 1174.6
             },
             {
               "name": "bm_daniel",
-              "file": "content/SSA-17-02-Secure-Execution-And-Resource-Management/bm_daniel.m4a",
-              "duration": 1078.8
+              "file": "https://audio.sdd.pebnum.com/SSA-17-02-Secure-Execution-And-Resource-Management/bm_daniel.m4a",
+              "duration": 1067.0
             },
             {
               "name": "bm_george",
-              "file": "content/SSA-17-02-Secure-Execution-And-Resource-Management/bm_george.m4a",
-              "duration": 1271.8
+              "file": "https://audio.sdd.pebnum.com/SSA-17-02-Secure-Execution-And-Resource-Management/bm_george.m4a",
+              "duration": 1254.8
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-17-02-Secure-Execution-And-Resource-Management/zz_eloquence.m4a",
+              "duration": 1144.0
             }
           ]
         }
@@ -2194,33 +3499,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SSA-18-01-Security-Testing-Fundamentals/af_heart.m4a",
-              "duration": 1375.4
+              "file": "https://audio.sdd.pebnum.com/SSA-18-01-Security-Testing-Fundamentals/af_heart.m4a",
+              "duration": 1336.2
             },
             {
               "name": "am_onyx",
-              "file": "content/SSA-18-01-Security-Testing-Fundamentals/am_onyx.m4a",
-              "duration": 1208.2
+              "file": "https://audio.sdd.pebnum.com/SSA-18-01-Security-Testing-Fundamentals/am_onyx.m4a",
+              "duration": 1173.1
             },
             {
               "name": "am_santa",
-              "file": "content/SSA-18-01-Security-Testing-Fundamentals/am_santa.m4a",
-              "duration": 1309.7
+              "file": "https://audio.sdd.pebnum.com/SSA-18-01-Security-Testing-Fundamentals/am_santa.m4a",
+              "duration": 1273.4
             },
             {
               "name": "bf_isabella",
-              "file": "content/SSA-18-01-Security-Testing-Fundamentals/bf_isabella.m4a",
-              "duration": 1323.5
+              "file": "https://audio.sdd.pebnum.com/SSA-18-01-Security-Testing-Fundamentals/bf_isabella.m4a",
+              "duration": 1281.0
             },
             {
               "name": "bm_daniel",
-              "file": "content/SSA-18-01-Security-Testing-Fundamentals/bm_daniel.m4a",
-              "duration": 1180.4
+              "file": "https://audio.sdd.pebnum.com/SSA-18-01-Security-Testing-Fundamentals/bm_daniel.m4a",
+              "duration": 1144.5
             },
             {
               "name": "bm_george",
-              "file": "content/SSA-18-01-Security-Testing-Fundamentals/bm_george.m4a",
-              "duration": 1397.8
+              "file": "https://audio.sdd.pebnum.com/SSA-18-01-Security-Testing-Fundamentals/bm_george.m4a",
+              "duration": 1355.1
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-18-01-Security-Testing-Fundamentals/zz_eloquence.m4a",
+              "duration": 1248.5
             }
           ]
         },
@@ -2234,33 +3544,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/af_heart.m4a",
-              "duration": 1229.0
+              "file": "https://audio.sdd.pebnum.com/SSA-18-02-Web-Application-Vulnerabilities-Part-1/af_heart.m4a",
+              "duration": 1201.3
             },
             {
               "name": "am_onyx",
-              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/am_onyx.m4a",
-              "duration": 1076.5
+              "file": "https://audio.sdd.pebnum.com/SSA-18-02-Web-Application-Vulnerabilities-Part-1/am_onyx.m4a",
+              "duration": 1051.3
             },
             {
               "name": "am_santa",
-              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/am_santa.m4a",
-              "duration": 1175.3
+              "file": "https://audio.sdd.pebnum.com/SSA-18-02-Web-Application-Vulnerabilities-Part-1/am_santa.m4a",
+              "duration": 1148.8
             },
             {
               "name": "bf_isabella",
-              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/bf_isabella.m4a",
-              "duration": 1169.8
+              "file": "https://audio.sdd.pebnum.com/SSA-18-02-Web-Application-Vulnerabilities-Part-1/bf_isabella.m4a",
+              "duration": 1144.0
             },
             {
               "name": "bm_daniel",
-              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/bm_daniel.m4a",
-              "duration": 1051.5
+              "file": "https://audio.sdd.pebnum.com/SSA-18-02-Web-Application-Vulnerabilities-Part-1/bm_daniel.m4a",
+              "duration": 1027.2
             },
             {
               "name": "bm_george",
-              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-1/bm_george.m4a",
-              "duration": 1245.1
+              "file": "https://audio.sdd.pebnum.com/SSA-18-02-Web-Application-Vulnerabilities-Part-1/bm_george.m4a",
+              "duration": 1216.1
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-18-02-Web-Application-Vulnerabilities-Part-1/zz_eloquence.m4a",
+              "duration": 1117.1
             }
           ]
         },
@@ -2274,33 +3589,38 @@
           "voices": [
             {
               "name": "af_heart",
-              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/af_heart.m4a",
-              "duration": 1165.1
+              "file": "https://audio.sdd.pebnum.com/SSA-18-02-Web-Application-Vulnerabilities-Part-2/af_heart.m4a",
+              "duration": 1129.4
             },
             {
               "name": "am_onyx",
-              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/am_onyx.m4a",
-              "duration": 1023.2
+              "file": "https://audio.sdd.pebnum.com/SSA-18-02-Web-Application-Vulnerabilities-Part-2/am_onyx.m4a",
+              "duration": 991.9
             },
             {
               "name": "am_santa",
-              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/am_santa.m4a",
-              "duration": 1114.0
+              "file": "https://audio.sdd.pebnum.com/SSA-18-02-Web-Application-Vulnerabilities-Part-2/am_santa.m4a",
+              "duration": 1077.8
             },
             {
               "name": "bf_isabella",
-              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/bf_isabella.m4a",
-              "duration": 1115.4
+              "file": "https://audio.sdd.pebnum.com/SSA-18-02-Web-Application-Vulnerabilities-Part-2/bf_isabella.m4a",
+              "duration": 1077.2
             },
             {
               "name": "bm_daniel",
-              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/bm_daniel.m4a",
-              "duration": 1003.7
+              "file": "https://audio.sdd.pebnum.com/SSA-18-02-Web-Application-Vulnerabilities-Part-2/bm_daniel.m4a",
+              "duration": 967.4
             },
             {
               "name": "bm_george",
-              "file": "content/SSA-18-02-Web-Application-Vulnerabilities-Part-2/bm_george.m4a",
-              "duration": 1184.9
+              "file": "https://audio.sdd.pebnum.com/SSA-18-02-Web-Application-Vulnerabilities-Part-2/bm_george.m4a",
+              "duration": 1141.7
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-18-02-Web-Application-Vulnerabilities-Part-2/zz_eloquence.m4a",
+              "duration": 1049.3
             }
           ]
         }
@@ -2318,7 +3638,43 @@
           "scriptPath": "content/SSA-19-01-Security-In-Development-Teams/script.md",
           "supplementaryPath": "content/SSA-19-01-Security-In-Development-Teams/supplementary.md",
           "quizPath": "content/SSA-19-01-Security-In-Development-Teams/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-01-Security-In-Development-Teams/af_heart.m4a",
+              "duration": 1336.2
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-01-Security-In-Development-Teams/am_onyx.m4a",
+              "duration": 1172.0
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-01-Security-In-Development-Teams/am_santa.m4a",
+              "duration": 1271.8
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-01-Security-In-Development-Teams/bf_isabella.m4a",
+              "duration": 1279.8
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-01-Security-In-Development-Teams/bm_daniel.m4a",
+              "duration": 1138.4
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-01-Security-In-Development-Teams/bm_george.m4a",
+              "duration": 1342.9
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-01-Security-In-Development-Teams/zz_eloquence.m4a",
+              "duration": 1257.1
+            }
+          ]
         },
         {
           "id": "SSA-19-02-Enterprise-Security-Benefits",
@@ -2327,7 +3683,43 @@
           "scriptPath": "content/SSA-19-02-Enterprise-Security-Benefits/script.md",
           "supplementaryPath": "content/SSA-19-02-Enterprise-Security-Benefits/supplementary.md",
           "quizPath": "content/SSA-19-02-Enterprise-Security-Benefits/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-02-Enterprise-Security-Benefits/af_heart.m4a",
+              "duration": 1282.9
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-02-Enterprise-Security-Benefits/am_onyx.m4a",
+              "duration": 1126.5
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-02-Enterprise-Security-Benefits/am_santa.m4a",
+              "duration": 1219.6
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-02-Enterprise-Security-Benefits/bf_isabella.m4a",
+              "duration": 1236.5
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-02-Enterprise-Security-Benefits/bm_daniel.m4a",
+              "duration": 1107.6
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-02-Enterprise-Security-Benefits/bm_george.m4a",
+              "duration": 1302.0
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-02-Enterprise-Security-Benefits/zz_eloquence.m4a",
+              "duration": 1226.2
+            }
+          ]
         },
         {
           "id": "SSA-19-03-Security-Ethics-And-Legal-Considerations",
@@ -2336,7 +3728,43 @@
           "scriptPath": "content/SSA-19-03-Security-Ethics-And-Legal-Considerations/script.md",
           "supplementaryPath": "content/SSA-19-03-Security-Ethics-And-Legal-Considerations/supplementary.md",
           "quizPath": "content/SSA-19-03-Security-Ethics-And-Legal-Considerations/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-03-Security-Ethics-And-Legal-Considerations/af_heart.m4a",
+              "duration": 1383.5
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-03-Security-Ethics-And-Legal-Considerations/am_onyx.m4a",
+              "duration": 1220.2
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-03-Security-Ethics-And-Legal-Considerations/am_santa.m4a",
+              "duration": 1322.8
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-03-Security-Ethics-And-Legal-Considerations/bf_isabella.m4a",
+              "duration": 1326.8
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-03-Security-Ethics-And-Legal-Considerations/bm_daniel.m4a",
+              "duration": 1199.3
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-03-Security-Ethics-And-Legal-Considerations/bm_george.m4a",
+              "duration": 1410.7
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-03-Security-Ethics-And-Legal-Considerations/zz_eloquence.m4a",
+              "duration": 1286.0
+            }
+          ]
         },
         {
           "id": "SSA-19-04-Evaluating-Security-Programs",
@@ -2345,7 +3773,43 @@
           "scriptPath": "content/SSA-19-04-Evaluating-Security-Programs/script.md",
           "supplementaryPath": "content/SSA-19-04-Evaluating-Security-Programs/supplementary.md",
           "quizPath": "content/SSA-19-04-Evaluating-Security-Programs/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-04-Evaluating-Security-Programs/af_heart.m4a",
+              "duration": 1166.1
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-04-Evaluating-Security-Programs/am_onyx.m4a",
+              "duration": 1025.6
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-04-Evaluating-Security-Programs/am_santa.m4a",
+              "duration": 1112.8
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-04-Evaluating-Security-Programs/bf_isabella.m4a",
+              "duration": 1122.0
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-04-Evaluating-Security-Programs/bm_daniel.m4a",
+              "duration": 1006.9
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-04-Evaluating-Security-Programs/bm_george.m4a",
+              "duration": 1187.8
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-04-Evaluating-Security-Programs/zz_eloquence.m4a",
+              "duration": 1100.4
+            }
+          ]
         },
         {
           "id": "SSA-19-98-Module-Summary-Secure-Software-Architecture",
@@ -2354,7 +3818,43 @@
           "scriptPath": "content/SSA-19-98-Module-Summary-Secure-Software-Architecture/script.md",
           "supplementaryPath": "content/SSA-19-98-Module-Summary-Secure-Software-Architecture/supplementary.md",
           "quizPath": "content/SSA-19-98-Module-Summary-Secure-Software-Architecture/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-98-Module-Summary-Secure-Software-Architecture/af_heart.m4a",
+              "duration": 1976.9
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-98-Module-Summary-Secure-Software-Architecture/am_onyx.m4a",
+              "duration": 1733.1
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-98-Module-Summary-Secure-Software-Architecture/am_santa.m4a",
+              "duration": 1864.7
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-98-Module-Summary-Secure-Software-Architecture/bf_isabella.m4a",
+              "duration": 1902.3
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-98-Module-Summary-Secure-Software-Architecture/bm_daniel.m4a",
+              "duration": 1684.2
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-98-Module-Summary-Secure-Software-Architecture/bm_george.m4a",
+              "duration": 1988.5
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-98-Module-Summary-Secure-Software-Architecture/zz_eloquence.m4a",
+              "duration": 1926.5
+            }
+          ]
         },
         {
           "id": "SSA-19-99-Module-Review-Secure-Software-Architecture",
@@ -2363,7 +3863,43 @@
           "scriptPath": "content/SSA-19-99-Module-Review-Secure-Software-Architecture/script.md",
           "supplementaryPath": "content/SSA-19-99-Module-Review-Secure-Software-Architecture/supplementary.md",
           "quizPath": "content/SSA-19-99-Module-Review-Secure-Software-Architecture/quiz.json",
-          "voices": []
+          "voices": [
+            {
+              "name": "af_heart",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-99-Module-Review-Secure-Software-Architecture/af_heart.m4a",
+              "duration": 1539.7
+            },
+            {
+              "name": "am_onyx",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-99-Module-Review-Secure-Software-Architecture/am_onyx.m4a",
+              "duration": 1353.2
+            },
+            {
+              "name": "am_santa",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-99-Module-Review-Secure-Software-Architecture/am_santa.m4a",
+              "duration": 1458.4
+            },
+            {
+              "name": "bf_isabella",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-99-Module-Review-Secure-Software-Architecture/bf_isabella.m4a",
+              "duration": 1489.9
+            },
+            {
+              "name": "bm_daniel",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-99-Module-Review-Secure-Software-Architecture/bm_daniel.m4a",
+              "duration": 1320.5
+            },
+            {
+              "name": "bm_george",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-99-Module-Review-Secure-Software-Architecture/bm_george.m4a",
+              "duration": 1554.9
+            },
+            {
+              "name": "zz_eloquence",
+              "file": "https://audio.sdd.pebnum.com/SSA-19-99-Module-Review-Secure-Software-Architecture/zz_eloquence.m4a",
+              "duration": 1497.6
+            }
+          ]
         }
       ]
     }

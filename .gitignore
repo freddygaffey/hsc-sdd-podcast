@@ -25,3 +25,8 @@ _research/
 _not_needed/
 
 .DS_Store
+
+# npm (only used for local tooling; not part of the static app)
+node_modules/
+package-lock.json
+package.json

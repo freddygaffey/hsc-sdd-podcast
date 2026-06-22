@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Podcasts">
@@ -25,6 +25,9 @@
     <button id="btn-queue" class="icon-btn queue-btn" aria-label="Playback queue" hidden>
       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
       <span id="queue-badge" class="queue-badge"></span>
+    </button>
+    <button id="btn-settings" class="icon-btn" aria-label="Settings">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.488.488 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 0 0-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
     </button>
     <button id="btn-theme" class="theme-toggle" aria-label="Toggle theme">
       <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
@@ -50,7 +53,8 @@
           <button id="btn-speed-down" class="speed-arrow" aria-label="Decrease speed">&#8722;</button>
           <input id="speed-slider" class="speed-slider" type="range" min="0" max="62" step="1" value="3">
           <button id="btn-speed-up" class="speed-arrow" aria-label="Increase speed">+</button>
-          <input id="speed-input" class="speed-input" type="text" value="1x" aria-label="Playback speed" inputmode="decimal">
+          <input id="speed-input" class="speed-input" type="text" value="3.8" aria-label="Speed in syllables per second" inputmode="decimal">
+          <span class="speed-unit">syl/s</span>
         </div>
       </div>
     </div>
@@ -90,6 +94,22 @@
       <button id="btn-stats-close" class="stats-close">&#10005;</button>
     </div>
     <div id="stats-content" class="stats-content"></div>
+  </div>
+</div>
+
+<div id="settings-overlay" class="stats-overlay" hidden>
+  <div class="stats-panel">
+    <div class="stats-header">
+      <h2 class="stats-heading">Settings</h2>
+      <button id="btn-settings-close" class="stats-close">&#10005;</button>
+    </div>
+    <div class="stats-content">
+      <div class="setting-row">
+        <label for="default-voice-select" class="setting-label">Default voice</label>
+        <select id="default-voice-select" class="meta-select setting-select" aria-label="Default voice"></select>
+      </div>
+      <p class="setting-hint">New episodes start in this voice. You can still switch voice per episode from the player bar.</p>
+    </div>
   </div>
 </div>
 
