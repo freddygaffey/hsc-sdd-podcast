@@ -34,6 +34,10 @@ mkdir -p "$DIST"
 # App shell — the only root files the running app needs.
 cp index.html app.js style.css service-worker.js app.webmanifest "$DIST/"
 
+# Vendored libraries (marked + highlight.js + themes) the app loads locally so
+# markdown/code rendering works offline. Must ship or the app 404s on them.
+cp -r vendor "$DIST/"
+
 # Per-episode text the app fetches at runtime (script/supplementary/quiz only).
 # Excludes *.m4a / *.wav and everything else; --prune-empty-dirs keeps dist tidy.
 rsync -a --prune-empty-dirs \
