@@ -93,6 +93,29 @@
     else el.removeAttribute("hidden");
   }
 
+  // Dismiss a bottom-sheet overlay by swiping its panel down (when scrolled to top).
+  function enableSheetDismiss(overlay) {
+    const panel = overlay.querySelector(".stats-panel");
+    if (!panel) return;
+    let startY = 0, dy = 0, dragging = false;
+    panel.addEventListener("touchstart", (e) => {
+      if (panel.scrollTop > 0) { dragging = false; return; } // let content scroll first
+      startY = e.touches[0].clientY; dy = 0; dragging = true;
+    }, { passive: true });
+    panel.addEventListener("touchmove", (e) => {
+      if (!dragging) return;
+      dy = e.touches[0].clientY - startY;
+      if (dy > 0) { panel.style.transition = "none"; panel.style.transform = `translateY(${dy}px)`; }
+    }, { passive: true });
+    panel.addEventListener("touchend", () => {
+      if (!dragging) return;
+      dragging = false;
+      panel.style.transition = "";
+      panel.style.transform = "";
+      if (dy > 90) setHidden(overlay, true);
+    }, { passive: true });
+  }
+
   // --- Speed control ---
   const DEFAULT_SPEED_IDX = 3; // 1.0x
 
@@ -701,10 +724,10 @@
     renderStats();
     setHidden(statsOverlay, false);
   });
-  btnStatsClose.addEventListener("click", () => setHidden(statsOverlay, true));
   statsOverlay.addEventListener("click", (e) => {
     if (e.target === statsOverlay) setHidden(statsOverlay, true);
   });
+  enableSheetDismiss(statsOverlay);
 
   // --- Downloads ---
   // The DOWNLOADS cache (see service-worker.js) holds the bytes; this localStorage
@@ -880,10 +903,10 @@
     localStorage.setItem(SPEED_UNIT_KEY, speedUnitSelect.value === "sps" ? "sps" : "mult");
     setSpeed(getCurrentSpeedIdx()); // refresh the player display + unit label
   });
-  btnSettingsClose.addEventListener("click", () => setHidden(settingsOverlay, true));
   settingsOverlay.addEventListener("click", (e) => {
     if (e.target === settingsOverlay) setHidden(settingsOverlay, true);
   });
+  enableSheetDismiss(settingsOverlay);
   defaultVoiceSelect.addEventListener("change", () => {
     const name = defaultVoiceSelect.value;
     localStorage.setItem(DEFAULT_VOICE_KEY, name);
@@ -1450,6 +1473,13 @@
 
   window.addEventListener("hashchange", handleRoute);
   btnBack.addEventListener("click", navigateToLibrary);
+
+  // Escape closes an open overlay (keyboard / desktop).
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    if (!statsOverlay.hidden) setHidden(statsOverlay, true);
+    if (!settingsOverlay.hidden) setHidden(settingsOverlay, true);
+  });
 
   // --- Footer repo link (per-subject) ---
   const repoLink = document.getElementById("repo-link");
