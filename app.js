@@ -54,7 +54,6 @@
   const queueListEl = document.getElementById("queue-list");
   const btnQueueClear = document.getElementById("btn-queue-clear");
   const qNowTitleEl = document.getElementById("q-now-title");
-  const btnShuffle = document.getElementById("q-shuffle");
   const btnSettings = document.getElementById("btn-settings");
   const settingsOverlay = document.getElementById("settings-overlay");
   const btnSettingsClose = document.getElementById("btn-settings-close");
@@ -264,7 +263,7 @@
   // Three horizontal lines = "drag to reorder" (a ⋮ reads as a click-menu instead).
   const handleIcon = (s = 20) =>
     `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor"><rect x="4" y="7" width="16" height="2" rx="1"/><rect x="4" y="11" width="16" height="2" rx="1"/><rect x="4" y="15" width="16" height="2" rx="1"/></svg>`;
-  const waveTile = `<svg viewBox="0 0 24 24" width="20" height="20" fill="rgba(255,255,255,.95)"><rect x="3" y="10" width="3" height="4" rx="1.5"/><rect x="8" y="7" width="3" height="10" rx="1.5"/><rect x="13" y="4" width="3" height="16" rx="1.5"/><rect x="18" y="9" width="3" height="6" rx="1.5"/></svg>`;
+  const eqIcon = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="3" y="10" width="3" height="4" rx="1.5"/><rect x="8" y="7" width="3" height="10" rx="1.5"/><rect x="13" y="4" width="3" height="16" rx="1.5"/><rect x="18" y="9" width="3" height="6" rx="1.5"/></svg>`;
 
   function updateProgressFill(pct) {
     progressBarEl.style.setProperty("--pct", pct * 100 + "%");
@@ -369,20 +368,8 @@
     syncQueueButtons();
     renderQueuePanel();
   });
-  if (btnShuffle) btnShuffle.addEventListener("click", () => {
-    if (queue.length < 2) return;
-    queue = shuffle(queue);
-    updateQueueBadge();
-    syncQueueButtons();
-    renderQueuePanel();
-  });
 
   // A deterministic, on-brand colored art tile (no real per-episode artwork).
-  function qHue(s) { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 360; return h; }
-  function qArt(id) {
-    const h = qHue(id || "x");
-    return `<span class="q-art" style="background:linear-gradient(135deg,hsl(${h} 55% 48%),hsl(${(h + 40) % 360} 60% 38%))">${waveTile}</span>`;
-  }
   function episodeModuleName(id) {
     if (!manifest) return "";
     for (const mod of manifest.modules) {
@@ -395,17 +382,21 @@
     if (btn) btn.innerHTML = audio.paused ? playIcon(16) : pauseIcon(16);
   }
 
-  function queueRowHTML(id, kind) {
+  function queueRowHTML(id, kind, num) {
     const ep = kind === "now" ? currentEpisode : findEpisode(id);
     const title = ep ? ep.title : id;
     const sub = ep ? episodeModuleName(ep.id) : "";
+    const lead = kind === "now"
+      ? `<span class="q-num q-num-now">${eqIcon}</span>`
+      : `<span class="q-num">${num}</span>`;
     const ctrl = kind === "now"
       ? `<button class="q-pp" aria-label="Play or pause">${audio.paused ? playIcon(16) : pauseIcon(16)}</button>`
-      : `<span class="q-handle" aria-label="Drag to reorder" title="Drag to reorder">${handleIcon(20)}</span>`;
+      : `<button class="q-del" aria-label="Remove from queue" title="Remove">&#10005;</button>
+         <span class="q-handle" aria-label="Drag to reorder" title="Drag to reorder">${handleIcon(20)}</span>`;
     return `<div class="${kind === "now" ? "q-now-row" : "q-row"}" data-ep-id="${ep ? ep.id : id}">
       <div class="q-remove-bg"><span>Remove</span></div>
       <div class="q-fg">
-        ${qArt(ep ? ep.id : id)}
+        ${lead}
         <span class="q-text"><span class="q-title">${title}</span><span class="q-sub">${sub}</span></span>
         ${ctrl}
       </div>
@@ -417,13 +408,12 @@
     if (qNowTitleEl) qNowTitleEl.textContent = currentEpisode ? currentEpisode.title : "nothing";
 
     let html = currentEpisode ? queueRowHTML(currentEpisode.id, "now") : "";
-    html += queue.map((id) => queueRowHTML(id, "queued")).join("");
+    html += queue.map((id, i) => queueRowHTML(id, "queued", i + 1)).join("");
     if (!queue.length) {
       html += `<p class="setting-hint">Nothing queued. Add episodes with the + button, or Start a module.</p>`;
     }
     queueListEl.innerHTML = html;
     if (btnQueueClear) setHidden(btnQueueClear, !queue.length);
-    if (btnShuffle) setHidden(btnShuffle, queue.length < 2);
 
     const nowRow = queueListEl.querySelector(".q-now-row");
     if (nowRow) nowRow.querySelector(".q-pp").addEventListener("click", (e) => {
@@ -438,12 +428,16 @@
     queueListEl.querySelectorAll(".q-row").forEach((row) => {
       const fg = row.querySelector(".q-fg");
       const handle = row.querySelector(".q-handle");
+      const del = row.querySelector(".q-del");
       const id = row.dataset.epId;
       let sx = 0, sy = 0, dx = 0, swiping = false, active = false;
 
-      // tap-to-play + swipe-left-to-remove (anywhere on the row except the handle)
+      // explicit remove button (works with a mouse on desktop)
+      if (del) del.addEventListener("click", (e) => { e.stopPropagation(); removeFromQueue(id); });
+
+      // tap-to-play + swipe-left-to-remove (anywhere on the row except the handle / ✕)
       fg.addEventListener("pointerdown", (e) => {
-        if (handle.contains(e.target)) return;
+        if (handle.contains(e.target) || (del && del.contains(e.target))) return;
         active = true; swiping = false; dx = 0; sx = e.clientX; sy = e.clientY;
         try { fg.setPointerCapture(e.pointerId); } catch (_) {}
       });
