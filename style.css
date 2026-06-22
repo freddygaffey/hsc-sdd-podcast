@@ -1190,3 +1190,38 @@ body.offline .episode-row:not(.ep-downloaded) .ep-play { opacity: 0.4; }
   font-weight: 400;
   cursor: pointer;
 }
+
+/* ── App footer (credit / beta / issue link) ────────────── */
+.app-footer {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 28px 16px calc(40px + var(--safe-bottom));
+  text-align: center;
+  border-top: 1px solid var(--border);
+}
+.beta-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 2px 9px;
+  margin-bottom: 12px;
+}
+.footer-disclaimer {
+  font-size: 12px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+.footer-credit {
+  font-size: 12px;
+  color: var(--text-dim);
+  margin: 0;
+}
+.footer-credit a { color: var(--accent); text-decoration: none; }
+.footer-credit a:hover { text-decoration: underline; }
