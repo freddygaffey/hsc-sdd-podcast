@@ -387,12 +387,10 @@ button, select, input { font-family: inherit; }
   background: var(--accent);
   color: #fff;
   border: none;
-  font-size: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding-left: 2px;
 }
 
 /* ── Module list ────────────────────────────────────────── */
@@ -405,19 +403,40 @@ button, select, input { font-family: inherit; }
 }
 
 .module-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+}
+.module-toggle {
+  flex: 1;
+  min-width: 0;
   display: grid;
   grid-template-columns: 1fr auto auto;
   align-items: center;
   gap: 12px;
-  width: 100%;
   background: none;
   border: none;
   color: var(--text);
-  padding: 14px 16px;
+  padding: 6px 4px;
+  border-radius: 8px;
   cursor: pointer;
   text-align: left;
 }
-.module-head:active { background: var(--accent-soft); }
+.module-toggle:active { background: var(--accent-soft); }
+.module-start {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
 
 .module-name { font-weight: 600; font-size: 14px; }
 .module-meta {
@@ -487,19 +506,11 @@ button, select, input { font-family: inherit; }
   border-radius: 50%;
   border: none;
   background: var(--accent-soft);
+  color: var(--accent);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-}
-.ep-play::before {
-  content: "";
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 5px 0 5px 8px;
-  border-color: transparent transparent transparent var(--accent);
-  margin-left: 2px;
 }
 
 /* ── Episode view ───────────────────────────────────────── */

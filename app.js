@@ -196,6 +196,12 @@
     return parts.map((w) => w[0].toUpperCase() + w.slice(1)).join(" ") || name;
   }
 
+  // Shared play-triangle icon (same path as the player-bar button) so every
+  // circular play button renders an identical, centered SVG instead of glyph
+  // or CSS-border hacks.
+  const playIcon = (s = 16) =>
+    `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
+
   function updateProgressFill(pct) {
     progressBarEl.style.setProperty("--pct", pct * 100 + "%");
   }
@@ -279,7 +285,13 @@
   btnQueue.addEventListener("click", () => {
     queue = [];
     updateQueueBadge();
-    if (!viewLibrary.hidden) renderLibrary();
+    // Reset the +/✓ buttons in place rather than re-rendering, so an open
+    // module stays open.
+    viewLibrary.querySelectorAll(".ep-queue-btn.in-queue").forEach((b) => {
+      b.classList.remove("in-queue");
+      b.textContent = "+";
+      b.setAttribute("aria-label", "Add to queue");
+    });
   });
 
   // --- Auto-advance ---
@@ -449,6 +461,10 @@
       if (wasPlaying) audio.play();
     }, { once: true });
     saveEpisodeProgress(currentEpisode.id, { lastVoice: voice.name });
+    // Remember this voice globally so the next/fresh episode starts in it and
+    // the Settings "Default voice" stays in sync.
+    localStorage.setItem(DEFAULT_VOICE_KEY, voice.name);
+    defaultVoiceSelect.value = voice.name;
   }
 
   function persistProgress() {
@@ -617,6 +633,18 @@
     return latestEp;
   }
 
+  // Start a whole module: resume the first unlistened episode (at its saved
+  // position) and replace the queue with every episode after it.
+  function startModule(group) {
+    const eps = group.episodes;
+    let idx = eps.findIndex((e) => !getEpisodeProgress(e.id).completed);
+    if (idx < 0) idx = 0; // all completed → start from the top
+    queue = eps.slice(idx + 1).map((e) => e.id);
+    updateQueueBadge();
+    loadEpisode(eps[idx], { autoplay: true });
+    navigateToEpisode(eps[idx].id);
+  }
+
   function renderLibrary() {
     viewLibrary.innerHTML = "";
 
@@ -632,7 +660,7 @@
           <div class="continue-title">${lastEp.title}</div>
           <div class="continue-track"><div class="continue-fill" style="width:${pct}%"></div></div>
         </div>
-        <button class="continue-play" aria-label="Resume">&#9654;</button>`;
+        <button class="continue-play" aria-label="Resume">${playIcon(18)}</button>`;
       banner.querySelector(".continue-play").addEventListener("click", (e) => {
         e.stopPropagation();
         loadEpisode(lastEp, { autoplay: true });
@@ -655,13 +683,21 @@
       groupEl.className = "module";
 
       const completed = group.episodes.filter((e) => getEpisodeProgress(e.id).completed).length;
-      const head = document.createElement("button");
+      const name = GROUP_NAMES[group.prefix] || group.prefix;
+      const head = document.createElement("div");
       head.className = "module-head";
       head.innerHTML = `
-        <span class="module-name">${GROUP_NAMES[group.prefix] || group.prefix}</span>
-        <span class="module-meta">${completed}/${group.episodes.length} listened</span>
-        <span class="module-chev">&#8250;</span>`;
-      head.addEventListener("click", () => groupEl.classList.toggle("open"));
+        <button class="module-start" aria-label="Start ${name}">${playIcon(16)}</button>
+        <button class="module-toggle">
+          <span class="module-name">${name}</span>
+          <span class="module-meta">${completed}/${group.episodes.length} listened</span>
+          <span class="module-chev">&#8250;</span>
+        </button>`;
+      head.querySelector(".module-toggle").addEventListener("click", () => groupEl.classList.toggle("open"));
+      head.querySelector(".module-start").addEventListener("click", (e) => {
+        e.stopPropagation();
+        startModule(group);
+      });
       groupEl.appendChild(head);
 
       const progTrack = document.createElement("div");
@@ -698,15 +734,21 @@
         <div class="ep-progress-track"><div class="ep-progress-fill" style="width:${pct}%"></div></div>
       </div>
       <button class="ep-queue-btn${inQueue ? " in-queue" : ""}" aria-label="${inQueue ? "Remove from queue" : "Add to queue"}">${inQueue ? "&#10003;" : "+"}</button>
-      <button class="ep-play" aria-label="Play ${ep.title}"></button>`;
+      <button class="ep-play" aria-label="Play ${ep.title}">${playIcon(16)}</button>`;
 
-    row.querySelector(".ep-queue-btn").addEventListener("click", (e) => {
+    const qBtn = row.querySelector(".ep-queue-btn");
+    qBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       const idx = queue.indexOf(ep.id);
-      if (idx >= 0) queue.splice(idx, 1);
-      else queue.push(ep.id);
+      const adding = idx < 0;
+      if (adding) queue.push(ep.id);
+      else queue.splice(idx, 1);
+      // Update the button in place rather than re-rendering, so the open module
+      // stays open and you can keep adding episodes.
+      qBtn.classList.toggle("in-queue", adding);
+      qBtn.textContent = adding ? "✓" : "+";
+      qBtn.setAttribute("aria-label", adding ? "Remove from queue" : "Add to queue");
       updateQueueBadge();
-      renderLibrary();
     });
     row.querySelector(".ep-play").addEventListener("click", (e) => {
       e.stopPropagation();
