@@ -5,7 +5,7 @@
 //                markdown + quiz JSON. Populated on demand (browsing) and by explicit
 //                "download" actions from the page. NEVER wiped on a shell version bump,
 //                so app updates don't delete the user's downloads.
-const APP_SHELL = 'podcast-shell-v4';
+const APP_SHELL = 'podcast-shell-v5';
 const DOWNLOADS = 'podcast-downloads-v1';
 
 const SHELL = [
@@ -127,9 +127,10 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // App shell — cache-first from the versioned shell cache.
+  // App shell — stale-while-revalidate: instant from cache, refreshed in the
+  // background so code changes roll out on the next load without a version bump.
   if (sameOrigin && SHELL.includes(path)) {
-    e.respondWith(cacheFirst(req, APP_SHELL));
+    e.respondWith(staleWhileRevalidate(req, APP_SHELL));
     return;
   }
 

@@ -17,6 +17,7 @@
   const LASTID_KEY = "podcast-sync-lastid-" + SUBJECT;
   const PROGRESS_KEY = "podcast-progress";
   const QUIZ_KEY = "podcast-quiz-sr";
+  const LISTEN_LOG_KEY = "podcast-listen-log";
 
   const td = new TextDecoder();
   const te = new TextEncoder();
@@ -78,7 +79,9 @@
   // --- local store helpers ---
   const readStore = (k) => { try { return JSON.parse(localStorage.getItem(k)) || {}; } catch { return {}; } };
   const writeStore = (k, v) => localStorage.setItem(k, JSON.stringify(v));
-  const localState = () => ({ progress: readStore(PROGRESS_KEY), quiz: readStore(QUIZ_KEY) });
+  const localState = () => ({
+    progress: readStore(PROGRESS_KEY), quiz: readStore(QUIZ_KEY), listenLog: readStore(LISTEN_LOG_KEY),
+  });
 
   // Merge a remote snapshot into local, newest-wins per entry.
   function mergeState(remote) {
@@ -98,6 +101,12 @@
       if (!l || (r.total || 0) >= (l.total || 0)) quiz[key] = r; // attempts are monotonic
     }
     writeStore(QUIZ_KEY, quiz);
+
+    const log = readStore(LISTEN_LOG_KEY);
+    for (const [day, r] of Object.entries(remote.listenLog || {})) {
+      log[day] = Math.max(log[day] || 0, r || 0); // max per day avoids double-counting on re-sync
+    }
+    writeStore(LISTEN_LOG_KEY, log);
   }
 
   // --- sync ---

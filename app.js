@@ -7,6 +7,7 @@
   const DOWNLOAD_ALL_VOICES_KEY = "podcast-download-all-voices";
   const DOWNLOADS_CACHE = "podcast-downloads-v1";     // must match service-worker.js
   const SPEED_UNIT_KEY = "podcast-speed-unit";        // "mult" (×) | "sps" (syllables/sec)
+  const LISTEN_LOG_KEY = "podcast-listen-log";        // { "YYYY-MM-DD": secondsSpent }
 
   // Speed is shown in syllables/second, not "×". BASE_SPS is the narration's
   // natural rate at 1× playback: this content runs ~140 wpm (modules)–177
@@ -22,6 +23,8 @@
   let currentEpisode = null;
   let currentVoiceIndex = 0;
   let lastSavedAt = 0;
+  let lastListenTick = 0;     // wall-clock ms of the previous timeupdate while playing
+  let pendingListenSecs = 0;  // accumulated, flushed to the daily log every few seconds
   let isSeeking = false;
   let showRemaining = false;
   let sleepIdx = 0;
@@ -358,8 +361,8 @@
   }
 
   // --- Audio events ---
-  audio.addEventListener("play", () => setPlayState(true));
-  audio.addEventListener("pause", () => { setPlayState(false); persistProgress(); });
+  audio.addEventListener("play", () => { setPlayState(true); lastListenTick = Date.now(); });
+  audio.addEventListener("pause", () => { setPlayState(false); flushListenLog(); lastListenTick = 0; persistProgress(); });
   audio.addEventListener("ended", () => {
     if (currentEpisode) saveEpisodeProgress(currentEpisode.id, { progressPct: 1, completed: true });
     setPlayState(false);
@@ -384,7 +387,14 @@
     updateProgressFill(pct);
     updateTimeDisplay();
     const now = Date.now();
-    if (now - lastSavedAt > 5000) { lastSavedAt = now; persistProgress(); }
+    // Accumulate real time spent listening into today's bucket (ignore the big
+    // jump after a pause/seek via the <2s cap).
+    if (!audio.paused && lastListenTick) {
+      const dt = (now - lastListenTick) / 1000;
+      if (dt > 0 && dt < 2) pendingListenSecs += dt;
+    }
+    lastListenTick = now;
+    if (now - lastSavedAt > 5000) { lastSavedAt = now; flushListenLog(); persistProgress(); }
   });
 
   function setPlayState(playing) {
@@ -501,6 +511,20 @@
     });
   }
 
+  // --- Daily listening log (wall-clock time spent, for the stats graph) ---
+  function loadListenLog() {
+    try { return JSON.parse(localStorage.getItem(LISTEN_LOG_KEY)) || {}; } catch { return {}; }
+  }
+  function flushListenLog() {
+    if (pendingListenSecs <= 0) return;
+    const log = loadListenLog();
+    const day = new Date().toISOString().substring(0, 10);
+    log[day] = Math.round((log[day] || 0) + pendingListenSecs);
+    pendingListenSecs = 0;
+    localStorage.setItem(LISTEN_LOG_KEY, JSON.stringify(log));
+    window.Sync && window.Sync.scheduleSync();
+  }
+
   // --- Subject config (per-repo; restore these when mirroring to another subject) ---
   const REPO_URL = "https://github.com/freddygaffey/hsc-sdd-podcast";
 
@@ -554,7 +578,29 @@
       });
     });
 
-    return { totalListenedSecs, completedCount, totalCount: allEps.length, streak, groups };
+    // Per-voice breakdown: attribute each episode's heard content to its last voice.
+    const voiceSecs = {};
+    for (const ep of allEps) {
+      const p = progress[ep.id];
+      if (!p || !p.lastVoice) continue;
+      const dur = ep.voices[0]?.duration || 0;
+      voiceSecs[p.lastVoice] = (voiceSecs[p.lastVoice] || 0) + dur * (p.progressPct || 0);
+    }
+
+    // Daily time-spent log → totals for the graph + cards.
+    const log = loadListenLog();
+    const weekAgo = new Date(Date.now() - 6 * 86400000).toISOString().substring(0, 10);
+    let timeSpentTotal = 0, thisWeekSecs = 0, bestDaySecs = 0;
+    for (const [day, s] of Object.entries(log)) {
+      timeSpentTotal += s;
+      if (s > bestDaySecs) bestDaySecs = s;
+      if (day >= weekAgo) thisWeekSecs += s;
+    }
+
+    return {
+      totalListenedSecs, completedCount, totalCount: allEps.length, streak, groups,
+      voiceSecs, log, timeSpentTotal, thisWeekSecs, bestDaySecs,
+    };
   }
 
   function renderStats() {
@@ -572,6 +618,35 @@
     const savedSecs = stats.totalListenedSecs * (1 - 1 / speed);
     const savedStr = speed > 1 ? fmtStat(savedSecs) : "0m";
 
+    // Listening-over-time: last 30 days, time spent per day.
+    const N = 30;
+    const todayStr = new Date().toISOString().substring(0, 10);
+    const days = [];
+    let maxDay = 1;
+    for (let i = N - 1; i >= 0; i--) {
+      const d = new Date(Date.now() - i * 86400000).toISOString().substring(0, 10);
+      const s = stats.log[d] || 0;
+      days.push({ d, s });
+      if (s > maxDay) maxDay = s;
+    }
+    const chartHTML = days.map(({ d, s }) => {
+      const h = s > 0 ? Math.max(Math.round((s / maxDay) * 100), 6) : 0;
+      const cls = "day-bar" + (d === todayStr ? " day-bar-today" : "") + (s > 0 ? "" : " day-bar-empty");
+      return `<div class="day-col" title="${d} · ${Math.round(s / 60)} min"><div class="${cls}" style="height:${h}%"></div></div>`;
+    }).join("");
+
+    // By voice (TTS model) breakdown.
+    const voiceEntries = Object.entries(stats.voiceSecs).filter(([, s]) => s > 0).sort((a, b) => b[1] - a[1]);
+    const maxVoice = voiceEntries.length ? voiceEntries[0][1] : 1;
+    const voiceHTML = voiceEntries.length
+      ? voiceEntries.map(([name, secs]) => `
+        <div class="voice-row">
+          <span class="voice-name">${cleanVoiceName(name)}</span>
+          <div class="voice-track"><div class="voice-fill" style="width:${Math.max(Math.round((secs / maxVoice) * 100), 3)}%"></div></div>
+          <span class="voice-time">${fmtStat(secs)}</span>
+        </div>`).join("")
+      : `<p class="setting-hint">Play an episode to see your voice breakdown.</p>`;
+
     let groupsHTML = "";
     stats.groups.forEach((g, prefix) => {
       const pct = g.total ? Math.round((g.done / g.total) * 100) : 0;
@@ -587,11 +662,17 @@
 
     statsContent.innerHTML = `
       <div class="stats-grid">
+        <div class="stat-card"><div class="stat-value">${fmtStat(stats.timeSpentTotal)}</div><div class="stat-label">Time spent</div></div>
+        <div class="stat-card"><div class="stat-value">${stats.streak}🔥</div><div class="stat-label">Day streak</div></div>
+        <div class="stat-card"><div class="stat-value">${fmtStat(stats.thisWeekSecs)}</div><div class="stat-label">This week</div></div>
+        <div class="stat-card"><div class="stat-value">${stats.completedCount}/${stats.totalCount}</div><div class="stat-label">Episodes done</div></div>
         <div class="stat-card"><div class="stat-value">${listenedStr}</div><div class="stat-label">Content heard</div></div>
         <div class="stat-card"><div class="stat-value">${savedStr}</div><div class="stat-label">Saved at ${fmtSpeed(speed)}</div></div>
-        <div class="stat-card"><div class="stat-value">${stats.completedCount}/${stats.totalCount}</div><div class="stat-label">Completed</div></div>
-        <div class="stat-card"><div class="stat-value">${stats.streak}</div><div class="stat-label">Day streak</div></div>
       </div>
+      <h3 class="stats-section-title">Last 30 days</h3>
+      <div class="day-chart">${chartHTML}</div>
+      <h3 class="stats-section-title">By voice</h3>
+      ${voiceHTML}
       <h3 class="stats-section-title">By module</h3>
       ${groupsHTML}`;
   }
@@ -1363,6 +1444,14 @@
   window.addEventListener("online", updateOnlineState);
   window.addEventListener("offline", updateOnlineState);
   updateOnlineState();
+
+  // Ask the browser to keep our data (progress, stats, downloads) — makes it far
+  // less likely to be evicted under storage pressure. Signing in is the real
+  // backup; this protects local data in the meantime.
+  if (navigator.storage && navigator.storage.persist) {
+    persistRequested = true;
+    navigator.storage.persist().catch(() => {});
+  }
 
   // When a sync pulls remote changes, refresh the library if it's showing.
   window.addEventListener("sync-updated", () => { if (!viewLibrary.hidden) renderLibrary(); });
