@@ -50,6 +50,9 @@
   const btnSleep = document.getElementById("btn-sleep");
   const btnStats = document.getElementById("btn-stats");
   const btnQueue = document.getElementById("btn-queue");
+  const queueOverlay = document.getElementById("queue-overlay");
+  const queueListEl = document.getElementById("queue-list");
+  const btnQueueClear = document.getElementById("btn-queue-clear");
   const btnSettings = document.getElementById("btn-settings");
   const settingsOverlay = document.getElementById("settings-overlay");
   const btnSettingsClose = document.getElementById("btn-settings-close");
@@ -335,17 +338,85 @@
     }
   }
 
-  btnQueue.addEventListener("click", () => {
+  // Sync the library's +/✓ queue buttons to the current queue, in place (no
+  // re-render, so an open module stays open).
+  function syncQueueButtons() {
+    viewLibrary.querySelectorAll(".episode-row").forEach((row) => {
+      const b = row.querySelector(".ep-queue-btn");
+      if (!b) return;
+      const inQ = queue.includes(row.dataset.epId);
+      b.classList.toggle("in-queue", inQ);
+      b.textContent = inQ ? "✓" : "+";
+      b.setAttribute("aria-label", inQ ? "Remove from queue" : "Add to queue");
+    });
+  }
+
+  // The queue button opens the "Up Next" panel (it no longer wipes the queue).
+  btnQueue.addEventListener("click", () => { renderQueuePanel(); setHidden(queueOverlay, false); });
+  queueOverlay.addEventListener("click", (e) => { if (e.target === queueOverlay) setHidden(queueOverlay, true); });
+  enableSheetDismiss(queueOverlay);
+  if (btnQueueClear) btnQueueClear.addEventListener("click", () => {
     queue = [];
     updateQueueBadge();
-    // Reset the +/✓ buttons in place rather than re-rendering, so an open
-    // module stays open.
-    viewLibrary.querySelectorAll(".ep-queue-btn.in-queue").forEach((b) => {
-      b.classList.remove("in-queue");
-      b.textContent = "+";
-      b.setAttribute("aria-label", "Add to queue");
-    });
+    syncQueueButtons();
+    renderQueuePanel();
   });
+
+  function renderQueuePanel() {
+    if (!queueListEl) return;
+    const nowPlaying = currentEpisode
+      ? `<div class="q-now">Now playing<span class="q-now-title">${currentEpisode.title}</span></div>`
+      : "";
+    if (!queue.length) {
+      queueListEl.innerHTML = nowPlaying +
+        `<p class="setting-hint">Your queue is empty. Add episodes with the + button, or Start a module.</p>`;
+      if (btnQueueClear) setHidden(btnQueueClear, true);
+      return;
+    }
+    if (btnQueueClear) setHidden(btnQueueClear, false);
+    queueListEl.innerHTML = nowPlaying + queue.map((id, i) => {
+      const ep = findEpisode(id);
+      return `<div class="q-row" data-ep-id="${id}">
+        <span class="q-index">${i + 1}</span>
+        <span class="q-title">${ep ? ep.title : id}</span>
+        <button class="q-btn q-up" aria-label="Move up"${i === 0 ? " disabled" : ""}>&#9650;</button>
+        <button class="q-btn q-down" aria-label="Move down"${i === queue.length - 1 ? " disabled" : ""}>&#9660;</button>
+        <button class="q-btn q-play" aria-label="Play now">&#9654;</button>
+        <button class="q-btn q-remove" aria-label="Remove from queue">&#10005;</button>
+      </div>`;
+    }).join("");
+    queueListEl.querySelectorAll(".q-row").forEach((row) => {
+      const id = row.dataset.epId;
+      row.querySelector(".q-up").addEventListener("click", () => moveInQueue(id, -1));
+      row.querySelector(".q-down").addEventListener("click", () => moveInQueue(id, 1));
+      row.querySelector(".q-remove").addEventListener("click", () => removeFromQueue(id));
+      row.querySelector(".q-play").addEventListener("click", () => playFromQueue(id));
+    });
+  }
+  function moveInQueue(id, dir) {
+    const i = queue.indexOf(id), j = i + dir;
+    if (i < 0 || j < 0 || j >= queue.length) return;
+    [queue[i], queue[j]] = [queue[j], queue[i]];
+    renderQueuePanel();
+  }
+  function removeFromQueue(id) {
+    const i = queue.indexOf(id);
+    if (i >= 0) queue.splice(i, 1);
+    updateQueueBadge();
+    syncQueueButtons();
+    renderQueuePanel();
+  }
+  function playFromQueue(id) {
+    const ep = findEpisode(id);
+    if (!ep || !guardPlayable(ep)) return;
+    const i = queue.indexOf(id);
+    if (i >= 0) queue.splice(i, 1);
+    updateQueueBadge();
+    syncQueueButtons();
+    setHidden(queueOverlay, true);
+    loadEpisode(ep, { autoplay: true });
+    navigateToEpisode(ep.id);
+  }
 
   // --- Auto-advance ---
   function dismissAdvanceToast() {
@@ -1479,6 +1550,7 @@
     if (e.key !== "Escape") return;
     if (!statsOverlay.hidden) setHidden(statsOverlay, true);
     if (!settingsOverlay.hidden) setHidden(settingsOverlay, true);
+    if (!queueOverlay.hidden) setHidden(queueOverlay, true);
   });
 
   // --- Footer repo link (per-subject) ---
