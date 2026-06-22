@@ -7,7 +7,8 @@
   const DOWNLOAD_ALL_VOICES_KEY = "podcast-download-all-voices";
   const DOWNLOADS_CACHE = "podcast-downloads-v1";     // must match service-worker.js
   const SPEED_UNIT_KEY = "podcast-speed-unit";        // "mult" (×) | "sps" (syllables/sec)
-  const LISTEN_LOG_KEY = "podcast-listen-log";        // { "YYYY-MM-DD": secondsSpent }
+  const LISTEN_LOG_KEY = "podcast-listen-log";        // { "YYYY-MM-DD": wall-clock secondsSpent }
+  const VOICE_LOG_KEY = "podcast-voice-log";          // { voiceName: content-seconds actually played }
 
   // Speed is shown in syllables/second, not "×". BASE_SPS is the narration's
   // natural rate at 1× playback: this content runs ~140 wpm (modules)–177
@@ -24,7 +25,8 @@
   let currentVoiceIndex = 0;
   let lastSavedAt = 0;
   let lastListenTick = 0;     // wall-clock ms of the previous timeupdate while playing
-  let pendingListenSecs = 0;  // accumulated, flushed to the daily log every few seconds
+  let pendingListenSecs = 0;  // wall seconds, flushed to the daily log every few seconds
+  let pendingContentSecs = 0; // content seconds played (wall × rate), flushed to the voice log
   let isSeeking = false;
   let showRemaining = false;
   let sleepIdx = 0;
@@ -391,7 +393,10 @@
     // jump after a pause/seek via the <2s cap).
     if (!audio.paused && lastListenTick) {
       const dt = (now - lastListenTick) / 1000;
-      if (dt > 0 && dt < 2) pendingListenSecs += dt;
+      if (dt > 0 && dt < 2) {
+        pendingListenSecs += dt;
+        pendingContentSecs += dt * (audio.playbackRate || 1); // content actually played
+      }
     }
     lastListenTick = now;
     if (now - lastSavedAt > 5000) { lastSavedAt = now; flushListenLog(); persistProgress(); }
@@ -480,6 +485,7 @@
 
   function switchVoice(index) {
     if (!currentEpisode || index === currentVoiceIndex) return;
+    flushListenLog(); // attribute time played so far to the current voice first
     const pct = audio.duration ? audio.currentTime / audio.duration : 0;
     const wasPlaying = !audio.paused;
     currentVoiceIndex = index;
@@ -515,13 +521,28 @@
   function loadListenLog() {
     try { return JSON.parse(localStorage.getItem(LISTEN_LOG_KEY)) || {}; } catch { return {}; }
   }
+  function loadVoiceLog() {
+    try { return JSON.parse(localStorage.getItem(VOICE_LOG_KEY)) || {}; } catch { return {}; }
+  }
   function flushListenLog() {
-    if (pendingListenSecs <= 0) return;
-    const log = loadListenLog();
-    const day = new Date().toISOString().substring(0, 10);
-    log[day] = Math.round((log[day] || 0) + pendingListenSecs);
+    if (pendingListenSecs <= 0 && pendingContentSecs <= 0) return;
+    if (pendingListenSecs > 0) {
+      const log = loadListenLog();
+      const day = new Date().toISOString().substring(0, 10);
+      log[day] = Math.round((log[day] || 0) + pendingListenSecs);
+      localStorage.setItem(LISTEN_LOG_KEY, JSON.stringify(log));
+    }
+    // Attribute content actually played to the current voice (TTS model).
+    if (pendingContentSecs > 0 && currentEpisode) {
+      const name = currentEpisode.voices[currentVoiceIndex]?.name;
+      if (name) {
+        const vlog = loadVoiceLog();
+        vlog[name] = Math.round((vlog[name] || 0) + pendingContentSecs);
+        localStorage.setItem(VOICE_LOG_KEY, JSON.stringify(vlog));
+      }
+    }
     pendingListenSecs = 0;
-    localStorage.setItem(LISTEN_LOG_KEY, JSON.stringify(log));
+    pendingContentSecs = 0;
     window.Sync && window.Sync.scheduleSync();
   }
 
@@ -548,8 +569,6 @@
     for (const ep of allEps) {
       const p = progress[ep.id];
       if (!p) continue;
-      const dur = ep.voices[0]?.duration || 0;
-      totalListenedSecs += dur * (p.progressPct || 0);
       if (p.completed) completedCount++;
       if (p.lastPlayed) days.add(p.lastPlayed.substring(0, 10));
     }
@@ -578,14 +597,10 @@
       });
     });
 
-    // Per-voice breakdown: attribute each episode's heard content to its last voice.
-    const voiceSecs = {};
-    for (const ep of allEps) {
-      const p = progress[ep.id];
-      if (!p || !p.lastVoice) continue;
-      const dur = ep.voices[0]?.duration || 0;
-      voiceSecs[p.lastVoice] = (voiceSecs[p.lastVoice] || 0) + dur * (p.progressPct || 0);
-    }
+    // Per-voice breakdown + total content heard, from actual playback (immune to
+    // scrubbing — only counts seconds the audio really played).
+    const voiceSecs = loadVoiceLog();
+    totalListenedSecs = Object.values(voiceSecs).reduce((a, b) => a + (b || 0), 0);
 
     // Daily time-spent log → totals for the graph + cards.
     const log = loadListenLog();
@@ -615,8 +630,8 @@
     }
 
     const listenedStr = fmtStat(stats.totalListenedSecs);
-    const savedSecs = stats.totalListenedSecs * (1 - 1 / speed);
-    const savedStr = speed > 1 ? fmtStat(savedSecs) : "0m";
+    // Actual time saved by listening faster = content heard − wall time spent.
+    const savedStr = fmtStat(Math.max(0, stats.totalListenedSecs - stats.timeSpentTotal));
 
     // Listening-over-time: last 30 days, time spent per day.
     const N = 30;
@@ -667,7 +682,7 @@
         <div class="stat-card"><div class="stat-value">${fmtStat(stats.thisWeekSecs)}</div><div class="stat-label">This week</div></div>
         <div class="stat-card"><div class="stat-value">${stats.completedCount}/${stats.totalCount}</div><div class="stat-label">Episodes done</div></div>
         <div class="stat-card"><div class="stat-value">${listenedStr}</div><div class="stat-label">Content heard</div></div>
-        <div class="stat-card"><div class="stat-value">${savedStr}</div><div class="stat-label">Saved at ${fmtSpeed(speed)}</div></div>
+        <div class="stat-card"><div class="stat-value">${savedStr}</div><div class="stat-label">Time saved</div></div>
       </div>
       <h3 class="stats-section-title">Last 30 days</h3>
       <div class="day-chart">${chartHTML}</div>
