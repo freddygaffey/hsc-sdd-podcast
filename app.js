@@ -57,6 +57,8 @@
   const dlAllVoicesToggle = document.getElementById("dl-all-voices");
   const storageUsageEl = document.getElementById("storage-usage");
   const btnClearDownloads = document.getElementById("btn-clear-downloads");
+  const btnInstall = document.getElementById("btn-install");
+  const installHint = document.getElementById("install-hint");
   const queueBadge = document.getElementById("queue-badge");
   const playerTimeEl = document.querySelector(".player-time");
   const playerBar = document.getElementById("player-bar");
@@ -509,11 +511,13 @@
   function persistProgress() {
     if (!currentEpisode || !audio.duration) return;
     const pct = audio.currentTime / audio.duration;
+    // Note: completion is NOT set from position — scrubbing to the end shouldn't
+    // mark an episode done. Only the "ended" event (actually reaching the end)
+    // marks it completed.
     saveEpisodeProgress(currentEpisode.id, {
       progressPct: pct,
       lastVoice: currentEpisode.voices[currentVoiceIndex].name,
       lastPlayed: new Date().toISOString(),
-      completed: pct > 0.95,
     });
   }
 
@@ -868,6 +872,7 @@
     if (dlAllVoicesToggle) dlAllVoicesToggle.checked = localStorage.getItem(DOWNLOAD_ALL_VOICES_KEY) === "1";
     if (speedUnitSelect) speedUnitSelect.value = speedUnitMode();
     refreshStorageUsage();
+    updateInstallUI();
     if (window.Sync) window.Sync.renderPanel();
     setHidden(settingsOverlay, false);
   });
@@ -1467,6 +1472,41 @@
     persistRequested = true;
     navigator.storage.persist().catch(() => {});
   }
+
+  // --- Install (Add to Home Screen) ---
+  let deferredInstall = null;
+  function isStandalone() {
+    return window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+  }
+  function updateInstallUI() {
+    if (!btnInstall || !installHint) return;
+    if (isStandalone()) {
+      setHidden(btnInstall, true);
+      installHint.textContent = "App installed ✓";
+    } else if (deferredInstall) {
+      setHidden(btnInstall, false);
+      installHint.textContent = "Add this app to your home screen for full-screen, offline access.";
+    } else {
+      setHidden(btnInstall, true);
+      installHint.textContent = /iphone|ipad|ipod/i.test(navigator.userAgent)
+        ? "On iPhone/iPad: tap Share, then “Add to Home Screen”."
+        : "In Chrome/Edge, use the install icon in the address bar to add the app.";
+    }
+  }
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredInstall = e;
+    updateInstallUI();
+  });
+  window.addEventListener("appinstalled", () => { deferredInstall = null; updateInstallUI(); });
+  if (btnInstall) btnInstall.addEventListener("click", async () => {
+    if (!deferredInstall) return;
+    deferredInstall.prompt();
+    await deferredInstall.userChoice.catch(() => {});
+    deferredInstall = null;
+    updateInstallUI();
+  });
+  updateInstallUI();
 
   // When a sync pulls remote changes, refresh the library if it's showing.
   window.addEventListener("sync-updated", () => { if (!viewLibrary.hidden) renderLibrary(); });

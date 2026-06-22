@@ -8,6 +8,9 @@
 <meta name="apple-mobile-web-app-title" content="Podcasts">
 <meta name="theme-color" id="theme-color-meta" content="#121212">
 <link rel="manifest" href="app.webmanifest">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <title>Podcast Library</title>
 <link rel="stylesheet" href="style.css">
 <link id="hljs-theme" rel="stylesheet" href="vendor/github-dark-dimmed.min.css">
@@ -139,6 +142,10 @@
         <span id="storage-usage" class="setting-value">—</span>
       </div>
       <button id="btn-clear-downloads" class="setting-btn-danger">Clear all downloads</button>
+
+      <h3 class="settings-section">Install</h3>
+      <button id="btn-install" class="setting-btn" hidden>Install app</button>
+      <p class="setting-hint" id="install-hint"></p>
 
       <h3 class="settings-section">Sync</h3>
       <div id="sync-panel"></div>

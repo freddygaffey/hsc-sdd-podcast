@@ -38,6 +38,9 @@ cp index.html app.js auth.js style.css service-worker.js app.webmanifest "$DIST/
 # markdown/code rendering works offline. Must ship or the app 404s on them.
 cp -r vendor "$DIST/"
 
+# App icons (logo + install/home-screen icons).
+cp -r icons "$DIST/"
+
 # Per-episode text the app fetches at runtime (script/supplementary/quiz only).
 # Excludes *.m4a / *.wav and everything else; --prune-empty-dirs keeps dist tidy.
 rsync -a --prune-empty-dirs \

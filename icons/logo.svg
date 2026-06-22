@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#3b82f6"/>
+  <!-- code brackets </> -->
+  <g fill="none" stroke="#ffffff" stroke-width="36" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="200,120 128,210 200,300"/>
+    <polyline points="312,120 384,210 312,300"/>
+    <line x1="290" y1="104" x2="222" y2="316"/>
+  </g>
+  <!-- shared soundwave -->
+  <g fill="#ffffff">
+    <rect x="149" y="410" width="30" height="42" rx="15"/>
+    <rect x="195" y="368" width="30" height="84" rx="15"/>
+    <rect x="241" y="332" width="30" height="120" rx="15"/>
+    <rect x="287" y="368" width="30" height="84" rx="15"/>
+    <rect x="333" y="410" width="30" height="42" rx="15"/>
+  </g>
+</svg>
