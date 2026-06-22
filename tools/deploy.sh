@@ -34,6 +34,13 @@ mkdir -p "$DIST"
 # App shell — the only root files the running app needs.
 cp index.html app.js auth.js style.css service-worker.js app.webmanifest "$DIST/"
 
+# Stamp a unique shell-cache version so every deploy updates atomically (install
+# precaches the whole shell into a fresh cache; index.html + app.js never mismatch).
+BUILD="$(date +%Y%m%d%H%M%S)"
+sed "s/__BUILD__/$BUILD/g" "$DIST/service-worker.js" > "$DIST/service-worker.js.tmp" \
+  && mv "$DIST/service-worker.js.tmp" "$DIST/service-worker.js"
+echo "==> service-worker cache version: podcast-shell-$BUILD"
+
 # Vendored libraries (marked + highlight.js + themes) the app loads locally so
 # markdown/code rendering works offline. Must ship or the app 404s on them.
 cp -r vendor "$DIST/"

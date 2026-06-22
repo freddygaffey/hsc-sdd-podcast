@@ -5,7 +5,7 @@
 //                markdown + quiz JSON. Populated on demand (browsing) and by explicit
 //                "download" actions from the page. NEVER wiped on a shell version bump,
 //                so app updates don't delete the user's downloads.
-const APP_SHELL = 'podcast-shell-v5';
+const APP_SHELL = 'podcast-shell-__BUILD__'; // __BUILD__ stamped per deploy (tools/deploy.sh)
 const DOWNLOADS = 'podcast-downloads-v1';
 
 const SHELL = [
@@ -128,10 +128,11 @@ self.addEventListener('fetch', (e) => {
     return;
   }
 
-  // App shell — stale-while-revalidate: instant from cache, refreshed in the
-  // background so code changes roll out on the next load without a version bump.
+  // App shell — cache-first from the per-build versioned cache. Each deploy stamps
+  // a fresh APP_SHELL version, so install precaches the whole shell atomically and
+  // index.html + app.js can never be served as a mismatched pair.
   if (sameOrigin && SHELL.includes(path)) {
-    e.respondWith(staleWhileRevalidate(req, APP_SHELL));
+    e.respondWith(cacheFirst(req, APP_SHELL));
     return;
   }
 
