@@ -1459,3 +1459,15 @@ body.offline .episode-row:not(.ep-downloaded) .ep-play { opacity: 0.4; }
   cursor: pointer;
 }
 .q-tool-btn:active { background: var(--accent-soft); }
+
+/* ── Transcript sync (Script tab) ───────────────────────── */
+.sync-para {
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 3px 8px;
+  margin-left: -8px;
+  margin-right: -8px;
+  transition: background 0.15s ease;
+}
+.sync-para:hover { background: var(--bg-card); }
+.para-active { background: var(--accent-soft); }

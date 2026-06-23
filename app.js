@@ -35,6 +35,8 @@
   let swipeStartY = 0;
   let queue = [];
   let advanceTimer = null;
+  let syncParas = null;       // transcript sync: [{el, startFrac, endFrac}]
+  let syncActiveEl = null;
 
   // --- DOM refs ---
   // Pitch-preserving speed engine (see speed-engine.js): a Web Audio time-stretch
@@ -605,6 +607,7 @@
     progressBarEl.value = pct;
     updateProgressFill(pct);
     updateTimeDisplay();
+    updateTranscriptHighlight();
     const now = Date.now();
     // Accumulate real time spent listening into today's bucket (ignore the big
     // jump after a pause/seek via the <2s cap).
@@ -1434,11 +1437,52 @@
       episodeContentEl.innerHTML = mathSafeParse(stripped);
       enhanceCodeBlocks();
       renderMath(episodeContentEl);
+      if (tab === "script") buildTranscriptSync(); else syncParas = null;
       window.scrollTo({ top: 0, behavior: "instant" });
     } catch {
+      syncParas = null;
       episodeContentEl.innerHTML = navigator.onLine
         ? "<p><em>Failed to load.</em></p>"
         : "<p><em>Not available offline — download this episode to read it here.</em></p>";
+    }
+  }
+
+  // --- Transcript sync (Option 1: estimate each paragraph's time from its word
+  // count, proportional to the audio length). Highlight + auto-scroll the current
+  // paragraph; tap a paragraph to seek there. Approximate (drifts a few seconds).
+  function buildTranscriptSync() {
+    syncParas = null; syncActiveEl = null;
+    const els = [...episodeContentEl.querySelectorAll("p")].filter((el) => el.textContent.trim());
+    if (!els.length) return;
+    const counts = els.map((el) => Math.max(1, el.textContent.trim().split(/\s+/).length));
+    const totalWords = counts.reduce((a, b) => a + b, 0);
+    let acc = 0;
+    syncParas = els.map((el, i) => {
+      const startFrac = acc / totalWords;
+      acc += counts[i];
+      const endFrac = acc / totalWords;
+      el.classList.add("sync-para");
+      el.addEventListener("click", () => {
+        if (!audio.duration) return;
+        audio.currentTime = startFrac * audio.duration;
+        if (audio.paused) audio.play();
+      });
+      return { el, startFrac, endFrac };
+    });
+    updateTranscriptHighlight();
+  }
+
+  function updateTranscriptHighlight() {
+    if (!syncParas || episodeContentEl.hidden || !audio.duration) return;
+    const frac = audio.currentTime / audio.duration;
+    let active = syncParas.find((p) => frac >= p.startFrac && frac < p.endFrac) || syncParas[syncParas.length - 1];
+    if (!active || active.el === syncActiveEl) return;
+    if (syncActiveEl) syncActiveEl.classList.remove("para-active");
+    active.el.classList.add("para-active");
+    syncActiveEl = active.el;
+    const r = active.el.getBoundingClientRect();
+    if (r.top < 130 || r.bottom > window.innerHeight - 40) {
+      active.el.scrollIntoView({ block: "center", behavior: "smooth" });
     }
   }
 
