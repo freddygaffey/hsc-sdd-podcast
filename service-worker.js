@@ -12,6 +12,7 @@ const SHELL = [
   '/', '/index.html', '/app.js', '/auth.js', '/speed-engine.js', '/style.css', '/app.webmanifest',
   '/vendor/marked.min.js', '/vendor/highlight.min.js', '/vendor/sortable.min.js',
   '/vendor/github-dark-dimmed.min.css', '/vendor/github.min.css',
+  '/vendor/katex/katex.min.css', '/vendor/katex/katex.min.js', '/vendor/katex/auto-render.min.js',
   '/icons/icon-192.png', '/icons/icon-512.png', '/icons/icon-180.png', '/icons/icon-32.png',
 ];
 

@@ -1376,6 +1376,34 @@
     }
   }
 
+  // Parse markdown without letting `marked` mangle LaTeX: pull math spans out
+  // first (so _, *, \ inside them survive), parse, then splice them back.
+  function mathSafeParse(md) {
+    const math = [];
+    const protectedMd = md.replace(/\$\$[\s\S]+?\$\$|\\\[[\s\S]+?\\\]|\\\([\s\S]+?\\\)/g, (m) => {
+      math.push(m);
+      return `@@MATH${math.length - 1}@@`;
+    });
+    return marked.parse(protectedMd).replace(/@@MATH(\d+)@@/g, (_, i) => math[+i]);
+  }
+
+  // Render LaTeX math with KaTeX. Uses $$…$$ and \[…\] for display, \(…\) for
+  // inline — deliberately NOT single $, so dollar amounts in content don't break.
+  function renderMath(el) {
+    if (!el || !window.renderMathInElement) return;
+    try {
+      window.renderMathInElement(el, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "\\[", right: "\\]", display: true },
+          { left: "\\(", right: "\\)", display: false },
+        ],
+        throwOnError: false,
+        ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"],
+      });
+    } catch (_) {}
+  }
+
   function enhanceCodeBlocks() {
     episodeContentEl.querySelectorAll("pre").forEach((pre) => {
       const code = pre.querySelector("code");
@@ -1403,8 +1431,9 @@
       const res = await fetch(path);
       const text = await res.text();
       const stripped = text.replace(/^---\n[\s\S]*?\n---\n?/, "");
-      episodeContentEl.innerHTML = marked.parse(stripped);
+      episodeContentEl.innerHTML = mathSafeParse(stripped);
       enhanceCodeBlocks();
+      renderMath(episodeContentEl);
       window.scrollTo({ top: 0, behavior: "instant" });
     } catch {
       episodeContentEl.innerHTML = navigator.onLine
@@ -1564,6 +1593,7 @@
       btn.addEventListener("click", () => handleAnswer(parseInt(btn.dataset.index, 10)));
     });
     document.getElementById("btn-quiz-next").addEventListener("click", advanceQuiz);
+    renderMath(quizArea); // render math in the question + options
   }
 
   function handleAnswer(chosen) {
@@ -1593,6 +1623,7 @@
       </div>
       ${q.explanation ? `<p class="feedback-explanation">${q.explanation}</p>` : ""}`;
     setHidden(document.getElementById("quiz-feedback"), false);
+    renderMath(inner); // render math in the explanation
   }
 
   function advanceQuiz() {
