@@ -103,7 +103,9 @@
     if (!panel) return;
     let startY = 0, dy = 0, dragging = false;
     panel.addEventListener("touchstart", (e) => {
-      if (panel.scrollTop > 0) { dragging = false; return; } // let content scroll first
+      // Only dismiss when the drag starts on the grab handle or header — never on the
+      // scrollable list/rows (so swiping a queue row doesn't drag the whole sheet).
+      if (!e.target.closest(".sheet-handle, .q-head, .stats-header")) { dragging = false; return; }
       startY = e.touches[0].clientY; dy = 0; dragging = true;
     }, { passive: true });
     panel.addEventListener("touchmove", (e) => {
@@ -264,6 +266,8 @@
   const handleIcon = (s = 20) =>
     `<svg viewBox="0 0 24 24" width="${s}" height="${s}" fill="currentColor"><rect x="4" y="7" width="16" height="2" rx="1"/><rect x="4" y="11" width="16" height="2" rx="1"/><rect x="4" y="15" width="16" height="2" rx="1"/></svg>`;
   const eqIcon = `<svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><rect x="3" y="10" width="3" height="4" rx="1.5"/><rect x="8" y="7" width="3" height="10" rx="1.5"/><rect x="13" y="4" width="3" height="16" rx="1.5"/><rect x="18" y="9" width="3" height="6" rx="1.5"/></svg>`;
+  const trashIcon = `<svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6 7h12l-1 13a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 7zm3-3h6l1 2h4v2H4V6h4l1-2z"/></svg>`;
+  let queueSortable = null;
 
   function updateProgressFill(pct) {
     progressBarEl.style.setProperty("--pct", pct * 100 + "%");
@@ -393,7 +397,9 @@
       ? `<button class="q-pp" aria-label="Play or pause">${audio.paused ? playIcon(16) : pauseIcon(16)}</button>`
       : `<button class="q-del" aria-label="Remove from queue" title="Remove">&#10005;</button>
          <span class="q-handle" aria-label="Drag to reorder" title="Drag to reorder">${handleIcon(20)}</span>`;
+    const swipeBg = kind === "now" ? "" : `<div class="q-swipe-bg">${trashIcon}</div>`;
     return `<div class="${kind === "now" ? "q-now-row" : "q-row"}" data-ep-id="${ep ? ep.id : id}">
+      ${swipeBg}
       <div class="q-fg">
         ${lead}
         <span class="q-text"><span class="q-title">${title}</span><span class="q-sub">${sub}</span></span>
@@ -420,9 +426,27 @@
       audio.paused ? audio.play() : audio.pause();
     });
     attachQueueGestures();
+
+    // Drag-to-reorder via SortableJS (smooth, animates neighbours, touch + mouse).
+    if (window.Sortable) {
+      if (queueSortable) { try { queueSortable.destroy(); } catch (_) {} }
+      queueSortable = window.Sortable.create(queueListEl, {
+        handle: ".q-handle",
+        draggable: ".q-row",
+        animation: 160,
+        ghostClass: "q-ghost",
+        chosenClass: "q-chosen",
+        onEnd: () => {
+          queue = [...queueListEl.querySelectorAll(".q-row")].map((r) => r.dataset.epId);
+          queueListEl.querySelectorAll(".q-row .q-num").forEach((el, i) => { el.textContent = i + 1; });
+          updateQueueBadge();
+          syncQueueButtons();
+        },
+      });
+    }
   }
 
-  // Tap a row to play, swipe left to remove, drag the ≡ handle to reorder.
+  // Tap a row to play; swipe left to remove (reorder is handled by SortableJS).
   function attachQueueGestures() {
     queueListEl.querySelectorAll(".q-row").forEach((row) => {
       const fg = row.querySelector(".q-fg");
@@ -447,8 +471,8 @@
         if (swiping) {
           dx = Math.min(0, mx);
           fg.style.transition = "none";
-          fg.style.transform = `translateX(${dx}px)`;
-          fg.style.opacity = String(Math.max(0.3, 1 + dx / 220)); // fade as it slides away
+          fg.style.transform = `translateX(${dx}px)`;   // slides left, revealing the red
+          row.classList.toggle("q-will-remove", dx < -90);
         }
       });
       fg.addEventListener("pointerup", (e) => {
@@ -456,63 +480,38 @@
         active = false;
         if (swiping) {
           if (dx < -90) { animateRemove(row, id); return; }
-          fg.style.transition = "transform .18s ease, opacity .18s ease";
-          fg.style.transform = ""; fg.style.opacity = "";
+          fg.style.transition = "transform .18s ease";
+          fg.style.transform = "";
+          row.classList.remove("q-will-remove");
         } else if (Math.abs((e.clientX || sx) - sx) < 8) {
           playFromQueue(id);
         }
       });
       fg.addEventListener("pointercancel", () => {
         active = false;
-        fg.style.transition = "transform .18s ease, opacity .18s ease";
-        fg.style.transform = ""; fg.style.opacity = "";
+        fg.style.transition = "transform .18s ease";
+        fg.style.transform = "";
+        row.classList.remove("q-will-remove");
       });
-
-      // drag handle → smooth float-and-drop reorder
-      let startY = 0, rowH = 0, fromIndex = 0, dragging = false;
-      handle.addEventListener("pointerdown", (e) => {
-        e.preventDefault();
-        try { handle.setPointerCapture(e.pointerId); } catch (_) {}
-        dragging = true;
-        startY = e.clientY;
-        rowH = row.offsetHeight || 64;
-        fromIndex = queue.indexOf(id);
-        row.classList.add("q-dragging");
-      });
-      handle.addEventListener("pointermove", (e) => {
-        if (!dragging) return;
-        const dy = e.clientY - startY;
-        row.style.transition = "none";
-        row.style.transform = `translateY(${dy}px)`;
-      });
-      const endDrag = (e) => {
-        if (!dragging) return;
-        dragging = false;
-        const dy = (e.clientY || startY) - startY;
-        row.classList.remove("q-dragging");
-        row.style.transition = ""; row.style.transform = "";
-        let to = fromIndex + Math.round(dy / rowH);
-        to = Math.max(0, Math.min(queue.length - 1, to));
-        if (to !== fromIndex && fromIndex >= 0) {
-          queue.splice(fromIndex, 1);
-          queue.splice(to, 0, id);
-          syncQueueButtons();
-        }
-        renderQueuePanel();
-      };
-      handle.addEventListener("pointerup", endDrag);
-      handle.addEventListener("pointercancel", endDrag);
     });
   }
   // Collapse the row to height 0 so the rows below glide up, then drop it.
   function animateRemove(row, id) {
-    row.style.height = row.offsetHeight + "px";
+    if (row.dataset.removing) return;
+    row.dataset.removing = "1";
+    const h = row.offsetHeight;
     row.style.overflow = "hidden";
-    void row.offsetHeight; // reflow so the height transition takes
-    row.style.transition = "height .22s ease, opacity .22s ease";
-    row.style.opacity = "0";
-    row.style.height = "0";
-    setTimeout(() => removeFromQueue(id), 220);
+    const done = () => removeFromQueue(id);
+    if (row.animate) {
+      const anim = row.animate(
+        [{ height: h + "px", opacity: 1 }, { height: "0px", opacity: 0 }],
+        { duration: 200, easing: "ease-in-out" }
+      );
+      anim.onfinish = done;
+      anim.oncancel = done;
+    } else {
+      done();
+    }
   }
   function removeFromQueue(id) {
     const i = queue.indexOf(id);

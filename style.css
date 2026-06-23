@@ -1333,6 +1333,22 @@ body.offline .episode-row:not(.ep-downloaded) .ep-play { opacity: 0.4; }
 #queue-list { flex: 1; min-height: 0; overflow-y: auto; margin: 0 -4px; padding: 0 4px; }
 
 .q-row, .q-now-row { position: relative; overflow: hidden; }
+.q-swipe-bg {
+  position: absolute;
+  inset: 0;
+  background: #e23b3b;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 22px;
+  border-radius: 10px;
+}
+.q-row.q-will-remove .q-swipe-bg { background: #c92a2a; }
+/* SortableJS drag states */
+.q-ghost { opacity: 0.35; }
+.q-chosen .q-fg { background: var(--bg-card); }
+.sortable-drag .q-fg { box-shadow: 0 8px 24px rgba(0,0,0,0.4); border-radius: 10px; }
 .q-fg {
   position: relative;
   background: var(--bg-elevated);
