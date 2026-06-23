@@ -5,6 +5,7 @@
   const DEFAULT_VOICE_KEY = "podcast-default-voice";
   const DOWNLOADS_KEY = "podcast-downloads";          // localStorage index of downloaded episodes
   const DOWNLOAD_ALL_VOICES_KEY = "podcast-download-all-voices";
+  const BLOCK_MOBILE_KEY = "podcast-block-mobile-data"; // default ON ("0" = off)
   const DOWNLOADS_CACHE = "podcast-downloads-v1";     // must match service-worker.js
   const SPEED_UNIT_KEY = "podcast-speed-unit";        // "mult" (×) | "sps" (syllables/sec)
   const LISTEN_LOG_KEY = "podcast-listen-log";        // { "YYYY-MM-DD": wall-clock secondsSpent }
@@ -66,6 +67,7 @@
   const btnSettingsClose = document.getElementById("btn-settings-close");
   const defaultVoiceSelect = document.getElementById("default-voice-select");
   const dlAllVoicesToggle = document.getElementById("dl-all-voices");
+  const blockMobileToggle = document.getElementById("block-mobile-data");
   const storageUsageEl = document.getElementById("storage-usage");
   const btnClearDownloads = document.getElementById("btn-clear-downloads");
   const btnInstall = document.getElementById("btn-install");
@@ -591,9 +593,44 @@
     return null;
   }
 
+  // --- Lock-screen / OS media controls (Media Session API) ---
+  function episodeSubtitle(ep) {
+    if (!manifest) return "";
+    for (const mod of manifest.modules) {
+      if (mod.episodes.some((e) => e.id === ep.id)) return GROUP_NAMES[mod.prefix] || mod.prefix;
+    }
+    return "";
+  }
+  function updateMediaSession() {
+    if (!("mediaSession" in navigator) || !currentEpisode) return;
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: currentEpisode.title,
+        artist: episodeSubtitle(currentEpisode),
+        album: (document.querySelector(".brand") || {}).textContent || "Podcast",
+        artwork: [
+          { src: "icons/icon-192.png", sizes: "192x192", type: "image/png" },
+          { src: "icons/icon-512.png", sizes: "512x512", type: "image/png" },
+        ],
+      });
+    } catch (e) { /* MediaMetadata unsupported */ }
+  }
+  function setupMediaSession() {
+    if (!("mediaSession" in navigator)) return;
+    const ms = navigator.mediaSession;
+    const set = (action, fn) => { try { ms.setActionHandler(action, fn); } catch (e) {} };
+    set("play", () => audio.play().catch(() => {}));
+    set("pause", () => audio.pause());
+    set("seekbackward", (d) => { audio.currentTime = Math.max(0, audio.currentTime - ((d && d.seekOffset) || 30)); });
+    set("seekforward", (d) => { audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + ((d && d.seekOffset) || 30)); });
+    set("seekto", (d) => { if (d && d.seekTime != null && audio.duration) audio.currentTime = d.seekTime; });
+    set("nexttrack", () => { const n = getNextEpisode(currentEpisode); if (n) { loadEpisode(n, { autoplay: true }); navigateToEpisode(n.id); } });
+  }
+  setupMediaSession();
+
   // --- Audio events ---
-  audio.addEventListener("play", () => { setPlayState(true); lastListenTick = Date.now(); });
-  audio.addEventListener("pause", () => { setPlayState(false); flushListenLog(); lastListenTick = 0; persistProgress(); });
+  audio.addEventListener("play", () => { setPlayState(true); lastListenTick = Date.now(); if ("mediaSession" in navigator) navigator.mediaSession.playbackState = "playing"; });
+  audio.addEventListener("pause", () => { setPlayState(false); flushListenLog(); lastListenTick = 0; persistProgress(); if ("mediaSession" in navigator) navigator.mediaSession.playbackState = "paused"; });
   audio.addEventListener("ended", () => {
     flushListenLog(); // credit time to the finished episode's voice before advancing
     if (currentEpisode) saveEpisodeProgress(currentEpisode.id, { progressPct: 1, completed: true });
@@ -619,6 +656,9 @@
     updateProgressFill(pct);
     updateTimeDisplay();
     updateTranscriptHighlight();
+    if ("mediaSession" in navigator && navigator.mediaSession.setPositionState && isFinite(audio.duration)) {
+      try { navigator.mediaSession.setPositionState({ duration: audio.duration, position: Math.min(audio.currentTime, audio.duration), playbackRate: audio.playbackRate || 1 }); } catch (e) {}
+    }
     const now = Date.now();
     // Accumulate real time spent listening into today's bucket (ignore the big
     // jump after a pause/seek via the <2s cap).
@@ -711,6 +751,7 @@
     });
 
     setAudioSource(ep.voices[currentVoiceIndex], progress.progressPct || 0, autoplay);
+    updateMediaSession(); // set lock-screen title/artist/artwork for this episode
   }
 
   function setAudioSource(voice, resumePct, autoplay) {
@@ -981,6 +1022,35 @@
     return urls;
   }
 
+  // --- Mobile-data download guard ---
+  const EST_BYTES_PER_SEC = 12300; // ~98 kbps m4a (measured), for download size estimates
+  function estEpisodeBytes(ep) {
+    return chosenVoiceNames(ep).reduce((sum, n) => {
+      const v = ep.voices.find((x) => x.name === n);
+      return sum + (v && v.duration ? v.duration * EST_BYTES_PER_SEC : 0);
+    }, 0);
+  }
+  function connectionType() {
+    const c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+    return c && c.type ? c.type : null; // "cellular"/"wifi"/… or null (e.g. iOS, can't tell)
+  }
+  function blockMobileData() { return localStorage.getItem(BLOCK_MOBILE_KEY) !== "0"; } // default ON
+  // Resolves true if a ~estBytes download may proceed under the mobile-data setting.
+  async function mayDownload(estBytes) {
+    if (!blockMobileData()) return true;
+    const type = connectionType();
+    if (type === "cellular") {
+      showToast("Downloads are blocked on mobile data (change in Settings).");
+      return false;
+    }
+    if (type) return true; // wifi / ethernet / etc.
+    // Connection unknown (iOS can't report it) — confirm before using possible data.
+    const mb = estBytes ? Math.max(1, Math.round(estBytes / 1e6)) : 0;
+    return window.confirm(mb
+      ? `You may be on mobile data.\nDownload about ${mb} MB now?`
+      : "You may be on mobile data. Download now?");
+  }
+
   let persistRequested = false;
   async function downloadEpisode(ep, onProgress) {
     if (!persistRequested && navigator.storage && navigator.storage.persist) {
@@ -1127,6 +1197,7 @@
     if (!manifest) return;
     populateDefaultVoiceSelect();
     if (dlAllVoicesToggle) dlAllVoicesToggle.checked = localStorage.getItem(DOWNLOAD_ALL_VOICES_KEY) === "1";
+    if (blockMobileToggle) blockMobileToggle.checked = blockMobileData();
     if (speedUnitSelect) speedUnitSelect.value = speedUnitMode();
     refreshStorageUsage();
     updateInstallUI();
@@ -1151,6 +1222,10 @@
   });
   if (dlAllVoicesToggle) dlAllVoicesToggle.addEventListener("change", () => {
     localStorage.setItem(DOWNLOAD_ALL_VOICES_KEY, dlAllVoicesToggle.checked ? "1" : "");
+  });
+  if (blockMobileToggle) blockMobileToggle.addEventListener("change", () => {
+    // Stored inverted: default (absent) = ON; "0" = off.
+    localStorage.setItem(BLOCK_MOBILE_KEY, blockMobileToggle.checked ? "1" : "0");
   });
   if (btnClearDownloads) btnClearDownloads.addEventListener("click", async () => {
     if (!confirm("Delete all downloaded episodes? They'll need to be downloaded again for offline use.")) return;
@@ -1211,6 +1286,8 @@
       setDlState(mdlBtn, "idle");
       return;
     }
+    const estBytes = group.episodes.filter((e) => !isDownloaded(e.id)).reduce((s, e) => s + estEpisodeBytes(e), 0);
+    if (!(await mayDownload(estBytes))) return;
     setDlState(mdlBtn, "busy");
     try {
       await downloadModule(group, { onEpisodeState: syncRow });
@@ -1335,6 +1412,7 @@
         syncModuleDlBtn(row);
         return;
       }
+      if (!(await mayDownload(estEpisodeBytes(ep)))) return;
       setDlState(dlBtn, "busy");
       try {
         await downloadEpisode(ep);

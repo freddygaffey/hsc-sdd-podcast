@@ -141,6 +141,12 @@
       <p class="setting-hint">Downloads include only your default voice unless this is on. Other voices are larger and rarely needed offline.</p>
 
       <div class="setting-row">
+        <label for="block-mobile-data" class="setting-label">Block downloads on mobile data</label>
+        <input type="checkbox" id="block-mobile-data" class="setting-toggle" aria-label="Block downloads on mobile data" checked>
+      </div>
+      <p class="setting-hint">Avoids using cellular data for large audio downloads. On Android/desktop it blocks automatically on mobile data; on iPhone (which can’t report the connection) it asks for confirmation before each download.</p>
+
+      <div class="setting-row">
         <span class="setting-label">Offline storage used</span>
         <span id="storage-usage" class="setting-value">—</span>
       </div>
