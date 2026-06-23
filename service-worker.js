@@ -8,18 +8,36 @@
 const APP_SHELL = 'podcast-shell-__BUILD__'; // __BUILD__ stamped per deploy (tools/deploy.sh)
 const DOWNLOADS = 'podcast-downloads-v1';
 
+// NOTE: '/index.html' is deliberately NOT listed — Cloudflare Pages 308-redirects it
+// to '/', and the Cache API refuses to store a redirected response. Listing it would
+// make precache reject and the whole SW install fail (see precache() below). '/' alone
+// carries the document; navigations resolve to it.
 const SHELL = [
-  '/', '/index.html', '/app.js', '/auth.js', '/speed-engine.js', '/style.css', '/app.webmanifest',
+  '/', '/app.js', '/auth.js', '/speed-engine.js', '/style.css', '/app.webmanifest',
   '/vendor/marked.min.js', '/vendor/highlight.min.js', '/vendor/sortable.min.js',
   '/vendor/github-dark-dimmed.min.css', '/vendor/github.min.css',
   '/vendor/katex/katex.min.css', '/vendor/katex/katex.min.js', '/vendor/katex/auto-render.min.js',
   '/icons/icon-192.png', '/icons/icon-512.png', '/icons/icon-180.png', '/icons/icon-32.png',
 ];
 
+// Precache the shell resiliently: cache each entry on its own so a single bad asset
+// (404, redirect, transient network error) can't reject the whole install. A failed
+// install never activates, which would pin every device to the previously-cached shell
+// and silently block all future updates — exactly the bug this avoids. Anything that
+// fails to precache still works online via cacheFirst's network fallback.
+async function precache() {
+  const cache = await caches.open(APP_SHELL);
+  await Promise.all(SHELL.map(async (url) => {
+    try {
+      const res = await fetch(url, { cache: 'reload' });
+      // Don't store redirects (Cache API throws) or error responses.
+      if (res && res.ok && !res.redirected) await cache.put(url, res);
+    } catch (_) { /* skip this asset; it'll be fetched from network on demand */ }
+  }));
+}
+
 self.addEventListener('install', (e) => {
-  e.waitUntil(
-    caches.open(APP_SHELL).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting())
-  );
+  e.waitUntil(precache().then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (e) => {
@@ -89,7 +107,9 @@ async function staleWhileRevalidate(request, cacheName) {
   const network = fetch(request)
     .then((res) => { if (res && res.ok) cache.put(request, res.clone()); return res; })
     .catch(() => null);
-  return cached || network || fetch(request);
+  // Await the revalidation on a cache miss; if it failed (offline), fall through to a
+  // real network fetch so the caller gets a genuine error, not a null response.
+  return cached || (await network) || fetch(request);
 }
 
 // Network-first: keep the cached copy fresh, fall back to it offline. Used for
@@ -114,6 +134,11 @@ self.addEventListener('fetch', (e) => {
   const url = new URL(req.url);
   const sameOrigin = url.origin === self.location.origin;
   const path = url.pathname;
+
+  // Never intercept the worker script itself — let the browser's update check always
+  // hit the network. If the SW ever cached its own script, a device could be pinned to
+  // a stale worker with no way to update (the exact failure this app has hit on iOS).
+  if (sameOrigin && path === '/service-worker.js') return;
 
   // manifest.json — always try the network first so new content appears.
   if (sameOrigin && path.endsWith('/manifest.json')) {

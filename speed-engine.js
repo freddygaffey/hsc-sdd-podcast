@@ -158,10 +158,13 @@ registerProcessor("stretch-processor", StretchProcessor);
 `;
 
   function createSpeedAudio(fallbackEl) {
+    // Use `in` — do NOT read `AudioContext.prototype.audioWorklet`. It's a getter that
+    // requires a real context as `this`; touching it on the prototype throws "Illegal
+    // invocation" (Chrome/Safari/iOS), which previously crashed app init on load.
     const supported =
       typeof AudioContext !== "undefined" &&
       typeof AudioWorkletNode !== "undefined" &&
-      AudioContext.prototype.audioWorklet !== undefined;
+      "audioWorklet" in AudioContext.prototype;
 
     if (!supported) {
       if (fallbackEl) console.warn("[speed-engine] AudioWorklet unavailable — using <audio> (silent above 4x).");

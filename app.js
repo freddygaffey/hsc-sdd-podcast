@@ -23,6 +23,7 @@
   let manifest = null;
   let currentEpisode = null;
   let currentVoiceIndex = 0;
+  let loadToken = 0;          // guards against stale loadedmetadata on rapid src changes
   let lastSavedAt = 0;
   let lastListenTick = 0;     // wall-clock ms of the previous timeupdate while playing
   let pendingListenSecs = 0;  // wall seconds, flushed to the daily log every few seconds
@@ -37,13 +38,17 @@
   let advanceTimer = null;
   let syncParas = null;       // transcript sync: [{el, startFrac, endFrac}]
   let syncActiveEl = null;
+  let lastSyncScroll = 0;     // perf.now() of last transcript auto-scroll (throttle)
 
   // --- DOM refs ---
   // Pitch-preserving speed engine (see speed-engine.js): a Web Audio time-stretch
   // player that stays audible all the way to 16x. Falls back to the raw <audio>
   // element (silent above 4x) if the browser lacks AudioWorklet.
   const audioEl = document.getElementById("audio");
-  const audio = window.createSpeedAudio ? window.createSpeedAudio(audioEl) : audioEl;
+  // Use the native <audio> element directly. The Web Audio speed engine is DISABLED — it
+  // introduced playback, transcript-scroll and voice-switch glitches and isn't required:
+  // native playbackRate handles speed, and <audio>'s Range requests stream cleanly.
+  const audio = audioEl;
   const viewLibrary = document.getElementById("view-library");
   const viewEpisode = document.getElementById("view-episode");
   const views = { library: viewLibrary, episode: viewEpisode };
@@ -251,7 +256,7 @@
   }
 
   function cleanVoiceName(name) {
-    const parts = name.split("_").slice(1);
+    const parts = name.split("_").slice(1).filter(Boolean);
     return parts.map((w) => w[0].toUpperCase() + w.slice(1)).join(" ") || name;
   }
 
@@ -578,13 +583,19 @@
       episodes.forEach((e) => flat.push(e));
     });
     const idx = flat.findIndex((e) => e.id === ep.id);
-    return idx >= 0 && idx < flat.length - 1 ? flat[idx + 1] : null;
+    if (idx < 0) return null;
+    // Skip episodes that have no audio yet so auto-advance never lands on one.
+    for (let i = idx + 1; i < flat.length; i++) {
+      if (flat[i].voices && flat[i].voices.length) return flat[i];
+    }
+    return null;
   }
 
   // --- Audio events ---
   audio.addEventListener("play", () => { setPlayState(true); lastListenTick = Date.now(); });
   audio.addEventListener("pause", () => { setPlayState(false); flushListenLog(); lastListenTick = 0; persistProgress(); });
   audio.addEventListener("ended", () => {
+    flushListenLog(); // credit time to the finished episode's voice before advancing
     if (currentEpisode) saveEpisodeProgress(currentEpisode.id, { progressPct: 1, completed: true });
     setPlayState(false);
     if (queue.length > 0) {
@@ -668,7 +679,16 @@
   }
 
   function loadEpisode(ep, { autoplay }) {
+    dismissAdvanceToast(); // a user-initiated load cancels any pending auto-advance
     currentEpisode = ep;
+    // No audio generated for this episode yet — show it read-only (the notes/quiz still
+    // render via showView). Hide the player instead of crashing on ep.voices[…].file.
+    if (!ep.voices || !ep.voices.length) {
+      playerBar.hidden = true;
+      setHidden(btnSleep, true);
+      if (autoplay) showToast("No audio for this episode yet — notes only.");
+      return;
+    }
     const progress = getEpisodeProgress(ep.id);
     currentVoiceIndex = ep.voices.findIndex((v) => v.name === progress.lastVoice);
     if (currentVoiceIndex < 0) {
@@ -694,13 +714,17 @@
   }
 
   function setAudioSource(voice, resumePct, autoplay) {
+    const token = ++loadToken;
     audio.src = voice.file;
     audio.load();
     audio.addEventListener("loadedmetadata", () => {
-      if (resumePct && audio.duration) audio.currentTime = resumePct * audio.duration;
+      if (token !== loadToken) return; // a newer load superseded this one
+      // Don't resume at the very end (a completed episode has progressPct≈1) — that
+      // would sit at the end and instantly auto-advance instead of replaying.
+      if (resumePct && resumePct < 0.999 && audio.duration) audio.currentTime = resumePct * audio.duration;
       audio.playbackRate = getCurrentSpeed();
       timeTotal.textContent = fmtTime(audio.duration / getCurrentSpeed());
-      if (autoplay) audio.play();
+      if (autoplay) audio.play().catch(() => {});
     }, { once: true });
   }
 
@@ -712,13 +736,15 @@
     currentVoiceIndex = index;
     voiceSelect.value = index;
     const voice = currentEpisode.voices[index];
+    const token = ++loadToken;
     audio.src = voice.file;
     audio.load();
     audio.addEventListener("loadedmetadata", () => {
+      if (token !== loadToken) return; // a newer load superseded this one
       if (audio.duration) audio.currentTime = pct * audio.duration;
       audio.playbackRate = getCurrentSpeed();
       timeTotal.textContent = fmtTime(audio.duration / getCurrentSpeed());
-      if (wasPlaying) audio.play();
+      if (wasPlaying) audio.play().catch(() => {});
     }, { once: true });
     saveEpisodeProgress(currentEpisode.id, { lastVoice: voice.name });
     // Remember this voice globally so the next/fresh episode starts in it and
@@ -1040,6 +1066,18 @@
     }
   }
 
+  // Re-sync a module's download button (✓ vs ↓) after a single episode in it is
+  // downloaded or deleted, so the header reflects whether the whole module is saved.
+  function syncModuleDlBtn(row) {
+    const modEl = row.closest(".module");
+    const mdlBtn = modEl && modEl.querySelector(".module-dl");
+    if (!mdlBtn || mdlBtn.classList.contains("dl-busy")) return;
+    const allDl = [...modEl.querySelectorAll(".episode-row")].every((r) => isDownloaded(r.dataset.epId));
+    mdlBtn.classList.toggle("dl-done", allDl);
+    mdlBtn.innerHTML = allDl ? checkIcon(16) : downloadIcon(16);
+    mdlBtn.setAttribute("aria-label", allDl ? "Delete module download" : "Download module");
+  }
+
   let toastTimer = null;
   function showToast(msg) {
     const el = document.getElementById("toast");
@@ -1138,7 +1176,8 @@
   // Start a whole module: resume the first unlistened episode (at its saved
   // position) and replace the queue with every episode after it.
   function startModule(group) {
-    const eps = group.episodes;
+    const eps = group.episodes.filter((e) => e.voices && e.voices.length); // playable only
+    if (!eps.length) { showToast("No audio in this module yet."); return; }
     let idx = eps.findIndex((e) => !getEpisodeProgress(e.id).completed);
     if (idx < 0) idx = 0; // all completed → start from the top
     if (!guardPlayable(eps[idx])) return;
@@ -1293,6 +1332,7 @@
         await deleteEpisode(ep);
         setDlState(dlBtn, "idle");
         row.classList.remove("ep-downloaded");
+        syncModuleDlBtn(row);
         return;
       }
       setDlState(dlBtn, "busy");
@@ -1300,6 +1340,7 @@
         await downloadEpisode(ep);
         setDlState(dlBtn, "done");
         row.classList.add("ep-downloaded");
+        syncModuleDlBtn(row);
       } catch (err) {
         console.error("[download]", err);
         setDlState(dlBtn, "idle");
@@ -1336,6 +1377,8 @@
   function navigateToLibrary() { window.location.hash = "#/"; }
 
   function handleRoute() {
+    if (!manifest) return; // not loaded yet; init's fetch calls handleRoute once ready
+    dismissAdvanceToast(); // any navigation cancels a pending auto-advance
     const hash = window.location.hash;
     const match = hash.match(/^#\/episode\/(.+)$/);
     if (match) {
@@ -1480,8 +1523,13 @@
     if (syncActiveEl) syncActiveEl.classList.remove("para-active");
     active.el.classList.add("para-active");
     syncActiveEl = active.el;
+    // Auto-scroll to follow along, but throttled so rapid paragraph changes (e.g. at high
+    // playback speed) can't make the page jitter around. Only scroll when off-screen.
+    const now = performance.now();
+    if (now - lastSyncScroll < 1500) return;
     const r = active.el.getBoundingClientRect();
     if (r.top < 130 || r.bottom > window.innerHeight - 40) {
+      lastSyncScroll = now;
       active.el.scrollIntoView({ block: "center", behavior: "smooth" });
     }
   }
@@ -1613,7 +1661,7 @@
           <span class="quiz-progress-text">${current + 1} / ${total}</span>
         </div>
         <div class="quiz-progress-track">
-          <div class="quiz-progress-fill" style="width:${Math.round((current / total) * 100)}%"></div>
+          <div class="quiz-progress-fill" style="width:${Math.round(((current + 1) / total) * 100)}%"></div>
         </div>
         <div class="quiz-question-wrap">
           <p class="quiz-q-text">${q.q}</p>
@@ -1812,22 +1860,22 @@
 
   // --- Service worker ---
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/service-worker.js").then((reg) => {
-      // Notify (don't force-reload) when an updated app version is installed.
-      reg.addEventListener("updatefound", () => {
-        const nw = reg.installing;
-        if (!nw) return;
-        nw.addEventListener("statechange", () => {
-          if (nw.state === "installed" && navigator.serviceWorker.controller) {
-            showToast("App updated — reload for the latest.");
-          }
-        });
-      });
-    }).catch(() => {});
+    // Register and check for an update once, on load. We deliberately do NOT force a
+    // reload when a new worker activates — a reload mid-use is disruptive. The new
+    // version applies on the next natural load. updateViaCache:"none" makes the browser
+    // bypass its HTTP cache for the worker script so a new version is always discovered
+    // (some edge/browser Cache-Control TTLs would otherwise hide it for hours).
+    navigator.serviceWorker.register("/service-worker.js", { updateViaCache: "none" })
+      .then((reg) => { reg.update().catch(() => {}); })
+      .catch(() => {});
   }
 
   // --- Init ---
   fetch("manifest.json")
-    .then((r) => r.json())
-    .then((data) => { manifest = data; handleRoute(); });
+    .then((r) => { if (!r.ok) throw new Error("manifest HTTP " + r.status); return r.json(); })
+    .then((data) => { manifest = data; handleRoute(); })
+    .catch((err) => {
+      console.error("[init] failed to load manifest", err);
+      viewLibrary.innerHTML = '<p class="load-error">Couldn’t load the library — check your connection and reload.</p>';
+    });
 })();

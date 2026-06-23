@@ -22,7 +22,17 @@
 
   const td = new TextDecoder();
   const te = new TextEncoder();
-  const b64 = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf)));
+  const b64 = (buf) => {
+    // Encode in 32 KB chunks — spreading a large byte array into String.fromCharCode
+    // (…bytes) throws "Maximum call stack" / RangeError once a user's encrypted state
+    // grows (lots of quiz history), which silently killed cloud sync on iOS.
+    const bytes = new Uint8Array(buf);
+    let s = "";
+    for (let i = 0; i < bytes.length; i += 0x8000) {
+      s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    }
+    return btoa(s);
+  };
   const unb64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
 
   let session = null; // { username, salt, authToken, encKey(CryptoKey) }

@@ -31,8 +31,9 @@ echo "==> Assembling $DIST/ (app shell + markdown/quiz, no audio)"
 rm -rf "$DIST"
 mkdir -p "$DIST"
 
-# App shell — the only root files the running app needs.
-cp index.html app.js auth.js style.css service-worker.js app.webmanifest "$DIST/"
+# App shell — the only root files the running app needs. speed-engine.js powers the
+# pitch-preserving playback-speed feature; index.html loads it, so it must ship.
+cp index.html app.js auth.js speed-engine.js style.css service-worker.js app.webmanifest "$DIST/"
 
 # Stamp a unique shell-cache version so every deploy updates atomically (install
 # precaches the whole shell into a fresh cache; index.html + app.js never mismatch).
@@ -47,6 +48,10 @@ cp -r vendor "$DIST/"
 
 # App icons (logo + install/home-screen icons).
 cp -r icons "$DIST/"
+
+# Cloudflare Pages header rules — forces no-cache on service-worker.js + manifest.json
+# so the browser always revalidates them and can never get pinned to a stale worker.
+cp _headers "$DIST/"
 
 # Per-episode text the app fetches at runtime (script/supplementary/quiz only).
 # Excludes *.m4a / *.wav and everything else; --prune-empty-dirs keeps dist tidy.

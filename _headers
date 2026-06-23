@@ -1,0 +1,13 @@
+# Cloudflare Pages header rules.
+#
+# The service worker MUST NOT be held in the browser's HTTP cache, or a device can keep
+# revalidating against a stale copy and never discover a new version — which is exactly
+# how installs got pinned to a broken worker on iOS. no-cache = store but always
+# revalidate (via ETag), so every visit picks up a new worker immediately.
+/service-worker.js
+  Cache-Control: no-cache
+
+# Same reasoning for the manifest: it gates which episodes/quizzes appear, so it should
+# always be revalidated rather than served stale from the HTTP cache.
+/manifest.json
+  Cache-Control: no-cache
