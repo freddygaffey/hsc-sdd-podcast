@@ -394,7 +394,6 @@
       : `<button class="q-del" aria-label="Remove from queue" title="Remove">&#10005;</button>
          <span class="q-handle" aria-label="Drag to reorder" title="Drag to reorder">${handleIcon(20)}</span>`;
     return `<div class="${kind === "now" ? "q-now-row" : "q-row"}" data-ep-id="${ep ? ep.id : id}">
-      <div class="q-remove-bg"><span>Remove</span></div>
       <div class="q-fg">
         ${lead}
         <span class="q-text"><span class="q-title">${title}</span><span class="q-sub">${sub}</span></span>
@@ -433,7 +432,7 @@
       let sx = 0, sy = 0, dx = 0, swiping = false, active = false;
 
       // explicit remove button (works with a mouse on desktop)
-      if (del) del.addEventListener("click", (e) => { e.stopPropagation(); removeFromQueue(id); });
+      if (del) del.addEventListener("click", (e) => { e.stopPropagation(); animateRemove(row, id); });
 
       // tap-to-play + swipe-left-to-remove (anywhere on the row except the handle / ✕)
       fg.addEventListener("pointerdown", (e) => {
@@ -449,24 +448,24 @@
           dx = Math.min(0, mx);
           fg.style.transition = "none";
           fg.style.transform = `translateX(${dx}px)`;
-          row.classList.toggle("q-will-remove", dx < -80);
+          fg.style.opacity = String(Math.max(0.3, 1 + dx / 220)); // fade as it slides away
         }
       });
       fg.addEventListener("pointerup", (e) => {
         if (!active) return;
         active = false;
-        fg.style.transition = "";
         if (swiping) {
-          if (dx < -80) { row.classList.add("q-removing"); setTimeout(() => removeFromQueue(id), 160); return; }
-          fg.style.transform = "";
-          row.classList.remove("q-will-remove");
+          if (dx < -90) { animateRemove(row, id); return; }
+          fg.style.transition = "transform .18s ease, opacity .18s ease";
+          fg.style.transform = ""; fg.style.opacity = "";
         } else if (Math.abs((e.clientX || sx) - sx) < 8) {
           playFromQueue(id);
         }
       });
       fg.addEventListener("pointercancel", () => {
-        active = false; fg.style.transition = ""; fg.style.transform = "";
-        row.classList.remove("q-will-remove");
+        active = false;
+        fg.style.transition = "transform .18s ease, opacity .18s ease";
+        fg.style.transform = ""; fg.style.opacity = "";
       });
 
       // drag handle → smooth float-and-drop reorder
@@ -504,6 +503,16 @@
       handle.addEventListener("pointerup", endDrag);
       handle.addEventListener("pointercancel", endDrag);
     });
+  }
+  // Collapse the row to height 0 so the rows below glide up, then drop it.
+  function animateRemove(row, id) {
+    row.style.height = row.offsetHeight + "px";
+    row.style.overflow = "hidden";
+    void row.offsetHeight; // reflow so the height transition takes
+    row.style.transition = "height .22s ease, opacity .22s ease";
+    row.style.opacity = "0";
+    row.style.height = "0";
+    setTimeout(() => removeFromQueue(id), 220);
   }
   function removeFromQueue(id) {
     const i = queue.indexOf(id);

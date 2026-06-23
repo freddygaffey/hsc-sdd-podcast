@@ -1333,19 +1333,6 @@ body.offline .episode-row:not(.ep-downloaded) .ep-play { opacity: 0.4; }
 #queue-list { flex: 1; min-height: 0; overflow-y: auto; margin: 0 -4px; padding: 0 4px; }
 
 .q-row, .q-now-row { position: relative; overflow: hidden; }
-.q-remove-bg {
-  position: absolute;
-  inset: 0;
-  background: #ef4444;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 18px;
-  font-size: 13px;
-  font-weight: 700;
-}
-.q-row.q-will-remove .q-remove-bg { background: #dc2626; }
 .q-fg {
   position: relative;
   background: var(--bg-elevated);
@@ -1419,7 +1406,6 @@ body.offline .episode-row:not(.ep-downloaded) .ep-play { opacity: 0.4; }
 .q-handle:active { cursor: grabbing; }
 .q-dragging { z-index: 5; position: relative; }
 .q-dragging .q-fg { background: var(--bg-card); box-shadow: 0 8px 24px rgba(0,0,0,0.4); border-radius: 8px; }
-.q-removing { transition: opacity 0.16s ease, height 0.16s ease; opacity: 0; }
 
 /* Bottom toolbar */
 .q-toolbar {
