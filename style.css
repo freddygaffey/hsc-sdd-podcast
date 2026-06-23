@@ -1307,15 +1307,27 @@ body.offline .episode-row:not(.ep-downloaded) .ep-play { opacity: 0.4; }
 }
 
 /* Bottom-sheet drag handle — swipe the panel down to dismiss */
-.sheet-handle {
-  width: 40px;
-  height: 5px;
-  border-radius: 3px;
-  background: var(--text-dim);
-  opacity: 0.35;
-  margin: 0 auto 14px;
+.stats-panel { position: relative; }
+.sheet-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: var(--bg-card);
+  color: var(--text-dim);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
-.stats-panel { will-change: transform; }
+.sheet-close:hover { color: var(--text); }
+.sheet-close:active { background: var(--accent-soft); }
+.q-head, .stats-header { padding-right: 40px; }
 
 /* ── Queue panel (Spotify-style) ────────────────────────── */
 /* Contained, fully-rounded card with the list scrolling inside (so the rounded

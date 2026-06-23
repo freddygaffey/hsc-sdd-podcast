@@ -101,11 +101,13 @@
   function enableSheetDismiss(overlay) {
     const panel = overlay.querySelector(".stats-panel");
     if (!panel) return;
+    const closeBtn = panel.querySelector(".sheet-close");
+    if (closeBtn) closeBtn.addEventListener("click", () => setHidden(overlay, true));
     let startY = 0, dy = 0, dragging = false;
     panel.addEventListener("touchstart", (e) => {
-      // Only dismiss when the drag starts on the grab handle or header — never on the
-      // scrollable list/rows (so swiping a queue row doesn't drag the whole sheet).
-      if (!e.target.closest(".sheet-handle, .q-head, .stats-header")) { dragging = false; return; }
+      // Swipe-down to dismiss still works from the header (bonus); the ✕ is the
+      // primary close. Never start a dismiss-drag on the scrollable list/rows.
+      if (!e.target.closest(".q-head, .stats-header")) { dragging = false; return; }
       startY = e.touches[0].clientY; dy = 0; dragging = true;
     }, { passive: true });
     panel.addEventListener("touchmove", (e) => {
@@ -436,6 +438,11 @@
         animation: 160,
         ghostClass: "q-ghost",
         chosenClass: "q-chosen",
+        // iOS has no native HTML5 drag; force the JS fallback and append the moving
+        // clone to <body> so a transformed ancestor (the sheet) can't offset it.
+        forceFallback: true,
+        fallbackOnBody: true,
+        fallbackTolerance: 4,
         onEnd: () => {
           queue = [...queueListEl.querySelectorAll(".q-row")].map((r) => r.dataset.epId);
           queueListEl.querySelectorAll(".q-row .q-num").forEach((el, i) => { el.textContent = i + 1; });
