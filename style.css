@@ -1550,3 +1550,9 @@ body.offline .episode-row:not(.ep-downloaded) .ep-play { opacity: 0.4; }
   background: var(--bg-elevated); color: var(--text); font: 600 13px var(--font); cursor: pointer;
 }
 .mix-scope-btn.sel { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+/* Settings text input (learning steps) */
+.setting-text {
+  background: var(--bg-elevated); color: var(--text); border: 1px solid var(--border);
+  border-radius: 8px; padding: 7px 10px; font: 500 14px var(--font); max-width: 130px; text-align: left;
+}

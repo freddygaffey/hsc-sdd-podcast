@@ -68,6 +68,8 @@
   const defaultVoiceSelect = document.getElementById("default-voice-select");
   const dlAllVoicesToggle = document.getElementById("dl-all-voices");
   const blockMobileToggle = document.getElementById("block-mobile-data");
+  const fsrsRetentionSelect = document.getElementById("fsrs-retention");
+  const fsrsStepsInput = document.getElementById("fsrs-steps");
   const storageUsageEl = document.getElementById("storage-usage");
   const btnClearDownloads = document.getElementById("btn-clear-downloads");
   const btnInstall = document.getElementById("btn-install");
@@ -1218,6 +1220,8 @@
     populateDefaultVoiceSelect();
     if (dlAllVoicesToggle) dlAllVoicesToggle.checked = localStorage.getItem(DOWNLOAD_ALL_VOICES_KEY) === "1";
     if (blockMobileToggle) blockMobileToggle.checked = blockMobileData();
+    if (fsrsRetentionSelect) fsrsRetentionSelect.value = String(fsrsSettings().retention);
+    if (fsrsStepsInput) fsrsStepsInput.value = fsrsSettings().steps;
     if (speedUnitSelect) speedUnitSelect.value = speedUnitMode();
     refreshStorageUsage();
     updateInstallUI();
@@ -1247,6 +1251,16 @@
     // Stored inverted: default (absent) = ON; "0" = off.
     localStorage.setItem(BLOCK_MOBILE_KEY, blockMobileToggle.checked ? "1" : "0");
   });
+  function saveFsrsSettings() {
+    const cur = fsrsSettings();
+    const retention = fsrsRetentionSelect ? parseFloat(fsrsRetentionSelect.value) : cur.retention;
+    const steps = fsrsStepsInput && fsrsStepsInput.value.trim() ? fsrsStepsInput.value.trim() : cur.steps;
+    localStorage.setItem(FSRS_SETTINGS_KEY, JSON.stringify({ retention, steps }));
+    _fsrs = null; // force the engine to rebuild with new params
+    window.Sync && window.Sync.scheduleSync();
+  }
+  if (fsrsRetentionSelect) fsrsRetentionSelect.addEventListener("change", saveFsrsSettings);
+  if (fsrsStepsInput) fsrsStepsInput.addEventListener("change", saveFsrsSettings);
   if (btnClearDownloads) btnClearDownloads.addEventListener("click", async () => {
     if (!confirm("Delete all downloaded episodes? They'll need to be downloaded again for offline use.")) return;
     await clearAllDownloads();
@@ -1655,39 +1669,63 @@
   function saveSR(all) { localStorage.setItem(QUIZ_SR_KEY, JSON.stringify(all)); }
   function srKey(ep, q) { return `${ep.id}::${q.id}`; }
 
+  // --- Spaced repetition: FSRS (Anki's modern engine, via vendored ts-fsrs) ---
+  // Grades map to FSRS ratings: 1 = Again · 2 = Hard · 3 = Good · 4 = Easy.
+  const FSRS_SETTINGS_KEY = "podcast-fsrs-settings";
+  function fsrsSettings() {
+    const def = { retention: 0.9, steps: "1m 10m" };
+    try { return { ...def, ...(JSON.parse(localStorage.getItem(FSRS_SETTINGS_KEY)) || {}) }; }
+    catch { return def; }
+  }
+  let _fsrs = null, _fsrsKey = "";
+  function fsrsEngine() {
+    const s = fsrsSettings();
+    const key = JSON.stringify(s);
+    if (_fsrs && _fsrsKey === key) return _fsrs;
+    const steps = (s.steps || "").trim().split(/\s+/).filter(Boolean);
+    _fsrs = window.FSRS.fsrs(window.FSRS.generatorParameters({
+      request_retention: s.retention,
+      learning_steps: steps.length ? steps : ["1m", "10m"],
+      enable_fuzz: true,
+    }));
+    _fsrsKey = key;
+    return _fsrs;
+  }
+  // Stored cards keep FSRS state plus correct/total (for accuracy + sync merge). Dates are
+  // stored as ISO strings; revive them (and migrate old SM-2 cards) into a real FSRS card.
+  function reviveCard(raw) {
+    if (!raw || raw.stability === undefined) return window.FSRS.createEmptyCard(new Date());
+    return { ...raw, due: new Date(raw.due), last_review: raw.last_review ? new Date(raw.last_review) : undefined };
+  }
   function getCard(ep, q) {
-    return loadSR()[srKey(ep, q)] || { interval: 1, ef: 2.5, reps: 0, due: 0, correct: 0, total: 0 };
+    const raw = loadSR()[srKey(ep, q)];
+    const card = reviveCard(raw);
+    card.correct = (raw && raw.correct) || 0;
+    card.total = (raw && raw.total) || 0;
+    return card;
   }
-
-  // Anki-style SM-2 scheduler. grade: 1 = Again · 2 = Hard · 3 = Good · 4 = Easy.
-  // Returns a NEW card (doesn't save) so the same maths can preview each button's interval.
-  function schedule(card, grade) {
-    let ef = card.ef || 2.5, iv = card.interval || 0, reps = card.reps || 0, lapses = card.lapses || 0;
-    if (grade === 1) {                       // Again — lapse / relearn
-      if (reps > 0) { ef = ef - 0.2; lapses++; }
-      reps = 0; iv = 10 / 1440;              // ~10 min; stays due so it comes back soon
-    } else if (reps === 0) {                  // graduating from new / relearning
-      if (grade === 4) { iv = 4; ef += 0.15; } // Easy
-      else iv = 1;                            // Hard / Good → 1 day
-      reps = 1;
-    } else {                                  // reviewing a learned card
-      if (grade === 2) { ef -= 0.15; iv = Math.max(iv + 1, Math.round(iv * 1.2)); }
-      else if (grade === 3) { iv = Math.max(iv + 1, Math.round(iv * ef)); }
-      else { ef += 0.15; iv = Math.max(iv + 1, Math.round(iv * ef * 1.3)); }
-      reps++;
-    }
-    ef = Math.max(1.3, Math.min(3.0, ef));
-    return { ...card, ef, interval: iv, reps, lapses, due: Date.now() + iv * 86400000 };
+  // Days from now until a given grade's next due date — drives the button previews.
+  function previewDays(card, grade) {
+    if (!window.FSRS) return grade;
+    const rec = fsrsEngine().repeat(card, new Date());
+    return (new Date(rec[grade].card.due).getTime() - Date.now()) / 86400000;
   }
-
-  // Apply a grade to a card and persist. mcCorrect feeds the accuracy stat separately.
+  // Apply a grade and persist. mcCorrect feeds the accuracy stat separately.
   function gradeCard(ep, q, grade, mcCorrect) {
     const all = loadSR();
     const k = srKey(ep, q);
-    const c = all[k] || { interval: 0, ef: 2.5, reps: 0, due: 0, correct: 0, total: 0, lapses: 0 };
-    c.total = (c.total || 0) + 1;
-    if (mcCorrect) c.correct = (c.correct || 0) + 1;
-    all[k] = schedule(c, grade);
+    const prev = all[k];
+    const bump = { correct: ((prev && prev.correct) || 0) + (mcCorrect ? 1 : 0), total: ((prev && prev.total) || 0) + 1 };
+    if (!window.FSRS) {
+      all[k] = { ...(prev || {}), ...bump, due: new Date(Date.now() + 86400000).toISOString() };
+    } else {
+      const { card: next } = fsrsEngine().next(reviveCard(prev), new Date(), grade);
+      all[k] = {
+        ...next, ...bump,
+        due: new Date(next.due).toISOString(),
+        last_review: next.last_review ? new Date(next.last_review).toISOString() : new Date().toISOString(),
+      };
+    }
     saveSR(all);
     window.Sync && window.Sync.scheduleSync();
   }
@@ -1701,8 +1739,9 @@
   }
 
   function isDue(ep, q) {
-    const card = getCard(ep, q);
-    return card.reps === 0 || card.due <= Date.now();
+    const raw = loadSR()[srKey(ep, q)];
+    if (!raw || !raw.total) return true; // new / never seen
+    return new Date(raw.due) <= new Date();
   }
 
   async function renderQuizTab(ep) {
@@ -1870,7 +1909,7 @@
     ];
     const gradesEl = c.querySelector("#quiz-grades");
     gradesEl.innerHTML = grades.map((x) =>
-      `<button class="grade-btn ${x.cls}" data-g="${x.g}"><span class="grade-iv">${fmtInterval(schedule(card, x.g).interval)}</span><span class="grade-lbl">${x.label}</span></button>`
+      `<button class="grade-btn ${x.cls}" data-g="${x.g}"><span class="grade-iv">${fmtInterval(previewDays(card, x.g))}</span><span class="grade-lbl">${x.label}</span></button>`
     ).join("");
     gradesEl.querySelectorAll(".grade-btn").forEach((btn) =>
       btn.addEventListener("click", () => {
@@ -1944,9 +1983,11 @@
 
   // Classify a question from its spaced-repetition card: never tried / still learning / known.
   function classifyCard(q) {
-    const c = getCard(q._ep, q);
-    if ((c.total || 0) === 0) return "new";
-    if (c.reps >= 2 && c.due > Date.now()) return "known";
+    const raw = loadSR()[srKey(q._ep, q)];
+    if (!raw || !raw.total) return "new";
+    const notDue = new Date(raw.due) > new Date();
+    const reviewState = window.FSRS && raw.state === window.FSRS.State.Review;
+    if (reviewState && notDue) return "known"; // graduated to review and not yet due
     return "weak";
   }
 
