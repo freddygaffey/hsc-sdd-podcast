@@ -844,12 +844,23 @@
 
   // --- Stats ---
   const GROUP_NAMES = {
+    PF11: "Programming Fundamentals",
+    OOP11: "The Object-Oriented Paradigm",
+    PM11: "Programming Mechatronics",
     PFW: "Programming for the Web",
     SSA: "Software Security Applications",
     SA:  "Software Automation",
     SEE: "Software Engineering Project",
     CASE: "Case Studies",
   };
+  // Which HSC year each module belongs to (for the Year 11 / Year 12 split). Case
+  // studies span both, so they get their own section. Prefixes not listed fall under "Other".
+  const YEAR_MAP = {
+    PF11: "Year 11", OOP11: "Year 11", PM11: "Year 11",
+    PFW: "Year 12", SSA: "Year 12", SA: "Year 12", SEE: "Year 12",
+    CASE: "Case Studies",
+  };
+  const YEAR_ORDER = ["Year 11", "Year 12", "Case Studies", "Other"];
 
   function computeStats() {
     const progress = loadProgress();
@@ -1340,7 +1351,19 @@
       mod.episodes.forEach((ep) => groups.get(mod.prefix).episodes.push({ ...ep, _moduleNum: mod.moduleNum }));
     });
 
+    // Bucket modules into Year 11 / Year 12 / Case Studies sections (see YEAR_MAP).
+    const byYear = {};
     groups.forEach((group) => {
+      const year = YEAR_MAP[group.prefix] || "Other";
+      (byYear[year] || (byYear[year] = [])).push(group);
+    });
+    YEAR_ORDER.filter((y) => byYear[y]).forEach((year) => {
+      const yh = document.createElement("div");
+      yh.className = "year-header";
+      yh.textContent = year;
+      viewLibrary.appendChild(yh);
+      byYear[year].sort((a, b) => Math.min(...a.episodes.map((e) => e._moduleNum)) - Math.min(...b.episodes.map((e) => e._moduleNum)));
+      byYear[year].forEach((group) => {
       group.episodes.sort((a, b) => (a._moduleNum - b._moduleNum) || ((a.unit || 0) - (b.unit || 0)));
 
       const groupEl = document.createElement("div");
@@ -1382,6 +1405,7 @@
       groupEl.appendChild(episodesEl);
 
       viewLibrary.appendChild(groupEl);
+      });
     });
   }
 
@@ -1635,27 +1659,45 @@
     return loadSR()[srKey(ep, q)] || { interval: 1, ef: 2.5, reps: 0, due: 0, correct: 0, total: 0 };
   }
 
-  function updateCard(ep, q, correct) {
+  // Anki-style SM-2 scheduler. grade: 1 = Again · 2 = Hard · 3 = Good · 4 = Easy.
+  // Returns a NEW card (doesn't save) so the same maths can preview each button's interval.
+  function schedule(card, grade) {
+    let ef = card.ef || 2.5, iv = card.interval || 0, reps = card.reps || 0, lapses = card.lapses || 0;
+    if (grade === 1) {                       // Again — lapse / relearn
+      if (reps > 0) { ef = ef - 0.2; lapses++; }
+      reps = 0; iv = 10 / 1440;              // ~10 min; stays due so it comes back soon
+    } else if (reps === 0) {                  // graduating from new / relearning
+      if (grade === 4) { iv = 4; ef += 0.15; } // Easy
+      else iv = 1;                            // Hard / Good → 1 day
+      reps = 1;
+    } else {                                  // reviewing a learned card
+      if (grade === 2) { ef -= 0.15; iv = Math.max(iv + 1, Math.round(iv * 1.2)); }
+      else if (grade === 3) { iv = Math.max(iv + 1, Math.round(iv * ef)); }
+      else { ef += 0.15; iv = Math.max(iv + 1, Math.round(iv * ef * 1.3)); }
+      reps++;
+    }
+    ef = Math.max(1.3, Math.min(3.0, ef));
+    return { ...card, ef, interval: iv, reps, lapses, due: Date.now() + iv * 86400000 };
+  }
+
+  // Apply a grade to a card and persist. mcCorrect feeds the accuracy stat separately.
+  function gradeCard(ep, q, grade, mcCorrect) {
     const all = loadSR();
     const k = srKey(ep, q);
-    const c = all[k] || { interval: 1, ef: 2.5, reps: 0, due: 0, correct: 0, total: 0 };
-    c.total++;
-    if (correct) c.correct++;
-    const quality = correct ? 4 : 1;
-    if (quality < 3) {
-      c.reps = 0;
-      c.interval = 1;
-    } else {
-      if (c.reps === 0) c.interval = 1;
-      else if (c.reps === 1) c.interval = 6;
-      else c.interval = Math.round(c.interval * c.ef);
-      c.reps++;
-    }
-    c.ef = Math.max(1.3, c.ef + 0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02));
-    c.due = Date.now() + c.interval * 86400000;
-    all[k] = c;
+    const c = all[k] || { interval: 0, ef: 2.5, reps: 0, due: 0, correct: 0, total: 0, lapses: 0 };
+    c.total = (c.total || 0) + 1;
+    if (mcCorrect) c.correct = (c.correct || 0) + 1;
+    all[k] = schedule(c, grade);
     saveSR(all);
     window.Sync && window.Sync.scheduleSync();
+  }
+
+  // Human-readable interval, Anki-style: 10m / 3d / 2.1mo / 1.4y.
+  function fmtInterval(d) {
+    if (d < 1) return `${Math.max(1, Math.round(d * 1440))}m`;
+    if (d < 30) return `${Math.round(d)}d`;
+    if (d < 365) { const m = d / 30; return `${m < 10 ? m.toFixed(1).replace(/\.0$/, "") : Math.round(m)}mo`; }
+    return `${(d / 365).toFixed(1).replace(/\.0$/, "")}y`;
   }
 
   function isDue(ep, q) {
@@ -1774,9 +1816,7 @@
           </div>
           <div class="quiz-feedback" id="quiz-feedback" hidden>
             <div class="quiz-feedback-inner" id="quiz-feedback-inner"></div>
-            <button class="quiz-next-btn" id="btn-quiz-next">
-              ${current + 1 < total ? "Next question →" : "See results"}
-            </button>
+            <div class="quiz-grades" id="quiz-grades"></div>
           </div>
         </div>
       </div>`;
@@ -1788,7 +1828,6 @@
     c.querySelectorAll(".quiz-option").forEach((btn) => {
       btn.addEventListener("click", () => handleAnswer(parseInt(btn.dataset.index, 10)));
     });
-    c.querySelector("#btn-quiz-next").addEventListener("click", advanceQuiz);
     renderMath(c); // render math in the question + options
   }
 
@@ -1805,8 +1844,6 @@
     if (correct) quizState.score++;
     else quizState.missed.push(q);
 
-    updateCard(ep, q, correct);
-
     c.querySelectorAll(".quiz-option").forEach((btn, i) => {
       btn.disabled = true;
       if (i === q.answer) btn.classList.add("opt-correct");
@@ -1819,9 +1856,29 @@
       <div class="feedback-verdict ${correct ? "verdict-correct" : "verdict-wrong"}">
         ${correct ? "✓ Correct" : "✗ Incorrect"}
       </div>
-      ${q.explanation ? `<p class="feedback-explanation">${q.explanation}</p>` : ""}`;
-    setHidden(c.querySelector("#quiz-feedback"), false);
+      ${q.explanation ? `<p class="feedback-explanation">${q.explanation}</p>` : ""}
+      <p class="grade-prompt">How well did you know it?</p>`;
     renderMath(inner); // render math in the explanation
+
+    // Anki-style self-grade: Again / Hard / Good / Easy, each showing its next interval.
+    const card = getCard(ep, q);
+    const grades = [
+      { g: 1, label: "Again", cls: "g-again" },
+      { g: 2, label: "Hard", cls: "g-hard" },
+      { g: 3, label: "Good", cls: "g-good" },
+      { g: 4, label: "Easy", cls: "g-easy" },
+    ];
+    const gradesEl = c.querySelector("#quiz-grades");
+    gradesEl.innerHTML = grades.map((x) =>
+      `<button class="grade-btn ${x.cls}" data-g="${x.g}"><span class="grade-iv">${fmtInterval(schedule(card, x.g).interval)}</span><span class="grade-lbl">${x.label}</span></button>`
+    ).join("");
+    gradesEl.querySelectorAll(".grade-btn").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        gradeCard(ep, q, parseInt(btn.dataset.g, 10), correct);
+        advanceQuiz();
+      })
+    );
+    setHidden(c.querySelector("#quiz-feedback"), false);
   }
 
   function advanceQuiz() {
@@ -1921,15 +1978,32 @@
     const weakest = topics.find((t) => t.attempted);
 
     const total = all.length;
-    const sizes = [10, 20, 50].filter((n) => n < total);
+    const present = [...new Set(all.map((q) => q._prefix))];
+    const topicsByYear = {};
+    present.forEach((p) => { const y = YEAR_MAP[p] || "Other"; (topicsByYear[y] || (topicsByYear[y] = [])).push(p); });
     reviewContent.innerHTML = `
       <div class="review-hub">
         <section class="review-sec">
-          <h3 class="review-h">Mixed quiz</h3>
-          <p class="review-sub">${total} questions from across the whole subject, jumbled together.</p>
+          <h3 class="review-h">Mixed flashcards</h3>
+          <p class="review-sub">Choose topics and what to include, then how many — they're jumbled together.</p>
+          <div class="mix-topics">
+            ${YEAR_ORDER.filter((y) => topicsByYear[y]).map((y) => `
+              <div class="mix-year-lbl">${y}</div>
+              ${topicsByYear[y].map((p) => `<label class="mix-topic"><input type="checkbox" class="mix-topic-cb" value="${p}" checked> ${GROUP_NAMES[p] || p}</label>`).join("")}
+            `).join("")}
+          </div>
+          <div class="mix-year-lbl">Include</div>
+          <div class="mix-scope">
+            <button class="mix-scope-btn sel" data-scope="all">All</button>
+            <button class="mix-scope-btn" data-scope="weak">Still learning</button>
+            <button class="mix-scope-btn" data-scope="new">Not started</button>
+          </div>
+          <div class="mix-year-lbl">How many</div>
           <div class="review-mix-btns">
-            ${sizes.map((n) => `<button class="review-pill" data-n="${n}">${n}</button>`).join("")}
-            <button class="review-pill" data-n="${total}">All ${total}</button>
+            <button class="review-pill" data-n="10">10</button>
+            <button class="review-pill" data-n="20">20</button>
+            <button class="review-pill" data-n="50">50</button>
+            <button class="review-pill" data-n="0">All</button>
           </div>
         </section>
         <section class="review-sec">
@@ -1954,18 +2028,27 @@
         </section>
       </div>`;
 
-    reviewContent.querySelectorAll(".review-pill").forEach((b) =>
-      b.addEventListener("click", () => startMixQuiz(parseInt(b.dataset.n, 10), null)));
+    reviewContent.querySelectorAll(".mix-scope-btn").forEach((b) =>
+      b.addEventListener("click", () =>
+        reviewContent.querySelectorAll(".mix-scope-btn").forEach((x) => x.classList.toggle("sel", x === b))));
+    reviewContent.querySelectorAll(".review-mix-btns .review-pill").forEach((b) =>
+      b.addEventListener("click", () => {
+        const prefixes = [...reviewContent.querySelectorAll(".mix-topic-cb:checked")].map((cb) => cb.value);
+        const sel = reviewContent.querySelector(".mix-scope-btn.sel");
+        runMix(prefixes, sel ? sel.dataset.scope : "all", parseInt(b.dataset.n, 10));
+      }));
     const drill = reviewContent.querySelector("#btn-review-drill");
-    if (drill && !drill.disabled) drill.addEventListener("click", () => startMixQuiz(null, "weak"));
+    if (drill && !drill.disabled) drill.addEventListener("click", () => runMix(present, "weak", 0));
   }
 
-  async function startMixQuiz(n, filter) {
+  async function runMix(prefixes, scope, n) {
     const all = await loadAllQuestions();
-    let pool = filter === "weak" ? all.filter((q) => classifyCard(q) === "weak") : [...all];
+    let pool = all.filter((q) => prefixes.includes(q._prefix));
+    if (scope === "weak") pool = pool.filter((q) => classifyCard(q) === "weak");
+    else if (scope === "new") pool = pool.filter((q) => classifyCard(q) === "new");
     pool = shuffle(pool);
-    if (n) pool = pool.slice(0, n);
-    if (!pool.length) return;
+    if (n && n > 0) pool = pool.slice(0, n);
+    if (!pool.length) { showToast("No questions match — pick more topics or a wider range."); return; }
     quizState = { ep: null, allQuestions: all, items: pool, questions: [], current: 0, score: 0,
                   answered: false, mode: "mix", missed: [], container: reviewContent, onExit: renderReviewHub };
     beginSession(pool, "mix");

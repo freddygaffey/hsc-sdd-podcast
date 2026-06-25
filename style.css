@@ -1515,3 +1515,38 @@ body.offline .episode-row:not(.ep-downloaded) .ep-play { opacity: 0.4; }
 .recall-title { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
 .recall-list { margin: 0; padding-left: 18px; font-size: 13px; color: var(--text); }
 .recall-list li { margin: 3px 0; }
+
+/* Anki-style grade buttons (Again / Hard / Good / Easy) */
+.grade-prompt { font-size: 12px; color: var(--text-dim); margin: 12px 0 6px; text-align: center; }
+.quiz-grades { display: flex; gap: 6px; }
+.grade-btn {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 10px 4px; border-radius: 10px; border: none; cursor: pointer;
+  color: #fff; font: 600 14px var(--font); line-height: 1.1;
+}
+.grade-iv { font-size: 11px; opacity: 0.9; font-weight: 500; }
+.grade-lbl { font-size: 14px; }
+.g-again { background: #ef4444; }
+.g-hard  { background: #f59e0b; }
+.g-good  { background: #22c55e; }
+.g-easy  { background: #3b82f6; }
+.grade-btn:active { filter: brightness(0.88); }
+
+/* Year 11 / Year 12 section headers in the library */
+.year-header {
+  font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--text-dim); margin: 20px 4px 8px;
+}
+.continue-banner + .year-header, .view > .year-header:first-child { margin-top: 6px; }
+
+/* Topic chooser in the mixed-quiz launcher */
+.mix-topics { display: flex; flex-direction: column; gap: 6px; margin: 4px 0 2px; }
+.mix-topic { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; }
+.mix-topic input { width: 16px; height: 16px; accent-color: var(--accent); }
+.mix-year-lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin-top: 6px; }
+.mix-scope { display: flex; gap: 6px; flex-wrap: wrap; }
+.mix-scope-btn {
+  padding: 7px 12px; border-radius: 8px; border: 1px solid var(--border);
+  background: var(--bg-elevated); color: var(--text); font: 600 13px var(--font); cursor: pointer;
+}
+.mix-scope-btn.sel { background: var(--accent); color: #fff; border-color: var(--accent); }
