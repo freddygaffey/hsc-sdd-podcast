@@ -1471,3 +1471,47 @@ body.offline .episode-row:not(.ep-downloaded) .ep-play { opacity: 0.4; }
 }
 .sync-para:hover { background: var(--bg-card); }
 .para-active { background: var(--accent-soft); }
+
+/* --- Review / study hub --- */
+.review-hub { display: flex; flex-direction: column; gap: 22px; }
+.review-sec { display: flex; flex-direction: column; gap: 10px; }
+.review-h { font-size: 15px; font-weight: 700; margin: 0; }
+.review-sub { font-size: 13px; color: var(--text-dim); margin: 0; }
+.review-mix-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+.review-pill {
+  flex: 1 1 auto; min-width: 56px; padding: 12px 10px; border-radius: 10px;
+  border: 1px solid var(--border); background: var(--bg-elevated); color: var(--text);
+  font: 600 15px var(--font); cursor: pointer;
+}
+.review-pill:active { background: var(--accent-soft); border-color: var(--accent); }
+.review-buckets { display: flex; gap: 8px; }
+.rb { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 12px 6px; border-radius: 10px; background: var(--bg-elevated); border: 1px solid var(--border); }
+.rb-num { font-size: 22px; font-weight: 700; }
+.rb-lbl { font-size: 11px; color: var(--text-dim); text-align: center; }
+.rb-known .rb-num { color: #22c55e; }
+.rb-weak .rb-num { color: var(--accent); }
+.rb-new .rb-num { color: var(--text-dim); }
+.review-drill {
+  padding: 12px; border-radius: 10px; border: none; background: var(--accent); color: #fff;
+  font: 600 14px var(--font); cursor: pointer;
+}
+.review-drill:disabled { background: var(--bg-elevated); color: var(--text-dim); cursor: default; }
+.review-topics { display: flex; flex-direction: column; gap: 10px; }
+.rt-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; }
+.rt-name { font-weight: 600; }
+.rt-pct { color: var(--text-dim); }
+.rt-track { height: 6px; border-radius: 3px; background: var(--bg-elevated); overflow: hidden; }
+.rt-fill { height: 100%; background: var(--accent); border-radius: 3px; }
+
+/* Source label on a mixed-quiz question (which episode it's from) */
+.quiz-source { font-size: 12px; color: var(--text-dim); margin-bottom: 6px; }
+
+/* "After listening" active-recall prompt above the quiz modes */
+.recall-prompt {
+  background: var(--accent-soft); border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px 14px; margin-bottom: 14px;
+}
+.recall-title { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 6px; }
+.recall-list { margin: 0; padding-left: 18px; font-size: 13px; color: var(--text); }
+.recall-list li { margin: 3px 0; }

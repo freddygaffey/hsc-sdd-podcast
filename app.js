@@ -99,6 +99,9 @@
   const statsOverlay = document.getElementById("stats-overlay");
   const statsContent = document.getElementById("stats-content");
   const btnStatsClose = document.getElementById("btn-stats-close");
+  const btnReview = document.getElementById("btn-review");
+  const reviewOverlay = document.getElementById("review-overlay");
+  const reviewContent = document.getElementById("review-content");
   const quizArea = document.getElementById("quiz-area");
 
   function setHidden(el, hidden) {
@@ -992,6 +995,12 @@
   });
   enableSheetDismiss(statsOverlay);
 
+  if (btnReview) btnReview.addEventListener("click", openReview);
+  if (reviewOverlay) {
+    reviewOverlay.addEventListener("click", (e) => { if (e.target === reviewOverlay) setHidden(reviewOverlay, true); });
+    enableSheetDismiss(reviewOverlay);
+  }
+
   // --- Downloads ---
   // The DOWNLOADS cache (see service-worker.js) holds the bytes; this localStorage
   // index is the fast source of truth for the UI: { [epId]: { voices:[names], at } }.
@@ -1663,7 +1672,9 @@
     quizArea.innerHTML = `<div class="quiz-empty"><p>Loading…</p></div>`;
     try {
       const data = await fetch(ep.quizPath).then((r) => r.json());
-      quizState = { ep, allQuestions: data.questions, questions: [], current: 0, score: 0, answered: false, mode: null, missed: [] };
+      data.questions.forEach((q) => { q._ep = ep; }); // tag each question with its episode
+      quizState = { ep, allQuestions: data.questions, items: [], questions: [], current: 0, score: 0,
+                    answered: false, mode: null, missed: [], container: quizArea, onExit: renderQuizPicker };
       renderQuizPicker();
     } catch {
       quizArea.innerHTML = `<div class="quiz-empty"><p>Failed to load quiz.</p></div>`;
@@ -1680,6 +1691,14 @@
 
     quizArea.innerHTML = `
       <div class="quiz-picker">
+        <div class="recall-prompt">
+          <div class="recall-title">After listening — active recall</div>
+          <ol class="recall-list">
+            <li>Jot down the 3 main ideas from memory.</li>
+            <li>Explain the key concept out loud in your own words.</li>
+            <li>Then test yourself below — without looking at the notes.</li>
+          </ol>
+        </div>
         <div class="quiz-picker-stats">
           <span class="qps-count">${allQuestions.length} questions</span>
           ${pct !== null ? `<span class="qps-score">${pct}% accuracy</span>` : ""}
@@ -1715,10 +1734,15 @@
 
   function startQuiz(mode) {
     const { ep, allQuestions } = quizState;
-    const pool = mode === "review"
-      ? shuffle(allQuestions.filter((q) => isDue(ep, q)))
-      : shuffle([...allQuestions]);
-    quizState.questions = pool;
+    const items = mode === "review" ? allQuestions.filter((q) => isDue(ep, q)) : [...allQuestions];
+    beginSession(items, mode);
+  }
+
+  // Run a quiz session over a fixed pool of questions (each tagged with q._ep). Used by
+  // the per-episode quiz and the cross-subject Mix quiz alike.
+  function beginSession(items, mode) {
+    quizState.items = items;
+    quizState.questions = shuffle(items);
     quizState.current = 0;
     quizState.score = 0;
     quizState.answered = false;
@@ -1729,10 +1753,11 @@
 
   function renderQuestion() {
     const { questions, current } = quizState;
+    const c = quizState.container;
     const q = questions[current];
     const total = questions.length;
 
-    quizArea.innerHTML = `
+    c.innerHTML = `
       <div class="quiz-session">
         <div class="quiz-header">
           <button class="quiz-exit-btn" id="btn-quiz-exit">✕ Exit</button>
@@ -1742,6 +1767,7 @@
           <div class="quiz-progress-fill" style="width:${Math.round(((current + 1) / total) * 100)}%"></div>
         </div>
         <div class="quiz-question-wrap">
+          ${quizState.mode === "mix" && q._ep ? `<div class="quiz-source">${q._ep.title}</div>` : ""}
           <p class="quiz-q-text">${q.q}</p>
           <div class="quiz-options">
             ${q.options.map((opt, i) => `<button class="quiz-option" data-index="${i}">${opt}</button>`).join("")}
@@ -1755,23 +1781,25 @@
         </div>
       </div>`;
 
-    document.getElementById("btn-quiz-exit").addEventListener("click", () => {
+    c.querySelector("#btn-quiz-exit").addEventListener("click", () => {
       quizState.mode = null;
-      renderQuizPicker();
+      (quizState.onExit || renderQuizPicker)();
     });
-    document.querySelectorAll(".quiz-option").forEach((btn) => {
+    c.querySelectorAll(".quiz-option").forEach((btn) => {
       btn.addEventListener("click", () => handleAnswer(parseInt(btn.dataset.index, 10)));
     });
-    document.getElementById("btn-quiz-next").addEventListener("click", advanceQuiz);
-    renderMath(quizArea); // render math in the question + options
+    c.querySelector("#btn-quiz-next").addEventListener("click", advanceQuiz);
+    renderMath(c); // render math in the question + options
   }
 
   function handleAnswer(chosen) {
     if (quizState.answered) return;
     quizState.answered = true;
 
-    const { ep, questions, current } = quizState;
+    const { questions, current } = quizState;
+    const c = quizState.container;
     const q = questions[current];
+    const ep = q._ep || quizState.ep;
     const correct = chosen === q.answer;
 
     if (correct) quizState.score++;
@@ -1779,20 +1807,20 @@
 
     updateCard(ep, q, correct);
 
-    document.querySelectorAll(".quiz-option").forEach((btn, i) => {
+    c.querySelectorAll(".quiz-option").forEach((btn, i) => {
       btn.disabled = true;
       if (i === q.answer) btn.classList.add("opt-correct");
       else if (i === chosen) btn.classList.add("opt-wrong");
       else btn.classList.add("opt-dim");
     });
 
-    const inner = document.getElementById("quiz-feedback-inner");
+    const inner = c.querySelector("#quiz-feedback-inner");
     inner.innerHTML = `
       <div class="feedback-verdict ${correct ? "verdict-correct" : "verdict-wrong"}">
         ${correct ? "✓ Correct" : "✗ Incorrect"}
       </div>
       ${q.explanation ? `<p class="feedback-explanation">${q.explanation}</p>` : ""}`;
-    setHidden(document.getElementById("quiz-feedback"), false);
+    setHidden(c.querySelector("#quiz-feedback"), false);
     renderMath(inner); // render math in the explanation
   }
 
@@ -1808,11 +1836,13 @@
 
   function renderQuizSummary() {
     const { score, questions, missed } = quizState;
+    const c = quizState.container;
     const total = questions.length;
     const pct = Math.round((score / total) * 100);
     const emoji = pct >= 80 ? "🏆" : pct >= 60 ? "👍" : "📚";
+    const backLabel = quizState.onExit && quizState.onExit !== renderQuizPicker ? "← Back to review" : "← Back to quiz menu";
 
-    quizArea.innerHTML = `
+    c.innerHTML = `
       <div class="quiz-summary">
         <div class="quiz-summary-score">
           <div class="summary-emoji">${emoji}</div>
@@ -1820,30 +1850,127 @@
           <div class="summary-pct">${pct}% correct</div>
         </div>
         <div class="quiz-summary-actions">
-          <button class="quiz-action-btn" id="btn-quiz-again">Practice again</button>
+          <button class="quiz-action-btn" id="btn-quiz-again">Do these again</button>
           ${missed.length > 0
             ? `<button class="quiz-action-btn quiz-action-secondary" id="btn-quiz-missed">Retry ${missed.length} missed</button>`
             : ""}
-          <button class="quiz-action-btn quiz-action-ghost" id="btn-quiz-back">← Back to quiz menu</button>
+          <button class="quiz-action-btn quiz-action-ghost" id="btn-quiz-back">${backLabel}</button>
         </div>
       </div>`;
 
-    document.getElementById("btn-quiz-again").addEventListener("click", () => startQuiz("practice"));
-    document.getElementById("btn-quiz-missed")?.addEventListener("click", () => {
-      quizState.questions = shuffle(quizState.missed);
-      quizState.current = 0;
-      quizState.score = 0;
-      quizState.answered = false;
-      quizState.missed = [];
-      renderQuestion();
-    });
-    document.getElementById("btn-quiz-back").addEventListener("click", () => {
+    c.querySelector("#btn-quiz-again").addEventListener("click", () => beginSession(quizState.items, quizState.mode));
+    c.querySelector("#btn-quiz-missed")?.addEventListener("click", () => beginSession(quizState.missed, quizState.mode));
+    c.querySelector("#btn-quiz-back").addEventListener("click", () => {
       quizState.mode = null;
-      renderQuizPicker();
+      (quizState.onExit || renderQuizPicker)();
     });
   }
 
   // === END QUIZ ===
+
+  // === REVIEW / STUDY HUB (subject-wide: mix quiz, known/learning split, diagnostic) ===
+  let allQuestionsCache = null;
+  async function loadAllQuestions() {
+    if (allQuestionsCache) return allQuestionsCache;
+    const list = [];
+    manifest.modules.forEach((m) => m.episodes.forEach((e) => { if (e.quizPath) list.push({ ep: e, prefix: m.prefix }); }));
+    const results = await Promise.all(list.map(({ ep, prefix }) =>
+      fetch(ep.quizPath).then((r) => (r.ok ? r.json() : null)).then((d) => {
+        if (!d || !Array.isArray(d.questions)) return [];
+        d.questions.forEach((q) => { q._ep = ep; q._prefix = prefix; });
+        return d.questions;
+      }).catch(() => [])
+    ));
+    allQuestionsCache = results.flat();
+    return allQuestionsCache;
+  }
+
+  // Classify a question from its spaced-repetition card: never tried / still learning / known.
+  function classifyCard(q) {
+    const c = getCard(q._ep, q);
+    if ((c.total || 0) === 0) return "new";
+    if (c.reps >= 2 && c.due > Date.now()) return "known";
+    return "weak";
+  }
+
+  function openReview() {
+    if (!manifest) return;
+    setHidden(reviewOverlay, false);
+    renderReviewHub();
+  }
+
+  async function renderReviewHub() {
+    reviewContent.innerHTML = `<div class="quiz-empty"><p>Loading…</p></div>`;
+    const all = await loadAllQuestions();
+    if (!all.length) { reviewContent.innerHTML = `<div class="quiz-empty"><p>No quizzes available yet.</p></div>`; return; }
+
+    const buckets = { new: 0, weak: 0, known: 0 };
+    const groups = {};
+    all.forEach((q) => {
+      const cls = classifyCard(q);
+      buckets[cls]++;
+      const name = GROUP_NAMES[q._prefix] || q._prefix;
+      const g = groups[name] || (groups[name] = { total: 0, correct: 0, known: 0, n: 0 });
+      const c = getCard(q._ep, q);
+      g.n++; g.total += c.total || 0; g.correct += c.correct || 0;
+      if (cls === "known") g.known++;
+    });
+    const topics = Object.entries(groups).map(([name, g]) => ({
+      name, mastery: Math.round((g.known / g.n) * 100), attempted: g.total > 0,
+    })).sort((a, b) => a.mastery - b.mastery);
+    const weakest = topics.find((t) => t.attempted);
+
+    const total = all.length;
+    const sizes = [10, 20, 50].filter((n) => n < total);
+    reviewContent.innerHTML = `
+      <div class="review-hub">
+        <section class="review-sec">
+          <h3 class="review-h">Mixed quiz</h3>
+          <p class="review-sub">${total} questions from across the whole subject, jumbled together.</p>
+          <div class="review-mix-btns">
+            ${sizes.map((n) => `<button class="review-pill" data-n="${n}">${n}</button>`).join("")}
+            <button class="review-pill" data-n="${total}">All ${total}</button>
+          </div>
+        </section>
+        <section class="review-sec">
+          <h3 class="review-h">Your progress</h3>
+          <div class="review-buckets">
+            <div class="rb rb-known"><span class="rb-num">${buckets.known}</span><span class="rb-lbl">Known</span></div>
+            <div class="rb rb-weak"><span class="rb-num">${buckets.weak}</span><span class="rb-lbl">Still learning</span></div>
+            <div class="rb rb-new"><span class="rb-num">${buckets.new}</span><span class="rb-lbl">Not started</span></div>
+          </div>
+          <button class="review-drill" id="btn-review-drill"${buckets.weak === 0 ? " disabled" : ""}>${buckets.weak > 0 ? `Drill the ${buckets.weak} you're still learning` : "Nothing to drill yet"}</button>
+        </section>
+        <section class="review-sec">
+          <h3 class="review-h">By topic</h3>
+          ${weakest ? `<p class="review-sub">Weakest area: <strong>${weakest.name}</strong> — a good place to revise next.</p>` : `<p class="review-sub">Do some questions and your strong/weak topics will show here.</p>`}
+          <div class="review-topics">
+            ${topics.map((t) => `
+              <div class="rt">
+                <div class="rt-row"><span class="rt-name">${t.name}</span><span class="rt-pct">${t.mastery}% known</span></div>
+                <div class="rt-track"><div class="rt-fill" style="width:${t.mastery}%"></div></div>
+              </div>`).join("")}
+          </div>
+        </section>
+      </div>`;
+
+    reviewContent.querySelectorAll(".review-pill").forEach((b) =>
+      b.addEventListener("click", () => startMixQuiz(parseInt(b.dataset.n, 10), null)));
+    const drill = reviewContent.querySelector("#btn-review-drill");
+    if (drill && !drill.disabled) drill.addEventListener("click", () => startMixQuiz(null, "weak"));
+  }
+
+  async function startMixQuiz(n, filter) {
+    const all = await loadAllQuestions();
+    let pool = filter === "weak" ? all.filter((q) => classifyCard(q) === "weak") : [...all];
+    pool = shuffle(pool);
+    if (n) pool = pool.slice(0, n);
+    if (!pool.length) return;
+    quizState = { ep: null, allQuestions: all, items: pool, questions: [], current: 0, score: 0,
+                  answered: false, mode: "mix", missed: [], container: reviewContent, onExit: renderReviewHub };
+    beginSession(pool, "mix");
+  }
+  // === END REVIEW ===
 
   tabBtns.forEach((btn) => {
     btn.addEventListener("click", () => {

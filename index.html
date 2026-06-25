@@ -25,6 +25,9 @@
     <button id="btn-back" class="btn-back" hidden>&#8592; Library</button>
     <div class="brand">Podcast Library</div>
     <button id="btn-sleep" class="sleep-btn" hidden aria-label="Sleep timer"></button>
+    <button id="btn-review" class="icon-btn" aria-label="Review and quiz">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M14 3v5h5"/><path d="M9 13l2 2 4-4"/></svg>
+    </button>
     <button id="btn-stats" class="icon-btn" aria-label="Listening stats">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><rect x="2" y="12" width="4" height="10" rx="1"/><rect x="9" y="7" width="4" height="15" rx="1"/><rect x="16" y="2" width="4" height="20" rx="1"/></svg>
     </button>
@@ -109,6 +112,16 @@
       <h2 class="stats-heading">Listening Stats</h2>
     </div>
     <div id="stats-content" class="stats-content"></div>
+  </div>
+</div>
+
+<div id="review-overlay" class="stats-overlay" hidden>
+  <div class="stats-panel">
+    <button class="sheet-close" aria-label="Close">&#10005;</button>
+    <div class="stats-header">
+      <h2 class="stats-heading">Review</h2>
+    </div>
+    <div id="review-content" class="stats-content"></div>
   </div>
 </div>
 
