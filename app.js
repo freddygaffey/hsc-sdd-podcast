@@ -860,7 +860,7 @@
     PFW: "Year 12", SSA: "Year 12", SA: "Year 12", SEE: "Year 12",
     CASE: "Case Studies",
   };
-  const YEAR_ORDER = ["Year 11", "Year 12", "Case Studies", "Other"];
+  const YEAR_ORDER = ["Case Studies", "Year 12", "Year 11", "Other"];
 
   function computeStats() {
     const progress = loadProgress();
