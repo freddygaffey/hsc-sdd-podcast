@@ -1052,25 +1052,47 @@
       return sum + (v && v.duration ? v.duration * EST_BYTES_PER_SEC : 0);
     }, 0);
   }
-  function connectionType() {
-    const c = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-    return c && c.type ? c.type : null; // "cellular"/"wifi"/… or null (e.g. iOS, can't tell)
+  function connInfo() {
+    return navigator.connection || navigator.mozConnection || navigator.webkitConnection || null;
   }
   function blockMobileData() { return localStorage.getItem(BLOCK_MOBILE_KEY) !== "0"; } // default ON
+
+  // Latency proxy for "am I on a slow/mobile link?" — most browsers (esp. iOS Safari)
+  // don't expose connection type, but round-trip time does: Wi-Fi/broadband to a CDN edge
+  // is typically <100 ms, mobile data is usually higher. We warm up the connection, then
+  // take the best of two tiny same-origin requests (best ≈ true RTT, least noise).
+  async function probeLatencyMs() {
+    try {
+      await fetch("icons/icon-32.png?lat=" + Date.now(), { cache: "no-store" }); // warm-up
+      let best = Infinity;
+      for (let i = 0; i < 2; i++) {
+        const t = performance.now();
+        await fetch("icons/icon-32.png?lat=" + Date.now() + "-" + i, { cache: "no-store" });
+        best = Math.min(best, performance.now() - t);
+      }
+      return best;
+    } catch { return Infinity; }
+  }
+
   // Resolves true if a ~estBytes download may proceed under the mobile-data setting.
   async function mayDownload(estBytes) {
     if (!blockMobileData()) return true;
-    const type = connectionType();
-    if (type === "cellular") {
-      showToast("Downloads are blocked on mobile data (change in Settings).");
-      return false;
+    const c = connInfo();
+    if (c) {
+      if (c.type === "wifi" || c.type === "ethernet") return true; // definitely not mobile
+      if (c.saveData || c.type === "cellular" || /(slow-2g|2g|3g)/.test(c.effectiveType || "")) {
+        showToast("Downloads are blocked on mobile data (change in Settings).");
+        return false;
+      }
+      if (c.effectiveType === "4g") return true; // fast link → allow silently
     }
-    if (type) return true; // wifi / ethernet / etc.
-    // Connection unknown (iOS can't report it) — confirm before using possible data.
+    // No reliable signal (iOS) — use latency: fast link → allow silently; slow → confirm.
+    const lat = await probeLatencyMs();
+    if (lat < 150) return true;
     const mb = estBytes ? Math.max(1, Math.round(estBytes / 1e6)) : 0;
     return window.confirm(mb
-      ? `You may be on mobile data.\nDownload about ${mb} MB now?`
-      : "You may be on mobile data. Download now?");
+      ? `This looks like a slow or mobile connection (~${Math.round(lat)} ms).\nDownload about ${mb} MB now?`
+      : "This looks like a slow or mobile connection. Download now?");
   }
 
   let persistRequested = false;
