@@ -649,7 +649,12 @@
       return;
     }
     const nextEp = getNextEpisode(currentEpisode);
-    if (nextEp) showAdvanceToast(nextEp);
+    if (!nextEp) return;
+    // Screen off / app backgrounded: skip the countdown toast and advance immediately,
+    // while the audio session is still warm (gives the next track the best chance of
+    // starting in the background on iOS). Foreground keeps the nice "Up next" countdown.
+    if (document.hidden) { loadEpisode(nextEp, { autoplay: true }); navigateToEpisode(nextEp.id); }
+    else showAdvanceToast(nextEp);
   });
   audio.addEventListener("loadedmetadata", () => {
     timeTotal.textContent = fmtTime(audio.duration / (getCurrentSpeed() || 1));
@@ -763,6 +768,9 @@
     const token = ++loadToken;
     audio.src = voice.file;
     audio.load();
+    // Start playback as synchronously as possible (don't wait for loadedmetadata) so that,
+    // when auto-advancing in the background, iOS still treats the audio session as active.
+    if (autoplay) audio.play().catch(() => {});
     audio.addEventListener("loadedmetadata", () => {
       if (token !== loadToken) return; // a newer load superseded this one
       // Don't resume at the very end (a completed episode has progressPct≈1) — that
@@ -770,7 +778,6 @@
       if (resumePct && resumePct < 0.999 && audio.duration) audio.currentTime = resumePct * audio.duration;
       audio.playbackRate = getCurrentSpeed();
       timeTotal.textContent = fmtTime(audio.duration / getCurrentSpeed());
-      if (autoplay) audio.play().catch(() => {});
     }, { once: true });
   }
 
